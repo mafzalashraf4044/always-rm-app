@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "sdkVersion": "24.0.0",
+    "name": "Always RM",
+    "icon": "./assets/logo-dark.png",
+    "version": "1.0.0",
+    "slug": "always-rm",
+    "loading": {
+      "hideExponentText": false,
+      "icon": "./assets/loading.png"
+    },
+    "orientation": "portrait",
+    "primaryColor": "#cccccc",
+    "packagerOpts": {
+      "assetExts": ["ttf"]
+    },
+    "androidStatusBarColor": "#334393",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#334393"
+    },
+    "ios": {
+      "bundleIdentifier": "com.seamug.always"
+    },
+    "android": {
+      "package": "com.seamug.always"
+    }
+  }
+}

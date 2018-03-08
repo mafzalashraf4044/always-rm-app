@@ -25,19 +25,16 @@ export interface Props {
 }
 export interface State {}
 class LoginForm extends React.Component<Props, State> {
-  textInput: any;
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
     return (
-      <Item error={error && touched} floatingLabel>
+      <Item error={error && touched} floatingLabel style={{
+        marginLeft: 0
+      }}>
         <Label>{input.name === "email" ? "Email" : "Password"}</Label>
         <Input
-          ref={c => (this.textInput = c)}
           secureTextEntry={input.name === "password" ? true : false}
           {...input}
-          style={{
-            marginLeft: 0,
-          }}
         />
       </Item>
     );
@@ -71,10 +68,10 @@ class LoginForm extends React.Component<Props, State> {
           validate={[alphaNumeric, minLength8, maxLength15, required]}
         />
         {
-          !this.props.valid &&
-          <View padder>
-            <Text> {this.props.valid}You have keyed in wrong email/password</Text>
-          </View>
+          // !this.props.valid &&
+          // <View padder>
+          //   <Text> {this.props.valid}You have keyed in wrong email/password</Text>
+          // </View>
         }
       </Form>
     );

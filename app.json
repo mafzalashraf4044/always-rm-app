@@ -2,13 +2,9 @@
   "expo": {
     "sdkVersion": "24.0.0",
     "name": "Always RM",
-    "icon": "./assets/logo-dark.png",
+    "icon": "./logo-dark.png",
     "version": "1.0.0",
     "slug": "always-rm",
-    "loading": {
-      "hideExponentText": false,
-      "icon": "./assets/loading.png"
-    },
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "packagerOpts": {

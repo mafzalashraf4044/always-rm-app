@@ -246,7 +246,7 @@ export default {
 	tabTextColor: "#222222",
 
 	// Text
-	textColor: "#fff",
+	textColor: "#000",
 	inverseTextColor: "#fff",
 	noteFontSize: 14,
 

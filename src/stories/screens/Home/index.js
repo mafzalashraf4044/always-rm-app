@@ -11,9 +11,10 @@ import {
   Body,
   Right,
   List,
-  ListItem
+  ListItem,
 } from "native-base";
 
+import { View, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 export interface Props {
   navigation: any;
@@ -21,10 +22,22 @@ export interface Props {
 }
 export interface State {}
 class Home extends React.Component<Props, State> {
+  homeTabs = [
+    {icon: require('../../../assets/Icons/Light/Stores.png'), name: 'My Stores', route: "Stores"},
+    {icon: require('../../../assets/Icons/Light/Report.png'), name: 'Reports', route: "Reports"},
+    {icon: require('../../../assets/Icons/Light/Calendar.png'), name: 'My Calendar', route: "MyCalendar"},
+    {icon: require('../../../assets/Icons/Light/Merchandise.png'), name: 'Merchandising', route: "Merchandising"},
+  ];
+
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Image
+          blurRadius={5}
+          style={styles.backgroundImg}
+          source={require('../../../assets/Images/app-bg.jpg')}
+        />
+        <Header transparent noShadow>
           <Left>
             <Button transparent>
               <Icon
@@ -40,20 +53,25 @@ class Home extends React.Component<Props, State> {
           <Right />
         </Header>
         <Content>
-          <List>
-            {this.props.list.map((item, i) => (
-              <ListItem
-                key={i}
-                onPress={() =>
-                  this.props.navigation.navigate("BlankPage", {
-                    name: { item }
-                  })}
-              >
-                <Text>{item}</Text>
-              </ListItem>
-            ))}
-          </List>
+          <View style={styles.homeTabs}>
+            {
+              this.homeTabs.map((tab, index) => {
+                return (
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate(tab.route)} key={tab.name}>
+                    <View style={[styles.homeTab, tab.name === 'Merchandising' ? styles.homeTabBright: {}]}>
+                      <Image
+                        style={styles.tabIcon}
+                        source={tab.icon}
+                      />
+                      <Text style={styles.homeTabTxt}>{tab.name}</Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })
+            }
+          </View>
         </Content>
+
       </Container>
     );
   }

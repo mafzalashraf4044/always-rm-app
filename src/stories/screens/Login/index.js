@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Image, Platform, Dimensions, TouchableOpacity } from "react-native";
-import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
+import { Image, Platform, Dimensions, TouchableOpacity, Text, View, } from "react-native";
+import { Container, Content, Header, Body, Title, Button, Icon, Footer } from "native-base";
 import styles from "./styles";
 export interface Props {
 	loginForm: any,
@@ -15,17 +15,18 @@ class Login extends React.Component<Props, State> {
 				<Content>
 					<View style={styles.loginView}>
 						<Image
+							blurRadius={5}
 							style={styles.backgroundImg}
-							source={{ uri: 'https://i.pinimg.com/originals/55/9d/d4/559dd406bfc916d6fec1c97aae1de69f.jpg' }}
+							source={require('../../../assets/Images/app-bg.jpg')}
 						/>
 						<View style={styles.formContainer}>
 							{this.props.loginForm}
-							<View padder>
-								<Button block onPress={() => this.props.onLogin()}>
-									<Text>LOG IN</Text>
+							<View>
+								<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>
+									<Text style={styles.loginBtnTxt}>LOG IN</Text>
 								</Button>
 							</View>
-							<View padder>
+							<View>
 								<TouchableOpacity block onPress={() => this.props.onLogin()}> 
 									<Text style={styles.forgotPwdTxt}>FORGOT PASSWORD</Text>
 								</TouchableOpacity>

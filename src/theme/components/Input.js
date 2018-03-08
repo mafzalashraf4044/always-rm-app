@@ -8,6 +8,7 @@ export default (variables = variable) => {
 		height: variables.inputHeightBase,
 		color: "#000",
 		flex: 1,
+		marginLeft: 0,
 		fontSize: variables.inputFontSize,
 		lineHeight: variables.inputLineHeight,
 	};

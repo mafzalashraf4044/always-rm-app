@@ -5,7 +5,7 @@ import variable from "./../variables/material";
 export default (variables = variable) => {
 	const itemTheme = {
 		".floatingLabel": {
-			margin: 15, 
+			marginVertical: 15,
 			"NativeBase.Input": {
 				height: 60,
 				top: 8,

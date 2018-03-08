@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, PixelRatio } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -18,11 +18,21 @@ const styles: any = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	formContainer: {
-		width: '80%',
+		width: '70%',
 		marginBottom: 50,
 	},
+	loginBtn: {
+		backgroundColor: 'rgba(233,30,99,1)',
+	},
+	loginBtnTxt: {
+		color: '#fff',
+		fontSize: PixelRatio.getFontScale() * 16,
+	},
 	forgotPwdTxt: {
-		textAlign: 'center'
+		color: '#fff',
+		marginTop: 10,
+		textAlign: 'center',
+		fontSize: PixelRatio.getFontScale() * 16,
 	}
 });
 export default styles;

@@ -1,15 +1,27 @@
 import * as React from "react";
-import { Image, Platform, Dimensions, TouchableOpacity, Text, View, } from "react-native";
-import { Container, Content, Header, Body, Title, Button, Icon, Footer } from "native-base";
+import {
+	Image,
+	Dimensions,
+	TouchableOpacity,
+	Text,
+	View,
+} from "react-native";
+import {
+	Container,
+	Content,
+	Button,
+} from "native-base";
+
 import styles from "./styles";
+
 export interface Props {
 	loginForm: any,
 	onLogin: Function,
 }
+
 export interface State {}
 class Login extends React.Component<Props, State> {
 	render() {
-		const ScreenHeight = Dimensions.get("window").height;
 		return (
 			<Container>
 				<Content>
@@ -17,7 +29,7 @@ class Login extends React.Component<Props, State> {
 						<Image
 							blurRadius={5}
 							style={styles.backgroundImg}
-							source={require('../../../assets/Images/app-bg.jpg')}
+							source={require("../../../assets/Images/app-bg.jpg")}
 						/>
 						<View style={styles.formContainer}>
 							{this.props.loginForm}

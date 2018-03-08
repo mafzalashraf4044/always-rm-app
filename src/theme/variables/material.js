@@ -1,6 +1,6 @@
 import color from "color";
 
-import { Platform, Dimensions, PixelRatio } from "react-native";
+import { Platform, Dimensions } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -142,12 +142,12 @@ export default {
 	tabActiveBgColor: undefined,
 
 	// Tab
-	tabDefaultBg: "#3F51B5",
-	topTabBarTextColor: "#b3c7f9",
+	tabDefaultBg: "transparent",
+	topTabBarTextColor: "#fff",
 	topTabBarActiveTextColor: "#fff",
 	topTabActiveBgColor: undefined,
 	topTabBarBorderColor: "#fff",
-	topTabBarActiveBorderColor: "#fff",
+	topTabBarActiveBorderColor: "transparent",
 
 	// Header
 	toolbarBtnColor: "#fff",

@@ -5,15 +5,15 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#fff",
 	},
 	headerContainer: {
-		position: 'relative',
+		position: "relative",
 	},
 	backgroundImg: {
 		flex: 1,
-		resizeMode: 'cover',
-		position: 'absolute',
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
+		resizeMode: "cover",
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		justifyContent: "center",
 	},
 });
 export default styles;

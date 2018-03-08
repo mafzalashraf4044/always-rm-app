@@ -189,7 +189,6 @@ export default (variables = variable) => {
 				},
 				alignSelf: null,
 				paddingHorizontal: variables.buttonPadding,
-				paddingHorizontal: variables.buttonPadding,
 			},
 			flex: platform === "ios" && platformStyle !== "material" ? 1 : 0.5,
 			alignSelf: "center",
@@ -205,7 +204,6 @@ export default (variables = variable) => {
 				marginRight: platform === "ios" ? -40 : -55,
 			},
 			"NativeBase.Button": {
-				alignSelf: "center",
 				alignSelf: "center",
 				".transparent": {
 					backgroundColor: "transparent",

@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import React, { Component } from "react";
+import { Image } from "react-native";
+import {
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right
+} from "native-base";
 
-import styles from './styles';
-export default class StoreCard extends Component {
+class StoreCard extends Component {
   render() {
     return (
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={{uri: 'http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg'}} />
+            <Thumbnail source={{uri: "http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg"}} />
             <Body>
               <Text>NativeBase</Text>
               <Text note>GeekyAnts</Text>
@@ -17,7 +26,7 @@ export default class StoreCard extends Component {
           </Left>
         </CardItem>
         <CardItem cardBody>
-          <Image source={{uri: 'http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+          <Image source={{uri: "http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg"}} style={{height: 200, width: null, flex: 1}}/>
         </CardItem>
         <CardItem>
           <Left>
@@ -40,3 +49,5 @@ export default class StoreCard extends Component {
     );
   }
 }
+
+export default StoreCard;

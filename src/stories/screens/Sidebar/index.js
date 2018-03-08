@@ -1,39 +1,26 @@
 import * as React from "react";
 import {
 	Container,
-	Header,
-	List,
-	ListItem,
 	Content,
-	Left,
-  Body,
-	Right,
-	Button,
-	Icon,
-	Title,
-	Footer
 } from "native-base";
 import { NavigationActions } from "react-navigation";
 
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 
-import styles from './styles';
+import styles from "./styles";
 
 export interface Props {
 	navigation: any,
 }
 export interface State {}
-const resetAction = NavigationActions.reset({
-	index: 0,
-	actions: [NavigationActions.navigate({ routeName: "Login" })],
-});
+
 export default class Sidebar extends React.Component<Props, State> {
 
   listItems = [
-    {icon: require('../../../assets/Icons/Dark/Stores.png'), name: 'My Stores', route: "Stores"},
-    {icon: require('../../../assets/Icons/Dark/Report.png'), name: 'Reports', route: "Reports"},
-    {icon: require('../../../assets/Icons/Dark/Calendar.png'), name: 'My Calendar', route: "MyCalendar"},
-    {icon: require('../../../assets/Icons/Dark/Merchandise.png'), name: 'Merchandising', route: "Merchandising"},
+    {icon: require("../../../assets/Icons/Dark/Stores.png"), name: "My Stores", route: "Stores"},
+    {icon: require("../../../assets/Icons/Dark/Report.png"), name: "Reports", route: "Reports"},
+    {icon: require("../../../assets/Icons/Dark/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
+    {icon: require("../../../assets/Icons/Dark/Merchandise.png"), name: "Merchandising", route: "Merchandising"},
   ];
 
 	renderItem = ({item}) => {
@@ -55,19 +42,18 @@ export default class Sidebar extends React.Component<Props, State> {
 	render() {
 		return (
 			<Container style={styles.sidebar}>
-				
         <View style={styles.header}>
 					<View style={styles.headerIconsWrapper}>
 						<TouchableOpacity onPress={() => this.props.navigation.navigate("DrawerClose")} style={styles.headerIconWrapper}>
 							<Image
 								style={styles.headerIcon}
-								source={require('../../../assets/Icons/Light/Back.png')}
+								source={require("../../../assets/Icons/Light/Back.png")}
 							/>
             </TouchableOpacity>
 						<TouchableOpacity style={styles.headerIconWrapper}>
 							<Image
 								style={styles.headerIcon}
-								source={require('../../../assets/Icons/Light/Edit.png')}
+								source={require("../../../assets/Icons/Light/Edit.png")}
 							/>
             </TouchableOpacity>
 					</View>
@@ -86,7 +72,7 @@ export default class Sidebar extends React.Component<Props, State> {
 				</Content>
 				<View style={styles.footer}>
 					<FlatList
-						data={[{icon: require('../../../assets/Icons/Dark/Exit.png'), name: 'Log Out', route: "Login"}]}
+						data={[{icon: require("../../../assets/Icons/Dark/Exit.png"), name: "Log Out", route: "Login"}]}
 						renderItem={this.renderItem}
 						keyExtractor={item => item.name}
 					/>

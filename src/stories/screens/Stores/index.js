@@ -1,9 +1,21 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Tabs, Tab } from "native-base";
+import {
+	Container,
+	Header,
+	Title,
+	Content,
+	Button,
+	Icon,
+	Left,
+	Right,
+	Body,
+	Tabs,
+	Tab
+} from "native-base";
 
-import { View, Image } from 'react-native';
+import { Image } from "react-native";
 
-import StoreCard from './StoreCard';
+import StoreCard from "./StoreCard";
 
 import styles from "./styles";
 export interface Props {
@@ -12,13 +24,12 @@ export interface Props {
 export interface State {}
 class Stores extends React.Component<Props, State> {
 	render() {
-		const param = this.props.navigation.state.params;
 		return (
 			<Container style={styles.container}>
 				<Image
 					blurRadius={5}
 					style={styles.backgroundImg}
-					source={require('../../../assets/Images/app-bg.jpg')}
+					source={require("../../../assets/Images/app-bg.jpg")}
 				/>
 				<Header transparent hasTabs>
 					<Left>

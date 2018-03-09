@@ -10,7 +10,7 @@ const styles: any = StyleSheet.create({
 	headerTitle: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(18),
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(18) / PixelRatio.get(),
 	},
 	backgroundImg: {
 		flex: 1,
@@ -21,7 +21,7 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
 	headerIcon: {
-		width: PixelRatio.getPixelSizeForLayoutSize(30),
+		width: PixelRatio.getPixelSizeForLayoutSize(30) / PixelRatio.get(),
     resizeMode: "contain",
 	}
 });

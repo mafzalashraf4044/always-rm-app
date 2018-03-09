@@ -28,7 +28,7 @@ const styles: any = StyleSheet.create({
 	},
 	logo: {
 		color: '#FFF',
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(30),
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(30) / PixelRatio.get(),
 		fontFamily: "Always_Font",
 	},
 	formContainer: {
@@ -36,19 +36,19 @@ const styles: any = StyleSheet.create({
 		width: "70%",
 	},
 	loginBtn: {
-		marginVertical: PixelRatio.getPixelSizeForLayoutSize(10),
+		marginVertical: PixelRatio.getPixelSizeForLayoutSize(10) / PixelRatio.get(),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(14),
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	},
 	forgotPwdTxt: {
 		color: "#fff",
 		textAlign: "center",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(14),
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	}
 });
 export default styles;

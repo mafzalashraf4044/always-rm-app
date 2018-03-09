@@ -11,7 +11,7 @@ export default (variables = variable) => {
 		fontFamily: "Always_Font",
 		color: variables.inputColor,
 		height: variables.inputHeightBase,
-		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14),
+		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	};
 
 	return inputTheme;

@@ -5,14 +5,14 @@ import variable from "./../variables/material";
 export default (variables = variable) => {
 	const itemTheme = {
 		".floatingLabel": {
-			marginVertical: PixelRatio.getPixelSizeForLayoutSize(5),
+			marginVertical: PixelRatio.getPixelSizeForLayoutSize(5) / PixelRatio.get(),
 			marginLeft: 0,
 			"NativeBase.Input": {
-				height: PixelRatio.getPixelSizeForLayoutSize(50),
-				paddingTop: PixelRatio.getPixelSizeForLayoutSize(20),
+				height: PixelRatio.getPixelSizeForLayoutSize(50) / PixelRatio.get(),
+				paddingTop: PixelRatio.getPixelSizeForLayoutSize(20) / PixelRatio.get(),
 			},
 			"NativeBase.Label": {
-				top: PixelRatio.getPixelSizeForLayoutSize(8),
+				top: PixelRatio.getPixelSizeForLayoutSize(8) / PixelRatio.get(),
 				color: "rgba(183,183,183,1)",
 			},
 		},

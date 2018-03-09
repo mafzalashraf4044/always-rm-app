@@ -5,7 +5,7 @@ import variable from "./../variables/material";
 export default (variables = variable) => {
 	const labelTheme = {
 		fontFamily: "Always_Font",
-		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14),
+		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	};
 
 	return labelTheme;

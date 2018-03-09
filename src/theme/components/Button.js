@@ -467,7 +467,7 @@ export default (variables = variable) => {
 		borderRadius: variables.borderRadiusBase,
 		borderColor: variables.btnPrimaryBg,
 		borderWidth: null,
-		height: PixelRatio.getPixelSizeForLayoutSize(36),
+		height: PixelRatio.getPixelSizeForLayoutSize(36) / PixelRatio.get(),
 		alignSelf: "flex-start",
 		flexDirection: "row",
 		elevation: 2,

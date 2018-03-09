@@ -34,7 +34,7 @@ export default {
 	CheckboxIconSize: platform === "ios" ? 18 : 14,
 	CheckboxIconMarginTop: platform === "ios" ? undefined : 1,
 	CheckboxFontSize: platform === "ios" ? 21 : 18,
-	DefaultFontSize: PixelRatio.getPixelSizeForLayoutSize(14),
+	DefaultFontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	checkboxBgColor: "#039BE5",
 	checkboxSize: 20,
 	checkboxTickColor: "#fff",
@@ -117,7 +117,7 @@ export default {
 
 	// Font
 	fontFamily: "Always_Font",
-	fontSizeBase: PixelRatio.getPixelSizeForLayoutSize(14),
+	fontSizeBase: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 
 	get fontSizeH1() {
 		return this.fontSizeBase * 1.8;
@@ -174,7 +174,7 @@ export default {
 	iconHeaderSize: platform === "ios" ? 29 : 24,
 
 	// InputGroup
-	inputFontSize: PixelRatio.getPixelSizeForLayoutSize(14),
+	inputFontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
 	inputBorderColor: "#fff",
 	inputSuccessBorderColor: "#fff",
 	inputErrorBorderColor: "#fff",
@@ -242,7 +242,7 @@ export default {
 
 	// Tabs
 	tabBgColor: "#F8F8F8",
-	tabFontSize: PixelRatio.getPixelSizeForLayoutSize(12),
+	tabFontSize: PixelRatio.getPixelSizeForLayoutSize(12) / PixelRatio.get(),
 	tabTextColor: "#222222",
 
 	// Text

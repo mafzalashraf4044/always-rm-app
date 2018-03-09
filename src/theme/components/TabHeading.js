@@ -19,7 +19,7 @@ export default (variables = variable) => {
 		"NativeBase.Text": {
 			color: variables.topTabBarTextColor,
 			marginHorizontal: 7,
-			fontSize: PixelRatio.getPixelSizeForLayoutSize(12),
+			fontSize: PixelRatio.getPixelSizeForLayoutSize(12) / PixelRatio.get(),
 		},
 		"NativeBase.Icon": {
 			color: variables.topTabBarTextColor,

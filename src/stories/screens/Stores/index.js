@@ -13,7 +13,7 @@ import {
 	Tab
 } from "native-base";
 
-import { TouchableOpacity, Image } from "react-native";
+import { TouchableOpacity, Image, Text } from "react-native";
 
 import StoreCard from "./StoreCard";
 
@@ -41,7 +41,7 @@ class Stores extends React.Component<Props, State> {
 						</TouchableOpacity>
 					</Left>
 					<Body>
-						<Title>My Stores</Title>
+						<Text style={styles.headerTitle}>My Stores</Text>
 					</Body>
 					<Right>
 						<TouchableOpacity onPress={() => {}}>
@@ -60,7 +60,7 @@ class Stores extends React.Component<Props, State> {
 					</Right>
 				</Header>
 
-				<Tabs initialPage={1}>
+				<Tabs initialPage={1} transparent>
 					<Tab heading="Outstanding">
 						<Container>
 							<Content>

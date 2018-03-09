@@ -2,8 +2,8 @@ import { StyleSheet, PixelRatio } from "react-native";
 
 const styles: any = StyleSheet.create({
 	header: {
-    flex: 0.3,
-    padding: 50 / PixelRatio.getPixelSizeForLayoutSize(1),
+    flex: 0.35,
+    padding: PixelRatio.getPixelSizeForLayoutSize(10),
     justifyContent: "space-between",
     backgroundColor: "rgba(233,30,99,1)",
   },
@@ -12,47 +12,49 @@ const styles: any = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 25 / PixelRatio.getPixelSizeForLayoutSize(1),
   },
   headerIcon: {
-    width: 30,
+    width: PixelRatio.getPixelSizeForLayoutSize(22),
     resizeMode: "contain",
   },
   userInfo: {
     width: "100%",
   },
   name: {
-    fontSize: PixelRatio.getFontScale() * 28,
     color: "#fff",
+    fontFamily: "Always_Font",
+    fontSize: PixelRatio.getPixelSizeForLayoutSize(18),
   },
   email: {
-    fontSize: PixelRatio.getFontScale() * 12,
-    color: "#fff",
+    color: "rgba(223,223,223,1)",
+    fontFamily: "Always_Font",
+    fontSize: PixelRatio.getPixelSizeForLayoutSize(12),
   },
   content: {
-    flex: 0.55,
+    flex: 0.5,
   },
   listItemView: {
-    paddingTop: 80 / PixelRatio.getPixelSizeForLayoutSize(1),
-    paddingHorizontal: 65 / PixelRatio.getPixelSizeForLayoutSize(1),
+    paddingHorizontal: PixelRatio.getPixelSizeForLayoutSize(20),
+    paddingTop: PixelRatio.getPixelSizeForLayoutSize(10),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
   },
   listItemIcon: {
-    width: 30,
+    width: PixelRatio.getPixelSizeForLayoutSize(22),
   },
   listItemTxt: {
-    fontSize: PixelRatio.getFontScale() * 16,
-    color: "#000",
-    marginLeft: 80 / PixelRatio.getPixelSizeForLayoutSize(1),
+    color: "rgba(74,74,74,1)",
+    fontFamily: "Always_Font",
+    fontSize: PixelRatio.getPixelSizeForLayoutSize(14),
+    marginLeft: PixelRatio.getPixelSizeForLayoutSize(22),
   },
   footer: {
     flex: 0.15,
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-start",
-    paddingBottom: 80 / PixelRatio.getPixelSizeForLayoutSize(1)
+    paddingBottom: PixelRatio.getPixelSizeForLayoutSize(10)
   }
 });
 export default styles;

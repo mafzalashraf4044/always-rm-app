@@ -7,6 +7,11 @@ const styles: any = StyleSheet.create({
 	headerContainer: {
 		position: "relative",
 	},
+	headerTitle: {
+		color: "#fff",
+		fontFamily: "Always_Font",
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(18),
+	},
 	backgroundImg: {
 		flex: 1,
 		resizeMode: "cover",
@@ -16,8 +21,8 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
 	headerIcon: {
-		width: PixelRatio.get() * 10,
-		resizeMode: "contain",
+		width: PixelRatio.getPixelSizeForLayoutSize(30),
+    resizeMode: "contain",
 	}
 });
 export default styles;

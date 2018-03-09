@@ -43,8 +43,8 @@ class Home extends React.Component<Props, State> {
 							/>
 						</TouchableOpacity>
           </Left>
-          <Body>
-            <Title>Welcome John Doe!</Title>
+          <Body style={styles.headerTitleContainer}>
+            <Title style={styles.headerTitle}>Welcome John Doe!</Title>
           </Body>
           <Right />
         </Header>

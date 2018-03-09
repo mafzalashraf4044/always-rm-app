@@ -1,3 +1,5 @@
+import { PixelRatio } from "react-native";
+
 import variable from "./../variables/material";
 
 export default (variables = variable) => {
@@ -17,6 +19,7 @@ export default (variables = variable) => {
 		"NativeBase.Text": {
 			color: variables.topTabBarTextColor,
 			marginHorizontal: 7,
+			fontSize: PixelRatio.getPixelSizeForLayoutSize(12),
 		},
 		"NativeBase.Icon": {
 			color: variables.topTabBarTextColor,

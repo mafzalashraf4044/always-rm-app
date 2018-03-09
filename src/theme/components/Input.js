@@ -1,3 +1,5 @@
+import { PixelRatio } from "react-native";
+
 import variable from "./../variables/material";
 
 export default (variables = variable) => {
@@ -5,12 +7,11 @@ export default (variables = variable) => {
 		".multiline": {
 			height: null,
 		},
-		height: variables.inputHeightBase,
-		color: "#000",
 		flex: 1,
-		marginLeft: 0,
-		fontSize: variables.inputFontSize,
-		lineHeight: variables.inputLineHeight,
+		fontFamily: "Always_Font",
+		color: variables.inputColor,
+		height: variables.inputHeightBase,
+		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14),
 	};
 
 	return inputTheme;

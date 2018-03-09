@@ -18,10 +18,10 @@ export default (variables = variable) => {
 		flexWrap: "wrap",
 		backgroundColor: variables.cardDefaultBg,
 		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 2 },
+		shadowOffset: { width: 2, height: 3 },
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
-		elevation: 3,
+		elevation: 1,
 	};
 
 	return cardTheme;

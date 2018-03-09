@@ -6,17 +6,9 @@ const styles: any = StyleSheet.create({
 	container: {
 		backgroundColor: "#000",
 	},
-	row: {
-		flex: 1,
-		alignItems: "center",
-	},
-	text: {
-		fontSize: 20,
-		marginBottom: 15,
-		alignItems: "center",
-	},
-	mt: {
-		marginTop: 18,
+	menuIcon: {
+		width: 30,
+    resizeMode: "contain",
 	},
 	backgroundImg: {
 		flex: 1,

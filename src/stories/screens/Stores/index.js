@@ -13,7 +13,7 @@ import {
 	Tab
 } from "native-base";
 
-import { Image } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
 
 import StoreCard from "./StoreCard";
 
@@ -33,18 +33,31 @@ class Stores extends React.Component<Props, State> {
 				/>
 				<Header transparent hasTabs>
 					<Left>
-						<Button transparent>
-							<Icon
-								active
-								name="menu"
-								onPress={() => this.props.navigation.navigate("DrawerOpen")}
+						<TouchableOpacity onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+							<Image
+								style={styles.headerIcon}
+								source={require("../../../assets/Icons/Light/Menu.png")}
 							/>
-						</Button>
+						</TouchableOpacity>
 					</Left>
 					<Body>
 						<Title>My Stores</Title>
 					</Body>
-					<Right />
+					<Right>
+						<TouchableOpacity onPress={() => {}}>
+							<Image
+								style={styles.headerIcon}
+								source={require("../../../assets/Icons/Light/Search.png")}
+							/>
+						</TouchableOpacity>
+
+						<TouchableOpacity onPress={() => {}}>
+							<Image
+								style={styles.headerIcon}
+								source={require("../../../assets/Icons/Light/Add.png")}
+							/>
+						</TouchableOpacity>
+					</Right>
 				</Header>
 
 				<Tabs initialPage={1}>

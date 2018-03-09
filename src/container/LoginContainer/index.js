@@ -28,10 +28,8 @@ class LoginForm extends React.Component<Props, State> {
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
     return (
-      <Item error={error && touched} floatingLabel style={{
-        marginLeft: 0
-      }}>
-        <Label>{input.name === "email" ? "Email" : "Password"}</Label>
+      <Item error={error && touched} floatingLabel>
+        <Label>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
         <Input
           secureTextEntry={input.name === "password" ? true : false}
           {...input}

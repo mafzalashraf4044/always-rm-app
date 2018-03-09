@@ -15,7 +15,7 @@ const styles: any = StyleSheet.create({
     marginTop: 25 / PixelRatio.getPixelSizeForLayoutSize(1),
   },
   headerIcon: {
-    width: 28,
+    width: 30,
     resizeMode: "contain",
   },
   userInfo: {

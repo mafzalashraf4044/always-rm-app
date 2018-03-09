@@ -1,6 +1,6 @@
 import color from "color";
 
-import { Platform, Dimensions } from "react-native";
+import { Platform, Dimensions, PixelRatio } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -22,7 +22,7 @@ export default {
 	badgePadding: platform === "ios" ? 3 : 0,
 
 	// Button
-	btnFontFamily: platform === "ios" ? "Roboto" : "Roboto_medium",
+	btnFontFamily: "Always_Font",
 	btnDisabledBg: "#b5b5b5",
 	btnDisabledClr: "#f1f1f1",
 
@@ -116,7 +116,7 @@ export default {
 	brandSidebar: "#252932",
 
 	// Font
-	fontFamily: "Roboto",
+	fontFamily: "Always_Font",
 	fontSizeBase: 15,
 
 	get fontSizeH1() {
@@ -174,13 +174,13 @@ export default {
 	iconHeaderSize: platform === "ios" ? 29 : 24,
 
 	// InputGroup
-	inputFontSize: 17,
+	inputFontSize: PixelRatio.getPixelSizeForLayoutSize(14),
 	inputBorderColor: "#fff",
 	inputSuccessBorderColor: "#fff",
 	inputErrorBorderColor: "#fff",
 
 	get inputColor() {
-		return this.textColor;
+		return "#fff";
 	},
 	get inputColorPlaceholder() {
 		return "#fff";
@@ -251,7 +251,7 @@ export default {
 	noteFontSize: 14,
 
 	// Title
-	titleFontfamily: platform === "ios" ? "Roboto" : "Roboto_medium",
+	titleFontfamily: "Always_Font",
 	titleFontSize: 19,
 	subTitleFontSize: 14,
 	subtitleColor: "#FFF",
@@ -272,7 +272,7 @@ export default {
 
 	dropdownBg: "#000",
 	dropdownLinkColor: "#414142",
-	inputLineHeight: 24,
+	inputLineHeight: 16,
 	jumbotronBg: "#C9C9CE",
 	jumbotronPadding: 30,
 	deviceWidth,

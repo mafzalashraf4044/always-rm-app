@@ -1,99 +1,20 @@
-import { Platform } from "react-native";
+import { Platform, PixelRatio } from "react-native";
 
 import variable from "./../variables/material";
 
 export default (variables = variable) => {
 	const itemTheme = {
 		".floatingLabel": {
-			marginVertical: 15,
+			marginVertical: PixelRatio.getPixelSizeForLayoutSize(5),
+			marginLeft: 0,
 			"NativeBase.Input": {
-				height: 60,
-				top: 8,
+				height: PixelRatio.getPixelSizeForLayoutSize(50),
+				paddingTop: PixelRatio.getPixelSizeForLayoutSize(20),
 			},
 			"NativeBase.Label": {
-				top: 8,
+				top: PixelRatio.getPixelSizeForLayoutSize(8),
+				color: "rgba(183,183,183,1)",
 			},
-			"NativeBase.Icon": {
-				top: 6,
-			},
-		},
-		".fixedLabel": {
-			"NativeBase.Label": {
-				position: null,
-				top: null,
-				left: null,
-				right: null,
-				flex: 1,
-				height: null,
-				width: null,
-				fontSize: variables.inputFontSize,
-			},
-			"NativeBase.Input": {
-				flex: 2,
-				fontSize: variables.inputFontSize,
-			},
-		},
-		".stackedLabel": {
-			"NativeBase.Label": {
-				position: null,
-				top: null,
-				left: null,
-				right: null,
-				paddingTop: 5,
-				alignSelf: "flex-start",
-				fontSize: variables.inputFontSize - 2,
-			},
-			"NativeBase.Icon": {
-				marginTop: 36,
-			},
-			"NativeBase.Input": {
-				alignSelf: Platform.OS === "ios" ? "stretch" : "flex-start",
-				flex: 1,
-				width: Platform.OS === "ios" ? null : variables.deviceWidth - 25,
-				fontSize: variables.inputFontSize,
-			},
-			flexDirection: null,
-		},
-		".inlineLabel": {
-			"NativeBase.Label": {
-				position: null,
-				top: null,
-				left: null,
-				right: null,
-				paddingRight: 20,
-				height: null,
-				width: null,
-				fontSize: variables.inputFontSize,
-			},
-			"NativeBase.Input": {
-				paddingLeft: 5,
-				fontSize: variables.inputFontSize,
-			},
-			flexDirection: "row",
-		},
-		"NativeBase.Label": {
-			fontSize: variables.inputFontSize,
-			color: variables.inputColorPlaceholder,
-			paddingRight: 5,
-		},
-		"NativeBase.Icon": {
-			fontSize: 24,
-			paddingRight: 8,
-		},
-		"NativeBase.IconNB": {
-			fontSize: 24,
-			paddingRight: 8,
-		},
-		"NativeBase.Input": {
-			".multiline": {
-				height: null,
-			},
-			height: variables.inputHeightBase,
-			color: variables.inputColor,
-			flex: 1,
-			top: Platform.OS === "ios" ? 1.5 : undefined,
-			fontSize: variables.inputFontSize,
-			lineHeight: variables.inputLineHeight,
 		},
 		".underline": {
 			"NativeBase.Input": {
@@ -127,24 +48,6 @@ export default (variables = variable) => {
 			borderWidth: variables.borderWidth * 2,
 			borderColor: variables.inputBorderColor,
 		},
-		".rounded": {
-			"NativeBase.Input": {
-				paddingLeft: 8,
-			},
-			"NativeBase.Icon": {
-				paddingLeft: 10,
-			},
-			".success": {
-				borderColor: variables.inputSuccessBorderColor,
-			},
-			".error": {
-				borderColor: variables.inputErrorBorderColor,
-			},
-			borderWidth: variables.borderWidth * 2,
-			borderRadius: 30,
-			borderColor: variables.inputBorderColor,
-		},
-
 		".success": {
 			"NativeBase.Icon": {
 				color: variables.inputSuccessBorderColor,

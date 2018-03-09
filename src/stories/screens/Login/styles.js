@@ -1,11 +1,14 @@
-import { Dimensions, StyleSheet, PixelRatio } from "react-native";
+import { Platform, Dimensions, StyleSheet, PixelRatio } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
+	loginScreen: {
+		flex: 1,
+		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
+	},
 	loginView: {
 		flex: 1,
-		height: deviceHeight - 24,
 		justifyContent: "flex-end",
 		alignItems: "center",
 	},
@@ -17,22 +20,35 @@ const styles: any = StyleSheet.create({
 		height: "100%",
 		justifyContent: "center",
 	},
-	formContainer: {
+	logoContainer: {
+		flex: 1,
 		width: "70%",
-		marginBottom: 50,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	logo: {
+		color: '#FFF',
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(30),
+		fontFamily: "Always_Font",
+	},
+	formContainer: {
+		flex: 1,
+		width: "70%",
 	},
 	loginBtn: {
+		marginVertical: PixelRatio.getPixelSizeForLayoutSize(10),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
 		color: "#fff",
-		fontSize: PixelRatio.getFontScale() * 16,
+		fontFamily: "Always_Font",
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(14),
 	},
 	forgotPwdTxt: {
 		color: "#fff",
-		marginTop: 10,
 		textAlign: "center",
-		fontSize: PixelRatio.getFontScale() * 16,
+		fontFamily: "Always_Font",
+		fontSize: PixelRatio.getPixelSizeForLayoutSize(14),
 	}
 });
 export default styles;

@@ -27,9 +27,7 @@ export default class Setup extends React.Component<Props, State> {
 	}
 	async loadFonts() {
 		await Expo.Font.loadAsync({
-			Roboto: require("native-base/Fonts/Roboto.ttf"),
-			Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-			Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+			Always_Font: require('../assets/Fonts/SF-Pro-Display-Regular.otf')
 		});
 
 		this.setState({ isReady: true });

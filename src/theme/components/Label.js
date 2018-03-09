@@ -1,11 +1,11 @@
+import { PixelRatio } from "react-native";
+
 import variable from "./../variables/material";
 
 export default (variables = variable) => {
 	const labelTheme = {
-		".focused": {
-			width: 0,
-		},
-		fontSize: 17,
+		fontFamily: "Always_Font",
+		fontSize:  PixelRatio.getPixelSizeForLayoutSize(14),
 	};
 
 	return labelTheme;

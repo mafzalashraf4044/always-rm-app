@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -15,5 +15,9 @@ const styles: any = StyleSheet.create({
 		height: "100%",
 		justifyContent: "center",
 	},
+	headerIcon: {
+		width: PixelRatio.get() * 10,
+		resizeMode: "contain",
+	}
 });
 export default styles;

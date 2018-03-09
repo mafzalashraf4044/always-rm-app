@@ -5,10 +5,9 @@ import {
 	TouchableOpacity,
 	Text,
 	View,
+	PixelRatio
 } from "react-native";
 import {
-	Container,
-	Content,
 	Button,
 } from "native-base";
 
@@ -23,30 +22,31 @@ export interface State {}
 class Login extends React.Component<Props, State> {
 	render() {
 		return (
-			<Container>
-				<Content>
-					<View style={styles.loginView}>
-						<Image
-							blurRadius={5}
-							style={styles.backgroundImg}
-							source={require("../../../assets/Images/app-bg.jpg")}
-						/>
-						<View style={styles.formContainer}>
-							{this.props.loginForm}
-							<View>
-								<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>
-									<Text style={styles.loginBtnTxt}>LOG IN</Text>
-								</Button>
-							</View>
-							<View>
-								<TouchableOpacity block onPress={() => this.props.onLogin()}> 
-									<Text style={styles.forgotPwdTxt}>FORGOT PASSWORD</Text>
-								</TouchableOpacity>
-							</View>
+			<View style={styles.loginScreen}>
+				<View style={styles.loginView}>
+					<Image
+						blurRadius={5}
+						style={styles.backgroundImg}
+						source={require("../../../assets/Images/app-bg.jpg")}
+					/>
+					<View style={styles.logoContainer}>
+						<Text style={styles.logo}>Always RM</Text>
+					</View>
+					<View style={styles.formContainer}>
+						{this.props.loginForm}
+						<View>
+							<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>
+								<Text style={styles.loginBtnTxt}>LOG IN</Text>
+							</Button>
+						</View>
+						<View>
+							<TouchableOpacity block onPress={() => this.props.onLogin()}> 
+								<Text style={styles.forgotPwdTxt}>FORGOT PASSWORD</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
-				</Content>
-			</Container>
+				</View>
+			</View>
 		);
 	}
 }

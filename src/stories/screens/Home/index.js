@@ -36,16 +36,15 @@ class Home extends React.Component<Props, State> {
         />
         <Header transparent noShadow>
           <Left>
-            <Button transparent>
-              <Icon
-                active
-                name="menu"
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              />
-            </Button>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+							<Image
+								style={styles.menuIcon}
+								source={require("../../../assets/Icons/Light/Menu.png")}
+							/>
+						</TouchableOpacity>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>Welcome John Doe!</Title>
           </Body>
           <Right />
         </Header>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pkg-info format-version="2" relocatable="true" overwrite-permissions="true" identifier="com.apple.pkg.San Francisco Pro" useHFSPlusCompression="true" auth="root" version="1.0.0.0.1.1497983075">
+  <payload installKBytes="7382" numberOfFiles="30"/>
+  <bundle-version/>
+</pkg-info>

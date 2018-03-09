@@ -17,18 +17,9 @@ class StoreCard extends Component {
     return (
       <Card>
         <CardItem>
-          <Left>
-            <Thumbnail source={{uri: "http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg"}} />
-            <Body>
-              <Text>NativeBase</Text>
-              <Text note>GeekyAnts</Text>
-            </Body>
-          </Left>
-        </CardItem>
-        <CardItem cardBody>
           <Image source={{uri: "http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg"}} style={{height: 200, width: null, flex: 1}}/>
         </CardItem>
-        <CardItem>
+        <CardItem cardBody>
           <Left>
             <Button transparent>
               <Icon active name="thumbs-up" />

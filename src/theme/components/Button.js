@@ -1,3 +1,5 @@
+import { PixelRatio } from "react-native";
+
 import variable from "./../variables/material";
 
 export default (variables = variable) => {
@@ -465,7 +467,7 @@ export default (variables = variable) => {
 		borderRadius: variables.borderRadiusBase,
 		borderColor: variables.btnPrimaryBg,
 		borderWidth: null,
-		height: 45,
+		height: PixelRatio.getPixelSizeForLayoutSize(36),
 		alignSelf: "flex-start",
 		flexDirection: "row",
 		elevation: 2,

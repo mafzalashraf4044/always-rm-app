@@ -1,5 +1,5 @@
 import { Platform, Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTPercentage } from '../../utils';
 
 const deviceHeight = Dimensions.get("window").height;
 

@@ -29,7 +29,7 @@ class Login extends React.Component<Props, State> {
 					<Image
 						blurRadius={5}
 						style={styles.backgroundImg}
-						source={require("../../../assets/Images/app-bg.jpg")}
+						source={require("../../assets/Images/app-bg.jpg")}
 					/>
 					<View style={styles.logoContainer}>
 						<Text style={styles.logo}>Always RM</Text>

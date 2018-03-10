@@ -1,17 +1,14 @@
 import * as React from "react";
 import {
   Container,
-  Header,
-  Title,
   Content,
   Button,
-  Icon,
-  Left,
-  Body,
-  Right,
 } from "native-base";
 
 import { View, Image, Text, TouchableOpacity } from "react-native";
+
+import Header from '../../common/Header';
+
 import styles from "./styles";
 export interface Props {
   navigation: any;
@@ -34,20 +31,10 @@ class Home extends React.Component<Props, State> {
           style={styles.backgroundImg}
           source={require("../../../assets/Images/app-bg.jpg")}
         />
-        <Header transparent noShadow>
-          <Left>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-							<Image
-								style={styles.menuIcon}
-								source={require("../../../assets/Icons/Light/Menu.png")}
-							/>
-						</TouchableOpacity>
-          </Left>
-          <Body style={styles.headerTitleContainer}>
-            <Title style={styles.headerTitle}>Welcome John Doe!</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Header
+          iconLeft="Menu"
+          title="Welcome John Doe!"
+        />
         <Content>
           <View style={styles.homeTabs}>
             {

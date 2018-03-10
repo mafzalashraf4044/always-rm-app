@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import Stores from "../../stories/screens/Stores";
+import Stores from "../../components/Stores";
 export interface Props {
 	navigation: any,
 }

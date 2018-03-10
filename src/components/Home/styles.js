@@ -7,15 +7,6 @@ const styles: any = StyleSheet.create({
 	container: {
 		backgroundColor: "#000",
 	},
-	menuIcon: {
-		width: getSizeWRTPercentage(30),
-    resizeMode: "contain",
-	},
-	headerTitle: {
-		color: "#fff",
-		fontFamily: "Always_Font",
-		fontSize: getSizeWRTPercentage(18),
-	},
 	backgroundImg: {
 		flex: 1,
 		resizeMode: "cover",

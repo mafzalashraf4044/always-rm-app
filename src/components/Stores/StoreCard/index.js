@@ -33,7 +33,7 @@ class StoreCard extends Component {
               <TouchableOpacity>
                 <Image
                   style={styles.editIcon}
-                  source={require("../../../../assets/Icons/Light/Edit.png")}
+                  source={require("../../../assets/Icons/Light/Edit.png")}
                 />
               </TouchableOpacity>
             </View>
@@ -62,7 +62,7 @@ class StoreCard extends Component {
             <TouchableOpacity>
               <Image
                 style={styles.expandIcon}
-                source={require("../../../../assets/Icons/Dark/Expand.png")}
+                source={require("../../../assets/Icons/Dark/Expand.png")}
               />
             </TouchableOpacity>
           </View>

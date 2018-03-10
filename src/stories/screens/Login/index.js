@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
 	Image,
-	Dimensions,
 	TouchableOpacity,
 	Text,
 	View,
-	PixelRatio
+	PixelRatio,
+	Dimensions
 } from "react-native";
 import {
 	Button,
@@ -17,6 +17,8 @@ export interface Props {
 	loginForm: any,
 	onLogin: Function,
 }
+
+const deviceWidth = Dimensions.get("window").width;
 
 export interface State {}
 class Login extends React.Component<Props, State> {

@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet, PixelRatio } from "react-native";
+import { getSizeWRTPercentage } from '../../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -7,13 +8,13 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#000",
 	},
 	menuIcon: {
-		width: PixelRatio.getPixelSizeForLayoutSize(30) / PixelRatio.get(),
+		width: getSizeWRTPercentage(30),
     resizeMode: "contain",
 	},
 	headerTitle: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(18) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(18),
 	},
 	backgroundImg: {
 		flex: 1,
@@ -24,32 +25,32 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
 	homeTabs: {
-		padding: PixelRatio.getPixelSizeForLayoutSize(15) / PixelRatio.get(),
+		padding: getSizeWRTPercentage(14),
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "flex-start",
 		flexWrap: "wrap"
 	},
 	homeTab: {
-		width: (deviceWidth - PixelRatio.getPixelSizeForLayoutSize(45) / PixelRatio.get()) / 2,
-		height: (deviceWidth - PixelRatio.getPixelSizeForLayoutSize(45) / PixelRatio.get()) / 2,
+		width: (deviceWidth - getSizeWRTPercentage(45)) / 2,
+		height: (deviceWidth - getSizeWRTPercentage(45)) / 2,
 		backgroundColor: "rgba(255,255,255,0.2)",
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
-		marginBottom: PixelRatio.getPixelSizeForLayoutSize(15) / PixelRatio.get()
+		marginBottom: getSizeWRTPercentage(14),
 	},
 	homeTabBright: {
 		backgroundColor: "rgba(255,255,255,0.6)",
 	},
 	tabIcon: {
-		width: PixelRatio.getPixelSizeForLayoutSize(45) / PixelRatio.get(),
-		height: PixelRatio.getPixelSizeForLayoutSize(45) / PixelRatio.get(),
+		width: getSizeWRTPercentage(45),
+		height: getSizeWRTPercentage(45),
 	},
 	homeTabTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(15),
 	},
 });
 export default styles;

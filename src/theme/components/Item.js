@@ -1,18 +1,19 @@
-import { Platform, PixelRatio } from "react-native";
+import { Platform } from "react-native";
 
 import variable from "./../variables/material";
+import { getSizeWRTPercentage } from '../../utils';
 
 export default (variables = variable) => {
 	const itemTheme = {
 		".floatingLabel": {
-			marginVertical: PixelRatio.getPixelSizeForLayoutSize(5) / PixelRatio.get(),
+			marginVertical: getSizeWRTPercentage(5),
 			marginLeft: 0,
 			"NativeBase.Input": {
-				height: PixelRatio.getPixelSizeForLayoutSize(50) / PixelRatio.get(),
-				paddingTop: PixelRatio.getPixelSizeForLayoutSize(20) / PixelRatio.get(),
+				height: getSizeWRTPercentage(50),
+				paddingTop: getSizeWRTPercentage(20),
 			},
 			"NativeBase.Label": {
-				top: PixelRatio.getPixelSizeForLayoutSize(8) / PixelRatio.get(),
+				top: getSizeWRTPercentage(8),
 				color: "rgba(183,183,183,1)",
 			},
 		},

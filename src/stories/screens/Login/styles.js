@@ -1,4 +1,5 @@
-import { Platform, Dimensions, StyleSheet, PixelRatio } from "react-native";
+import { Platform, Dimensions, StyleSheet } from "react-native";
+import { getSizeWRTPercentage } from '../../../utils';
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -28,7 +29,7 @@ const styles: any = StyleSheet.create({
 	},
 	logo: {
 		color: '#FFF',
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(30) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(30),
 		fontFamily: "Always_Font",
 	},
 	formContainer: {
@@ -36,19 +37,19 @@ const styles: any = StyleSheet.create({
 		width: "70%",
 	},
 	loginBtn: {
-		marginVertical: PixelRatio.getPixelSizeForLayoutSize(10) / PixelRatio.get(),
+		marginVertical: getSizeWRTPercentage(10),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(14),
 	},
 	forgotPwdTxt: {
 		color: "#fff",
 		textAlign: "center",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(14),
 	}
 });
 export default styles;

@@ -1,9 +1,10 @@
-import { StyleSheet, PixelRatio } from "react-native";
+import { StyleSheet, PixelRatio, Dimensions } from "react-native";
+import { getSizeWRTPercentage } from '../../../utils';
 
 const styles: any = StyleSheet.create({
 	header: {
     flex: 0.35,
-    padding: PixelRatio.getPixelSizeForLayoutSize(10) / PixelRatio.get(),
+    padding: getSizeWRTPercentage(10),
     justifyContent: "space-between",
     backgroundColor: "rgba(233,30,99,1)",
   },
@@ -14,7 +15,7 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   headerIcon: {
-    width: PixelRatio.getPixelSizeForLayoutSize(22) / PixelRatio.get(),
+    width: getSizeWRTPercentage(22),
     resizeMode: "contain",
   },
   userInfo: {
@@ -23,38 +24,38 @@ const styles: any = StyleSheet.create({
   name: {
     color: "#fff",
     fontFamily: "Always_Font",
-    fontSize: PixelRatio.getPixelSizeForLayoutSize(18) / PixelRatio.get(),
+    fontSize: getSizeWRTPercentage(18),
   },
   email: {
     color: "rgba(223,223,223,1)",
     fontFamily: "Always_Font",
-    fontSize: PixelRatio.getPixelSizeForLayoutSize(12) / PixelRatio.get(),
+    fontSize: getSizeWRTPercentage(12),
   },
   content: {
     flex: 0.5,
   },
   listItemView: {
-    paddingHorizontal: PixelRatio.getPixelSizeForLayoutSize(20) / PixelRatio.get(),
-    paddingTop: PixelRatio.getPixelSizeForLayoutSize(10) / PixelRatio.get(),
+    paddingHorizontal: getSizeWRTPercentage(20),
+    paddingTop: getSizeWRTPercentage(10),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
   },
   listItemIcon: {
-    width: PixelRatio.getPixelSizeForLayoutSize(22) / PixelRatio.get(),
+    width: getSizeWRTPercentage(22),
   },
   listItemTxt: {
     color: "rgba(74,74,74,1)",
     fontFamily: "Always_Font",
-    fontSize: PixelRatio.getPixelSizeForLayoutSize(14) / PixelRatio.get(),
-    marginLeft: PixelRatio.getPixelSizeForLayoutSize(22) / PixelRatio.get(),
+    fontSize: getSizeWRTPercentage(14),
+    marginLeft: getSizeWRTPercentage(22),
   },
   footer: {
     flex: 0.15,
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-start",
-    paddingBottom: PixelRatio.getPixelSizeForLayoutSize(10) / PixelRatio.get()
+    paddingBottom: getSizeWRTPercentage(10)
   }
 });
 export default styles;

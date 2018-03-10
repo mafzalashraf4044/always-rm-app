@@ -1,6 +1,5 @@
-import { PixelRatio } from "react-native";
-
 import variable from "./../variables/material";
+import { getSizeWRTPercentage } from '../../utils';
 
 export default (variables = variable) => {
 	const platform = variables.platform;
@@ -19,7 +18,7 @@ export default (variables = variable) => {
 		"NativeBase.Text": {
 			color: variables.topTabBarTextColor,
 			marginHorizontal: 7,
-			fontSize: PixelRatio.getPixelSizeForLayoutSize(12) / PixelRatio.get(),
+			fontSize: getSizeWRTPercentage(12),
 		},
 		"NativeBase.Icon": {
 			color: variables.topTabBarTextColor,

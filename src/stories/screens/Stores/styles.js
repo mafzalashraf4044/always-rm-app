@@ -1,4 +1,5 @@
 import { StyleSheet, PixelRatio } from "react-native";
+import { getSizeWRTPercentage } from '../../../utils';
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -10,7 +11,7 @@ const styles: any = StyleSheet.create({
 	headerTitle: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: PixelRatio.getPixelSizeForLayoutSize(18) / PixelRatio.get(),
+		fontSize: getSizeWRTPercentage(18),
 	},
 	backgroundImg: {
 		flex: 1,
@@ -21,7 +22,7 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
 	headerIcon: {
-		width: PixelRatio.getPixelSizeForLayoutSize(30) / PixelRatio.get(),
+		width: getSizeWRTPercentage(30),
     resizeMode: "contain",
 	}
 });

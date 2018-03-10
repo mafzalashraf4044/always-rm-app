@@ -1,9 +1,10 @@
-import { StyleSheet, PixelRatio } from "react-native";
+import { StyleSheet } from "react-native";
+import { getSizeWRTPercentage } from '../../../utils';
 
 const styles: any = StyleSheet.create({
   storeCard: {
     borderRadius: 5,
-    margin: PixelRatio.getPixelSizeForLayoutSize(15) / PixelRatio.get()
+    margin: getSizeWRTPercentage(15),
   }
 });
 export default styles;

@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTPercentage } from '../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
 

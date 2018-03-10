@@ -7,7 +7,7 @@ import {
 
 import { View, Image, Text, TouchableOpacity } from "react-native";
 
-import Header from '../../common/Header';
+import Header from '../common/Header';
 
 import styles from "./styles";
 export interface Props {
@@ -17,10 +17,10 @@ export interface Props {
 export interface State {}
 class Home extends React.Component<Props, State> {
   homeTabs = [
-    {icon: require("../../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},
-    {icon: require("../../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports"},
-    {icon: require("../../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-    {icon: require("../../../assets/Icons/Light/Merchandise.png"), name: "Merchandising", route: "Merchandising"},
+    {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},
+    {icon: require("../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports"},
+    {icon: require("../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
+    {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "Merchandising", route: "Merchandising"},
   ];
 
   render() {
@@ -29,11 +29,12 @@ class Home extends React.Component<Props, State> {
         <Image
           blurRadius={5}
           style={styles.backgroundImg}
-          source={require("../../../assets/Images/app-bg.jpg")}
+          source={require("../../assets/Images/app-bg.jpg")}
         />
         <Header
-          iconLeft="Menu"
           title="Welcome John Doe!"
+          navigation={this.props.navigation}
+          iconLeft={require("../../assets/Icons/Light/Menu.png")}
         />
         <Content>
           <View style={styles.homeTabs}>

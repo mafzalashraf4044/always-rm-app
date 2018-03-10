@@ -1,5 +1,5 @@
 import { StyleSheet, PixelRatio, Dimensions } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTPercentage } from '../../utils';
 
 const styles: any = StyleSheet.create({
 	header: {

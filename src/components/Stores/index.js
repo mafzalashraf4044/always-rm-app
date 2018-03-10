@@ -1,14 +1,7 @@
 import * as React from "react";
 import {
 	Container,
-	Header,
-	Title,
 	Content,
-	Button,
-	Icon,
-	Left,
-	Right,
-	Body,
 	Tabs,
 	Tab
 } from "native-base";
@@ -16,6 +9,7 @@ import {
 import { TouchableOpacity, Image, Text } from "react-native";
 
 import StoreCard from "./StoreCard";
+import Header from '../common/Header';
 
 import styles from "./styles";
 export interface Props {
@@ -29,36 +23,14 @@ class Stores extends React.Component<Props, State> {
 				<Image
 					blurRadius={5}
 					style={styles.backgroundImg}
-					source={require("../../../assets/Images/app-bg.jpg")}
+					source={require("../../assets/Images/app-bg.jpg")}
 				/>
-				<Header transparent hasTabs>
-					<Left>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-							<Image
-								style={styles.headerIcon}
-								source={require("../../../assets/Icons/Light/Menu.png")}
-							/>
-						</TouchableOpacity>
-					</Left>
-					<Body>
-						<Text style={styles.headerTitle}>My Stores</Text>
-					</Body>
-					<Right>
-						<TouchableOpacity onPress={() => {}}>
-							<Image
-								style={styles.headerIcon}
-								source={require("../../../assets/Icons/Light/Search.png")}
-							/>
-						</TouchableOpacity>
-
-						<TouchableOpacity onPress={() => {}}>
-							<Image
-								style={styles.headerIcon}
-								source={require("../../../assets/Icons/Light/Add.png")}
-							/>
-						</TouchableOpacity>
-					</Right>
-				</Header>
+        <Header
+          title="My Stores"
+          navigation={this.props.navigation}
+          iconLeft={require("../../assets/Icons/Light/Menu.png")}
+          iconsRight={[require("../../assets/Icons/Light/Search.png"), require("../../assets/Icons/Light/Add.png")]}
+        />
 
 				<Tabs initialPage={1} transparent>
 					<Tab heading="Outstanding">

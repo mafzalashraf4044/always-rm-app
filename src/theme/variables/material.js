@@ -147,7 +147,7 @@ export default {
 	topTabBarActiveTextColor: "#fff",
 	topTabActiveBgColor: undefined,
 	topTabBarBorderColor: "#fff",
-	topTabBarActiveBorderColor: "transparent",
+	topTabBarActiveBorderColor: "rgba(233,30,99,1)",
 
 	// Header
 	toolbarBtnColor: "#fff",

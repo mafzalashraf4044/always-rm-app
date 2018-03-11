@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -10,13 +10,13 @@ const styles: any = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		backgroundColor: "transparent",
-		height: getSizeWRTDeviceWidth(48),
-		marginTop: getSizeWRTDeviceWidth(15),
-		marginHorizontal: getSizeWRTDeviceWidth(15),
+		height: getSizeWRTDeviceHeight(48),
+		marginTop: getSizeWRTDeviceHeight(24),
+		marginHorizontal: getSizeWRTDeviceWidth(20),
 	},
 	headerIcon: {
-		width: getSizeWRTDeviceWidth(30),
-		resizeMode: "contain",
+		width: getSizeWRTDeviceWidth(20),
+		resizeMode: "cover",
 	},
 	body: {
 		width: deviceWidth - getSizeWRTDeviceWidth(60),
@@ -28,7 +28,7 @@ const styles: any = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		marginLeft: getSizeWRTDeviceWidth(15),
+		marginLeft: getSizeWRTDeviceWidth(30),
 	},
 	title: {
 		color: "#FFF",

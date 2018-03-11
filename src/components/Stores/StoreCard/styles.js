@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTDeviceWidth } from '../../../utils';
 
 const styles: any = StyleSheet.create({
   card: {
@@ -10,12 +10,12 @@ const styles: any = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
 		elevation: 1,
-    margin: getSizeWRTPercentage(15),
+    margin: getSizeWRTDeviceWidth(15),
   },
   imgContainer: {
     width: '100%',
     justifyContent: 'flex-end',
-    height: getSizeWRTPercentage(192),
+    height: getSizeWRTDeviceWidth(192),
   },
   storeImg: {
 		flex: 1,
@@ -24,14 +24,14 @@ const styles: any = StyleSheet.create({
     width: "100%",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    height: getSizeWRTPercentage(192),
+    height: getSizeWRTDeviceWidth(192),
   },
   storeInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: getSizeWRTPercentage(15),
-    paddingVertical: getSizeWRTPercentage(10),
+    paddingHorizontal: getSizeWRTDeviceWidth(15),
+    paddingVertical: getSizeWRTDeviceWidth(10),
   },
   infoText: {
 
@@ -39,42 +39,42 @@ const styles: any = StyleSheet.create({
   storeID: {
     color: "rgba(228,228,228,1)",
 		fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(10),
-    lineHeight: getSizeWRTPercentage(12),
+    fontSize: getSizeWRTDeviceWidth(10),
+    lineHeight: getSizeWRTDeviceWidth(12),
   },
   storeName: {
     color: "rgba(255,255,255,1)",
 		fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(20),
+    fontSize: getSizeWRTDeviceWidth(20),
     fontWeight: "400",
-    lineHeight: getSizeWRTPercentage(24),
+    lineHeight: getSizeWRTDeviceWidth(24),
 
   },
   storeManager: {
     color: "rgba(255,255,255,1)",
 		fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(10),
-    lineHeight: getSizeWRTPercentage(12),
+    fontSize: getSizeWRTDeviceWidth(10),
+    lineHeight: getSizeWRTDeviceWidth(12),
   },
   lastSaved: {
     color: "rgba(202,202,202,1)",
 		fontFamily: "Always_Font",
     fontStyle: "italic",
-    fontSize: getSizeWRTPercentage(10),
-    lineHeight: getSizeWRTPercentage(12),
-    marginTop: getSizeWRTPercentage(5)
+    fontSize: getSizeWRTDeviceWidth(10),
+    lineHeight: getSizeWRTDeviceWidth(12),
+    marginTop: getSizeWRTDeviceWidth(5)
   },
   editIconContainer: {
 
   },
   editIcon: {
-    width: getSizeWRTPercentage(30),
+    width: getSizeWRTDeviceWidth(30),
     resizeMode: "contain",
   },
   cardBody: {
     width: '100%',
-    paddingHorizontal: getSizeWRTPercentage(15),
-    paddingVertical: getSizeWRTPercentage(10),
+    paddingHorizontal: getSizeWRTDeviceWidth(15),
+    paddingVertical: getSizeWRTDeviceWidth(10),
   },
   extraInfo: {
     
@@ -82,22 +82,22 @@ const styles: any = StyleSheet.create({
   address: {
     color: "rgba(74,74,74,1)",
 		fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(12),
-    lineHeight: getSizeWRTPercentage(14),
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
   },
   stepsCompleted: {
     color: "rgba(155,155,155,1)",
 		fontFamily: "Always_Font",
     fontStyle: "italic",
-    fontSize: getSizeWRTPercentage(10),
-    lineHeight: getSizeWRTPercentage(12),
-    marginTop: getSizeWRTPercentage(10)
+    fontSize: getSizeWRTDeviceWidth(10),
+    lineHeight: getSizeWRTDeviceWidth(12),
+    marginTop: getSizeWRTDeviceWidth(10)
   },
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: getSizeWRTPercentage(15),
+    marginVertical: getSizeWRTDeviceWidth(15),
   },
   txtBtnsContainer: {
     flexDirection: 'row',
@@ -107,12 +107,12 @@ const styles: any = StyleSheet.create({
   txtBtn: {
     color: "rgba(233,30,99,1)",
 		fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(14),
-    lineHeight: getSizeWRTPercentage(16),
-    marginRight: getSizeWRTPercentage(15),
+    fontSize: getSizeWRTDeviceWidth(14),
+    lineHeight: getSizeWRTDeviceWidth(16),
+    marginRight: getSizeWRTDeviceWidth(15),
   },
   expandIcon: {
-    width: getSizeWRTPercentage(30),
+    width: getSizeWRTDeviceWidth(30),
     resizeMode: "contain",
   },
   collapsable: {
@@ -122,8 +122,8 @@ const styles: any = StyleSheet.create({
     color: "rgba(74,74,74,1)",
 		fontFamily: "Always_Font",
     textAlign: 'justify',
-    fontSize: getSizeWRTPercentage(12),
-    lineHeight: getSizeWRTPercentage(16),
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(16),
   }
 
 });

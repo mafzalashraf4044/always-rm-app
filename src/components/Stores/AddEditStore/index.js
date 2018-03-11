@@ -6,7 +6,7 @@ import {
 	Form,
 	Label
 } from "native-base";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTDeviceWidth } from '../../../utils';
 import Header from '../../common/Header';
 
 import { Picker, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";
@@ -68,7 +68,7 @@ class AddEditStore extends React.Component<Props, State> {
 
 	render() {
 		const { params } = this.props.navigation.state;
-		const labelStyle = {fontSize: getSizeWRTPercentage(12)};
+		const labelStyle = {fontSize: getSizeWRTDeviceWidth(12)};
 
 		return (
 			<Container style={styles.addEditStore}>

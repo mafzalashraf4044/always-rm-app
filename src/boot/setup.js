@@ -43,6 +43,7 @@ export default class Setup extends React.Component<Props, State> {
     const imageAssets = cacheImages([
 			require('../assets/Images/app-bg.jpeg'),
 			require('../assets/Images/header-bg.jpeg'),
+			require('../assets/Images/logo-always.png'),
 			require('../assets/Icons/Light/Stores.png'),
 			require('../assets/Icons/Light/Report.png'),
 			require('../assets/Icons/Light/Calendar.png'),

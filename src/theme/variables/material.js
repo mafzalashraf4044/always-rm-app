@@ -1,5 +1,5 @@
 import color from "color";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 import { Platform, Dimensions } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
@@ -34,7 +34,7 @@ export default {
 	CheckboxIconSize: platform === "ios" ? 18 : 14,
 	CheckboxIconMarginTop: platform === "ios" ? undefined : 1,
 	CheckboxFontSize: platform === "ios" ? 21 : 18,
-	DefaultFontSize: getSizeWRTPercentage(14),
+	DefaultFontSize: getSizeWRTDeviceWidth(14),
 	checkboxBgColor: "#039BE5",
 	checkboxSize: 20,
 	checkboxTickColor: "#fff",
@@ -117,7 +117,7 @@ export default {
 
 	// Font
 	fontFamily: "Always_Font",
-	fontSizeBase: getSizeWRTPercentage(14),
+	fontSizeBase: getSizeWRTDeviceWidth(14),
 
 	get fontSizeH1() {
 		return this.fontSizeBase * 1.8;
@@ -174,7 +174,7 @@ export default {
 	iconHeaderSize: platform === "ios" ? 29 : 24,
 
 	// InputGroup
-	inputFontSize: getSizeWRTPercentage(14),
+	inputFontSize: getSizeWRTDeviceWidth(14),
 	inputBorderColor: "rgba(74,74,74,1)",
 	inputSuccessBorderColor: "rgba(74,74,74,1)",
 	inputErrorBorderColor: "rgba(74,74,74,1)",
@@ -242,7 +242,7 @@ export default {
 
 	// Tabs
 	tabBgColor: "#F8F8F8",
-	tabFontSize: getSizeWRTPercentage(12),
+	tabFontSize: getSizeWRTDeviceWidth(12),
 	tabTextColor: "#222222",
 
 	// Text

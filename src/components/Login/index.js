@@ -4,13 +4,16 @@ import {
 	TouchableOpacity,
 	Text,
 	View,
-	PixelRatio,
-	Dimensions
 } from "react-native";
+
 import {
+	Item,
+	Input,
+	Label,
 	Button,
 } from "native-base";
 
+import { getSizeWRTDeviceWidth } from '../../utils';
 import styles from "./styles";
 
 export interface Props {
@@ -18,10 +21,25 @@ export interface Props {
 	onLogin: Function,
 }
 
-const deviceWidth = Dimensions.get("window").width;
-
 export interface State {}
 class Login extends React.Component<Props, State> {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLogoVisible: true,
+		};
+	}
+
+	handleFocus = () => {
+		this.setState({isLogoVisible: false});
+	}
+
+	handleBlur = () => {
+		this.setState({isLogoVisible: true});
+	}
+
+
 	render() {
 		return (
 			<View style={styles.loginScreen}>
@@ -32,10 +50,33 @@ class Login extends React.Component<Props, State> {
 						source={require("../../assets/Images/app-bg.jpeg")}
 					/>
 					<View style={styles.logoContainer}>
-						<Text style={styles.logo}>Always RM</Text>
+						{
+							this.state.isLogoVisible &&
+							<Image
+								style={styles.logo}
+								source={require("../../assets/Images/logo-always.png")}
+							/>
+						}
 					</View>
 					<View style={styles.formContainer}>
-						{this.props.loginForm}
+						<View>
+							<Item floatingLabel light>
+								<Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>RPM Login ID</Label>
+								<Input
+									secureTextEntry={false}
+									onBlur={this.handleBlur}
+									onFocus={this.handleFocus}
+								/>
+							</Item>
+							<Item floatingLabel light>
+								<Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>Password</Label>
+								<Input
+									secureTextEntry
+									onBlur={this.handleBlur}
+									onFocus={this.handleFocus}
+								/>
+							</Item>
+						</View>
 						<View>
 							<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>
 								<Text style={styles.loginBtnTxt}>LOG IN</Text>

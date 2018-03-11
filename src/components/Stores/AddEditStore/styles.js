@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTDeviceWidth } from '../../../utils';
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -25,22 +25,22 @@ const styles: any = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: getSizeWRTPercentage(15),
+    padding: getSizeWRTDeviceWidth(15),
   },
   cameraIcon: {
-    width: getSizeWRTPercentage(30),
+    width: getSizeWRTDeviceWidth(30),
     resizeMode: "contain",
   },
   addEditImgTxt: {
     color: "#FFF",
     fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(14),
-    lineHeight: getSizeWRTPercentage(16),
-    marginLeft: getSizeWRTPercentage(10),
+    fontSize: getSizeWRTDeviceWidth(14),
+    lineHeight: getSizeWRTDeviceWidth(16),
+    marginLeft: getSizeWRTDeviceWidth(10),
   },
   formView: {
     flex: 1,
-    padding: getSizeWRTPercentage(15),
+    padding: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
   coulmns1: {
@@ -57,24 +57,24 @@ const styles: any = StyleSheet.create({
 
   },
   sectionHeadingContainer: {
-    marginTop: getSizeWRTPercentage(25),
-    marginBottom: getSizeWRTPercentage(15),
+    marginTop: getSizeWRTDeviceWidth(25),
+    marginBottom: getSizeWRTDeviceWidth(15),
   },
   sectionHeadingTxt: {
     color: "rgba(233,30,99,1)",
     fontFamily: "Always_Font",
-    fontSize: getSizeWRTPercentage(16),
-    lineHeight: getSizeWRTPercentage(20),
+    fontSize: getSizeWRTDeviceWidth(16),
+    lineHeight: getSizeWRTDeviceWidth(20),
   },
   dropdownContainer: {
     position: 'relative',
   },
   dropdownIcon: {
-    width: getSizeWRTPercentage(20),
+    width: getSizeWRTDeviceWidth(20),
     resizeMode: "contain",
     position: 'absolute',
-    right: getSizeWRTPercentage(6),
-    bottom: getSizeWRTPercentage(6),
+    right: getSizeWRTDeviceWidth(6),
+    bottom: getSizeWRTDeviceWidth(6),
   }
 });
 export default styles;

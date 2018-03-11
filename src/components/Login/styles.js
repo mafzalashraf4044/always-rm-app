@@ -1,5 +1,5 @@
 import { Platform, Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -23,33 +23,35 @@ const styles: any = StyleSheet.create({
 	},
 	logoContainer: {
 		flex: 1,
-		width: "70%",
-		justifyContent: 'center',
+		width: getSizeWRTDeviceWidth(205),
+		justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
 	logo: {
-		color: '#FFF',
-		fontSize: getSizeWRTPercentage(30),
-		fontFamily: "Always_Font",
+		width: getSizeWRTDeviceWidth(205),
+		marginTop: getSizeWRTDeviceHeight(68), // replace with 180 with react logo
+		resizeMode: "contain",
 	},
 	formContainer: {
 		flex: 1,
-		width: "70%",
+		width: getSizeWRTDeviceWidth(230),
 	},
 	loginBtn: {
-		marginVertical: getSizeWRTPercentage(10),
+		marginVertical: getSizeWRTDeviceHeight(10),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: getSizeWRTPercentage(14),
+		fontSize: getSizeWRTDeviceWidth(14),
+		lineHeight: getSizeWRTDeviceWidth(14),
 	},
 	forgotPwdTxt: {
 		color: "#fff",
 		textAlign: "center",
 		fontFamily: "Always_Font",
-		fontSize: getSizeWRTPercentage(14),
+		fontSize: getSizeWRTDeviceWidth(14),
+		lineHeight: getSizeWRTDeviceWidth(16),
 	}
 });
 export default styles;

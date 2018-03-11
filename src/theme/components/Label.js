@@ -1,10 +1,10 @@
 import variable from "./../variables/material";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 
 export default (variables = variable) => {
 	const labelTheme = {
 		fontFamily: "Always_Font",
-		fontSize:  getSizeWRTPercentage(10),
+		fontSize:  getSizeWRTDeviceWidth(10),
 	};
 
 	return labelTheme;

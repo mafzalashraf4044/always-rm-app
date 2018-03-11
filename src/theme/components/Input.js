@@ -1,4 +1,4 @@
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 
 import variable from "./../variables/material";
 
@@ -11,7 +11,7 @@ export default (variables = variable) => {
 		fontFamily: "Always_Font",
 		color: variables.inputColor,
 		height: variables.inputHeightBase,
-		fontSize:  getSizeWRTPercentage(14),
+		fontSize:  getSizeWRTDeviceWidth(14),
 	};
 
 	return inputTheme;

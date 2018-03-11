@@ -1,5 +1,5 @@
 import variable from "./../variables/material";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 
 export default (variables = variable) => {
 	const platform = variables.platform;
@@ -18,7 +18,7 @@ export default (variables = variable) => {
 		"NativeBase.Text": {
 			color: variables.topTabBarTextColor,
 			marginHorizontal: 7,
-			fontSize: getSizeWRTPercentage(12),
+			fontSize: getSizeWRTDeviceWidth(12),
 		},
 		"NativeBase.Icon": {
 			color: variables.topTabBarTextColor,

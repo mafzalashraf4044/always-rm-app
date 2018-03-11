@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTPercentage } from '../../../utils';
+import { getSizeWRTDeviceWidth } from '../../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -10,16 +10,16 @@ const styles: any = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		backgroundColor: "transparent",
-		height: getSizeWRTPercentage(48),
-		marginTop: getSizeWRTPercentage(15),
-		marginHorizontal: getSizeWRTPercentage(15),
+		height: getSizeWRTDeviceWidth(48),
+		marginTop: getSizeWRTDeviceWidth(15),
+		marginHorizontal: getSizeWRTDeviceWidth(15),
 	},
 	headerIcon: {
-		width: getSizeWRTPercentage(30),
+		width: getSizeWRTDeviceWidth(30),
 		resizeMode: "contain",
 	},
 	body: {
-		width: deviceWidth - getSizeWRTPercentage(60),
+		width: deviceWidth - getSizeWRTDeviceWidth(60),
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center'
@@ -28,13 +28,13 @@ const styles: any = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		marginLeft: getSizeWRTPercentage(15),
+		marginLeft: getSizeWRTDeviceWidth(15),
 	},
 	title: {
 		color: "#FFF",
 		fontFamily: "Always_Font",
-		fontSize: getSizeWRTPercentage(18),
-		lineHeight: getSizeWRTPercentage(20),
+		fontSize: getSizeWRTDeviceWidth(18),
+		lineHeight: getSizeWRTDeviceWidth(20),
 	},
 	right: {
 		flexDirection: 'row',
@@ -43,7 +43,7 @@ const styles: any = StyleSheet.create({
 		alignSelf: 'flex-end',
 	},
 	rightIcon: { 
-		width: getSizeWRTPercentage(30),
+		width: getSizeWRTDeviceWidth(30),
 		resizeMode: "contain",
 	}
 });

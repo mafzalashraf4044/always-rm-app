@@ -1,73 +1,25 @@
 // @flow
 import * as React from "react";
-import { View } from "react-native";
-import { Item, Input, Form, Label } from "native-base";
-import { Field, reduxForm } from "redux-form";
 import Login from "../../components/Login";
-import { getSizeWRTPercentage } from '../../utils';
-
-const required = value => (value ? undefined : "Required");
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength15 = maxLength(15);
-const minLength = min => value =>
-  value && value.length < min ? `Must be ${min} characters or more` : undefined;
-const minLength8 = minLength(8);
-const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "Invalid email address"
-    : undefined;
-const alphaNumeric = value =>
-  value && /[^a-zA-Z0-9 ]/i.test(value)
-    ? "Only alphanumeric characters"
-    : undefined;
 
 export interface Props {
   navigation: any;
 }
 export interface State {}
-class LoginForm extends React.Component<Props, State> {
-
-  renderInput({ input, label, type, meta: { touched, error, warning } }) {
-    return (
-      <Item floatingLabel light>
-        <Label style={{fontSize: getSizeWRTPercentage(12)}}>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
-        <Input
-          secureTextEntry={input.name === "password" ? true : false}
-        />
-      </Item>
-    );
-  }
+class LoginContainer extends React.Component<Props, State> {
 
   login() {
     this.props.navigation.navigate("Drawer");
   }
 
   render() {
-    const form = (
-      <View>
-        <Field
-          name="email"
-          component={this.renderInput}
-          validate={[email, required]}
-        />
-        <Field
-          name="password"
-          component={this.renderInput}
-          validate={[alphaNumeric, minLength8, maxLength15, required]}
-        />
-      </View>
-    );
     return (
       <Login
         navigation={this.props.navigation}
-        loginForm={form}
         onLogin={() => this.login()}
       />
     );
   }
 }
-const LoginContainer = reduxForm({
-  form: "login"
-})(LoginForm);
+
 export default LoginContainer;

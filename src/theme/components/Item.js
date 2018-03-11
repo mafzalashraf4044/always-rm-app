@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 
 import variable from "./../variables/material";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 
 export default (variables = variable) => {
 	const itemTheme = {
@@ -76,14 +76,14 @@ export default (variables = variable) => {
 		flexDirection: "row",
 		alignItems: "center",
 
-		marginVertical: getSizeWRTPercentage(5),
+		marginVertical: getSizeWRTDeviceWidth(5),
 		marginLeft: 0,
 		"NativeBase.Input": {
-			height: getSizeWRTPercentage(50),
-			paddingTop: getSizeWRTPercentage(20),
+			height: getSizeWRTDeviceWidth(50),
+			paddingTop: getSizeWRTDeviceWidth(20),
 		},
 		"NativeBase.Label": {
-			top: getSizeWRTPercentage(8),
+			top: getSizeWRTDeviceWidth(8),
 			color: "rgba(147,147,147,1)",
 		},
 
@@ -93,7 +93,7 @@ export default (variables = variable) => {
 				color: "#FFF",
 			},
 			"NativeBase.Label": {
-				color: "rgba(147,147,147,1)",
+				color: "rgba(183,183,183,1)",
 			},
 		},
 	};

@@ -1,5 +1,5 @@
 import variable from "./../variables/material";
-import { getSizeWRTPercentage } from '../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
 
 export default (variables = variable) => {
 	const platformStyle = variables.platformStyle;
@@ -466,7 +466,7 @@ export default (variables = variable) => {
 		borderRadius: variables.borderRadiusBase,
 		borderColor: variables.btnPrimaryBg,
 		borderWidth: null,
-		height: getSizeWRTPercentage(36),
+		height: getSizeWRTDeviceHeight(36),
 		alignSelf: "flex-start",
 		flexDirection: "row",
 		elevation: 2,

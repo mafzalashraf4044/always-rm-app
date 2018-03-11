@@ -28,7 +28,7 @@ const Drawer = DrawerNavigator(
 		Stores: { screen: _Stores },
 	},
 	{
-		drawerWidth: deviceWidth * 0.8,
+		drawerWidth: deviceWidth * 0.85,
 		initialRouteName: "Home",
 		contentComponent: props => <Sidebar {...props} />,
 	}

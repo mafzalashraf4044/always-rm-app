@@ -48,12 +48,6 @@ export default class Sidebar extends React.Component<Props, State> {
 								source={require("../../assets/Icons/Light/Back.png")}
 							/>
             </TouchableOpacity>
-						<TouchableOpacity style={styles.headerIconWrapper}>
-							<Image
-								style={styles.headerIcon}
-								source={require("../../assets/Icons/Light/Edit.png")}
-							/>
-            </TouchableOpacity>
 					</View>
 					<View style={styles.userInfo}>
 						<Text style={styles.name}>John Doe</Text>

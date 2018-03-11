@@ -1,22 +1,24 @@
 import { StyleSheet, PixelRatio, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
 
 const styles: any = StyleSheet.create({
 	header: {
-    flex: 0.35,
-    padding: getSizeWRTDeviceWidth(10),
+    flex: 0.27,
     justifyContent: "space-between",
+    padding: getSizeWRTDeviceWidth(16),
+    paddingTop: getSizeWRTDeviceWidth(24),
     backgroundColor: "rgba(233,30,99,1)",
   },
   headerIconsWrapper: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   headerIcon: {
-    width: getSizeWRTDeviceWidth(30),
-    resizeMode: "contain",
+    width: getSizeWRTDeviceWidth(24),
+    height: getSizeWRTDeviceHeight(20),
+    resizeMode: "cover",
   },
   userInfo: {
     width: "100%",
@@ -24,31 +26,36 @@ const styles: any = StyleSheet.create({
   name: {
     color: "#fff",
     fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(18),
+    fontSize: getSizeWRTDeviceWidth(24),
+    lineHeight: getSizeWRTDeviceWidth(30),
   },
   email: {
     color: "rgba(223,223,223,1)",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
   },
   content: {
-    flex: 0.5,
+    flex: 0.58,
   },
   listItem: {
-    paddingHorizontal: getSizeWRTDeviceWidth(15),
-    paddingTop: getSizeWRTDeviceWidth(15),
+    paddingHorizontal: getSizeWRTDeviceWidth(20),
+    paddingTop: getSizeWRTDeviceWidth(20),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
   },
   listItemIcon: {
     width: getSizeWRTDeviceWidth(30),
+    height: getSizeWRTDeviceWidth(30),
+    resizeMode: "cover",
   },
   listItemTxt: {
     color: "rgba(74,74,74,1)",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
-    marginLeft: getSizeWRTDeviceWidth(22),
+    lineHeight: getSizeWRTDeviceWidth(16),
+    marginLeft: getSizeWRTDeviceWidth(24),
   },
   footer: {
     flex: 0.15,

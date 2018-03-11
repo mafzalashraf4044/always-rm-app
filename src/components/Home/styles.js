@@ -23,10 +23,6 @@ const styles: any = StyleSheet.create({
 		flexWrap: "wrap"
 	},
 	homeTab: {
-		// width: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
-		// height: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
-
-
 		width: getSizeWRTDeviceWidth(165),
 		height: getSizeWRTDeviceHeight(145),
 		backgroundColor: "rgba(254,254,254,0.2)",
@@ -41,6 +37,7 @@ const styles: any = StyleSheet.create({
 	tabIcon: {
 		width: getSizeWRTDeviceWidth(60),
 		height: getSizeWRTDeviceWidth(60),
+		resizeMode: "cover",
 	},
 	homeTabTxt: {
 		color: "#fff",

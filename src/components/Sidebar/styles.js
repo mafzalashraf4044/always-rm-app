@@ -16,9 +16,8 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   headerIcon: {
-    width: getSizeWRTDeviceWidth(24),
-    height: getSizeWRTDeviceHeight(20),
-    resizeMode: "cover",
+		width: getSizeWRTDeviceWidth(30),
+		resizeMode: "cover",
   },
   userInfo: {
     width: "100%",
@@ -46,9 +45,8 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   listItemIcon: {
-    width: getSizeWRTDeviceWidth(30),
-    height: getSizeWRTDeviceWidth(30),
-    resizeMode: "cover",
+		width: getSizeWRTDeviceWidth(30),
+		resizeMode: "cover",
   },
   listItemTxt: {
     color: "rgba(74,74,74,1)",

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../../utils';
 
 const styles: any = StyleSheet.create({
   card: {
@@ -10,12 +10,12 @@ const styles: any = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
 		elevation: 1,
-    margin: getSizeWRTDeviceWidth(15),
+    margin: getSizeWRTDeviceWidth(16),
   },
   imgContainer: {
     width: '100%',
     justifyContent: 'flex-end',
-    height: getSizeWRTDeviceWidth(192),
+    height: getSizeWRTDeviceHeight(192),
   },
   storeImg: {
 		flex: 1,
@@ -24,14 +24,14 @@ const styles: any = StyleSheet.create({
     width: "100%",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    height: getSizeWRTDeviceWidth(192),
+    height: getSizeWRTDeviceHeight(192),
   },
   storeInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: getSizeWRTDeviceWidth(15),
-    paddingVertical: getSizeWRTDeviceWidth(10),
+    paddingHorizontal: getSizeWRTDeviceWidth(16),
+    paddingVertical: getSizeWRTDeviceWidth(14),
   },
   infoText: {
 
@@ -46,7 +46,6 @@ const styles: any = StyleSheet.create({
     color: "rgba(255,255,255,1)",
 		fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(20),
-    fontWeight: "400",
     lineHeight: getSizeWRTDeviceWidth(24),
 
   },
@@ -69,12 +68,11 @@ const styles: any = StyleSheet.create({
   },
   editIcon: {
     width: getSizeWRTDeviceWidth(30),
-    resizeMode: "contain",
+		resizeMode: "cover",
   },
   cardBody: {
     width: '100%',
-    paddingHorizontal: getSizeWRTDeviceWidth(15),
-    paddingVertical: getSizeWRTDeviceWidth(10),
+    padding: getSizeWRTDeviceWidth(16),
   },
   extraInfo: {
     
@@ -112,8 +110,8 @@ const styles: any = StyleSheet.create({
     marginRight: getSizeWRTDeviceWidth(15),
   },
   expandIcon: {
-    width: getSizeWRTDeviceWidth(30),
-    resizeMode: "contain",
+		width: getSizeWRTDeviceWidth(30),
+		resizeMode: "cover",
   },
   collapsable: {
     

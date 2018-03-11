@@ -15,7 +15,7 @@ const styles: any = StyleSheet.create({
 		marginHorizontal: getSizeWRTDeviceWidth(20),
 	},
 	headerIcon: {
-		width: getSizeWRTDeviceWidth(20),
+		width: getSizeWRTDeviceWidth(30),
 		resizeMode: "cover",
 	},
 	body: {

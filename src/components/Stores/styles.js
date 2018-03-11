@@ -5,14 +5,6 @@ const styles: any = StyleSheet.create({
 	container: {
 		backgroundColor: "#fff",
 	},
-	headerContainer: {
-		position: "relative",
-	},
-	headerTitle: {
-		color: "#fff",
-		fontFamily: "Always_Font",
-		fontSize: getSizeWRTDeviceWidth(18),
-	},
 	backgroundImg: {
 		flex: 1,
 		resizeMode: "cover",
@@ -21,9 +13,5 @@ const styles: any = StyleSheet.create({
 		height: "100%",
 		justifyContent: "center",
 	},
-	headerIcon: {
-		width: getSizeWRTDeviceWidth(30),
-    resizeMode: "contain",
-	}
 });
 export default styles;

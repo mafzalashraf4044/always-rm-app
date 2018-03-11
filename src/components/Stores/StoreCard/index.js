@@ -20,7 +20,7 @@ class StoreCard extends Component {
         <View style={styles.imgContainer}>
           <Image
             style={styles.storeImg}
-            source={{uri: "http://globalmedicalco.com/photos/globalmedicalco/15/72747.jpg"}}
+            source={require("../../../assets/Images/card-image.jpg")}
           />
           <View style={styles.storeInfo}>
             <View style={styles.infoText}>

@@ -30,7 +30,7 @@ class StoreCard extends Component {
               <Text style={styles.lastSaved}>Last saved on 14/02/2018 / 1:24:11pm</Text>
             </View>
             <View style={styles.editIconContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true})}>
                 <Image
                   style={styles.editIcon}
                   source={require("../../../assets/Icons/Light/Edit.png")}

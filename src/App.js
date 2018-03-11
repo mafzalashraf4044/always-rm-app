@@ -14,7 +14,7 @@ const deviceWidth = Dimensions.get("window").width;
 const _Stores = StackNavigator(
 	{
 		Stores: { screen: Stores },
-		AddStore: { screen: AddEditStore },
+		AddEditStore: { screen: AddEditStore },
 	},
 	{
 		initialRouteName: "Stores",

@@ -23,7 +23,7 @@ class Stores extends React.Component<Props, State> {
 				<Image
 					blurRadius={5}
 					style={styles.backgroundImg}
-					source={require("../../assets/Images/header-bg.jpeg")}
+					source={require("../../assets/Images/app-bg.jpeg")}
 				/>
         <Header
           title="My Stores"
@@ -39,7 +39,7 @@ class Stores extends React.Component<Props, State> {
 						},
 						{
 							url: require("../../assets/Icons/Light/Add.png"),
-							onPress: () => this.props.navigation.navigate("AddStore"),
+							onPress: () => this.props.navigation.navigate("AddEditStore", {isEdit: false}),
 						}
 					]}
         />
@@ -48,36 +48,36 @@ class Stores extends React.Component<Props, State> {
 					<Tab heading="Outstanding">
 						<Container>
 							<Content>
-								<StoreCard />
-								<StoreCard />
-								<StoreCard />
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
 							</Content>
 						</Container>
 					</Tab>
 					<Tab heading="Today">
 						<Container>
 							<Content>
-								<StoreCard />
-								<StoreCard />
-								<StoreCard />
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
 							</Content>
 						</Container>
 					</Tab>
 					<Tab heading="Upcoming">
 						<Container>
 							<Content>
-								<StoreCard />
-								<StoreCard />
-								<StoreCard />
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
 							</Content>
 						</Container>
 					</Tab>
 					<Tab heading="Completed">
 						<Container>
 							<Content>
-								<StoreCard />
-								<StoreCard />
-								<StoreCard />
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation}/>
 							</Content>
 						</Container>
 					</Tab>

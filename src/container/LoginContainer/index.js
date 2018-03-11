@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Item, Input, Form, Label } from "native-base";
 import { Field, reduxForm } from "redux-form";
 import Login from "../../components/Login";
+import { getSizeWRTPercentage } from '../../utils';
 
 const required = value => (value ? undefined : "Required");
 const maxLength = max => value =>
@@ -30,7 +31,7 @@ class LoginForm extends React.Component<Props, State> {
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
     return (
       <Item floatingLabel light>
-        <Label style={{fontSize: 12}}>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
+        <Label style={{fontSize: getSizeWRTPercentage(12)}}>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
         <Input
           secureTextEntry={input.name === "password" ? true : false}
         />

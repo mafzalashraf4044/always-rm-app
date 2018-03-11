@@ -13,6 +13,14 @@ const styles: any = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: "rgba(183,183,183,1)",
   },
+	backgroundImg: {
+		flex: 1,
+		resizeMode: "cover",
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		justifyContent: "center",
+	},
   addEditImg: {
     flexDirection: 'row',
     justifyContent: 'flex-start',

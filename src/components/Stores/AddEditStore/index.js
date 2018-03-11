@@ -21,17 +21,35 @@ class AddEditStore extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			isStoreImgContainerVisible: true,
-			storeName: "Amaro Studio Pte. Ltd.",
-			storeID: "124124",
-			retailerName: "Asus Hardware",
-			managerName: "Alwyn Lao",
-			managerContact: "98731134",
-			address1: "960 Yishun Central #B2-101/102",
-			address2: "-",
-			postalCode: "760960",
-			computerMall: "Cause Shopping Center",
-			country: "Singapore",	
+			storeName: "",
+			storeID: "",
+			retailerName: "",
+			managerName: "",
+			managerContact: "",
+			address1: "",
+			address2: "",
+			postalCode: "",
+			computerMall: "",
+			country: "",
 		};
+	}
+
+	componentDidMount() {
+		const { params } = this.props.navigation.state;
+		if (params.isEdit) {
+			this.setState({
+				storeName: "Amaro Studio Pte. Ltd.",
+				storeID: "124124",
+				retailerName: "Asus Hardware",
+				managerName: "Alwyn Lao",
+				managerContact: "98731134",
+				address1: "960 Yishun Central #B2-101/102",
+				address2: "-",
+				postalCode: "760960",
+				computerMall: "Cause Shopping Center",
+				country: "Singapore",
+			});
+		}
 	}
 
 	handleFocus = () => {
@@ -49,6 +67,7 @@ class AddEditStore extends React.Component<Props, State> {
 	}
 
 	render() {
+		const { params } = this.props.navigation.state;
 		const labelStyle = {fontSize: getSizeWRTPercentage(12)};
 
 		return (
@@ -56,8 +75,16 @@ class AddEditStore extends React.Component<Props, State> {
 				{
 					this.state.isStoreImgContainerVisible && 
 					<View style={styles.storeImgContainer}>
+						{
+							params.isEdit &&
+							<Image
+								blurRadius={5}
+								style={styles.backgroundImg}
+								source={require("../../../assets/Images/header-bg.jpeg")}
+							/>
+						}
 						<Header
-							title="Add Store"
+							title={params.isEdit ? "Edit Store" : "Add Store"}
 							navigation={this.props.navigation}
 							iconLeft={{
 								url: require("../../../assets/Icons/Light/Back.png"),

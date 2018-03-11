@@ -29,12 +29,15 @@ class Home extends React.Component<Props, State> {
         <Image
           blurRadius={5}
           style={styles.backgroundImg}
-          source={require("../../assets/Images/app-bg.jpg")}
+          source={require("../../assets/Images/app-bg.jpeg")}
         />
         <Header
           title="Welcome John Doe!"
           navigation={this.props.navigation}
-          iconLeft={require("../../assets/Icons/Light/Menu.png")}
+          iconLeft={{
+						url: require("../../assets/Icons/Light/Menu.png"),
+						onPress: () => this.props.navigation.navigate("DrawerOpen"),
+					}}
         />
         <Content>
           <View style={styles.homeTabs}>

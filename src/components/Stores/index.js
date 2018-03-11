@@ -23,13 +23,25 @@ class Stores extends React.Component<Props, State> {
 				<Image
 					blurRadius={5}
 					style={styles.backgroundImg}
-					source={require("../../assets/Images/app-bg.jpg")}
+					source={require("../../assets/Images/header-bg.jpeg")}
 				/>
         <Header
           title="My Stores"
           navigation={this.props.navigation}
-          iconLeft={require("../../assets/Icons/Light/Menu.png")}
-          iconsRight={[require("../../assets/Icons/Light/Search.png"), require("../../assets/Icons/Light/Add.png")]}
+          iconLeft={{
+						url: require("../../assets/Icons/Light/Menu.png"),
+						onPress: () => this.props.navigation.navigate("DrawerOpen"),
+					}}
+          iconsRight={[
+						{
+							url: require("../../assets/Icons/Light/Search.png"),
+							onPress: () => {},
+						},
+						{
+							url: require("../../assets/Icons/Light/Add.png"),
+							onPress: () => this.props.navigation.navigate("AddStore"),
+						}
+					]}
         />
 
 				<Tabs initialPage={1} transparent>

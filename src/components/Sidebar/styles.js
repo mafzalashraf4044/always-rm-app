@@ -34,9 +34,9 @@ const styles: any = StyleSheet.create({
   content: {
     flex: 0.5,
   },
-  listItemView: {
-    paddingHorizontal: getSizeWRTPercentage(20),
-    paddingTop: getSizeWRTPercentage(10),
+  listItem: {
+    paddingHorizontal: getSizeWRTPercentage(15),
+    paddingTop: getSizeWRTPercentage(15),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",

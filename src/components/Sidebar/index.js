@@ -26,15 +26,13 @@ export default class Sidebar extends React.Component<Props, State> {
 	renderItem = ({item}) => {
 		return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate(item.route)} style={styles.listItem}>
-        <View style={styles.listItemView}>
-					<Image
-						style={styles.listItemIcon}
-						source={item.icon}
-					/>
-          <Text style={styles.listItemTxt}>
-            {item.name}
-          </Text>
-        </View>
+				<Image
+					style={styles.listItemIcon}
+					source={item.icon}
+				/>
+				<Text style={styles.listItemTxt}>
+					{item.name}
+				</Text>
       </TouchableOpacity>
 		);
 	}
@@ -63,13 +61,13 @@ export default class Sidebar extends React.Component<Props, State> {
 					</View>
         </View>
 
-				<Content style={styles.content}>
+				<View style={styles.content}>
 					<FlatList
 						data={this.listItems}
 						renderItem={this.renderItem}
 						keyExtractor={item => item.name}
 					/>
-				</Content>
+				</View>
 				<View style={styles.footer}>
 					<FlatList
 						data={[{icon: require("../../assets/Icons/Dark/Exit.png"), name: "Log Out", route: "Login"}]}

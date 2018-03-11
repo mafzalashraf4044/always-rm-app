@@ -43,6 +43,23 @@ export default class Setup extends React.Component<Props, State> {
     const imageAssets = cacheImages([
 			require('../assets/Images/app-bg.jpeg'),
 			require('../assets/Images/header-bg.jpeg'),
+			require('../assets/Icons/Light/Stores.png'),
+			require('../assets/Icons/Light/Report.png'),
+			require('../assets/Icons/Light/Calendar.png'),
+			require('../assets/Icons/Light/Merchandise.png'),
+			require('../assets/Icons/Light/Menu.png'),
+			require('../assets/Icons/Light/Back.png'),
+			require('../assets/Icons/Light/Edit.png'),
+			require('../assets/Icons/Light/Search.png'),
+			require('../assets/Icons/Light/Add.png'),
+			require('../assets/Icons/Light/Back.png'),
+			require('../assets/Icons/Light/Camera.png'),
+			require('../assets/Icons/Dark/Stores.png'),
+			require('../assets/Icons/Dark/Report.png'),
+			require('../assets/Icons/Dark/Calendar.png'),
+			require('../assets/Icons/Dark/Merchandise.png'),
+			require('../assets/Icons/Dark/Exit.png'),
+			require('../assets/Icons/Dark/Expand.png'),
     ]);
 
     const fontAssets = cacheFonts([{

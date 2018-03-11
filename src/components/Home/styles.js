@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -23,25 +23,30 @@ const styles: any = StyleSheet.create({
 		flexWrap: "wrap"
 	},
 	homeTab: {
-		width: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
-		height: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
-		backgroundColor: "rgba(255,255,255,0.2)",
+		// width: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
+		// height: (deviceWidth - getSizeWRTDeviceWidth(45)) / 2,
+
+
+		width: getSizeWRTDeviceWidth(165),
+		height: getSizeWRTDeviceHeight(145),
+		backgroundColor: "rgba(254,254,254,0.2)",
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
 		marginBottom: getSizeWRTDeviceWidth(14),
 	},
 	homeTabBright: {
-		backgroundColor: "rgba(255,255,255,0.6)",
+		backgroundColor: "rgba(254,254,254,0.5)",
 	},
 	tabIcon: {
-		width: getSizeWRTDeviceWidth(45),
-		height: getSizeWRTDeviceWidth(45),
+		width: getSizeWRTDeviceWidth(60),
+		height: getSizeWRTDeviceWidth(60),
 	},
 	homeTabTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
-		fontSize: getSizeWRTDeviceWidth(15),
+		fontSize: getSizeWRTDeviceWidth(14),
+		lineHeight: getSizeWRTDeviceWidth(16),
 	},
 });
 export default styles;

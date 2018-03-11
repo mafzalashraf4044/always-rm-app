@@ -22,10 +22,10 @@ class Header extends React.Component<Props, State> {
     return (
       <View style={styles.header}>
         <View style={styles.left}>
-          <TouchableOpacity onPress={() => navigation.navigate("DrawerOpen")}>
+          <TouchableOpacity onPress={iconLeft.onPress}>
             <Image
               style={styles.headerIcon}
-              source={iconLeft}
+              source={iconLeft.url}
             />
           </TouchableOpacity>
         </View>
@@ -38,10 +38,10 @@ class Header extends React.Component<Props, State> {
             <View style={styles.right}>
               {
                 iconsRight.map((icon, index) => (
-                  <TouchableOpacity onPress={() => {}} key={index}>
+                  <TouchableOpacity onPress={icon.onPress} key={index}>
                     <Image
                       style={styles.rightIcon}
-                      source={icon}
+                      source={icon.url}
                     />
                   </TouchableOpacity>
                 ))

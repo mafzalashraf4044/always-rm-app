@@ -7,13 +7,25 @@ import Login from "./container/LoginContainer";
 import Home from "./container/HomeContainer";
 import Stores from "./container/StoresContainer";
 import Sidebar from "./container/SidebarContainer";
+import AddEditStore from "./components/Stores/AddEditStore";
 
 const deviceWidth = Dimensions.get("window").width;
+
+const _Stores = StackNavigator(
+	{
+		Stores: { screen: Stores },
+		AddStore: { screen: AddEditStore },
+	},
+	{
+		initialRouteName: "Stores",
+		headerMode: "none",
+	}
+);
 
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
-		Stores: { screen: Stores },
+		Stores: { screen: _Stores },
 	},
 	{
 		drawerWidth: deviceWidth * 0.8,

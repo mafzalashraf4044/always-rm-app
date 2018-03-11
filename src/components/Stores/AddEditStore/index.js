@@ -7,7 +7,6 @@ import {
 	Label
 } from "native-base";
 import { getSizeWRTPercentage } from '../../../utils';
-import { Dropdown } from '../../common/Dropdown';
 import Header from '../../common/Header';
 
 import { Picker, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";

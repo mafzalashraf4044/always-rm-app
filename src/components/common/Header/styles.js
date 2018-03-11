@@ -44,7 +44,7 @@ const styles: any = StyleSheet.create({
 	},
 	rightIcon: { 
 		width: getSizeWRTDeviceWidth(30),
-		resizeMode: "contain",
+		resizeMode: "cover",
 	}
 });
 export default styles;

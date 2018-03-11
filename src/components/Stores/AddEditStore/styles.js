@@ -75,6 +75,35 @@ const styles: any = StyleSheet.create({
     position: 'absolute',
     right: getSizeWRTDeviceWidth(6),
     bottom: getSizeWRTDeviceWidth(6),
-  }
+  },
+  formActions: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginVertical: getSizeWRTDeviceWidth(30),
+  },
+  lightBtn: {
+    marginRight: getSizeWRTDeviceWidth(15),
+    backgroundColor: "transparent",
+		shadowColor: "#FFF",
+		elevation: 0,
+  },
+  lightBtnTxt: {
+    color: "rgba(233,30,99,1)",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(14),
+    lineHeight: getSizeWRTDeviceWidth(16),
+  },
+  darkBtn: {
+    paddingVertical: getSizeWRTDeviceWidth(10),
+    paddingHorizontal: getSizeWRTDeviceWidth(20),
+    backgroundColor: "rgba(233,30,99,1)",
+  },
+  darkBtnTxt: {
+    color: "#FFF",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(14),
+    lineHeight: getSizeWRTDeviceWidth(16),
+  },
 });
 export default styles;

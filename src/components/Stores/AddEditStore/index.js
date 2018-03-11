@@ -4,7 +4,8 @@ import {
 	Item,
 	Input,
 	Form,
-	Label
+	Label,
+	Button
 } from "native-base";
 import { getSizeWRTDeviceWidth } from '../../../utils';
 import Header from '../../common/Header';
@@ -247,6 +248,22 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 							</View>
+							{
+								!params.isEdit ?
+								<View style={styles.formActions}>
+									<Button onPress={() => this.props.navigation.goBack()} style={styles.lightBtn}>
+										<Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
+									</Button>
+									<Button onPress={() => this.props.navigation.goBack()} style={styles.darkBtn}>
+										<Text style={styles.darkBtnTxt}>CONTINUE</Text>
+									</Button>
+								</View> :
+								<View style={styles.formActions}>
+									<Button onPress={() => this.props.navigation.goBack()} style={styles.darkBtn}>
+										<Text style={styles.darkBtnTxt}>SAVE</Text>
+									</Button>
+								</View>
+							}
 						</View>
 					</ScrollView>
 			</Container>

@@ -4,7 +4,7 @@ import { getSizeWRTPercentage } from '../../utils';
 export default (variables = variable) => {
 	const labelTheme = {
 		fontFamily: "Always_Font",
-		fontSize:  getSizeWRTPercentage(14),
+		fontSize:  getSizeWRTPercentage(10),
 	};
 
 	return labelTheme;

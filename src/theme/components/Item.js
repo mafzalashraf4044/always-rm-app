@@ -5,50 +5,6 @@ import { getSizeWRTPercentage } from '../../utils';
 
 export default (variables = variable) => {
 	const itemTheme = {
-		".floatingLabel": {
-			marginVertical: getSizeWRTPercentage(5),
-			marginLeft: 0,
-			"NativeBase.Input": {
-				height: getSizeWRTPercentage(50),
-				paddingTop: getSizeWRTPercentage(20),
-			},
-			"NativeBase.Label": {
-				top: getSizeWRTPercentage(8),
-				color: "rgba(183,183,183,1)",
-			},
-		},
-		".underline": {
-			"NativeBase.Input": {
-				paddingLeft: 15,
-			},
-			".success": {
-				borderColor: variables.inputSuccessBorderColor,
-			},
-			".error": {
-				borderColor: variables.inputErrorBorderColor,
-			},
-			borderWidth: variables.borderWidth * 2,
-			borderTopWidth: 0,
-			borderRightWidth: 0,
-			borderLeftWidth: 0,
-			borderColor: variables.inputBorderColor,
-		},
-		".regular": {
-			"NativeBase.Input": {
-				paddingLeft: 8,
-			},
-			"NativeBase.Icon": {
-				paddingLeft: 10,
-			},
-			".success": {
-				borderColor: variables.inputSuccessBorderColor,
-			},
-			".error": {
-				borderColor: variables.inputErrorBorderColor,
-			},
-			borderWidth: variables.borderWidth * 2,
-			borderColor: variables.inputBorderColor,
-		},
 		".success": {
 			"NativeBase.Icon": {
 				color: variables.inputSuccessBorderColor,
@@ -72,7 +28,6 @@ export default (variables = variable) => {
 			},
 			borderColor: variables.inputSuccessBorderColor,
 		},
-
 		".error": {
 			"NativeBase.Icon": {
 				color: variables.inputErrorBorderColor,
@@ -97,11 +52,18 @@ export default (variables = variable) => {
 			borderColor: variables.inputErrorBorderColor,
 		},
 		".disabled": {
+			borderColor: "rgba(208,208,208,1)",
 			"NativeBase.Icon": {
 				color: "#384850",
 			},
 			"NativeBase.IconNB": {
 				color: "#384850",
+			},
+			"NativeBase.Input": {
+				color: "rgba(206,206,206,1)",
+			},
+			"NativeBase.Label": {
+				color: "rgba(206,206,206,1)",
 			},
 		},
 
@@ -113,6 +75,27 @@ export default (variables = variable) => {
 		backgroundColor: "transparent",
 		flexDirection: "row",
 		alignItems: "center",
+
+		marginVertical: getSizeWRTPercentage(5),
+		marginLeft: 0,
+		"NativeBase.Input": {
+			height: getSizeWRTPercentage(50),
+			paddingTop: getSizeWRTPercentage(20),
+		},
+		"NativeBase.Label": {
+			top: getSizeWRTPercentage(8),
+			color: "rgba(147,147,147,1)",
+		},
+
+		".light": {
+			borderColor: "#FFF",
+			"NativeBase.Input": {
+				color: "#FFF",
+			},
+			"NativeBase.Label": {
+				color: "rgba(147,147,147,1)",
+			},
+		},
 	};
 
 	return itemTheme;

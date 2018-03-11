@@ -175,12 +175,12 @@ export default {
 
 	// InputGroup
 	inputFontSize: getSizeWRTPercentage(14),
-	inputBorderColor: "#fff",
-	inputSuccessBorderColor: "#fff",
-	inputErrorBorderColor: "#fff",
+	inputBorderColor: "rgba(74,74,74,1)",
+	inputSuccessBorderColor: "rgba(74,74,74,1)",
+	inputErrorBorderColor: "rgba(74,74,74,1)",
 
 	get inputColor() {
-		return "#fff";
+		return "#000";
 	},
 	get inputColorPlaceholder() {
 		return "#fff";

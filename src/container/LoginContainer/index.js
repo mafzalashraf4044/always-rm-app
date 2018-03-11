@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { View } from "react-native";
 import { Item, Input, Form, Label } from "native-base";
 import { Field, reduxForm } from "redux-form";
 import Login from "../../components/Login";
@@ -28,11 +29,10 @@ class LoginForm extends React.Component<Props, State> {
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
     return (
-      <Item error={error && touched} floatingLabel>
-        <Label>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
+      <Item floatingLabel light>
+        <Label style={{fontSize: 12}}>{input.name === "email" ? "RPM Login ID" : "Password"}</Label>
         <Input
           secureTextEntry={input.name === "password" ? true : false}
-          {...input}
         />
       </Item>
     );
@@ -40,21 +40,11 @@ class LoginForm extends React.Component<Props, State> {
 
   login() {
     this.props.navigation.navigate("Drawer");
-    // if (this.props.valid) {
-    //   this.props.navigation.navigate("Drawer");
-    // } else {
-    //   Toast.show({
-    //     text: "Enter Valid Username & password!",
-    //     duration: 2000,
-    //     position: "top",
-    //     textStyle: { textAlign: "center" }
-    //   });
-    // }
   }
 
   render() {
     const form = (
-      <Form>
+      <View>
         <Field
           name="email"
           component={this.renderInput}
@@ -65,13 +55,7 @@ class LoginForm extends React.Component<Props, State> {
           component={this.renderInput}
           validate={[alphaNumeric, minLength8, maxLength15, required]}
         />
-        {
-          // !this.props.valid &&
-          // <View padder>
-          //   <Text> {this.props.valid}You have keyed in wrong email/password</Text>
-          // </View>
-        }
-      </Form>
+      </View>
     );
     return (
       <Login

@@ -15,7 +15,7 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   headerIcon: {
-    width: getSizeWRTPercentage(22),
+    width: getSizeWRTPercentage(30),
     resizeMode: "contain",
   },
   userInfo: {
@@ -42,7 +42,7 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   listItemIcon: {
-    width: getSizeWRTPercentage(22),
+    width: getSizeWRTPercentage(30),
   },
   listItemTxt: {
     color: "rgba(74,74,74,1)",

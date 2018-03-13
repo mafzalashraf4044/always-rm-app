@@ -95,7 +95,7 @@ const styles: any = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: getSizeWRTDeviceWidth(15),
+    marginTop: getSizeWRTDeviceWidth(15),
   },
   txtBtnsContainer: {
     flexDirection: 'row',
@@ -114,7 +114,7 @@ const styles: any = StyleSheet.create({
 		resizeMode: "cover",
   },
   collapsable: {
-    
+    paddingTop: getSizeWRTDeviceWidth(15),
   },
   storeDetails: {
     color: "rgba(74,74,74,1)",

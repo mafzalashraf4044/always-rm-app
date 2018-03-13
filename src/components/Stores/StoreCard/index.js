@@ -1,19 +1,43 @@
 import React, { Component } from "react";
-import { Image, View, Text, TouchableOpacity } from "react-native";
-import {
-  Card,
-  CardItem,
-  Thumbnail,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Right
-} from "native-base";
+import { Animated, Image, View, Text, TouchableOpacity } from "react-native";
 
 import styles from './styles';
 
 class StoreCard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCollapsableOpen: false,
+      collapsableAnimation: new Animated.Value(),
+      maxHeight: null,
+    };
+  }
+
+  toggleCollapsable = () => {
+    let initialValue = this.state.isCollapsableOpen ? this.state.maxHeight : 0,
+    finalValue = this.state.isCollapsableOpen ? 0 : this.state.maxHeight;
+
+    this.setState(prevState => ({
+      isCollapsableOpen: !prevState.isCollapsableOpen,
+    }));
+
+    Animated.timing(
+      this.state.collapsableAnimation,
+      {toValue: finalValue, duration: 500}
+    ).start();
+  }
+
+  setMaxHeight = (event) => {
+    if (this.state.maxHeight === null) {
+      this.setState({
+          maxHeight: event.nativeEvent.layout.height,
+      }, () => {
+        this.state.collapsableAnimation.setValue(0);
+      });
+    }
+  }
+
   render() {
     return (
       <View style={styles.card}>
@@ -59,7 +83,7 @@ class StoreCard extends Component {
                 <Text style={styles.txtBtn}>MESSAGE</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.toggleCollapsable}>
               <Image
                 style={styles.expandIcon}
                 source={require("../../../assets/Icons/Dark/Expand.png")}
@@ -67,10 +91,11 @@ class StoreCard extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.collapsable}>
-            <Text style={styles.storeDetails}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
-          </View>
-
+          <Animated.View style={{height: this.state.collapsableAnimation, overflow:'hidden'}}>
+            <View onLayout={this.setMaxHeight} style={styles.collapsable}>
+              <Text style={styles.storeDetails}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
+            </View>
+          </Animated.View>
         </View>
       </View>
     );

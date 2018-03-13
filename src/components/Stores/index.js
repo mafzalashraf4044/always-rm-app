@@ -17,6 +17,7 @@ export interface Props {
 }
 export interface State {}
 class Stores extends React.Component<Props, State> {
+
 	render() {
 		return (
 			<Container style={styles.container}>

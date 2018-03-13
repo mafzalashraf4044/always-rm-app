@@ -5,7 +5,7 @@ import {
   Button,
 } from "native-base";
 
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import { Dimensions, View, Image, Text, TouchableOpacity } from "react-native";
 
 import Header from '../common/Header';
 
@@ -39,7 +39,7 @@ class Home extends React.Component<Props, State> {
 						onPress: () => this.props.navigation.navigate("DrawerOpen"),
 					}}
         />
-        <Content>
+        <View style={styles.content}>
           <View style={styles.homeTabs}>
             {
               this.homeTabs.map((tab, index) => {
@@ -57,7 +57,24 @@ class Home extends React.Component<Props, State> {
               })
             }
           </View>
-        </Content>
+          <View style={styles.homeInfo}>
+            <View style={styles.lastLogin}>
+              <Text style={styles.lastLoginTxt}>{Dimensions.get("window").height} Last Login 23/10/2018 3:44pm</Text>
+            </View>
+            <View style={styles.logosContainer}>
+              <Image
+                blurRadius={5}
+                style={styles.logo1}
+                source={require("../../assets/Images/logo-always.png")}
+              />
+              <Image
+                blurRadius={5}
+                style={styles.logo2}
+                source={require("../../assets/Images/logo-intel.png")}
+              />
+            </View>
+          </View>
+        </View>
 
       </Container>
     );

@@ -2,6 +2,7 @@ import { Dimensions, StyleSheet, PixelRatio } from "react-native";
 import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
 
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -15,7 +16,11 @@ const styles: any = StyleSheet.create({
 		height: "100%",
 		justifyContent: "center",
 	},
+	content: {
+		flex: 1,
+	},
 	homeTabs: {
+		flex: 0.64,
 		padding: getSizeWRTDeviceWidth(14),
 		flexDirection: "row",
 		justifyContent: "space-between",
@@ -29,7 +34,7 @@ const styles: any = StyleSheet.create({
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
-		marginBottom: getSizeWRTDeviceWidth(14),
+		marginBottom: getSizeWRTDeviceHeight(14),
 	},
 	homeTabBright: {
 		backgroundColor: "rgba(254,254,254,0.5)",
@@ -45,5 +50,37 @@ const styles: any = StyleSheet.create({
 		fontSize: getSizeWRTDeviceWidth(14),
 		lineHeight: getSizeWRTDeviceWidth(16),
 	},
+	homeInfo: {
+		flex: 0.36,
+		paddingBottom: getSizeWRTDeviceWidth(14),
+		justifyContent: 'space-between',
+	},
+	lastLogin: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	lastLoginTxt: {
+		color: "#fff",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(12),
+		lineHeight: getSizeWRTDeviceWidth(14),
+	},
+	logosContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	logo1: {
+		width: '30%',
+		height: 40,
+		resizeMode: 'contain',
+		marginRight: getSizeWRTDeviceWidth(14)
+	},
+	logo2: {
+		width: '20%',
+		height: 40,
+		resizeMode: 'contain',
+	}
 });
 export default styles;

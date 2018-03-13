@@ -67,6 +67,28 @@ export default (variables = variable) => {
 			},
 		},
 
+		".stackedLabel": {
+			"NativeBase.Label": {
+				position: null,
+				top: null,
+				left: null,
+				right: null,
+				paddingTop: 5,
+				alignSelf: "flex-start",
+				fontSize: variables.inputFontSize - 2,
+			},
+			"NativeBase.Icon": {
+				marginTop: 36,
+			},
+			"NativeBase.Input": {
+				alignSelf: Platform.OS === "ios" ? "stretch" : "flex-start",
+				flex: 1,
+				width: Platform.OS === "ios" ? null : variables.deviceWidth - 25,
+				fontSize: variables.inputFontSize,
+			},
+			flexDirection: null,
+		},
+
 		borderWidth: variables.borderWidth * 2,
 		borderTopWidth: 0,
 		borderRightWidth: 0,

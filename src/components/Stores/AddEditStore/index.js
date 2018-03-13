@@ -110,7 +110,7 @@ class AddEditStore extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Add Store Details</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Store Name</Label>
 										<Input
 											secureTextEntry={false}
@@ -122,7 +122,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns2}>
-									<Item floatingLabel disabled style={styles.widthHalf}>
+									<Item floatingLabel stackedLabel disabled style={styles.widthHalf}>
 										<Label style={labelStyle}>Store ID</Label>
 										<Input
 											disabled
@@ -134,7 +134,7 @@ class AddEditStore extends React.Component<Props, State> {
 										/>
 									</Item>
 									<View style={[styles.dropdownContainer, styles.widthHalf]}>
-										<Item floatingLabel>
+										<Item floatingLabel stackedLabel>
 											<Label style={labelStyle}>Store Status</Label>
 											<Input
 												editable={false}
@@ -147,7 +147,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</View>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Retailer Name</Label>
 										<Input
 											secureTextEntry={false}
@@ -159,7 +159,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Store Manager</Label>
 										<Input
 											secureTextEntry={false}
@@ -171,7 +171,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Store Manager Contact Number</Label>
 										<Input
 											secureTextEntry={false}
@@ -188,7 +188,7 @@ class AddEditStore extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Add Store Address</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Address Line 1</Label>
 										<Input
 											secureTextEntry={false}
@@ -200,7 +200,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Address Line 2 (Optional)</Label>
 										<Input
 											secureTextEntry={false}
@@ -212,7 +212,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Postal Code</Label>
 										<Input
 											secureTextEntry={false}
@@ -224,7 +224,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Computer Mall</Label>
 										<Input
 											secureTextEntry={false}
@@ -236,7 +236,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel>
+									<Item floatingLabel stackedLabel>
 										<Label style={labelStyle}>Country</Label>
 										<Input
 											secureTextEntry={false}

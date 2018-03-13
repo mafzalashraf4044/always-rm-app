@@ -4,14 +4,27 @@ import { Dimensions } from "react-native";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { Root } from "native-base";
 import Login from "./container/LoginContainer";
+import ForgotPwd from "./container/ForgotPwdContainer";
+
 import Home from "./container/HomeContainer";
-import Stores from "./container/StoresContainer";
 import Sidebar from "./container/SidebarContainer";
+import Stores from "./container/StoresContainer";
 import AddEditStore from "./components/Stores/AddEditStore";
 
 const deviceWidth = Dimensions.get("window").width;
 
-const _Stores = StackNavigator(
+const AuthNavigator = StackNavigator(
+	{
+		Login: { screen: Login },
+		ForgotPwd: { screen: ForgotPwd },
+	},
+	{
+		initialRouteName: "Login",
+		headerMode: "none",
+	}
+);
+
+const StoreNavigator = StackNavigator(
 	{
 		Stores: { screen: Stores },
 		AddEditStore: { screen: AddEditStore },
@@ -25,7 +38,7 @@ const _Stores = StackNavigator(
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
-		Stores: { screen: _Stores },
+		Stores: { screen: StoreNavigator },
 	},
 	{
 		drawerWidth: deviceWidth * 0.85,
@@ -36,11 +49,11 @@ const Drawer = DrawerNavigator(
 
 const App = StackNavigator(
 	{
-		Login: { screen: Login },
+		Auth: { screen: AuthNavigator },
 		Drawer: { screen: Drawer },
 	},
 	{
-		initialRouteName: "Login",
+		initialRouteName: "Auth",
 		headerMode: "none",
 	}
 );

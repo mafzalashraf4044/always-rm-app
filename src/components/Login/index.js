@@ -83,7 +83,7 @@ class Login extends React.Component<Props, State> {
 							</Button>
 						</View>
 						<View>
-							<TouchableOpacity block onPress={() => {}}> 
+							<TouchableOpacity block onPress={() => this.props.navigation.navigate("ForgotPwd")}> 
 								<Text style={styles.forgotPwdTxt}>FORGOT PASSWORD</Text>
 							</TouchableOpacity>
 						</View>

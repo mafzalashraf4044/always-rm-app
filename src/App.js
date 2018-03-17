@@ -8,8 +8,11 @@ import ForgotPwd from "./container/ForgotPwdContainer";
 
 import Home from "./container/HomeContainer";
 import Sidebar from "./container/SidebarContainer";
+
 import Stores from "./container/StoresContainer";
-import AddEditStore from "./components/Stores/AddEditStore";
+import AddEditStore from "./container/AddEditStoreContainer";
+import SearchStores from "./container/SearchStoresContainer";
+import StoreVisit from "./container/StoreVisitContainer";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -28,6 +31,8 @@ const StoreNavigator = StackNavigator(
 	{
 		Stores: { screen: Stores },
 		AddEditStore: { screen: AddEditStore },
+		SearchStores: { screen: SearchStores },
+		StoreVisit: { screen: StoreVisit },
 	},
 	{
 		initialRouteName: "Stores",

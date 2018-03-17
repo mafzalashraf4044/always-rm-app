@@ -38,26 +38,30 @@ const styles: any = StyleSheet.create({
   },
   storeID: {
     color: "rgba(228,228,228,1)",
-		fontFamily: "Always_Font",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(10),
     lineHeight: getSizeWRTDeviceWidth(12),
   },
   storeName: {
     color: "rgba(255,255,255,1)",
-		fontFamily: "Always_Font",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(20),
     lineHeight: getSizeWRTDeviceWidth(24),
 
   },
   storeManager: {
     color: "rgba(255,255,255,1)",
-		fontFamily: "Always_Font",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(10),
     lineHeight: getSizeWRTDeviceWidth(12),
   },
   lastSaved: {
     color: "rgba(202,202,202,1)",
-		fontFamily: "Always_Font",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
     fontStyle: "italic",
     fontSize: getSizeWRTDeviceWidth(10),
     lineHeight: getSizeWRTDeviceWidth(12),
@@ -79,12 +83,14 @@ const styles: any = StyleSheet.create({
   },
   address: {
     color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
 		fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(14),
   },
   stepsCompleted: {
     color: "rgba(155,155,155,1)",
+    backgroundColor: "transparent",
 		fontFamily: "Always_Font",
     fontStyle: "italic",
     fontSize: getSizeWRTDeviceWidth(10),
@@ -104,6 +110,7 @@ const styles: any = StyleSheet.create({
   },
   txtBtn: {
     color: "rgba(233,30,99,1)",
+    backgroundColor: "transparent",
 		fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
@@ -118,6 +125,7 @@ const styles: any = StyleSheet.create({
   },
   storeDetails: {
     color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
 		fontFamily: "Always_Font",
     textAlign: 'justify',
     fontSize: getSizeWRTDeviceWidth(12),

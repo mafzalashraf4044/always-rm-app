@@ -8,8 +8,8 @@ import {
 
 import { TouchableOpacity, Image, Text } from "react-native";
 
-import StoreCard from "./StoreCard";
 import Header from '../common/Header';
+import StoreCard from "../common/StoreCard";
 
 import styles from "./styles";
 export interface Props {
@@ -36,7 +36,7 @@ class Stores extends React.Component<Props, State> {
           iconsRight={[
 						{
 							url: require("../../assets/Icons/Light/Search.png"),
-							onPress: () => {},
+							onPress: () => this.props.navigation.navigate("SearchStores"),
 						},
 						{
 							url: require("../../assets/Icons/Light/Add.png"),
@@ -45,7 +45,7 @@ class Stores extends React.Component<Props, State> {
 					]}
         />
 
-				<Tabs initialPage={1} transparent>
+				<Tabs initialPage={0} transparent>
 					<Tab heading="Outstanding">
 						<Container>
 							<Content>

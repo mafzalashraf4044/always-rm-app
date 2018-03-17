@@ -73,7 +73,7 @@ class StoreCard extends Component {
 
           <View style={styles.actions}>
             <View style={styles.txtBtnsContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit")}>
                 <Text style={styles.txtBtn}>RE-VISIT</Text>
               </TouchableOpacity>
               <TouchableOpacity>

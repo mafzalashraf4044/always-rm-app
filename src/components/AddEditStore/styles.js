@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../../utils';
+import { getSizeWRTDeviceWidth } from '../../utils';
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -33,6 +33,7 @@ const styles: any = StyleSheet.create({
   },
   addEditImgTxt: {
     color: "#FFF",
+    backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
@@ -40,7 +41,7 @@ const styles: any = StyleSheet.create({
   },
   formView: {
     flex: 1,
-    padding: getSizeWRTDeviceWidth(15),
+    paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
   coulmns1: {
@@ -54,14 +55,14 @@ const styles: any = StyleSheet.create({
     width: "45%",
   },
   formSection: {
-
+    marginVertical: getSizeWRTDeviceWidth(15),
   },
   sectionHeadingContainer: {
-    marginTop: getSizeWRTDeviceWidth(25),
     marginBottom: getSizeWRTDeviceWidth(15),
   },
   sectionHeadingTxt: {
     color: "rgba(233,30,99,1)",
+    backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(16),
     lineHeight: getSizeWRTDeviceWidth(20),
@@ -74,13 +75,13 @@ const styles: any = StyleSheet.create({
     resizeMode: "contain",
     position: 'absolute',
     right: getSizeWRTDeviceWidth(6),
-    bottom: getSizeWRTDeviceWidth(6),
+    bottom: getSizeWRTDeviceWidth(20),
   },
   formActions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginVertical: getSizeWRTDeviceWidth(30),
+    marginBottom: getSizeWRTDeviceWidth(30),
   },
   lightBtn: {
     marginRight: getSizeWRTDeviceWidth(15),
@@ -90,6 +91,7 @@ const styles: any = StyleSheet.create({
   },
   lightBtnTxt: {
     color: "rgba(233,30,99,1)",
+    backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
@@ -101,9 +103,11 @@ const styles: any = StyleSheet.create({
   },
   darkBtnTxt: {
     color: "#FFF",
+    backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
   },
 });
+
 export default styles;

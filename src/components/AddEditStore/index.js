@@ -7,10 +7,10 @@ import {
 	Label,
 	Button
 } from "native-base";
-import { getSizeWRTDeviceWidth } from '../../../utils';
-import Header from '../../common/Header';
+import { getSizeWRTDeviceWidth } from '../../utils';
+import Header from '../common/Header';
 
-import { Picker, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";
+import { View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";
 
 import styles from "./styles";
 export interface Props {
@@ -81,14 +81,14 @@ class AddEditStore extends React.Component<Props, State> {
 							<Image
 								blurRadius={5}
 								style={styles.backgroundImg}
-								source={require("../../../assets/Images/header-bg.jpeg")}
+								source={require("../../assets/Images/header-bg.jpeg")}
 							/>
 						}
 						<Header
 							title={params.isEdit ? "Edit Store" : "Add Store"}
 							navigation={this.props.navigation}
 							iconLeft={{
-								url: require("../../../assets/Icons/Light/Back.png"),
+								url: require("../../assets/Icons/Light/Back.png"),
 								onPress: () => this.props.navigation.goBack(),
 							}}
 						/>
@@ -96,7 +96,7 @@ class AddEditStore extends React.Component<Props, State> {
 							<View style={styles.addEditImg}>
 								<Image
 									style={styles.cameraIcon}
-									source={require("../../../assets/Icons/Light/Camera.png")}
+									source={require("../../assets/Icons/Light/Camera.png")}
 								/>
 								<Text style={styles.addEditImgTxt}>Add store image</Text>
 							</View>
@@ -142,7 +142,7 @@ class AddEditStore extends React.Component<Props, State> {
 										</Item>
 										<Image
 											style={styles.dropdownIcon}
-											source={require("../../../assets/Icons/Dark/SortDown.png")}
+											source={require("../../assets/Icons/Dark/SortDown.png")}
 										/>
 									</View>
 								</View>

@@ -12,6 +12,7 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "transparent",
 		height: getSizeWRTDeviceHeight(48),
 		marginTop: getSizeWRTDeviceHeight(24),
+		marginBottom: getSizeWRTDeviceHeight(10),
 		paddingLeft: getSizeWRTDeviceWidth(20),
 		paddingRight: getSizeWRTDeviceWidth(20),
 	},

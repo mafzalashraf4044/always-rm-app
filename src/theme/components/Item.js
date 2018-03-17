@@ -89,17 +89,14 @@ export default (variables = variable) => {
 			flexDirection: null,
 		},
 
-		borderWidth: variables.borderWidth * 2,
-		borderTopWidth: 0,
-		borderRightWidth: 0,
-		borderLeftWidth: 0,
-		borderColor: variables.inputBorderColor,
-		backgroundColor: "transparent",
 		flexDirection: "row",
 		alignItems: "center",
+		borderWidth: 0,
+		backgroundColor: "transparent",
+		marginBottom: getSizeWRTDeviceWidth(20),
+		borderColor: variables.inputBorderColor,
+		borderBottomWidth: variables.borderWidth * 2,
 
-		marginVertical: getSizeWRTDeviceWidth(5),
-		marginLeft: 0,
 		"NativeBase.Input": {
 			height: getSizeWRTDeviceWidth(50),
 			paddingTop: getSizeWRTDeviceWidth(20),

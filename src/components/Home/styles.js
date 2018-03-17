@@ -62,6 +62,7 @@ const styles: any = StyleSheet.create({
 	},
 	lastLoginTxt: {
 		color: "#fff",
+		backgroundColor: "transparent",
 		fontFamily: "Always_Font",
 		fontSize: getSizeWRTDeviceWidth(12),
 		lineHeight: getSizeWRTDeviceWidth(14),

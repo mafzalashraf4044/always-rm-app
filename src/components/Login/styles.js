@@ -37,7 +37,7 @@ const styles: any = StyleSheet.create({
 		width: getSizeWRTDeviceWidth(230),
 	},
 	loginBtn: {
-		marginVertical: getSizeWRTDeviceHeight(10),
+		marginBottom: getSizeWRTDeviceHeight(10),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
@@ -48,6 +48,7 @@ const styles: any = StyleSheet.create({
 	},
 	forgotPwdTxt: {
 		color: "#fff",
+		backgroundColor: "transparent",
 		textAlign: "center",
 		fontFamily: "Always_Font",
 		fontSize: getSizeWRTDeviceWidth(14),

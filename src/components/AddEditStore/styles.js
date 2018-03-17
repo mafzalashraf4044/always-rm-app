@@ -5,7 +5,8 @@ const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   addEditStore: {
-		flex: 1,
+    flex: 1,
+    backgroundColor: "#FFF",
 		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
   },
   storeImgContainer: {
@@ -38,6 +39,9 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
     marginLeft: getSizeWRTDeviceWidth(10),
+  },
+  scrollView: {
+    backgroundColor: '#FFF',
   },
   formView: {
     flex: 1,

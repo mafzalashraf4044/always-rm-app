@@ -1,8 +1,17 @@
 import * as React from "react";
 
-import { View, TouchableOpacity, Image, Text } from "react-native";
+import {
+  Item,
+	Input,
+} from "native-base";
+
+import { Dimensions, View, TouchableOpacity, Image, Text } from "react-native";
 
 import styles from "./styles";
+
+import { getSizeWRTDeviceWidth } from '../../../utils';
+
+const deviceWidth = Dimensions.get("window").width;
 
 export interface Props {
   navigation: any;
@@ -17,6 +26,16 @@ class Header extends React.Component<Props, State> {
     iconsRight: [],
   };
 
+  state = {
+    rightIconsWidth: 0,
+  };
+
+  onRightIconsLayout = (event) => {
+    this.setState({
+      rightIconsWidth: event.nativeEvent.layout.width,
+    });
+  }
+
   render() {
     const {title, iconLeft, iconsRight, navigation} = this.props;
     return (
@@ -30,12 +49,22 @@ class Header extends React.Component<Props, State> {
           </TouchableOpacity>
         </View>
         <View style={styles.body}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{title}</Text>
+          <View style={[styles.center, {width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)}]}>
+            {
+              this.props.title !== 'searchBox' ?
+              <Text style={styles.title}>{this.props.title}</Text> :
+              <Item light>
+                <Input
+                  secureTextEntry={false}
+                  onBlur={this.handleBlur}
+                  onFocus={this.handleFocus}
+                />
+              </Item>
+            }
           </View>
           {
             iconsRight.length > 0 &&
-            <View style={styles.right}>
+            <View style={styles.right} onLayout={this.onRightIconsLayout}>
               {
                 iconsRight.map((icon, index) => (
                   <TouchableOpacity onPress={icon.onPress} key={index}>

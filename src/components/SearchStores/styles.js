@@ -17,6 +17,7 @@ const styles: any = StyleSheet.create({
   },
   scrollView: {
     height: deviceHeight - getSizeWRTDeviceHeight(82),
+    backgroundColor: '#FFF',
   },
   container: {
     flex: 1,

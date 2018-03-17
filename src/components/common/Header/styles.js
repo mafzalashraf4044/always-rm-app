@@ -24,9 +24,9 @@ const styles: any = StyleSheet.create({
 		width: deviceWidth - getSizeWRTDeviceWidth(60),
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
-	titleContainer: {
+	center: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
@@ -42,7 +42,6 @@ const styles: any = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
 	},
 	rightIcon: { 
 		width: getSizeWRTDeviceWidth(30),

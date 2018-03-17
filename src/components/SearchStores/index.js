@@ -17,7 +17,7 @@ class SearchStores extends Component {
 					source={require("../../assets/Images/app-bg.jpeg")}
 				/>
         <Header
-          title="My Stores"
+          title="searchBox"
           navigation={this.props.navigation}
           iconLeft={{
 						url: require("../../assets/Icons/Light/Back.png"),

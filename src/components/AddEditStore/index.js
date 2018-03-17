@@ -103,7 +103,7 @@ class AddEditStore extends React.Component<Props, State> {
 						</TouchableOpacity>
 					</View>
 				}
-					<ScrollView endFillColor="#fff">
+					<ScrollView endFillColor="#fff" style={styles.ScrollView}>
 						<View style={styles.formView}>
 							<View style={styles.formSection}>
 								<View style={styles.sectionHeadingContainer}>

@@ -11,7 +11,9 @@ import { getSizeWRTDeviceWidth } from '../../utils';
 import Header from '../common/Header';
 import ImageGrid from '../common/ImageGrid';
 
-import { View, FlatList, Switch, ScrollView, TouchableOpacity, Image, Text } from "react-native";
+import { View, FlatList, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Image, Text } from "react-native";
+
+import Switch from '../common/Switch';
 
 import styles from "./styles";
 
@@ -35,6 +37,10 @@ class StoreVisit extends React.Component<Props, State> {
         {title: 'Store Analysis'},
       ],
       stepIndex: -1,
+      switch1: false,
+      switch2: false,
+      switch3: false,
+      switch4: false,
     };
 	}
   
@@ -362,10 +368,10 @@ class StoreVisit extends React.Component<Props, State> {
 									<Text style={styles.switchTxt}>IPOS/RXT Installation</Text>
                   <Switch
                     value={this.state.switch1}
-                    onValueChange={(switch1) => {
-                      this.setState({
-                        switch1,
-                      })
+                    onToggle={() => {
+                      this.setState(prevState => ({
+                        switch1: !prevState.switch1,
+                      }))
                     }}
                   />
 								</View>
@@ -375,10 +381,10 @@ class StoreVisit extends React.Component<Props, State> {
                 <View style={styles.switchContainer}>
 									<Text style={styles.switchTxt}>2-in-1 PCs (9)</Text>
                   <Switch
-                    value={this.state.switch1}
-                    onValueChange={(switch1) => {
+                    value={this.state.switch2}
+                    onToggle={(switch2) => {
                       this.setState({
-                        switch1,
+                        switch2,
                       })
                     }}
                   />
@@ -411,10 +417,10 @@ class StoreVisit extends React.Component<Props, State> {
                 <View style={styles.switchContainer}>
 									<Text style={styles.switchTxt}>Laptops (9)</Text>
                   <Switch
-                    value={this.state.switch1}
-                    onValueChange={(switch1) => {
+                    value={this.state.switch3}
+                    onToggle={(switch3) => {
                       this.setState({
-                        switch1,
+                        switch3,
                       })
                     }}
                   />
@@ -447,10 +453,10 @@ class StoreVisit extends React.Component<Props, State> {
                 <View style={styles.switchContainer}>
 									<Text style={styles.switchTxt}>ALL-in-1 PCs (3)</Text>
                   <Switch
-                    value={this.state.switch1}
-                    onValueChange={(switch1) => {
+                    value={this.state.switch4}
+                    onToggle={(switch4) => {
                       this.setState({
-                        switch1,
+                        switch4,
                       })
                     }}
                   />

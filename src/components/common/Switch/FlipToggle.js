@@ -182,12 +182,21 @@ class FlipToggle extends React.Component {
         <View
           style={{
             justifyContent: 'center',
-            borderRadius: this.dimensions.buttonRadius,
-            height: this.dimensions.buttonHeight,
+            height: 20,
             width: this.dimensions.buttonWidth,
-            backgroundColor: this.setBackgroundColor('button'),
+            backgroundColor: "#fff",
+            position: "relative"
           }}
-        >
+        > 
+          <View
+            style={{
+              justifyContent: 'center',
+              borderRadius: this.dimensions.buttonRadius,
+              height: this.dimensions.buttonHeight,
+              width: this.dimensions.buttonWidth,
+              backgroundColor: this.setBackgroundColor('button'),
+            }}
+          />
           {this.props.onLabel || this.props.offLabel ? (
             <Text style={[{ alignSelf: 'center' }, this.props.labelStyle]}>
               {this.props.value ? this.props.onLabel : this.props.offLabel}
@@ -198,6 +207,7 @@ class FlipToggle extends React.Component {
               margin: this.dimensions.margin,
               transform: [{ translateX: this.offsetX }],
               position: 'absolute',
+              zIndex: 1000,
               width: this.dimensions.sliderWidth,
               height: this.dimensions.sliderHeight,
               borderRadius: this.dimensions.sliderRadius,

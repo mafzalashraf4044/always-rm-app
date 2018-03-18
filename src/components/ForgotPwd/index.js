@@ -7,11 +7,10 @@ import {
 } from "react-native";
 
 import {
-	Item,
-	Input,
-	Label,
 	Button,
 } from "native-base";
+
+import { TextField } from 'react-native-material-textfield';
 
 import Header from '../common/Header';
 
@@ -56,6 +55,16 @@ class ForgotPwd extends React.Component<Props, State> {
   }
 
 	render() {
+		const textFieldProps = {
+			lineWidth:0,
+			textColor:"#fff",
+			baseColor:"rgba(183,183,183,1)",
+			tintColor:"rgba(183,183,183,1)",
+			fontSize:getSizeWRTDeviceWidth(14),
+			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#FFF", marginTop: getSizeWRTDeviceWidth(-15)},
+		};
+
     const iconLeft =
       this.state.isEnterEmailVisible ?
       {url: require("../../assets/Icons/Light/Delete.png"), onPress: () => this.props.navigation.goBack()} : 
@@ -79,28 +88,28 @@ class ForgotPwd extends React.Component<Props, State> {
             {
               this.state.isEnterEmailVisible ?
               <View>
-                <Item floatingLabel light>
-                  <Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>E-mail Address</Label>
-                  <Input
-                    secureTextEntry={false}
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                  />
-                </Item>
+                <TextField
+                  value=""
+                  label="E-mail Address"
+                  {...textFieldProps}
+                  onChangeText={undefined}
+                />
               </View> :
 						<View>
-              <Item floatingLabel light>
-                <Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>New Password</Label>
-                <Input
-                  secureTextEntry
-                />
-              </Item>
-              <Item floatingLabel light>
-                <Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>Confirm New Password</Label>
-                <Input
-                  secureTextEntry
-                />
-              </Item>
+							<TextField
+								value=""
+								type="password"
+								label="New Password"
+								{...textFieldProps}
+								onChangeText={undefined}
+							/>
+							<TextField
+								value=""
+								type="password"
+								label="Confirm New Password"
+								{...textFieldProps}
+								onChangeText={undefined}
+							/>
             </View>
             }
             <View style={styles.formActions}>

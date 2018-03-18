@@ -1,15 +1,14 @@
 import * as React from "react";
 import {
 	Container,
-	Item,
-	Input,
 	Form,
-	Label,
 	Button
 } from "native-base";
 import { getSizeWRTDeviceWidth } from '../../utils';
 import Header from '../common/Header';
 import ImageGrid from '../common/ImageGrid';
+
+import { TextField } from 'react-native-material-textfield';
 
 import { View, FlatList, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Image, Text } from "react-native";
 import { Dropdown } from '../common/Dropdown';
@@ -18,8 +17,7 @@ import Switch from '../common/Switch';
 import styles from "./styles";
 
 export interface Props {
-	loginForm: any,
-	onLogin: Function,
+  navigation: any,
 }
 
 export interface State {}
@@ -85,7 +83,15 @@ class StoreVisit extends React.Component<Props, State> {
   }
 
 	render() {
-		const labelStyle = {fontSize: getSizeWRTDeviceWidth(12)};
+		const textFieldProps = {
+			lineWidth:0,
+			textColor:"#000",
+			baseColor:"rgba(147,147,147,1)",
+			tintColor:"rgba(147,147,147,1)",
+			fontSize:getSizeWRTDeviceWidth(14),
+			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
+		};
 
     return (
 			<Container style={styles.storeVisit}>
@@ -161,12 +167,12 @@ class StoreVisit extends React.Component<Props, State> {
             <View style={styles.formView}>
               <View style={styles.formSection}>
                 <View style={styles.coulmns1}>
-                  <Item floatingLabel stackedLabel>
-                    <Label style={labelStyle}>Current RSPs in stores</Label>
-                    <Input
-                      defaultValue="2"
-                    />
-                  </Item>
+                  <TextField
+                    value=""
+                    label="Current RSPs in stores"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
                 </View>
                 <View style={styles.currentRSPList}>
                   <View style={styles.RSPListHeader}>
@@ -205,24 +211,20 @@ class StoreVisit extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>New RSP 1</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Name</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Name"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Email</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Email"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
                   <Dropdown
@@ -235,14 +237,12 @@ class StoreVisit extends React.Component<Props, State> {
                   />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Courses Completed</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Courses Completed"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 							</View>
 
@@ -267,24 +267,20 @@ class StoreVisit extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Training Attendance</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Total Attendees in Training</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Total Attendees in Training"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>IREP Courses in Store</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="IREP Courses in Store"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 							</View>
 							<View style={styles.formSection}>
@@ -308,14 +304,14 @@ class StoreVisit extends React.Component<Props, State> {
                           }]}
                         />
                       </View>
-                      <Item floatingLabel stackedLabel style={styles.widthHalf}>
-                        <Label style={labelStyle}>Attendance</Label>
-                        <Input
-                          secureTextEntry={false}
-                          onBlur={this.handleBlur}
-                          onFocus={this.handleFocus}
+                      <View style={styles.widthHalf}>
+                        <TextField
+                          value=""
+                          label="IREP Courses in Store"
+                          {...textFieldProps}
+                          onChangeText={undefined}
                         />
-                      </Item>
+                      </View>
                     </View>
                   ))
                 }
@@ -396,17 +392,14 @@ class StoreVisit extends React.Component<Props, State> {
                   require('../../assets/Images/grid-img.jpg'),
                   require('../../assets/Images/grid-img.jpg'),
                 ]}/>
-								<View style={[styles.coulmns1, styles.textbox]}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>IREP Courses in Store</Label>
-										<Input
-                      multiline
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-                      onFocus={this.handleFocus}
-                      value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-										/>
-									</Item>
+								<View style={styles.coulmns1}>
+                  <TextField
+                    multiline
+                    label="IREP Courses in Store"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                  />
 								</View>
               </View>
 							<View style={styles.formSection}>
@@ -432,17 +425,14 @@ class StoreVisit extends React.Component<Props, State> {
                   require('../../assets/Images/grid-img.jpg'),
                   require('../../assets/Images/grid-img.jpg'),
                 ]}/>
-								<View style={[styles.coulmns1, styles.textbox]}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>IREP Courses in Store</Label>
-										<Input
-                      multiline
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-                      onFocus={this.handleFocus}
-                      value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-										/>
-									</Item>
+								<View style={styles.coulmns1}>
+                  <TextField
+                    multiline
+                    label="IREP Courses in Store"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                  />
 								</View>
               </View>
 							<View style={styles.formSection}>
@@ -462,17 +452,14 @@ class StoreVisit extends React.Component<Props, State> {
                   require('../../assets/Images/grid-img.jpg'),
                   require('../../assets/Images/grid-img.jpg'),
                 ]}/>
-								<View style={[styles.coulmns1, styles.textbox]}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>IREP Courses in Store</Label>
-										<Input
-                      multiline
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-                      onFocus={this.handleFocus}
-                      value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-										/>
-									</Item>
+								<View style={styles.coulmns1}>
+                  <TextField
+                    multiline
+                    label="IREP Courses in Store"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                  />
 								</View>
               </View>
               <View style={styles.formActions}>
@@ -508,14 +495,12 @@ class StoreVisit extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Competitor Information</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Competitor Name</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Competitor Name"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
                   <Dropdown
@@ -528,34 +513,28 @@ class StoreVisit extends React.Component<Props, State> {
                   />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Description</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Description"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>PC Brand</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="PC Brand"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>PC Description</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="PC Description"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 							</View>
 							<View style={styles.formSection}>
@@ -595,46 +574,37 @@ class StoreVisit extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>2-in-1 Zone</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Current</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Current"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Outdated</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Outdated"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Refresh/Deployment Opportunity</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-										/>
-									</Item>
+                  <TextField
+                    value=""
+                    label="Refresh/Deployment Opportunity"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Description</Label>
-										<Input
-                      multiline
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-                      onFocus={this.handleFocus}
-                      value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-										/>
-									</Item>
+                  <TextField
+                    multiline
+                    label="Description"
+                    {...textFieldProps}
+                    onChangeText={undefined}
+                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                  />
 								</View>
               </View>
 							<View style={styles.formSection}>

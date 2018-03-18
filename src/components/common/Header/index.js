@@ -10,6 +10,7 @@ import { Dimensions, View, TouchableOpacity, Image, Text } from "react-native";
 import styles from "./styles";
 
 import { getSizeWRTDeviceWidth } from '../../../utils';
+import { TextField } from 'react-native-material-textfield';
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -38,6 +39,17 @@ class Header extends React.Component<Props, State> {
 
   render() {
     const {title, iconLeft, iconsRight, navigation} = this.props;
+		const textFieldProps = {
+			lineWidth:0,
+			textColor:"#fff",
+			baseColor:"rgba(183,183,183,1)",
+			tintColor:"rgba(183,183,183,1)",
+			fontSize:getSizeWRTDeviceWidth(14),
+			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+      inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#FFF", marginTop: getSizeWRTDeviceWidth(-25), width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)},
+      containerStyle: { width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)}
+    };
+    
     return (
       <View style={styles.header}>
         <View style={styles.left}>
@@ -53,13 +65,15 @@ class Header extends React.Component<Props, State> {
             {
               this.props.title !== 'searchBox' ?
               <Text style={styles.title}>{this.props.title}</Text> :
-              <Item light>
-                <Input
-                  secureTextEntry={false}
-                  onBlur={this.handleBlur}
-                  onFocus={this.handleFocus}
+              <View>
+                <TextField
+                  value=""
+                  label=""
+                  {...textFieldProps}
+                  onChangeText={undefined}
                 />
-              </Item>
+              </View>
+
             }
           </View>
           {

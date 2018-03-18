@@ -506,16 +506,15 @@ export default class Dropdown extends PureComponent {
     return (
       <TextField
         {...props}
-        lineWidth={0}
-        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000"}}
-        labelFontSize={getSizeWRTDeviceWidth(14) - 2}
-        titleFontSize={getSizeWRTDeviceWidth(14) - 2}
-        fontSize={getSizeWRTDeviceWidth(14)}
-        baseColor="rgba(147,147,147,1)"
         value={title}
+        lineWidth={0}
         editable={false}
         onChangeText={undefined}
+        baseColor="rgba(147,147,147,1)"
         renderAccessory={renderAccessory}
+        fontSize={getSizeWRTDeviceWidth(14)}
+        labelFontSize={getSizeWRTDeviceWidth(14) - 2}
+        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)}}
       />
     );
   }
@@ -535,6 +534,7 @@ export default class Dropdown extends PureComponent {
 
       height: this.itemSize() - bottom,
       position: 'absolute',
+      marginTop: getSizeWRTDeviceWidth(-15)
     };
 
     return (
@@ -726,7 +726,7 @@ export default class Dropdown extends PureComponent {
     };
 
     return (
-      <View onLayout={this.onLayout} ref={this.updateContainerRef} style={[containerStyle, {marginBottom: getSizeWRTDeviceWidth(20)}]}>
+      <View onLayout={this.onLayout} ref={this.updateContainerRef} style={[containerStyle]}>
         <TouchableWithoutFeedback {...touchableProps}>
           <View pointerEvents='box-only'>
             {this.renderBase(props)}

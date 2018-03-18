@@ -63,12 +63,10 @@ class Home extends React.Component<Props, State> {
             </View>
             <View style={styles.logosContainer}>
               <Image
-                blurRadius={5}
                 style={styles.logo1}
                 source={require("../../assets/Images/logo-always.png")}
               />
               <Image
-                blurRadius={5}
                 style={styles.logo2}
                 source={require("../../assets/Images/logo-intel.png")}
               />

@@ -10,6 +10,8 @@ import {
 import { getSizeWRTDeviceWidth } from '../../utils';
 import Header from '../common/Header';
 
+import { TextField } from 'react-native-material-textfield';
+import { Dropdown } from '../common/Dropdown';
 import { View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";
 
 import styles from "./styles";
@@ -69,8 +71,15 @@ class AddEditStore extends React.Component<Props, State> {
 
 	render() {
 		const { params } = this.props.navigation.state;
-		const labelStyle = {fontSize: getSizeWRTDeviceWidth(12)};
-
+		const textFieldProps = {
+			lineWidth:0,
+			textColor:"#000",
+			baseColor:"rgba(147,147,147,1)",
+			tintColor:"rgba(147,147,147,1)",
+			fontSize:getSizeWRTDeviceWidth(14),
+			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
+		};
 		return (
 			<Container style={styles.addEditStore}>
 				{
@@ -110,77 +119,56 @@ class AddEditStore extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Add Store Details</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Store Name</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.storeName}
-											onChangeText={(value) => this.handleChange('storeName', value)}
-										/>
-									</Item>
+									<TextField
+										label="Store Name"
+										{...textFieldProps}
+										value={this.state.storeName}
+										onChangeText={(value) => this.handleChange('storeName', value)}
+									/>
 								</View>
 								<View style={styles.coulmns2}>
-									<Item floatingLabel stackedLabel disabled style={styles.widthHalf}>
-										<Label style={labelStyle}>Store ID</Label>
-										<Input
-											disabled
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
+									<View style={styles.widthHalf}>
+										<TextField
+											label="Store ID"
+											{...textFieldProps}
 											value={this.state.storeID}
 											onChangeText={(value) => this.handleChange('storeID', value)}
 										/>
-									</Item>
-									<View style={[styles.dropdownContainer, styles.widthHalf]}>
-										<Item floatingLabel stackedLabel>
-											<Label style={labelStyle}>Store Status</Label>
-											<Input
-												editable={false}
-											/>
-										</Item>
-										<Image
-											style={styles.dropdownIcon}
-											source={require("../../assets/Icons/Dark/SortDown.png")}
+									</View>
+									<View style={styles.widthHalf}>
+										<Dropdown
+											label='Store Status'
+											data={[{
+												value: 'Active',
+											}, {
+												value: 'Inactive',
+											}]}
 										/>
 									</View>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Retailer Name</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.retailerName}
-											onChangeText={(value) => this.handleChange('retailerName', value)}
-										/>
-									</Item>
+									<TextField
+										label="Retailer Name"
+										{...textFieldProps}
+										value={this.state.retailerName}
+										onChangeText={(value) => this.handleChange('retailerName', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Store Manager</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.managerName}
-											onChangeText={(value) => this.handleChange('managerName', value)}
-										/>
-									</Item>
+									<TextField
+										label="Store Manager"
+										{...textFieldProps}
+										value={this.state.managerName}
+										onChangeText={(value) => this.handleChange('managerName', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Store Manager Contact Number</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.managerContact}
-											onChangeText={(value) => this.handleChange('managerContact', value)}
-										/>
-									</Item>
+									<TextField
+										label="Store Manager Contact Number"
+										{...textFieldProps}
+										value={this.state.managerContact}
+										onChangeText={(value) => this.handleChange('managerContact', value)}
+									/>
 								</View>
 							</View>
 							<View style={styles.formSection}>
@@ -188,64 +176,44 @@ class AddEditStore extends React.Component<Props, State> {
 									<Text style={styles.sectionHeadingTxt}>Add Store Address</Text>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Address Line 1</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.address1}
-											onChangeText={(value) => this.handleChange('address1', value)}
-										/>
-									</Item>
+									<TextField
+										label="Address Line 1"
+										{...textFieldProps}
+										value={this.state.address1}
+										onChangeText={(value) => this.handleChange('address1', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Address Line 2 (Optional)</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.address2}
-											onChangeText={(value) => this.handleChange('address2', value)}
-										/>
-									</Item>
+									<TextField
+										label="Address Line 2 (Optional)"
+										{...textFieldProps}
+										value={this.state.address2}
+										onChangeText={(value) => this.handleChange('address2', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Postal Code</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.postalCode}
-											onChangeText={(value) => this.handleChange('postalCode', value)}
-										/>
-									</Item>
+									<TextField
+										label="Postal Code"
+										{...textFieldProps}
+										value={this.state.postalCode}
+										onChangeText={(value) => this.handleChange('postalCode', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Computer Mall</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.computerMall}
-											onChangeText={(value) => this.handleChange('computerMall', value)}
-										/>
-									</Item>
+									<TextField
+										label="Computer Mall"
+										{...textFieldProps}
+										value={this.state.computerMall}
+										onChangeText={(value) => this.handleChange('computerMall', value)}
+									/>
 								</View>
 								<View style={styles.coulmns1}>
-									<Item floatingLabel stackedLabel>
-										<Label style={labelStyle}>Country</Label>
-										<Input
-											secureTextEntry={false}
-											onBlur={this.handleBlur}
-											onFocus={this.handleFocus}
-											value={this.state.country}
-											onChangeText={(value) => this.handleChange('country', value)}
-										/>
-									</Item>
+									<TextField
+										label="Countr"
+										{...textFieldProps}
+										value={this.state.country}
+										onChangeText={(value) => this.handleChange('country', value)}
+									/>
 								</View>
 							</View>
 							{

@@ -95,7 +95,7 @@ export default (variables = variable) => {
 		backgroundColor: "transparent",
 		marginBottom: getSizeWRTDeviceWidth(20),
 		borderColor: variables.inputBorderColor,
-		borderBottomWidth: variables.borderWidth * 2,
+		borderBottomWidth: 0.8,
 
 		"NativeBase.Input": {
 			height: getSizeWRTDeviceWidth(50),

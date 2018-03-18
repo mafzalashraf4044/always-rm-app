@@ -7,11 +7,10 @@ import {
 } from "react-native";
 
 import {
-	Item,
-	Input,
-	Label,
 	Button,
 } from "native-base";
+
+import { TextField } from 'react-native-material-textfield';
 
 import { getSizeWRTDeviceWidth } from '../../utils';
 import styles from "./styles";
@@ -39,8 +38,17 @@ class Login extends React.Component<Props, State> {
 		this.setState({isLogoVisible: true});
 	}
 
-
 	render() {
+		const textFieldProps = {
+			lineWidth:0,
+			textColor:"#fff",
+			baseColor:"rgba(183,183,183,1)",
+			tintColor:"rgba(183,183,183,1)",
+			fontSize:getSizeWRTDeviceWidth(14),
+			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#FFF", marginTop: getSizeWRTDeviceWidth(-15)},
+		};
+
 		return (
 			<View style={styles.loginScreen}>
 				<View style={styles.loginView}>
@@ -60,22 +68,19 @@ class Login extends React.Component<Props, State> {
 					</View>
 					<View style={styles.formContainer}>
 						<View>
-							<Item floatingLabel light>
-								<Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>RPM Login ID</Label>
-								<Input
-									secureTextEntry={false}
-									onBlur={this.handleBlur}
-									onFocus={this.handleFocus}
-								/>
-							</Item>
-							<Item floatingLabel light>
-								<Label style={{fontSize: getSizeWRTDeviceWidth(12)}}>Password</Label>
-								<Input
-									secureTextEntry
-									onBlur={this.handleBlur}
-									onFocus={this.handleFocus}
-								/>
-							</Item>
+							<TextField
+								value=""
+								label="RPM Login ID"
+								{...textFieldProps}
+								onChangeText={undefined}
+							/>
+							<TextField
+								value=""
+								type="password"
+								label="Password"
+								{...textFieldProps}
+								onChangeText={undefined}
+							/>
 						</View>
 						<View>
 							<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>

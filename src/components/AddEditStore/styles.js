@@ -85,7 +85,6 @@ const styles: any = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: getSizeWRTDeviceWidth(30),
   },
   lightBtn: {
     marginRight: getSizeWRTDeviceWidth(15),

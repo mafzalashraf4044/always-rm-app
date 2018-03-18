@@ -5,10 +5,10 @@ const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   storeVisit: {
-		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
+		height: deviceHeight,
   },
   storeImgContainer: {
-    flex: 0.33,
+    flex: 0.4,
     justifyContent: 'space-between',
     backgroundColor: "rgba(183,183,183,1)",
   },
@@ -61,12 +61,6 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(12),
     marginTop: getSizeWRTDeviceWidth(5)
   },
-  startVisit: {
-    flex: 0.66,
-    justifyContent: 'space-between',
-    padding: getSizeWRTDeviceWidth(15),
-    backgroundColor: "#FFF",
-  },
   textbox: {
     marginTop: getSizeWRTDeviceWidth(20),
   },
@@ -81,14 +75,19 @@ const styles: any = StyleSheet.create({
   widthHalf: {
     width: "48%",
   },
+  visitForm: {
+    flex: 0.6,
+    justifyContent: 'space-between',
+    backgroundColor: "#FFF",
+  },
   scrollView: {
-    flex: 0.66,
-    backgroundColor: '#fff',
+    height: '100%',
+    backgroundColor: "#FFF",
   },
   formView: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingHorizontal: getSizeWRTDeviceWidth(15),
+    padding: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
   formSection: {
@@ -194,7 +193,6 @@ const styles: any = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: getSizeWRTDeviceWidth(30),
   },
   startBtn: {
     width: '100%',

@@ -44,6 +44,7 @@ export default class Setup extends React.Component<Props, State> {
 			require('../assets/Images/app-bg.jpeg'),
 			require('../assets/Images/header-bg.jpeg'),
 			require('../assets/Images/card-image.jpg'),
+			require('../assets/Images/grid-img.jpg'),
 			require('../assets/Images/logo-always.png'),
 			require('../assets/Icons/Light/Stores.png'),
 			require('../assets/Icons/Light/Report.png'),

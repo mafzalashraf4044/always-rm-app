@@ -81,16 +81,6 @@ const styles: any = StyleSheet.create({
   widthHalf: {
     width: "48%",
   },
-  dropdownContainer: {
-    position: 'relative',
-  },
-  dropdownIcon: {
-    width: getSizeWRTDeviceWidth(20),
-    resizeMode: "contain",
-    position: 'absolute',
-    right: getSizeWRTDeviceWidth(6),
-    bottom: getSizeWRTDeviceWidth(20),
-  },
   scrollView: {
     flex: 0.66,
     backgroundColor: '#fff',

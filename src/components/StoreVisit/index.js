@@ -12,7 +12,7 @@ import Header from '../common/Header';
 import ImageGrid from '../common/ImageGrid';
 
 import { View, FlatList, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Image, Text } from "react-native";
-
+import { Dropdown } from '../common/Dropdown';
 import Switch from '../common/Switch';
 
 import styles from "./styles";
@@ -123,32 +123,30 @@ class StoreVisit extends React.Component<Props, State> {
           <View style={styles.startVisit}>
             <View style={styles.formSection}>
               <View style={styles.coulmns1}>
-                <View style={styles.dropdownContainer}>
-                  <Item>
-                    <Label style={labelStyle}>Store Status</Label>
-                    <Input
-                      editable={false}
-                    />
-                  </Item>
-                  <Image
-                    style={styles.dropdownIcon}
-                    source={require("../../assets/Icons/Dark/SortDown.png")}
-                  />
-                </View>
+                <Dropdown
+                  label='Store Status'
+                  data={[{
+                    value: 'Active',
+                  }, {
+                    value: 'Inactive',
+                  }]}
+                />
               </View>
               <View style={styles.coulmns1}>
-                <View style={styles.dropdownContainer}>
-                  <Item>
-                    <Label style={labelStyle}>Visit Number</Label>
-                    <Input
-                      editable={false}
-                    />
-                  </Item>
-                  <Image
-                    style={styles.dropdownIcon}
-                    source={require("../../assets/Icons/Dark/SortDown.png")}
-                  />
-                </View>
+                <Dropdown
+                  label='Visit Number'
+                  data={[{
+                    value: '1',
+                  }, {
+                    value: '2',
+                  }, {
+                    value: '3',
+                  }, {
+                    value: '4',
+                  }, {
+                    value: '5',
+                  }]}
+                />
               </View>
             </View>
             <Button block onPress={() => this.setStepIndex(0)} style={styles.startBtn}>
@@ -227,18 +225,14 @@ class StoreVisit extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<View style={styles.dropdownContainer}>
-										<Item>
-											<Label style={labelStyle}>IRRP Registered</Label>
-											<Input
-												editable={false}
-											/>
-										</Item>
-										<Image
-											style={styles.dropdownIcon}
-											source={require("../../assets/Icons/Dark/SortDown.png")}
-										/>
-									</View>
+                  <Dropdown
+                    label='IRRP Registered'
+                    data={[{
+                      value: 'Yes',
+                    }, {
+                      value: 'No',
+                    }]}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
 									<Item floatingLabel stackedLabel>
@@ -300,16 +294,18 @@ class StoreVisit extends React.Component<Props, State> {
                 {
                   [1, 2, 3, 4, 5].map((course) => (
                     <View style={styles.coulmns2} key={course}>
-                      <View style={[styles.dropdownContainer, styles.widthHalf]}>
-                        <Item floatingLabel stackedLabel>
-                          <Label style={labelStyle}>Training Course {course}</Label>
-                          <Input
-                            editable={false}
-                          />
-                        </Item>
-                        <Image
-                          style={styles.dropdownIcon}
-                          source={require("../../assets/Icons/Dark/SortDown.png")}
+                      <View style={styles.widthHalf}>
+                        <Dropdown
+                          label={`Training Course ${course}`}
+                          data={[{
+                            value: 'Optane',
+                          }, {
+                            value: '10th Gen',
+                          }, {
+                            value: 'Competitor Analysis',
+                          }, {
+                            value: 'Some Other Course',
+                          }]}
                         />
                       </View>
                       <Item floatingLabel stackedLabel style={styles.widthHalf}>
@@ -522,18 +518,14 @@ class StoreVisit extends React.Component<Props, State> {
 									</Item>
 								</View>
 								<View style={styles.coulmns1}>
-									<View style={styles.dropdownContainer}>
-										<Item>
-											<Label style={labelStyle}>POSM Installed</Label>
-											<Input
-												editable={false}
-											/>
-										</Item>
-										<Image
-											style={styles.dropdownIcon}
-											source={require("../../assets/Icons/Dark/SortDown.png")}
-										/>
-									</View>
+                  <Dropdown
+                    label="POSM Installed"
+                    data={[{
+                      value: 'Yes',
+                    }, {
+                      value: 'No',
+                    }]}
+                  />
 								</View>
 								<View style={styles.coulmns1}>
 									<Item floatingLabel stackedLabel>

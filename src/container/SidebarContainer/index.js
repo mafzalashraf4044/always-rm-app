@@ -13,12 +13,12 @@ export interface State {}
 
 class SidebarContainer extends React.Component<Props, State> {
 	render() {
-		return <Sidebar navigation={this.props.navigation} />;
+		return <Sidebar navigation={this.props.navigation} user={this.props.user} />;
 	}
 }
 
 const mapStateToProps = state => ({
-	// isLoading: state.SidebarReducer.isLoading,
+	user: state.reducer.user,
 });
 
 const mapDispatchToProps = (dispatch) => {

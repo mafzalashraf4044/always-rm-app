@@ -1,11 +1,12 @@
-import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
 
-const deviceWidth = Dimensions.get("window").width;
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
 	container: {
+		flex: 1,
+		height: deviceHeight,
 		backgroundColor: "#000",
 	},
 	backgroundImg: {
@@ -53,12 +54,12 @@ const styles: any = StyleSheet.create({
 	homeInfo: {
 		flex: 0.36,
 		paddingBottom: getSizeWRTDeviceWidth(14),
-		justifyContent: 'space-between',
+		justifyContent: "space-between",
 	},
 	lastLogin: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	lastLoginTxt: {
 		color: "#fff",
@@ -68,20 +69,20 @@ const styles: any = StyleSheet.create({
 		lineHeight: getSizeWRTDeviceWidth(14),
 	},
 	logosContainer: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	logo1: {
-		width: '30%',
+		width: "30%",
 		height: 40,
-		resizeMode: 'contain',
+		resizeMode: "contain",
 		marginRight: getSizeWRTDeviceWidth(14)
 	},
 	logo2: {
-		width: '20%',
+		width: "20%",
 		height: 40,
-		resizeMode: 'contain',
+		resizeMode: "contain",
 	}
 });
 export default styles;

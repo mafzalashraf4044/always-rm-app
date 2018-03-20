@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import Login from "../../components/Login";
 
-// import { fetchList } from "./actions";
+import { login, setUser } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -11,30 +11,29 @@ export interface Props {
 
 export interface State {}
 
-export default class LoginContainer extends React.Component<Props, State> {
-  login() {
-    this.props.navigation.navigate("Drawer");
-  }
+class LoginContainer extends React.Component<Props, State> {
 
   render() {
 		return (
       <Login
+        login={this.props.login}
+        setUser={this.props.setUser}
         navigation={this.props.navigation}
-        onLogin={() => this.login()}
       />
     );
 	}
 }
 
 const mapStateToProps = state => ({
-	// isLoading: state.homeReducer.isLoading,
+	isLoading: state.reducer.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchList: url => dispatch(fetchList(url)),
+    login: (email, pwd) => dispatch(login(email, pwd)),
+    setUser: user => dispatch(setUser(user)),
 	};
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 

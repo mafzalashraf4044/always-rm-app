@@ -1,16 +1,17 @@
 import * as React from "react";
 
 import {
-  Item,
-	Input,
-} from "native-base";
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 
-import { Dimensions, View, TouchableOpacity, Image, Text } from "react-native";
+import { TextField } from "react-native-material-textfield";
 
 import styles from "./styles";
-
-import { getSizeWRTDeviceWidth } from '../../../utils';
-import { TextField } from 'react-native-material-textfield';
+import { getSizeWRTDeviceWidth } from "../../../utils";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -20,7 +21,9 @@ export interface Props {
   iconLeft: string;
   iconsRight: array;
 }
+
 export interface State {}
+
 class Header extends React.Component<Props, State> {
 
   static defaultProps = {
@@ -38,7 +41,7 @@ class Header extends React.Component<Props, State> {
   }
 
   render() {
-    const {title, iconLeft, iconsRight, navigation} = this.props;
+    const {title, iconLeft, iconsRight} = this.props;
 		const textFieldProps = {
 			lineWidth:0,
 			textColor:"#fff",
@@ -63,8 +66,8 @@ class Header extends React.Component<Props, State> {
         <View style={styles.body}>
           <View style={[styles.center, {width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)}]}>
             {
-              this.props.title !== 'searchBox' ?
-              <Text style={styles.title}>{this.props.title}</Text> :
+              title !== "searchBox" ?
+              <Text style={styles.title}>{title}</Text> :
               <View>
                 <TextField
                   value=""

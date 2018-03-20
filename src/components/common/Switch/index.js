@@ -1,12 +1,14 @@
 import * as React from "react";
 
-import FlipToggle from './FlipToggle'
+import FlipToggle from "./FlipToggle";
 
 export interface Props {
   value: boolean;
   onToggle: any;
 }
+
 export interface State {}
+
 class Switch extends React.Component<Props, State> {
   render() {
 

@@ -1,24 +1,32 @@
 import * as React from "react";
+
+import {
+	View,
+	Text,
+	Image,
+	ScrollView,
+	TouchableOpacity,
+} from "react-native";
+
 import {
 	Container,
-	Item,
-	Input,
-	Form,
-	Label,
 	Button
 } from "native-base";
-import { getSizeWRTDeviceWidth } from '../../utils';
-import Header from '../common/Header';
 
-import { TextField } from 'react-native-material-textfield';
-import { Dropdown } from '../common/Dropdown';
-import { View, KeyboardAvoidingView, ScrollView, TouchableOpacity, Image, Text } from "react-native";
+import Header from "../common/Header";
+
+import { Dropdown } from "../common/Dropdown";
+import { TextField } from "react-native-material-textfield";
 
 import styles from "./styles";
+import { getSizeWRTDeviceWidth } from "../../utils";
+
 export interface Props {
 	navigation: any;
 }
+
 export interface State {}
+
 class AddEditStore extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
@@ -123,7 +131,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Store Name"
 										{...textFieldProps}
 										value={this.state.storeName}
-										onChangeText={(value) => this.handleChange('storeName', value)}
+										onChangeText={(value) => this.handleChange("storeName", value)}
 									/>
 								</View>
 								<View style={styles.coulmns2}>
@@ -132,16 +140,16 @@ class AddEditStore extends React.Component<Props, State> {
 											label="Store ID"
 											{...textFieldProps}
 											value={this.state.storeID}
-											onChangeText={(value) => this.handleChange('storeID', value)}
+											onChangeText={(value) => this.handleChange("storeID", value)}
 										/>
 									</View>
 									<View style={styles.widthHalf}>
 										<Dropdown
-											label='Store Status'
+											label="Store Status"
 											data={[{
-												value: 'Active',
+												value: "Active",
 											}, {
-												value: 'Inactive',
+												value: "Inactive",
 											}]}
 										/>
 									</View>
@@ -151,7 +159,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Retailer Name"
 										{...textFieldProps}
 										value={this.state.retailerName}
-										onChangeText={(value) => this.handleChange('retailerName', value)}
+										onChangeText={(value) => this.handleChange("retailerName", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -159,7 +167,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Store Manager"
 										{...textFieldProps}
 										value={this.state.managerName}
-										onChangeText={(value) => this.handleChange('managerName', value)}
+										onChangeText={(value) => this.handleChange("managerName", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -167,7 +175,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Store Manager Contact Number"
 										{...textFieldProps}
 										value={this.state.managerContact}
-										onChangeText={(value) => this.handleChange('managerContact', value)}
+										onChangeText={(value) => this.handleChange("managerContact", value)}
 									/>
 								</View>
 							</View>
@@ -180,7 +188,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Address Line 1"
 										{...textFieldProps}
 										value={this.state.address1}
-										onChangeText={(value) => this.handleChange('address1', value)}
+										onChangeText={(value) => this.handleChange("address1", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -188,7 +196,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Address Line 2 (Optional)"
 										{...textFieldProps}
 										value={this.state.address2}
-										onChangeText={(value) => this.handleChange('address2', value)}
+										onChangeText={(value) => this.handleChange("address2", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -196,7 +204,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Postal Code"
 										{...textFieldProps}
 										value={this.state.postalCode}
-										onChangeText={(value) => this.handleChange('postalCode', value)}
+										onChangeText={(value) => this.handleChange("postalCode", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -204,7 +212,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Computer Mall"
 										{...textFieldProps}
 										value={this.state.computerMall}
-										onChangeText={(value) => this.handleChange('computerMall', value)}
+										onChangeText={(value) => this.handleChange("computerMall", value)}
 									/>
 								</View>
 								<View style={styles.coulmns1}>
@@ -212,7 +220,7 @@ class AddEditStore extends React.Component<Props, State> {
 										label="Countr"
 										{...textFieldProps}
 										value={this.state.country}
-										onChangeText={(value) => this.handleChange('country', value)}
+										onChangeText={(value) => this.handleChange("country", value)}
 									/>
 								</View>
 							</View>

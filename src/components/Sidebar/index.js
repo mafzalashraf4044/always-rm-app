@@ -1,17 +1,23 @@
 import * as React from "react";
+
+import {
+	View,
+	Text,
+	Image,
+	FlatList,
+	TouchableOpacity,
+} from "react-native";
+
 import {
 	Container,
-	Content,
 } from "native-base";
-import { NavigationActions } from "react-navigation";
-
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 
 import styles from "./styles";
 
 export interface Props {
 	navigation: any,
 }
+
 export interface State {}
 
 export default class Sidebar extends React.Component<Props, State> {
@@ -38,6 +44,8 @@ export default class Sidebar extends React.Component<Props, State> {
 	}
 
 	render() {
+		const { user } = this.props;
+
 		return (
 			<Container style={styles.sidebar}>
         <View style={styles.header}>
@@ -50,8 +58,8 @@ export default class Sidebar extends React.Component<Props, State> {
             </TouchableOpacity>
 					</View>
 					<View style={styles.userInfo}>
-						<Text style={styles.name}>John Doe</Text>
-						<Text style={styles.email}>johndoe.always@gmail.com</Text>
+						<Text style={styles.name}>{user.username}</Text>
+						<Text style={styles.email}>{user.email}</Text>
 					</View>
         </View>
 

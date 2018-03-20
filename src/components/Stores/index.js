@@ -1,21 +1,27 @@
 import * as React from "react";
+
 import {
-	Container,
-	Content,
+	Image,
+} from "react-native";
+
+import {
+	Tab,
 	Tabs,
-	Tab
+	Content,
+	Container,
 } from "native-base";
 
-import { TouchableOpacity, Image, Text } from "react-native";
-
-import Header from '../common/Header';
+import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
 
 import styles from "./styles";
+
 export interface Props {
 	navigation: any;
 }
+
 export interface State {}
+
 class Stores extends React.Component<Props, State> {
 
 	render() {

@@ -1,34 +1,56 @@
 import * as React from "react";
+
 import {
-	Image,
-	TouchableOpacity,
 	Text,
 	View,
+	Image,
+	TouchableOpacity,
 } from "react-native";
 
 import {
 	Button,
 } from "native-base";
 
-import { TextField } from 'react-native-material-textfield';
+import { TextField } from "react-native-material-textfield";
 
-import { getSizeWRTDeviceWidth } from '../../utils';
 import styles from "./styles";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 export interface Props {
 	loginForm: any,
-	onLogin: Function,
+	login: Function,
 }
 
 export interface State {}
-class Login extends React.Component<Props, State> {
 
+class Login extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
+			email: "",
+			pwd: "",
+			errMessage: "",
 			isLogoVisible: true,
 		};
 	}
+
+  onLogin = () => {
+		this.props.login(this.state.email, this.state.pwd).then((res) => {
+			if (res.status === 200) {
+				this.props.setUser(res.data.user);
+        this.props.navigation.navigate("Drawer");
+      }
+    }).catch((err) => {
+      this.setErrMessage("You have keyed in a wrong email/password");
+      // throw new Error(err);
+    });
+  }
+
+  setErrMessage = (errMessage) => {
+		this.setState({
+      errMessage,
+    });
+  }
 
 	handleFocus = () => {
 		this.setState({isLogoVisible: false});
@@ -36,6 +58,12 @@ class Login extends React.Component<Props, State> {
 
 	handleBlur = () => {
 		this.setState({isLogoVisible: true});
+	}
+
+	handleInputChange = (key, value) => {
+		this.setState({
+			[key]: value,
+		});
 	}
 
 	render() {
@@ -69,21 +97,27 @@ class Login extends React.Component<Props, State> {
 					<View style={styles.formContainer}>
 						<View>
 							<TextField
-								value=""
+								value={this.state.email}
 								label="RPM Login ID"
 								{...textFieldProps}
-								onChangeText={undefined}
+								onChangeText={(value) => this.handleInputChange('email', value)}
 							/>
 							<TextField
-								value=""
+								value={this.state.pwd}
 								type="password"
 								label="Password"
 								{...textFieldProps}
-								onChangeText={undefined}
+								onChangeText={(value) => this.handleInputChange('pwd', value)}
 							/>
 						</View>
+						{
+							this.state.errMessage ?
+							<View style={styles.errMessageContainer}>
+									<Text style={styles.errMessageTxt}>{this.state.errMessage}</Text>
+							</View> : null
+						}
 						<View>
-							<Button block onPress={() => this.props.onLogin()} style={styles.loginBtn}>
+							<Button block onPress={this.onLogin} style={styles.loginBtn}>
 								<Text style={styles.loginBtnTxt}>LOG IN</Text>
 							</Button>
 						</View>

@@ -11,7 +11,7 @@ export interface Props {
 
 export interface State {}
 
-export default class ForgotPwdContainer extends React.Component<Props, State> {
+class ForgotPwdContainer extends React.Component<Props, State> {
 	render() {
 		return <ForgotPwd navigation={this.props.navigation} />;
 	}
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		// fetchList: url => dispatch(fetchList(url)),
 	};
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotPwdContainer);
 

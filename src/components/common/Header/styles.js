@@ -1,14 +1,14 @@
-import { Dimensions, StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../../utils";
 
 const deviceWidth = Dimensions.get("window").width;
 
 const styles: any = StyleSheet.create({
 	header: {
-		width: '100%',
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+		width: "100%",
+		flexDirection: "row",
+		justifyContent: "flex-start",
+		alignItems: "center",
 		backgroundColor: "transparent",
 		height: getSizeWRTDeviceHeight(48),
 		marginTop: getSizeWRTDeviceHeight(24),
@@ -22,14 +22,14 @@ const styles: any = StyleSheet.create({
 	},
 	body: {
 		width: deviceWidth - getSizeWRTDeviceWidth(60),
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	},
 	center: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+		flexDirection: "row",
+		justifyContent: "flex-start",
+		alignItems: "center",
 		marginLeft: getSizeWRTDeviceWidth(30),
 	},
 	title: {
@@ -39,11 +39,11 @@ const styles: any = StyleSheet.create({
 		lineHeight: getSizeWRTDeviceWidth(20),
 	},
 	right: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+		flexDirection: "row",
+		justifyContent: "flex-start",
+		alignItems: "center",
 	},
-	rightIcon: { 
+	rightIcon: {
 		width: getSizeWRTDeviceWidth(30),
 		resizeMode: "cover",
 	}

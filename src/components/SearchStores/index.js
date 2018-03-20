@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { Image, ScrollView, View, Text, TouchableOpacity } from "react-native";
 
-import Header from '../common/Header';
+import {
+	View,
+	Image,
+	ScrollView,
+} from "react-native";
+
+import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
 
-import styles from './styles';
+import styles from "./styles";
 
 class SearchStores extends Component {
-
 	render() {
 		return (
 			<View style={styles.searchStores}>

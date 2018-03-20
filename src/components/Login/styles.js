@@ -1,12 +1,12 @@
-import { Platform, Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
 	loginScreen: {
 		flex: 1,
-		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
+		height: deviceHeight,
 	},
 	loginView: {
 		flex: 1,
@@ -24,8 +24,8 @@ const styles: any = StyleSheet.create({
 	logoContainer: {
 		flex: 1,
 		width: getSizeWRTDeviceWidth(205),
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+		justifyContent: "flex-start",
+		alignItems: "center",
 	},
 	logo: {
 		width: getSizeWRTDeviceWidth(205),
@@ -37,7 +37,7 @@ const styles: any = StyleSheet.create({
 		width: getSizeWRTDeviceWidth(230),
 	},
 	loginBtn: {
-		marginBottom: getSizeWRTDeviceHeight(10),
+		marginVertical: getSizeWRTDeviceHeight(10),
 		backgroundColor: "rgba(233,30,99,1)",
 	},
 	loginBtnTxt: {
@@ -53,6 +53,18 @@ const styles: any = StyleSheet.create({
 		fontFamily: "Always_Font",
 		fontSize: getSizeWRTDeviceWidth(14),
 		lineHeight: getSizeWRTDeviceWidth(16),
-	}
+	},
+	errMessageContainer: {
+
+	},
+	errMessageTxt: {
+		color: "rgba(233,30,99,1)",
+		backgroundColor: "transparent",
+		textAlign: "center",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(10),
+		lineHeight: getSizeWRTDeviceWidth(12),
+	},
+
 });
 export default styles;

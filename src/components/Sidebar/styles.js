@@ -1,5 +1,5 @@
-import { StyleSheet, PixelRatio, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	header: {

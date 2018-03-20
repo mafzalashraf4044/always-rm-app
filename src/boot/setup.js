@@ -1,6 +1,6 @@
 import * as Expo from "expo";
 import * as React from "react";
-import { Image } from 'react-native';
+import { Image } from "react-native";
 import { StyleProvider } from "native-base";
 import { Provider } from "react-redux";
 
@@ -17,7 +17,7 @@ export interface State {
 
 function cacheImages(images) {
 	return images.map(image => {
-		if (typeof image === 'string') {
+		if (typeof image === "string") {
 			return Image.prefetch(image);
 		} else {
 			return Expo.Asset.fromModule(image).downloadAsync();
@@ -41,32 +41,32 @@ export default class Setup extends React.Component<Props, State> {
 
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
-			require('../assets/Images/app-bg.jpeg'),
-			require('../assets/Images/header-bg.jpeg'),
-			require('../assets/Images/card-image.jpg'),
-			require('../assets/Images/grid-img.jpg'),
-			require('../assets/Images/logo-always.png'),
-			require('../assets/Icons/Light/Stores.png'),
-			require('../assets/Icons/Light/Report.png'),
-			require('../assets/Icons/Light/Calendar.png'),
-			require('../assets/Icons/Light/Merchandise.png'),
-			require('../assets/Icons/Light/Menu.png'),
-			require('../assets/Icons/Light/Back.png'),
-			require('../assets/Icons/Light/Edit.png'),
-			require('../assets/Icons/Light/Search.png'),
-			require('../assets/Icons/Light/Add.png'),
-			require('../assets/Icons/Light/Back.png'),
-			require('../assets/Icons/Light/Camera.png'),
-			require('../assets/Icons/Dark/Stores.png'),
-			require('../assets/Icons/Dark/Report.png'),
-			require('../assets/Icons/Dark/Calendar.png'),
-			require('../assets/Icons/Dark/Merchandise.png'),
-			require('../assets/Icons/Dark/Exit.png'),
-			require('../assets/Icons/Dark/Expand.png'),
+			require("../assets/Images/app-bg.jpeg"),
+			require("../assets/Images/header-bg.jpeg"),
+			require("../assets/Images/card-image.jpg"),
+			require("../assets/Images/grid-img.jpg"),
+			require("../assets/Images/logo-always.png"),
+			require("../assets/Icons/Light/Stores.png"),
+			require("../assets/Icons/Light/Report.png"),
+			require("../assets/Icons/Light/Calendar.png"),
+			require("../assets/Icons/Light/Merchandise.png"),
+			require("../assets/Icons/Light/Menu.png"),
+			require("../assets/Icons/Light/Back.png"),
+			require("../assets/Icons/Light/Edit.png"),
+			require("../assets/Icons/Light/Search.png"),
+			require("../assets/Icons/Light/Add.png"),
+			require("../assets/Icons/Light/Back.png"),
+			require("../assets/Icons/Light/Camera.png"),
+			require("../assets/Icons/Dark/Stores.png"),
+			require("../assets/Icons/Dark/Report.png"),
+			require("../assets/Icons/Dark/Calendar.png"),
+			require("../assets/Icons/Dark/Merchandise.png"),
+			require("../assets/Icons/Dark/Exit.png"),
+			require("../assets/Icons/Dark/Expand.png"),
     ]);
 
     const fontAssets = cacheFonts([{
-			Always_Font: require('../assets/Fonts/SF-Pro-Display-Regular.otf')
+			Always_Font: require("../assets/Fonts/SF-Pro-Display-Regular.otf")
 		}]);
 
     await Promise.all([...imageAssets, ...fontAssets]);
@@ -78,7 +78,6 @@ export default class Setup extends React.Component<Props, State> {
         <Expo.AppLoading
           startAsync={this._loadAssetsAsync}
           onFinish={() => this.setState({ isReady: true })}
-          onError={console.warn}
         />
       );
 		}

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import React, { PureComponent } from "react";
 import {
   Text,
   View,
@@ -11,13 +11,13 @@ import {
   Platform,
   ViewPropTypes,
   I18nManager,
-} from 'react-native';
-import Ripple from 'react-native-material-ripple';
-import { TextField } from 'react-native-material-textfield';
+} from "react-native";
+import Ripple from "react-native-material-ripple";
+import { TextField } from "react-native-material-textfield";
 
-import { getSizeWRTDeviceWidth } from '../../../../utils';
-import DropdownItem from '../item';
-import styles from './styles';
+import { getSizeWRTDeviceWidth } from "../../../../utils";
+import DropdownItem from "../item";
+import styles from "./styles";
 
 export default class Dropdown extends PureComponent {
   static defaultProps = {
@@ -61,19 +61,19 @@ export default class Dropdown extends PureComponent {
 
     fontSize: getSizeWRTDeviceWidth(14),
 
-    textColor: 'rgba(0, 0, 0, .87)',
-    itemColor: 'rgba(0, 0, 0, .54)',
-    baseColor: 'rgba(0, 0, 0, .38)',
+    textColor: "rgba(0, 0, 0, .87)",
+    itemColor: "rgba(0, 0, 0, .54)",
+    baseColor: "rgba(0, 0, 0, .38)",
 
     itemCount: 4,
     itemPadding: 8,
 
     supportedOrientations: [
-      'portrait',
-      'portrait-upside-down',
-      'landscape',
-      'landscape-left',
-      'landscape-right',
+      "portrait",
+      "portrait-upside-down",
+      "landscape",
+      "landscape-left",
+      "landscape-right",
     ],
 
     useNativeDriver: false,
@@ -163,9 +163,9 @@ export default class Dropdown extends PureComponent {
     this.onSelect = this.onSelect.bind(this);
     this.onLayout = this.onLayout.bind(this);
 
-    this.updateRippleRef = this.updateRef.bind(this, 'ripple');
-    this.updateContainerRef = this.updateRef.bind(this, 'container');
-    this.updateScrollRef = this.updateRef.bind(this, 'scroll');
+    this.updateRippleRef = this.updateRef.bind(this, "ripple");
+    this.updateContainerRef = this.updateRef.bind(this, "container");
+    this.updateScrollRef = this.updateRef.bind(this, "scroll");
 
     this.renderAccessory = this.renderAccessory.bind(this);
     this.renderItem = this.renderItem.bind(this);
@@ -223,7 +223,7 @@ export default class Dropdown extends PureComponent {
     let itemCount = data.length;
     let timestamp = Date.now();
 
-    if (null != event) {
+    if (event !== null) {
       /* Adjust event location */
       event.nativeEvent.locationY -= this.rippleInsets().top;
       event.nativeEvent.locationX -= this.rippleInsets().left;
@@ -238,11 +238,11 @@ export default class Dropdown extends PureComponent {
 
     this.focused = true;
 
-    if ('function' === typeof onFocus) {
+    if (typeof onFocus === "function") {
       onFocus();
     }
 
-    let dimensions = Dimensions.get('window');
+    let dimensions = Dimensions.get("window");
 
     this.container.measureInWindow((x, y, containerWidth, containerHeight) => {
       let { opacity } = this.state;
@@ -302,10 +302,10 @@ export default class Dropdown extends PureComponent {
               useNativeDriver,
             })
             .start(() => {
-              if (this.mounted && 'ios' === Platform.OS) {
+              if (this.mounted && Platform.OS === "ios") {
                 let { flashScrollIndicators } = this.scroll || {};
 
-                if ('function' === typeof flashScrollIndicators) {
+                if (typeof flashScrollIndicators === "function") {
                   flashScrollIndicators.call(this.scroll);
                 }
               }
@@ -328,7 +328,7 @@ export default class Dropdown extends PureComponent {
       .start(() => {
         this.focused = false;
 
-        if ('function' === typeof onBlur) {
+        if (typeof onBlur === "function") {
           onBlur();
         }
 
@@ -350,7 +350,7 @@ export default class Dropdown extends PureComponent {
     let value = valueExtractor(data[index], index);
     let delay = Math.max(0, rippleDuration - animationDuration);
 
-    if ('function' === typeof onChangeText) {
+    if (typeof onChangeText === "function") {
       onChangeText(value, index, data);
     }
 
@@ -360,7 +360,7 @@ export default class Dropdown extends PureComponent {
   onLayout(event) {
     let { onLayout } = this.props;
 
-    if ('function' === typeof onLayout) {
+    if (typeof onLayout === "function") {
       onLayout(event);
     }
   }
@@ -376,7 +376,7 @@ export default class Dropdown extends PureComponent {
     let { data, valueExtractor } = this.props;
 
     return data
-      .findIndex((item, index) => null != item && value === valueExtractor(item, index));
+      .findIndex((item, index) => null !== item && value === valueExtractor(item, index));
   }
 
   selectedItem() {
@@ -427,7 +427,7 @@ export default class Dropdown extends PureComponent {
     let visibleItemCount = this.visibleItemCount();
 
     if (itemCount > visibleItemCount) {
-      if (null == dropdownPosition) {
+      if (dropdownPosition === null) {
         switch (selected) {
           case -1:
             break;
@@ -480,7 +480,6 @@ export default class Dropdown extends PureComponent {
       data,
       renderBase,
       labelExtractor,
-      dropdownOffset,
       renderAccessory = this.renderAccessory,
     } = this.props;
 
@@ -491,16 +490,16 @@ export default class Dropdown extends PureComponent {
       title = labelExtractor(data[index], index);
     }
 
-    if (null == title) {
+    if (title === null) {
       title = value;
     }
 
-    if ('function' === typeof renderBase) {
+    if (typeof renderBase === "function") {
       return renderBase({ ...props, title, value, renderAccessory });
     }
 
-    title = null == title || 'string' === typeof title?
-      title:
+    title = title === null || typeof title === "string" ?
+      title :
       String(title);
 
     return (
@@ -533,7 +532,7 @@ export default class Dropdown extends PureComponent {
       ...insets,
 
       height: this.itemSize() - bottom,
-      position: 'absolute',
+      position: "absolute",
       marginTop: getSizeWRTDeviceWidth(-15)
     };
 
@@ -551,7 +550,6 @@ export default class Dropdown extends PureComponent {
   }
 
   renderAccessory() {
-    let { baseColor: backgroundColor } = this.props;
     let triangleStyle = { backgroundColor: "#000" };
 
     return (
@@ -564,7 +562,7 @@ export default class Dropdown extends PureComponent {
   }
 
   renderItem({ item, index }) {
-    if (null == item) {
+    if (item === null) {
       return null;
     }
 
@@ -606,16 +604,16 @@ export default class Dropdown extends PureComponent {
     let value = valueExtractor(item, index);
     let label = labelExtractor(item, index);
 
-    let title = null == label?
-      value:
+    let title = label === null ?
+      value :
       label;
 
-    let color = disabled?
-      disabledItemColor:
-      ~selected?
-        index === selected?
-          selectedItemColor:
-          itemColor:
+    let color = disabled ?
+      disabledItemColor :
+      ~selected ?
+        index === selected ?
+          selectedItemColor :
+          itemColor :
         selectedItemColor;
 
     let textStyle = { color, fontSize };
@@ -640,16 +638,9 @@ export default class Dropdown extends PureComponent {
 
   render() {
     let {
-      renderBase,
-      renderAccessory,
       containerStyle,
       overlayStyle: overlayStyleOverrides,
       pickerStyle: pickerStyleOverrides,
-
-      rippleInsets,
-      rippleOpacity,
-      rippleCentered,
-      rippleSequential,
 
       hitSlop,
       pressRetentionOffset,
@@ -683,7 +674,7 @@ export default class Dropdown extends PureComponent {
     if (null == dropdownPosition) {
       switch (selected) {
         case -1:
-          translateY -= 1 === itemCount? 0 : itemSize;
+          translateY -= itemCount === 1 ? 0 : itemSize;
           break;
 
         case 0:
@@ -728,7 +719,7 @@ export default class Dropdown extends PureComponent {
     return (
       <View onLayout={this.onLayout} ref={this.updateContainerRef} style={[containerStyle]}>
         <TouchableWithoutFeedback {...touchableProps}>
-          <View pointerEvents='box-only'>
+          <View pointerEvents="box-only">
             {this.renderBase(props)}
             {this.renderRipple()}
           </View>

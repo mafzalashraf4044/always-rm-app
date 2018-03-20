@@ -1,5 +1,5 @@
 import variable from "./../variables/material";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { getSizeWRTDeviceHeight } from '../../utils';
 
 export default (variables = variable) => {
 	const platformStyle = variables.platformStyle;

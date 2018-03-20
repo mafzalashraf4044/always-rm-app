@@ -1,15 +1,16 @@
-import { Platform, StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   storeVisit: {
+    flex: 1,
 		height: deviceHeight,
   },
   storeImgContainer: {
     flex: 0.4,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     backgroundColor: "rgba(183,183,183,1)",
   },
 	backgroundImg: {
@@ -21,9 +22,9 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
   storeInfo: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     paddingHorizontal: getSizeWRTDeviceWidth(16),
     paddingVertical: getSizeWRTDeviceWidth(14),
   },
@@ -68,25 +69,25 @@ const styles: any = StyleSheet.create({
   
   },
   coulmns2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   widthHalf: {
     width: "48%",
   },
   visitForm: {
     flex: 0.6,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     backgroundColor: "#FFF",
   },
   scrollView: {
-    height: '100%',
+    height: "100%",
     backgroundColor: "#FFF",
   },
   formView: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     padding: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
@@ -108,9 +109,9 @@ const styles: any = StyleSheet.create({
     borderBottomColor: "rgba(233,30,99,0.28)",
   },
   RSPListHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginVertical: getSizeWRTDeviceWidth(15),
   },
   RSPListTitle: {
@@ -125,13 +126,13 @@ const styles: any = StyleSheet.create({
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   addIcon: {
     width: getSizeWRTDeviceWidth(22),
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   addRSPBtnTxt: {
     color: "#FFF",
@@ -141,9 +142,9 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
   },
   RSTListItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "rgba(74,74,74,1)",
     paddingBottom: getSizeWRTDeviceWidth(15),
@@ -157,9 +158,9 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(14),
   },
   switchContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: getSizeWRTDeviceWidth(15),
   },
   switchTxt: {
@@ -190,12 +191,12 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
   },
   formActions: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   startBtn: {
-    width: '100%',
+    width: "100%",
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
@@ -212,9 +213,9 @@ const styles: any = StyleSheet.create({
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
-    alignSelf: 'flex-end',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignSelf: "flex-end",
+    flexDirection: "row",
+    justifyContent: "center",
   },
   addCourseBtnTxt: {
     color: "#FFF",

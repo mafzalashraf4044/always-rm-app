@@ -1,8 +1,11 @@
-import { StyleSheet, PixelRatio } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+
+const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
 	container: {
+		flex: 1,
+		height: deviceHeight,
 		backgroundColor: "#fff",
 	},
 	backgroundImg: {

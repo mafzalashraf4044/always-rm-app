@@ -1,11 +1,14 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { getSizeWRTDeviceHeight } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   container: {
+    flex: 1,
     height: deviceHeight,
+    backgroundColor: "#FFF",
+    paddingBottom: getSizeWRTDeviceHeight(30),
   },
   backgroundImg: {
     flex: 1,
@@ -17,12 +20,7 @@ const styles: any = StyleSheet.create({
   },
   scrollView: {
     height: deviceHeight - getSizeWRTDeviceHeight(82),
-    backgroundColor: '#FFF',
-  },
-  container: {
-    flex: 1,
-    paddingBottom: getSizeWRTDeviceHeight(30),
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
   },
 });
 

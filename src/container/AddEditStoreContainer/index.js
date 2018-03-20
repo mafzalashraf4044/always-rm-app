@@ -11,7 +11,7 @@ export interface Props {
 
 export interface State {}
 
-export default class AddEditStoreContainer extends React.Component<Props, State> {
+class AddEditStoreContainer extends React.Component<Props, State> {
 	render() {
 		return <AddEditStore navigation={this.props.navigation} />;
 	}
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		// fetchList: url => dispatch(fetchList(url)),
 	};
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddEditStoreContainer);
 

@@ -1,26 +1,34 @@
 import * as React from "react";
+
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  ScrollView,
+} from "react-native";
+
 import {
 	Container,
-	Form,
 	Button
 } from "native-base";
-import { getSizeWRTDeviceWidth } from '../../utils';
-import Header from '../common/Header';
-import ImageGrid from '../common/ImageGrid';
 
-import { TextField } from 'react-native-material-textfield';
+import Switch from "../common/Switch";
+import Header from "../common/Header";
+import ImageGrid from "../common/ImageGrid";
+import { Dropdown } from "../common/Dropdown";
 
-import { View, FlatList, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Image, Text } from "react-native";
-import { Dropdown } from '../common/Dropdown';
-import Switch from '../common/Switch';
+import { TextField } from "react-native-material-textfield";
 
 import styles from "./styles";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 export interface Props {
   navigation: any,
 }
 
 export interface State {}
+
 class StoreVisit extends React.Component<Props, State> {
 
 	constructor(props) {
@@ -28,11 +36,11 @@ class StoreVisit extends React.Component<Props, State> {
 		this.state = {
 			isStoreImgContainerVisible: true,
       steps: [
-        {title: 'RSPs'},
-        {title: 'Training'},
-        {title: 'Merchandising'},
-        {title: 'Competitor Analysis'},
-        {title: 'Store Analysis'},
+        {title: "RSPs"},
+        {title: "Training"},
+        {title: "Merchandising"},
+        {title: "Competitor Analysis"},
+        {title: "Store Analysis"},
       ],
       stepIndex: -1,
       switch1: false,
@@ -69,7 +77,7 @@ class StoreVisit extends React.Component<Props, State> {
       return `Step ${this.state.stepIndex + 1}: ${this.state.steps[this.state.stepIndex].title}`;
     }
 
-    return '';
+    return "";
   }
 
   goBack = () => {
@@ -132,27 +140,27 @@ class StoreVisit extends React.Component<Props, State> {
               <View style={styles.formSection}>
                 <View style={styles.coulmns1}>
                   <Dropdown
-                    label='Store Status'
+                    label="Store Status"
                     data={[{
-                      value: 'Active',
+                      value: "Active",
                     }, {
-                      value: 'Inactive',
+                      value: "Inactive",
                     }]}
                   />
                 </View>
                 <View style={styles.coulmns1}>
                   <Dropdown
-                    label='Visit Number'
+                    label="Visit Number"
                     data={[{
-                      value: '1',
+                      value: "1",
                     }, {
-                      value: '2',
+                      value: "2",
                     }, {
-                      value: '3',
+                      value: "3",
                     }, {
-                      value: '4',
+                      value: "4",
                     }, {
-                      value: '5',
+                      value: "5",
                     }]}
                   />
                 </View>
@@ -190,12 +198,12 @@ class StoreVisit extends React.Component<Props, State> {
                     </View>
                     <FlatList
                       data={[
-                        {id: 0, name: 'John Doe', email: 'johndoe.always@gmail.com'},
-                        {id: 1, name: 'John Doe', email: 'johndoe.always@gmail.com'},
-                        {id: 2, name: 'John Doe', email: 'johndoe.always@gmail.com'},
-                        {id: 3, name: 'John Doe', email: 'johndoe.always@gmail.com'},
-                        {id: 4, name: 'John Doe', email: 'johndoe.always@gmail.com'},
-                        {id: 5, name: 'John Doe', email: 'johndoe.always@gmail.com'},
+                        {id: 0, name: "John Doe", email: "johndoe.always@gmail.com"},
+                        {id: 1, name: "John Doe", email: "johndoe.always@gmail.com"},
+                        {id: 2, name: "John Doe", email: "johndoe.always@gmail.com"},
+                        {id: 3, name: "John Doe", email: "johndoe.always@gmail.com"},
+                        {id: 4, name: "John Doe", email: "johndoe.always@gmail.com"},
+                        {id: 5, name: "John Doe", email: "johndoe.always@gmail.com"},
                       ]}
                       renderItem={
                         ({item}) => (
@@ -231,11 +239,11 @@ class StoreVisit extends React.Component<Props, State> {
                   </View>
                   <View style={styles.coulmns1}>
                     <Dropdown
-                      label='IRRP Registered'
+                      label="IRRP Registered"
                       data={[{
-                        value: 'Yes',
+                        value: "Yes",
                       }, {
-                        value: 'No',
+                        value: "No",
                       }]}
                     />
                   </View>
@@ -297,13 +305,13 @@ class StoreVisit extends React.Component<Props, State> {
                           <Dropdown
                             label={`Training Course ${course}`}
                             data={[{
-                              value: 'Optane',
+                              value: "Optane",
                             }, {
-                              value: '10th Gen',
+                              value: "10th Gen",
                             }, {
-                              value: 'Competitor Analysis',
+                              value: "Competitor Analysis",
                             }, {
-                              value: 'Some Other Course',
+                              value: "Some Other Course",
                             }]}
                           />
                         </View>
@@ -331,14 +339,14 @@ class StoreVisit extends React.Component<Props, State> {
                     <Text style={styles.sectionHeadingTxt}>Training Activites</Text>
                   </View>
                   <ImageGrid isAddEnabled images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                 </View>
   
@@ -366,7 +374,7 @@ class StoreVisit extends React.Component<Props, State> {
                       onToggle={() => {
                         this.setState(prevState => ({
                           switch1: !prevState.switch1,
-                        }))
+                        }));
                       }}
                     />
                   </View>
@@ -380,20 +388,20 @@ class StoreVisit extends React.Component<Props, State> {
                       onToggle={(switch2) => {
                         this.setState({
                           switch2,
-                        })
+                        });
                       }}
                     />
                   </View>
                   <ImageGrid isAddEnabled={false} images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                   <View style={styles.coulmns1}>
                     <TextField
@@ -413,20 +421,20 @@ class StoreVisit extends React.Component<Props, State> {
                       onToggle={(switch3) => {
                         this.setState({
                           switch3,
-                        })
+                        });
                       }}
                     />
                   </View>
                   <ImageGrid isAddEnabled={false} images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                   <View style={styles.coulmns1}>
                     <TextField
@@ -446,14 +454,14 @@ class StoreVisit extends React.Component<Props, State> {
                       onToggle={(switch4) => {
                         this.setState({
                           switch4,
-                        })
+                        });
                       }}
                     />
                   </View>
                   <ImageGrid isAddEnabled={false} images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                   <View style={styles.coulmns1}>
                     <TextField
@@ -509,9 +517,9 @@ class StoreVisit extends React.Component<Props, State> {
                     <Dropdown
                       label="POSM Installed"
                       data={[{
-                        value: 'Yes',
+                        value: "Yes",
                       }, {
-                        value: 'No',
+                        value: "No",
                       }]}
                     />
                   </View>
@@ -545,14 +553,14 @@ class StoreVisit extends React.Component<Props, State> {
                     <Text style={styles.sectionHeadingTxt}>Competitor Images</Text>
                   </View>
                   <ImageGrid isAddEnabled images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                 </View>
   
@@ -615,11 +623,11 @@ class StoreVisit extends React.Component<Props, State> {
                     <Text style={styles.sectionHeadingTxt}>PC Images (minimum 5 images)</Text>
                   </View>
                   <ImageGrid isAddEnabled images={[
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
-                    require('../../assets/Images/grid-img.jpg'),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
+                    require("../../assets/Images/grid-img.jpg"),
                   ]}/>
                 </View>
   

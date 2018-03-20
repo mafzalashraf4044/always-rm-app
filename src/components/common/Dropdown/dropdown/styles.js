@@ -1,11 +1,11 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform } from "react-native";
 
 export default StyleSheet.create({
   accessory: {
     width: 24,
     height: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   triangle: {
@@ -14,17 +14,17 @@ export default StyleSheet.create({
     transform: [{
       translateY: -4,
     }, {
-      rotate: '45deg',
+      rotate: "45deg",
     }],
   },
 
   triangleContainer: {
     width: 12,
     height: 6,
-    overflow: 'hidden',
-    alignItems: 'center',
+    overflow: "hidden",
+    alignItems: "center",
 
-    backgroundColor: 'transparent', /* XXX: Required */
+    backgroundColor: "transparent", /* XXX: Required */
   },
 
   overlay: {
@@ -32,15 +32,15 @@ export default StyleSheet.create({
   },
 
   picker: {
-    backgroundColor: 'rgba(255, 255, 255, 1.0)',
+    backgroundColor: "rgba(255, 255, 255, 1.0)",
     borderRadius: 2,
 
-    position: 'absolute',
+    position: "absolute",
 
     ...Platform.select({
       ios: {
         shadowRadius: 2,
-        shadowColor: 'rgba(0, 0, 0, 1.0)',
+        shadowColor: "rgba(0, 0, 0, 1.0)",
         shadowOpacity: 0.54,
         shadowOffset: { width: 0, height: 2 },
       },
@@ -52,7 +52,7 @@ export default StyleSheet.create({
   },
 
   item: {
-    textAlign: 'left',
+    textAlign: "left",
   },
 
   scroll: {

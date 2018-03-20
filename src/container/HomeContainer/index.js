@@ -25,6 +25,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		// fetchList: url => dispatch(fetchList(url)),
 	};
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../../utils';
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../../utils";
 
 const styles: any = StyleSheet.create({
   card: {
-    backgroundColor: 'rgba(254,254,254,1)',
+    backgroundColor: "rgba(254,254,254,1)",
     borderRadius: 5,
 		shadowColor: "#000",
 		shadowOffset: { width: 2, height: 3 },
@@ -13,8 +13,8 @@ const styles: any = StyleSheet.create({
     margin: getSizeWRTDeviceWidth(16),
   },
   imgContainer: {
-    width: '100%',
-    justifyContent: 'flex-end',
+    width: "100%",
+    justifyContent: "flex-end",
     height: getSizeWRTDeviceHeight(192),
   },
   storeImg: {
@@ -27,9 +27,9 @@ const styles: any = StyleSheet.create({
     height: getSizeWRTDeviceHeight(192),
   },
   storeInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: getSizeWRTDeviceWidth(16),
     paddingVertical: getSizeWRTDeviceWidth(14),
   },
@@ -75,12 +75,10 @@ const styles: any = StyleSheet.create({
 		resizeMode: "cover",
   },
   cardBody: {
-    width: '100%',
+    width: "100%",
     padding: getSizeWRTDeviceWidth(16),
   },
-  extraInfo: {
-    
-  },
+  extraInfo: {},
   address: {
     color: "rgba(74,74,74,1)",
     backgroundColor: "transparent",
@@ -98,15 +96,15 @@ const styles: any = StyleSheet.create({
     marginTop: getSizeWRTDeviceWidth(10)
   },
   actions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: getSizeWRTDeviceWidth(15),
   },
   txtBtnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   txtBtn: {
     color: "rgba(233,30,99,1)",
@@ -127,7 +125,7 @@ const styles: any = StyleSheet.create({
     color: "rgba(74,74,74,1)",
     backgroundColor: "transparent",
 		fontFamily: "Always_Font",
-    textAlign: 'justify',
+    textAlign: "justify",
     fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(16),
   }

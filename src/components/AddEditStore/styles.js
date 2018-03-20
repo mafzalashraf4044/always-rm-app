@@ -1,17 +1,17 @@
-import { Platform, StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   addEditStore: {
-    flex: 1,
+		flex: 1,
     backgroundColor: "#FFF",
-		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
+		height: deviceHeight,
   },
   storeImgContainer: {
 		flex: 0.5,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     backgroundColor: "rgba(183,183,183,1)",
   },
 	backgroundImg: {
@@ -23,9 +23,9 @@ const styles: any = StyleSheet.create({
 		justifyContent: "center",
 	},
   addEditImg: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     padding: getSizeWRTDeviceWidth(15),
   },
   cameraIcon: {
@@ -41,7 +41,7 @@ const styles: any = StyleSheet.create({
     marginLeft: getSizeWRTDeviceWidth(10),
   },
   scrollView: {
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
   },
   formView: {
     flex: 1,
@@ -51,9 +51,9 @@ const styles: any = StyleSheet.create({
   coulmns1: {
   },
   coulmns2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   widthHalf: {
     width: "45%",
@@ -72,19 +72,19 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(20),
   },
   dropdownContainer: {
-    position: 'relative',
+    position: "relative",
   },
   dropdownIcon: {
     width: getSizeWRTDeviceWidth(20),
     resizeMode: "contain",
-    position: 'absolute',
+    position: "absolute",
     right: getSizeWRTDeviceWidth(6),
     bottom: getSizeWRTDeviceWidth(20),
   },
   formActions: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   lightBtn: {
     marginRight: getSizeWRTDeviceWidth(15),

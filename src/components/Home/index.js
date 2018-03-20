@@ -1,20 +1,28 @@
 import * as React from "react";
+
+import {
+  View,
+  Image,
+  Text,
+  Dimensions,
+  TouchableOpacity
+} from "react-native";
+
 import {
   Container,
-  Content,
-  Button,
 } from "native-base";
 
-import { Dimensions, View, Image, Text, TouchableOpacity } from "react-native";
-
-import Header from '../common/Header';
+import Header from "../common/Header";
 
 import styles from "./styles";
+
 export interface Props {
   navigation: any;
   list: any;
 }
+
 export interface State {}
+
 class Home extends React.Component<Props, State> {
   homeTabs = [
     {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},

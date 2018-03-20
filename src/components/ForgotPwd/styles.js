@@ -1,12 +1,12 @@
-import { Platform, Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from '../../utils';
+import { StyleSheet, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
 	forgotPwdScreen: {
 		flex: 1,
-		height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
+		height: deviceHeight,
 	},
 	forgotView: {
 		flex: 1,
@@ -23,13 +23,13 @@ const styles: any = StyleSheet.create({
 	},
 	formContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
 		width: getSizeWRTDeviceWidth(230),
 	},
   formActions: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   lightBtn: {
     marginRight: getSizeWRTDeviceWidth(15),

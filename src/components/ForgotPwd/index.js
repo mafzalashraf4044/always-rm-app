@@ -1,21 +1,21 @@
 import * as React from "react";
+
 import {
-	Image,
-	TouchableOpacity,
-	Text,
+  Text,
 	View,
+	Image,
 } from "react-native";
 
 import {
 	Button,
 } from "native-base";
 
-import { TextField } from 'react-native-material-textfield';
+import Header from "../common/Header";
 
-import Header from '../common/Header';
+import { TextField } from "react-native-material-textfield";
 
-import { getSizeWRTDeviceWidth } from '../../utils';
 import styles from "./styles";
+import { getSizeWRTDeviceWidth } from "../../utils";
 
 export interface Props {
 	loginForm: any,
@@ -23,6 +23,7 @@ export interface Props {
 }
 
 export interface State {}
+
 class ForgotPwd extends React.Component<Props, State> {
 
 	constructor(props) {

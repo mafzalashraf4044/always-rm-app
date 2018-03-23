@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import Home from "../../components/Home";
 
@@ -12,8 +13,31 @@ export interface Props {
 export interface State {}
 
 class HomeContainer extends React.Component<Props, State> {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			user: null,
+		};
+	}
+
+	componentWillMount() {
+    try {
+			AsyncStorage.getItem('user').then((user) => {
+				if (user !== null){
+					this.setState({
+						user: JSON.parse(user),
+					});
+        }
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+	}
+
 	render() {
-		return <Home navigation={this.props.navigation} />;
+		return <Home navigation={this.props.navigation} user={this.state.user} />;
 	}
 }
 

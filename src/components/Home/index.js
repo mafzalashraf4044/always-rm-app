@@ -17,8 +17,8 @@ import Header from "../common/Header";
 import styles from "./styles";
 
 export interface Props {
-  navigation: any;
-  list: any;
+  navigation: any,
+  user: obj,
 }
 
 export interface State {}
@@ -40,7 +40,7 @@ class Home extends React.Component<Props, State> {
           source={require("../../assets/Images/app-bg.jpeg")}
         />
         <Header
-          title="Welcome John Doe!"
+          title={this.props.user && `Welcome ${this.props.user.username}!`}
           navigation={this.props.navigation}
           iconLeft={{
 						url: require("../../assets/Icons/Light/Menu.png"),

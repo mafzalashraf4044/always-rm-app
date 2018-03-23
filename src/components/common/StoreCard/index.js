@@ -82,7 +82,7 @@ class StoreCard extends Component {
               <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit")}>
                 <Text style={styles.txtBtn}>RE-VISIT</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={this.props.toggleReassignModal}>
                 <Text style={styles.txtBtn}>CALL</Text>
               </TouchableOpacity>
               <TouchableOpacity>

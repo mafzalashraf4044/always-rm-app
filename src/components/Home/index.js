@@ -28,7 +28,7 @@ class Home extends React.Component<Props, State> {
     {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},
     {icon: require("../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports"},
     {icon: require("../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-    {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "Merchandising", route: "Merchandising"},
+    {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
   ];
 
   render() {

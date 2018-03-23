@@ -35,7 +35,7 @@ const styles: any = StyleSheet.create({
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     paddingBottom: getSizeWRTDeviceWidth(15),
     shadowColor: "rgba(0,0,0,0.3)",
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 3,

@@ -145,6 +145,7 @@ class AddEditStore extends React.Component<Props, State> {
 									</View>
 									<View style={styles.widthHalf}>
 										<Dropdown
+											fullWidth={false}
 											label="Store Status"
 											data={[{
 												value: "Active",

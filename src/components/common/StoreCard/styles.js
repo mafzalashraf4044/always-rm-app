@@ -10,7 +10,7 @@ const styles: any = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
 		elevation: 1,
-    margin: getSizeWRTDeviceWidth(16),
+    margin: getSizeWRTDeviceWidth(15),
   },
   imgContainer: {
     width: "100%",

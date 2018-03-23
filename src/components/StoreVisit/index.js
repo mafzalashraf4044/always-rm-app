@@ -140,6 +140,7 @@ class StoreVisit extends React.Component<Props, State> {
               <View style={styles.formSection}>
                 <View style={styles.coulmns1}>
                   <Dropdown
+                    fullWidth
                     label="Store Status"
                     data={[{
                       value: "Active",
@@ -150,6 +151,7 @@ class StoreVisit extends React.Component<Props, State> {
                 </View>
                 <View style={styles.coulmns1}>
                   <Dropdown
+                    fullWidth
                     label="Visit Number"
                     data={[{
                       value: "1",
@@ -241,6 +243,7 @@ class StoreVisit extends React.Component<Props, State> {
                   </View>
                   <View style={styles.coulmns1}>
                     <Dropdown
+                      fullWidth
                       label="IRRP Registered"
                       data={[{
                         value: "Yes",
@@ -305,6 +308,7 @@ class StoreVisit extends React.Component<Props, State> {
                       <View style={styles.coulmns2} key={course}>
                         <View style={styles.widthHalf}>
                           <Dropdown
+                            fullWidth={false}
                             label={`Training Course ${course}`}
                             data={[{
                               value: "Optane",
@@ -517,6 +521,7 @@ class StoreVisit extends React.Component<Props, State> {
                   </View>
                   <View style={styles.coulmns1}>
                     <Dropdown
+                      fullWidth
                       label="POSM Installed"
                       data={[{
                         value: "Yes",

@@ -13,6 +13,7 @@ import {
 
 import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
+import StoreFilter from "../common/StoreFilter";
 
 import styles from "./styles";
 
@@ -72,7 +73,8 @@ class Stores extends React.Component<Props, State> {
 					</Tab>
 					<Tab heading="Upcoming">
 						<Container>
-							<Content>
+							<StoreFilter />
+							<Content style={styles.tabContentWithFilter}>
 								<StoreCard navigation={this.props.navigation}/>
 								<StoreCard navigation={this.props.navigation}/>
 								<StoreCard navigation={this.props.navigation}/>
@@ -81,7 +83,8 @@ class Stores extends React.Component<Props, State> {
 					</Tab>
 					<Tab heading="Completed">
 						<Container>
-							<Content>
+							<StoreFilter />
+							<Content style={styles.tabContentWithFilter}>
 								<StoreCard navigation={this.props.navigation}/>
 								<StoreCard navigation={this.props.navigation}/>
 								<StoreCard navigation={this.props.navigation}/>

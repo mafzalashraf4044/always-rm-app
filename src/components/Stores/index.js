@@ -2,6 +2,9 @@ import * as React from "react";
 
 import {
 	Image,
+	View,
+	Text,
+	TouchableOpacity,
 } from "react-native";
 
 import {
@@ -15,6 +18,9 @@ import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
 import StoreFilter from "../common/StoreFilter";
 
+import { Dropdown } from "../common/Dropdown";
+import Modal from "react-native-modal";
+
 import styles from "./styles";
 
 export interface Props {
@@ -24,6 +30,16 @@ export interface Props {
 export interface State {}
 
 class Stores extends React.Component<Props, State> {
+
+	state = {
+		isReassignModalOpen: false,
+	};
+
+	toggleReassignModal = () => {
+		this.setState(prevState => ({
+			isReassignModalOpen: !prevState.isReassignModalOpen,
+		}));
+	}
 
 	render() {
 		return (
@@ -75,9 +91,9 @@ class Stores extends React.Component<Props, State> {
 						<Container>
 							<StoreFilter />
 							<Content style={styles.tabContentWithFilter}>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
+								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
+								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
+								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
 							</Content>
 						</Container>
 					</Tab>
@@ -92,6 +108,45 @@ class Stores extends React.Component<Props, State> {
 						</Container>
 					</Tab>
 				</Tabs>
+
+        <Modal
+					isVisible={this.state.isReassignModalOpen}
+					style={styles.modalContainer}
+				>
+          <View style={styles.modal}>
+						<View style={styles.header}>
+							<Text style={styles.headerTxt}>Request Transfer?</Text>
+						</View>
+            <View style={styles.body}>
+              <Text style={styles.bodyTxt}>You are requesting for a Visit Transfer for Harvey Norman on 05/04/2018.</Text>
+
+							<View style={styles.dropdownContainer}>
+								<Dropdown
+									fullWidth
+									label="Reason"
+									data={[{
+										value: "Vacation",
+									}, {
+										value: "Unwell",
+									}]}
+								/>
+							</View>
+
+							<View style={styles.modalActions}>
+								<TouchableOpacity
+									onPress={() => {
+										this.toggleReassignModal(!this.state.isReassignModalOpen);
+									}}>
+									<Text style={styles.actionBtnTxt}>CANCEL</Text>
+								</TouchableOpacity>
+								<TouchableOpacity
+									onPress={() => {}}>
+									<Text style={styles.actionBtnTxt}>REQUEST FOR TRANSFER</Text>
+								</TouchableOpacity>
+							</View>
+            </View>
+          </View>
+        </Modal>
 			</Container>
 		);
 	}

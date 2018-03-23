@@ -165,9 +165,11 @@ class StoreVisit extends React.Component<Props, State> {
                   />
                 </View>
               </View>
-              <Button block onPress={() => this.setStepIndex(0)} style={styles.startBtn}>
-                <Text style={styles.startBtnTxt}>START</Text>
-              </Button>
+              <View style={styles.formActions}>
+                <Button block onPress={() => this.setStepIndex(0)} style={styles.startBtn}>
+                  <Text style={styles.startBtnTxt}>START</Text>
+                </Button>
+              </View>
             </View>
           }
 

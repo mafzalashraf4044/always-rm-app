@@ -88,7 +88,7 @@ const styles: any = StyleSheet.create({
   formView: {
     flex: 1,
     justifyContent: "space-between",
-    padding: getSizeWRTDeviceWidth(15),
+    paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
   formSection: {
@@ -194,6 +194,7 @@ const styles: any = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
+    paddingVertical: getSizeWRTDeviceWidth(10),
   },
   startBtn: {
     width: "100%",
@@ -238,7 +239,6 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
   },
   darkBtn: {
-    paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
   },

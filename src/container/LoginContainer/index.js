@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import Login from "../../components/Login";
 
@@ -12,6 +13,22 @@ export interface Props {
 export interface State {}
 
 class LoginContainer extends React.Component<Props, State> {
+
+  componentWillMount() {
+    this.checkIfLoggedIn();
+  }
+
+  checkIfLoggedIn = () => {
+    try {
+      AsyncStorage.getItem('user').then((user) => {
+        if (user !== null){
+          this.props.navigation.navigate("Drawer");
+        }
+      });
+    } catch (error) {
+      // Error retrieving data
+    }
+  }
 
   render() {
 		return (

@@ -5,6 +5,7 @@ import {
 	Text,
 	Image,
 	FlatList,
+	AsyncStorage,
 	TouchableOpacity,
 } from "react-native";
 
@@ -16,6 +17,8 @@ import styles from "./styles";
 
 export interface Props {
 	navigation: any,
+	user: obj,
+	removeUserIfLogingOut: func,
 }
 
 export interface State {}
@@ -26,12 +29,18 @@ export default class Sidebar extends React.Component<Props, State> {
     {icon: require("../../assets/Icons/Dark/Stores.png"), name: "My Stores", route: "Stores"},
     {icon: require("../../assets/Icons/Dark/Report.png"), name: "Reports", route: "Reports"},
     {icon: require("../../assets/Icons/Dark/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-    {icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "Merchandising", route: "Merchandising"},
+    {icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
   ];
+
+	handleListItemPress = (route) => {
+		this.props.removeUserIfLogingOut(route).then(() => {
+			this.props.navigation.navigate(route)
+		});
+	}
 
 	renderItem = ({item}) => {
 		return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate(item.route)} style={styles.listItem}>
+      <TouchableOpacity onPress={() => this.handleListItemPress(item.route)} style={styles.listItem}>
 				<Image
 					style={styles.listItemIcon}
 					source={item.icon}
@@ -57,10 +66,13 @@ export default class Sidebar extends React.Component<Props, State> {
 							/>
             </TouchableOpacity>
 					</View>
-					<View style={styles.userInfo}>
-						<Text style={styles.name}>{user.username}</Text>
-						<Text style={styles.email}>{user.email}</Text>
-					</View>
+					{
+						this.props.user ?
+						<View style={styles.userInfo}>
+							<Text style={styles.name}>{user.username}</Text>
+							<Text style={styles.email}>{user.email}</Text>
+						</View> : null
+					}
         </View>
 
 				<View style={styles.content}>

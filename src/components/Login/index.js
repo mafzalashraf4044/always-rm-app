@@ -5,6 +5,7 @@ import {
 	View,
 	Image,
 	TouchableOpacity,
+	AsyncStorage,
 } from "react-native";
 
 import {
@@ -37,8 +38,8 @@ class Login extends React.Component<Props, State> {
   onLogin = () => {
 		this.props.login(this.state.email, this.state.pwd).then((res) => {
 			if (res.status === 200) {
-				this.props.setUser(res.data.user);
-        this.props.navigation.navigate("Drawer");
+				AsyncStorage.setItem('user', JSON.stringify(res.data.user));
+				this.props.navigation.navigate("Drawer");
       }
     }).catch((err) => {
       this.setErrMessage("You have keyed in a wrong email/password");

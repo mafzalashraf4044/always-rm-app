@@ -19,6 +19,8 @@ import { getSizeWRTDeviceWidth } from '../../../../utils';
 import DropdownItem from '../item';
 import styles from './styles';
 
+const deviceWidth = Dimensions.get("window").width;
+
 export default class Dropdown extends PureComponent {
   static defaultProps = {
     hitSlop: { top: 6, right: 4, bottom: 6, left: 4 },
@@ -185,6 +187,7 @@ export default class Dropdown extends PureComponent {
       selected: -1,
       modal: false,
       value,
+      dropdownWidth: null,
     };
   }
 
@@ -360,6 +363,12 @@ export default class Dropdown extends PureComponent {
   onLayout(event) {
     let { onLayout } = this.props;
 
+    if (this.state.dropdownWidth === null) {
+      this.setState({
+        dropdownWidth: event.nativeEvent.layout.width,
+      });
+    }
+    
     if ('function' === typeof onLayout) {
       onLayout(event);
     }
@@ -724,15 +733,17 @@ export default class Dropdown extends PureComponent {
       accessibilityLabel,
     };
 
+    const _overlayStyle = this.props.fullWidth ? {margin: 0, padding: 0, left: 0} : {};
+    const _pickerStyle = this.props.fullWidth ? {width: this.state.dropdownWidth, margin: 0, padding: 0, left: (deviceWidth - this.state.dropdownWidth) / 2} : {};
+
     return (
-      <View onLayout={this.onLayout} ref={this.updateContainerRef} style={containerStyle}>
+      <View onLayout={this.onLayout} ref={this.updateContainerRef} style={[containerStyle, {position: 'relative'}]}>
         <TouchableWithoutFeedback {...touchableProps}>
           <View pointerEvents='box-only'>
             {this.renderBase(props)}
             {this.renderRipple()}
           </View>
         </TouchableWithoutFeedback>
-
         <Modal
           visible={modal}
           transparent={true}
@@ -740,12 +751,12 @@ export default class Dropdown extends PureComponent {
           supportedOrientations={supportedOrientations}
         >
           <Animated.View
-            style={[styles.overlay, overlayStyle, overlayStyleOverrides]}
+            style={[styles.overlay, overlayStyle, overlayStyleOverrides, _overlayStyle]}
             onStartShouldSetResponder={() => true}
             onResponderRelease={this.blur}
           >
             <View
-              style={[styles.picker, pickerStyle, pickerStyleOverrides]}
+              style={[styles.picker, pickerStyle, pickerStyleOverrides, _pickerStyle]}
               onStartShouldSetResponder={() => true}
             >
               <FlatList

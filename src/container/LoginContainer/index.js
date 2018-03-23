@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import Login from "../../components/Login";
 
-import { login, setUser } from "../../actions";
+import { login } from "../../actions";
 
 export interface Props {
 	navigation: any,

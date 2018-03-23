@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from "../../utils";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -29,8 +29,20 @@ const styles: any = StyleSheet.create({
   formActions: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    alignItems: "center",
+		alignItems: "center",
+		marginVertical: getSizeWRTDeviceHeight(10),
   },
+	errMessageContainer: {
+
+	},
+	errMessageTxt: {
+		color: "rgba(233,30,99,1)",
+		backgroundColor: "transparent",
+		textAlign: "center",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(10),
+		lineHeight: getSizeWRTDeviceWidth(12),
+	},
   lightBtn: {
     marginRight: getSizeWRTDeviceWidth(15),
     backgroundColor: "transparent",

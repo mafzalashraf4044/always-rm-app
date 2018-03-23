@@ -29,31 +29,41 @@ class ForgotPwd extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isEnterEmailVisible: true,
+      email: "",
+      pwd: "",
+      confirmPwd: "",
 		};
   }
   
-  toggleEnterEmailVisible = () => {
-    this.setState(prevState => ({
-      isEnterEmailVisible: !prevState.isEnterEmailVisible,
-    }));
-  }
-
   cancelForm = () => {
-    if (this.state.isEnterEmailVisible) {
+    if (this.props.isEnterEmailVisible) {
       this.props.navigation.goBack();
     } else {
-      this.toggleEnterEmailVisible();
+      this.props.toggleEnterEmailVisible();
     }
   }
 
   submitForm = () => {
-    if (this.state.isEnterEmailVisible) {
-      this.toggleEnterEmailVisible();
+    if (this.props.isEnterEmailVisible) {
+      this.props.forgotPwd(this.state.email);
     } else {
-      this.props.navigation.navigate("Auth");
+      this.props.resetPwd(this.state.email, this.state.pwd, this.state.confirmPwd);
     }
   }
+
+	handleFocus = () => {
+		// this.setState({isLogoVisible: false});
+	}
+
+	handleBlur = () => {
+		// this.setState({isLogoVisible: true});
+	}
+
+	handleInputChange = (key, value) => {
+		this.setState({
+			[key]: value,
+		});
+	}
 
 	render() {
 		const textFieldProps = {
@@ -67,9 +77,9 @@ class ForgotPwd extends React.Component<Props, State> {
 		};
 
     const iconLeft =
-      this.state.isEnterEmailVisible ?
+      this.props.isEnterEmailVisible ?
       {url: require("../../assets/Icons/Light/Delete.png"), onPress: () => this.props.navigation.goBack()} : 
-      {url: require("../../assets/Icons/Light/Back.png"), onPress: this.toggleEnterEmailVisible};
+      {url: require("../../assets/Icons/Light/Back.png"), onPress: this.props.toggleEnterEmailVisible};
 
     return (
 			<View style={styles.forgotPwdScreen}>
@@ -87,32 +97,38 @@ class ForgotPwd extends React.Component<Props, State> {
 
 					<View style={styles.formContainer}>
             {
-              this.state.isEnterEmailVisible ?
+              this.props.isEnterEmailVisible ?
               <View>
                 <TextField
-                  value=""
+                  value={this.state.email}
                   label="E-mail Address"
                   {...textFieldProps}
-                  onChangeText={undefined}
+                  onChangeText={(value) => this.handleInputChange('email', value)}
                 />
               </View> :
 						<View>
 							<TextField
-								value=""
+								value={this.state.pwd}
 								type="password"
 								label="New Password"
 								{...textFieldProps}
-								onChangeText={undefined}
+								onChangeText={(value) => this.handleInputChange('pwd', value)}
 							/>
 							<TextField
-								value=""
+								value={this.state.confirmPwd}
 								type="password"
 								label="Confirm New Password"
 								{...textFieldProps}
-								onChangeText={undefined}
+								onChangeText={(value) => this.handleInputChange('confirmPwd', value)}
 							/>
             </View>
             }
+						{
+							this.props.errMessage ?
+							<View style={styles.errMessageContainer}>
+									<Text style={styles.errMessageTxt}>{this.props.errMessage}</Text>
+							</View> : null
+						}
             <View style={styles.formActions}>
               <Button onPress={this.cancelForm} style={styles.lightBtn}>
                 <Text style={styles.lightBtnTxt}>CANCEL</Text>

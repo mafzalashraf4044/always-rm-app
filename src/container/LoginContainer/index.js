@@ -14,6 +14,13 @@ export interface State {}
 
 class LoginContainer extends React.Component<Props, State> {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			errMessage: "",
+		};
+	}
+
   componentWillMount() {
     this.checkIfLoggedIn();
   }
@@ -30,11 +37,29 @@ class LoginContainer extends React.Component<Props, State> {
     }
   }
 
+  onLogin = (email, pwd) => {
+		this.props.login(email, pwd).then((res) => {
+			if (res.status === 200) {
+				AsyncStorage.setItem('user', JSON.stringify(res.data.user));
+				this.props.navigation.navigate("Drawer");
+      }
+    }).catch((err) => {
+      this.setErrMessage("You have keyed in a wrong email/password");
+      // throw new Error(err);
+    });
+  }
+
+  setErrMessage = (errMessage) => {
+		this.setState({
+      errMessage,
+    });
+  }
+
   render() {
 		return (
       <Login
-        login={this.props.login}
-        setUser={this.props.setUser}
+        onLogin={this.onLogin}
+        errMessage={this.state.errMessage}
         navigation={this.props.navigation}
       />
     );
@@ -48,7 +73,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
 	return {
     login: (email, pwd) => dispatch(login(email, pwd)),
-    setUser: user => dispatch(setUser(user)),
 	};
 };
 

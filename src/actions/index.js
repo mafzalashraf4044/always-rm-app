@@ -20,3 +20,15 @@ export const login = (email, pwd) => {
     return axios.post(`${API_URL}/auth/local`, {identifier: email, password: pwd});
 	};
 }
+
+export const forgotPwd = (email) => {
+	return dispatch => {
+    return axios.post(`${API_URL}/auth/api/forgot-password`, {email});
+	};
+}
+
+export const resetPwd = (email , password, passwordConfirmation) => {
+	return dispatch => {
+    return axios.post(`${API_URL}/auth/api/reset-password`, {email , password, passwordConfirmation});
+	};
+}

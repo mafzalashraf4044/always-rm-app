@@ -30,28 +30,9 @@ class Login extends React.Component<Props, State> {
 		this.state = {
 			email: "",
 			pwd: "",
-			errMessage: "",
 			isLogoVisible: true,
 		};
 	}
-
-  onLogin = () => {
-		this.props.login(this.state.email, this.state.pwd).then((res) => {
-			if (res.status === 200) {
-				AsyncStorage.setItem('user', JSON.stringify(res.data.user));
-				this.props.navigation.navigate("Drawer");
-      }
-    }).catch((err) => {
-      this.setErrMessage("You have keyed in a wrong email/password");
-      // throw new Error(err);
-    });
-  }
-
-  setErrMessage = (errMessage) => {
-		this.setState({
-      errMessage,
-    });
-  }
 
 	handleFocus = () => {
 		this.setState({isLogoVisible: false});
@@ -112,13 +93,13 @@ class Login extends React.Component<Props, State> {
 							/>
 						</View>
 						{
-							this.state.errMessage ?
+							this.props.errMessage ?
 							<View style={styles.errMessageContainer}>
-									<Text style={styles.errMessageTxt}>{this.state.errMessage}</Text>
+									<Text style={styles.errMessageTxt}>{this.props.errMessage}</Text>
 							</View> : null
 						}
 						<View>
-							<Button block onPress={this.onLogin} style={styles.loginBtn}>
+							<Button block onPress={() => this.props.onLogin(this.state.email, this.state.pwd)} style={styles.loginBtn}>
 								<Text style={styles.loginBtnTxt}>LOG IN</Text>
 							</Button>
 						</View>

@@ -89,7 +89,7 @@ class StoreCard extends Component {
                 </TouchableOpacity>
               }
 
-              <TouchableOpacity onPress={this.props.toggleReassignModal}>
+              <TouchableOpacity>
                 <Text style={styles.txtBtn}>CALL</Text>
               </TouchableOpacity>
               <TouchableOpacity>

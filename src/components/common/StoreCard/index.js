@@ -79,9 +79,16 @@ class StoreCard extends Component {
 
           <View style={styles.actions}>
             <View style={styles.txtBtnsContainer}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit")}>
-                <Text style={styles.txtBtn}>RE-VISIT</Text>
-              </TouchableOpacity>
+              {
+                this.props.reassignAvailable ?
+                <TouchableOpacity onPress={this.props.toggleReassignModal}>
+                  <Text style={styles.txtBtn}>TRANSFER</Text>
+                </TouchableOpacity> :
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit")}>
+                  <Text style={styles.txtBtn}>RE-VISIT</Text>
+                </TouchableOpacity>
+              }
+
               <TouchableOpacity onPress={this.props.toggleReassignModal}>
                 <Text style={styles.txtBtn}>CALL</Text>
               </TouchableOpacity>

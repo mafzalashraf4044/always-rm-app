@@ -91,9 +91,9 @@ class Stores extends React.Component<Props, State> {
 						<Container>
 							<StoreFilter />
 							<Content style={styles.tabContentWithFilter}>
-								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
-								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
-								<StoreCard navigation={this.props.navigation} toggleReassignModal={this.toggleReassignModal}/>
+								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
+								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
+								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
 							</Content>
 						</Container>
 					</Tab>

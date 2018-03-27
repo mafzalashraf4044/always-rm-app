@@ -8,11 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 
-import {
-	Container,
-	Button
-} from "native-base";
-
 import Header from "../common/Header";
 import FormRenderer from "../common/FormRenderer";
 
@@ -51,11 +46,9 @@ class StoreVisit extends React.Component<Props, State> {
   }
   
   setStepIndex = (stepIndex) => {
-    if ((this.state.stepIndex + 1) < 5) {
-      this.setState({
-        stepIndex,
-      });
-    }
+    this.setState({
+      stepIndex,
+    });
   }
 
 	handleChange = (key, value) => {
@@ -85,7 +78,7 @@ class StoreVisit extends React.Component<Props, State> {
 	render() {
 
     return (
-			<Container style={styles.storeVisit}>
+			<View style={styles.storeVisit}>
 				{
 					this.state.isStoreImgContainerVisible && 
 					<View style={styles.storeImgContainer}>
@@ -121,13 +114,16 @@ class StoreVisit extends React.Component<Props, State> {
           <View style={styles.visitForm}>
             <ScrollView endFillColor="#fff" style={styles.scrollView}>
               <FormRenderer
+                stepIndex={this.state.stepIndex}
+                setStepIndex={this.setStepIndex}
+                onChange={this.props.onChange}
                 form={this.state.visitForm[this.state.stepIndex]}
               />
             </ScrollView>
           </View> : null
         }
 
-			</Container>
+			</View>
 		);
 	}
 }

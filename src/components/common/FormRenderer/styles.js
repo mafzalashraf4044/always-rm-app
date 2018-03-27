@@ -2,6 +2,7 @@ import { StyleSheet, Dimensions } from "react-native";
 import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../../utils";
 
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 const styles: any = StyleSheet.create({
   textbox: {
@@ -20,7 +21,6 @@ const styles: any = StyleSheet.create({
   },
   formView: {
     flex: 1,
-    justifyContent: "space-between",
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
@@ -29,6 +29,9 @@ const styles: any = StyleSheet.create({
   },
   sectionHeadingContainer: {
     marginBottom: getSizeWRTDeviceWidth(15),
+  },
+  spaceBetween: {
+    justifyContent: "space-between",
   },
   sectionHeadingTxt: {
     color: "rgba(233,30,99,1)",
@@ -103,20 +106,20 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(16),
     lineHeight: getSizeWRTDeviceWidth(20),
   },
-  merchInfoTxt: {
+  htmlElementTxt: {
     color: "rgba(155,155,155,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
   },
-  addCompetitorBtn: {
+  addOneMoreBtn: {
     width: getSizeWRTDeviceWidth(200),
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
   },
-  addCompetitorBtnTxt: {
+  addOneMoreBtnTxt: {
     color: "#FFF",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",

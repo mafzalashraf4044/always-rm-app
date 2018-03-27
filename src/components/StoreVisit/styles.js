@@ -9,7 +9,7 @@ const styles: any = StyleSheet.create({
 		height: deviceHeight,
   },
   storeImgContainer: {
-    flex: 0.4,
+    height: 0.4 * deviceHeight,
     justifyContent: "space-between",
     backgroundColor: "rgba(183,183,183,1)",
   },
@@ -44,7 +44,6 @@ const styles: any = StyleSheet.create({
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(20),
     lineHeight: getSizeWRTDeviceWidth(24),
-
   },
   storeManager: {
     color: "rgba(255,255,255,1)",
@@ -63,7 +62,8 @@ const styles: any = StyleSheet.create({
     marginTop: getSizeWRTDeviceWidth(5)
   },
   visitForm: {
-    flex: 0.6,
+    flex: 1,
+    // minHeight: 0.6 * deviceHeight,
     justifyContent: "space-between",
     backgroundColor: "#FFF",
   },

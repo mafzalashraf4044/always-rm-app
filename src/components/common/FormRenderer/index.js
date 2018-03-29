@@ -24,6 +24,7 @@ import { Dropdown } from "../Dropdown";
 
 import { TextField } from "react-native-material-textfield";
 
+const FIRST_INDEX = 0;
 const deviceWidth = Dimensions.get("window").width;
 
 export interface Props {
@@ -44,7 +45,7 @@ class FormRenderer extends React.Component<Props, State> {
     inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
   };
 
-  renderFormFields = (formField, formFieldIndex, formSectionIndex, columnField = null) => {
+  renderFormFields = (formField, formFieldIndex, handleChangeData) => {
     if (formField.type === "textfield" || formField.type === "number") {
       return (
         <TextField
@@ -52,7 +53,7 @@ class FormRenderer extends React.Component<Props, State> {
           value={formField.defaultValue}
           label={formField.label}
           {...this.textFieldProps}
-          onChangeText={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, formSectionIndex, columnField)}
+          onChangeText={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, handleChangeData)}
         />
       );
     } else if (formField.type === "select") {
@@ -63,7 +64,7 @@ class FormRenderer extends React.Component<Props, State> {
           label={formField.label}
           value={formField.defaultValue}
           data={formField.data.values}
-          onChangeText={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, formSectionIndex, columnField)}
+          onChangeText={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, handleChangeData)}
         />
       );
     } else if (formField.type === "checkbox") {
@@ -72,7 +73,7 @@ class FormRenderer extends React.Component<Props, State> {
           <Text style={styles.switchTxt}>{formField.label}</Text>
           <Switch
             value={formField.defaultValue}
-            onToggle={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, formSectionIndex, columnField)}
+            onToggle={(value) => this.props.onChange(value, this.props.stepIndex, formFieldIndex, handleChangeData)}
           />
         </View>
       );
@@ -80,23 +81,82 @@ class FormRenderer extends React.Component<Props, State> {
       return(
         <Text style={styles.htmlElementTxt} key={formField.$$hashKey || formField.key}>{formField.label}</Text>
       )
-    } else if (formField.type === "columns" && formField.columns.length === 2) {
+    }
+
+    return null;
+  }
+
+  renderFormLayout = (formLayout, formLayoutIndex) => {
+    let handleChangeData = {
+      formLayoutIndex,
+      formLayoutType: formLayout.type,
+    };
+    if (formLayout.type === "fieldset") {
       return (
-        <View style={styles.twoColumns} key={formField.$$hashKey || formField.key}>
+        <View style={styles.formLayout} key={formLayout.$$hashKey}>
+          <View style={styles.headingContainer}>
+            <Text style={styles.headingTxt}>{formLayout.legend}</Text>
+          </View>
           {
-            formField.columns.map((column, columnIndex) => {
-              const columnFields = column.components;
-              return (
-                <View style={styles.widthHalf} key={column.$$hashKey}>
-                  {
-                    columnFields.map((columnField, columnFieldIndex) => this.renderFormFields(columnField, formFieldIndex, formSectionIndex, {
-                      columnIndex,
-                      columnField,
-                      columnFieldIndex,
-                    }))
-                  }
-                </View>
-              )
+            formLayout.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, handleChangeData))
+          }
+        </View>
+      );
+    } else if (formLayout.type === "well") {
+      return (
+        <View style={styles.formLayout} key={formLayout.$$hashKey}>
+          {
+            formLayout.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, handleChangeData))
+          }
+        </View>
+      );
+    } else if (formLayout.type === "datagrid") {
+      return (
+        <View style={styles.formLayout} key={formLayout.$$hashKey}>
+          <View style={styles.headingContainer}>
+            <Text style={styles.headingTxt}>{formLayout.label}</Text>
+            <Button onPress={() => this.props.addOneDataGridItem(this.props.stepIndex, formLayoutIndex)} style={styles.addOneMoreBtn}>
+              <Image
+                style={styles.addIcon}
+                source={require("../../../assets/Icons/Light/Add.png")}
+              />
+              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addAnother}</Text>
+            </Button>
+          </View>
+          {
+            formLayout.components.map((table, tableIndex) => {
+              if (table.type === "table") {
+                return (
+                  <View style={styles.table} key={tableIndex}>
+                    {
+                      formLayout.properties.itemTitle ?
+                      <View style={[styles.headingContainer, styles.headingMarginTop]}>
+                        <Text style={styles.headingTxt}>{`${formLayout.properties.itemTitle} ${tableIndex + 1}`}</Text>
+                      </View> : null
+                    }
+                    {
+                      table.rows.map((row, rowIndex) => (
+                        <View style={styles.row} key={rowIndex}>
+                          {
+                            row.map((column, columnIndex, columns) => (
+                              <View style={[styles.column, columns.length === 1 ? styles.oneColumn : styles.twoColumns]} key={columnIndex}>
+                                {
+                                  column.components.map(
+                                    (formField, formFieldIndex) =>
+                                    this.renderFormFields(formField, formFieldIndex, {...handleChangeData, tableIndex, rowIndex, columnIndex})
+                                  )
+                                }
+                              </View>                    
+                            )) 
+                          }
+                        </View>
+                      ))
+                    }
+                  </View>
+                )
+              }
+
+              return null;
             })
           }
         </View>
@@ -106,45 +166,33 @@ class FormRenderer extends React.Component<Props, State> {
     return null;
   }
 
-  renderFormSection = (formSection, formSectionIndex) => {
-    if (formSection.type === "fieldset") {
-      return (
-        <View style={styles.formSection} key={formSection.$$hashKey}>
-          <View style={styles.sectionHeadingContainer}>
-            <Text style={styles.sectionHeadingTxt}>{formSection.legend}</Text>
-          </View>
-          {
-            formSection.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, formSectionIndex))
-          }
-        </View>
-      );
-    } else if (formSection.type === "well") {
-      return (
-        <View style={styles.formSection} key={formSection.$$hashKey}>
-          {
-            formSection.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, formSectionIndex))
-          }
-        </View>
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    const formSections = this.props.form.components;
+    const formLayouts = this.props.form.components;
     
     return (
       <View style={styles.formView}>
         {
-          formSections.map(this.renderFormSection)
+          formLayouts.map(this.renderFormLayout)
         }
 
-        <View style={styles.formActions}>
-          <Button block onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.startBtn}>
-            <Text style={styles.startBtnTxt}>START</Text>
-          </Button>
-        </View>
+        {
+          this.props.stepIndex === FIRST_INDEX ?
+          <View style={styles.formActions}>
+            <Button block onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.startBtn}>
+              <Text style={styles.startBtnTxt}>START</Text>
+            </Button>
+          </View> :
+          <View style={styles.formActions}>
+            <Button onPress={() => this.props.navigation.navigate("Stores")} style={styles.lightBtn}>
+              <Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
+            </Button>
+            <Button onPress={() => this.props.setStepIndex(this.state.stepIndex + 1)} style={styles.darkBtn}>
+              <Text style={styles.darkBtnTxt}>CONTINUE</Text>
+            </Button>
+          </View>
+        }
+
+
       </View>
 		);
 	}

@@ -8,15 +8,21 @@ const styles: any = StyleSheet.create({
   textbox: {
     marginTop: getSizeWRTDeviceWidth(20),
   },
-  oneColumn: {
-  
+  table: {
+    width: "100%",
   },
-  twoColumns: {
+  row: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  widthHalf: {
+  column: {
+
+  },
+  oneColumn: {
+    width: "100%",
+  },
+  twoColumns: {
     width: "48%",
   },
   formView: {
@@ -24,16 +30,19 @@ const styles: any = StyleSheet.create({
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
-  formSection: {
+  formLayout: {
     marginVertical: getSizeWRTDeviceWidth(15),
   },
-  sectionHeadingContainer: {
+  headingContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: getSizeWRTDeviceWidth(15),
   },
-  spaceBetween: {
-    justifyContent: "space-between",
+  headingMarginTop: {
+    marginTop: getSizeWRTDeviceWidth(15),
   },
-  sectionHeadingTxt: {
+  headingTxt: {
     color: "rgba(233,30,99,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
@@ -114,7 +123,7 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
   },
   addOneMoreBtn: {
-    width: getSizeWRTDeviceWidth(200),
+    width: getSizeWRTDeviceWidth(146),
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",

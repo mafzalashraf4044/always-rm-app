@@ -161,6 +161,40 @@ class FormRenderer extends React.Component<Props, State> {
           }
         </View>
       );
+    } else if (formLayout.type === "panel") {
+      const table = formLayout.components[FIRST_INDEX];
+
+      if (table.type === "table"){ 
+        return (
+          <View style={styles.formLayout} key={formLayout.$$hashKey}>
+            <View style={styles.headingContainer}>
+              <Text style={styles.headingTxt}>{formLayout.title}</Text>
+            </View>
+            <View style={styles.table} key={table.$$hashKey}>
+              {
+                table.rows.map((row, rowIndex) => (
+                  <View style={styles.row} key={rowIndex}>
+                    {
+                      row.map((column, columnIndex, columns) => (
+                        <View style={[styles.column, columns.length === 1 ? styles.oneColumn : styles.twoColumns]} key={columnIndex}>
+                          {
+                            column.components.map(
+                              (formField, formFieldIndex) =>
+                              this.renderFormFields(formField, formFieldIndex, {...handleChangeData, isTable: true, rowIndex, columnIndex})
+                            )
+                          }
+                        </View>                    
+                      )) 
+                    }
+                  </View>
+                ))
+              }
+            </View>
+          </View>
+        );
+      }
+
+      return null;
     }
 
     return null;

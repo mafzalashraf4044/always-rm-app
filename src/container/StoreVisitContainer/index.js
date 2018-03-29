@@ -48,6 +48,9 @@ class StoreVisitContainer extends React.Component<Props, State> {
 			if (isTable) {
 				_visitForm[stepIndex].components[formLayoutIndex].components[FIRST_INDEX].rows[rowIndex][columnIndex].components[formFieldIndex].defaultValue = value;
 			}
+		} else if (formLayoutType === "datagrid") {
+			const {tableIndex, rowIndex, columnIndex} = handleChangeData;
+			_visitForm[stepIndex].components[formLayoutIndex].components[tableIndex].rows[rowIndex][columnIndex].components[formFieldIndex].defaultValue = value;
 		}
 
 		this.setState({

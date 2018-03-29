@@ -14,6 +14,8 @@ import FormRenderer from "../common/FormRenderer";
 import styles from "./styles";
 import { getSizeWRTDeviceWidth } from "../../utils";
 
+const FIRST_INDEX = 0;
+
 export interface Props {
   navigation: any,
 }
@@ -26,15 +28,7 @@ class StoreVisit extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			isStoreImgContainerVisible: true,
-      // steps: [
-      //   {title: "RSPs"},
-      //   {title: "Training"},
-      //   {title: "Merchandising"},
-      //   {title: "Competitor Analysis"},
-      //   {title: "Store Analysis"},
-      // ],
       stepIndex: -1,
-
     };
 	}
   
@@ -59,7 +53,7 @@ class StoreVisit extends React.Component<Props, State> {
 
   getTitle = () => {
     if (this.state.stepIndex !== -1) {
-      return `Step ${this.state.stepIndex + 1}: ${this.state.visitForm[this.state.stepIndex].title}`;
+      return this.state.visitForm[this.state.stepIndex].title;
     }
 
     return "";
@@ -117,6 +111,7 @@ class StoreVisit extends React.Component<Props, State> {
                 stepIndex={this.state.stepIndex}
                 setStepIndex={this.setStepIndex}
                 onChange={this.props.onChange}
+                addOneDataGridItem={this.props.addOneDataGridItem}
                 form={this.state.visitForm[this.state.stepIndex]}
               />
             </ScrollView>

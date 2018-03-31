@@ -81,6 +81,23 @@ class FormRenderer extends React.Component<Props, State> {
       return(
         <Text style={styles.htmlElementTxt} key={formField.$$hashKey || formField.key}>{formField.label}</Text>
       )
+    } else if (formField.type === "file") {
+      return (
+        <ImageGrid
+          isAddEnabled
+          key={formField.$$hashKey || formField.key}
+          // images={[
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          //   require("../../../assets/Images/grid-img.jpg"),
+          // ]}
+        />
+      );
     }
 
     return null;
@@ -217,10 +234,13 @@ class FormRenderer extends React.Component<Props, State> {
             </Button>
           </View> :
           <View style={styles.formActions}>
-            <Button onPress={() => this.props.navigation.navigate("Stores")} style={styles.lightBtn}>
+            <Button onPress={() => {
+              this.props.saveFormToAsyncStorage();
+              this.props.navigation.navigate("Stores")
+            }} style={styles.lightBtn}>
               <Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
             </Button>
-            <Button onPress={() => this.props.setStepIndex(this.state.stepIndex + 1)} style={styles.darkBtn}>
+            <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
               <Text style={styles.darkBtnTxt}>CONTINUE</Text>
             </Button>
           </View>

@@ -111,8 +111,10 @@ class StoreVisit extends React.Component<Props, State> {
                 stepIndex={this.state.stepIndex}
                 setStepIndex={this.setStepIndex}
                 onChange={this.props.onChange}
+                navigation={this.props.navigation}
                 addOneDataGridItem={this.props.addOneDataGridItem}
                 form={this.state.visitForm[this.state.stepIndex]}
+                saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               />
             </ScrollView>
           </View> : null

@@ -6,12 +6,13 @@ const deviceWidth = Dimensions.get("window").width;
 const styles: any = StyleSheet.create({
   imageGrid: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "flex-start",
     flexWrap: "wrap",
   },
   imgContainer: {
     marginBottom: getSizeWRTDeviceWidth(4),
+    marginRight: getSizeWRTDeviceWidth(4),
     width: ((deviceWidth - getSizeWRTDeviceWidth(30)) / 3) - getSizeWRTDeviceWidth(4),
     height: ((deviceWidth - getSizeWRTDeviceWidth(30)) / 3) - getSizeWRTDeviceWidth(4),
   },
@@ -45,6 +46,6 @@ const styles: any = StyleSheet.create({
   addBtnIcon: {
 		width: getSizeWRTDeviceWidth(30),
 		resizeMode: "cover",
-  },
+  }
 });
 export default styles;

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "sdkVersion": "24.0.0",
+    "sdkVersion": "26.0.0",
     "name": "Always RM",
-    "icon": "./icon-always.png",
+    "icon": "./Calendar.png",
     "version": "1.0.0",
     "slug": "always-rm",
     "orientation": "portrait",
@@ -11,9 +11,9 @@
       "assetExts": ["ttf"]
     },
     "splash": {
-        "backgroundColor": "#ffffff",
-        "image": "./splash-screen.png",
-        "resizeMode": "cover"
+      "backgroundColor": "#ffffff",
+      "image": "./splash-screen.png",
+      "resizeMode": "cover"
     },
     "androidStatusBarColor": "#334393",
     "androidStatusBar": {

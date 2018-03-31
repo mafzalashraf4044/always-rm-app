@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
+import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import StoreVisit from "../../components/StoreVisit";
 
 // import { fetchList } from "./actions";
 
-import { visitForm } from "./data";
+import { visitFormTemplate } from "./data";
 
 const FIRST_INDEX = 0;
 
@@ -20,8 +21,33 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visitForm,
+			visitForm: null,
 		};
+	}
+
+	componentDidMount() {
+		try {
+      AsyncStorage.getItem('visitForm').then((visitForm) => {
+				if (visitForm === null){
+					AsyncStorage.setItem('visitForm', JSON.stringify(visitFormTemplate));
+					this.setState({
+						visitForm: visitFormTemplate,
+					});			
+        } else {
+					AsyncStorage.getItem('visitForm').then((visitForm) => {
+						if (visitForm !== null){
+							this.setState({
+								visitForm: JSON.parse(visitForm),
+							});
+						}
+					});
+				}
+      });
+    } catch (error) {
+			// alert(JSON.stringify(error))
+			// Error retrieving data
+			throw new Error (error);
+    }
 	}
 
 	addOneDataGridItem = (stepIndex, formLayoutIndex) => {
@@ -56,18 +82,26 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		this.setState({
 			visitForm: _visitForm,
 		});
+	}
 
+	saveFormToAsyncStorage = () => {
+		AsyncStorage.setItem('visitForm', JSON.stringify(this.state.visitForm));
 	}
 
 	render() {
-		return (
-			<StoreVisit
-				onChange={this.onChange}
-				visitForm={this.state.visitForm}
-				navigation={this.props.navigation}
-				addOneDataGridItem={this.addOneDataGridItem}
-			/>
-		);
+		if (this.state.visitForm) {
+			return (
+				<StoreVisit
+					onChange={this.onChange}
+					visitForm={this.state.visitForm}
+					navigation={this.props.navigation}
+					addOneDataGridItem={this.addOneDataGridItem}
+					saveFormToAsyncStorage={this.saveFormToAsyncStorage}
+				/>
+			);
+		}
+
+		return null;
 	}
 }
 

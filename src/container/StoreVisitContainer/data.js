@@ -1,4 +1,4 @@
-export const visitForm =
+export const visitFormTemplate =
 
   [{
     type: "panel",
@@ -192,94 +192,85 @@ export const visitForm =
         key: "page2PanelTable",
         numRows: 1,
         numCols: 2,
-        rows: [
-          [
-            {
-              components: [{
-              autofocus: false,
-              input: true,
-              tableView: true,
-              inputType: "text",
-              inputMask: "",
-              label: "Manager Name",
-              key: "page2PanelTableManagerName",
-              placeholder: "",
-              prefix: "",
-              suffix: "",
-              multiple: false,
-              defaultValue: "",
-              protected: false,
-              unique: false,
-              persistent: true,
-              hidden: false,
-              clearOnHide: true,
-              spellcheck: true,
-              validate: {
-                required: false,
-                minLength: "",
-                maxLength: "",
-                pattern: "",
-                custom: "",
-                customPrivate: false
-              },
-              conditional: {
-                show: "",
-                when: null,
-                eq: ""
-              },
-              type: "textfield",
-              labelPosition: "top",
-              tags: [],
-              properties: {},
-              $$hashKey: "object:7542"
-              }
-              ],
-              $$hashKey: "object:7532"
+        rows: [[{components: [{
+            autofocus: false,
+            input: true,
+            tableView: true,
+            inputType: "text",
+            inputMask: "",
+            label: "Manager Name",
+            key: "page2PanelTableManagerName",
+            placeholder: "",
+            prefix: "",
+            suffix: "",
+            multiple: false,
+            defaultValue: "",
+            protected: false,
+            unique: false,
+            persistent: true,
+            hidden: false,
+            clearOnHide: true,
+            spellcheck: true,
+            validate: {
+              required: false,
+              minLength: "",
+              maxLength: "",
+              pattern: "",
+              custom: "",
+              customPrivate: false
             },
-        
-            {
-              components: [{
-                autofocus: false,
-                input: true,
-                tableView: true,
-                inputType: "text",
-                inputMask: "",
-                label: "Manager Contact",
-                key: "page2PanelTableManagerContact",
-                placeholder: "",
-                prefix: "",
-                suffix: "",
-                multiple: false,
-                defaultValue: "",
-                protected: false,
-                unique: false,
-                persistent: true,
-                hidden: false,
-                clearOnHide: true,
-                spellcheck: true,
-                validate: {
-                  required: false,
-                  minLength: "",
-                  maxLength: "",
-                  pattern: "",
-                  custom: "",
-                  customPrivate: false
-                },
-                conditional: {
-                  show: "",
-                  when: null,
-                  eq: ""
-                },
-                type: "textfield",
-                labelPosition: "top",
-                tags: [],
-                properties: {},
-                $$hashKey: "object:7546"
-              }],
-              $$hashKey: "object:7533"
-            }
-          ]
-        ],
+            conditional: {
+              show: "",
+              when: null,
+              eq: ""
+            },
+            type: "textfield",
+            labelPosition: "top",
+            tags: [],
+            properties: {},
+            $$hashKey: "object:7542"
+          }],
+          $$hashKey: "object:7532"
+        }, {components: [{
+            autofocus: false,
+            input: true,
+            tableView: true,
+            inputType: "text",
+            inputMask: "",
+            label: "Manager Contact",
+            key: "page2PanelTableManagerContact",
+            placeholder: "",
+            prefix: "",
+            suffix: "",
+            multiple: false,
+            defaultValue: "",
+            protected: false,
+            unique: false,
+            persistent: true,
+            hidden: false,
+            clearOnHide: true,
+            spellcheck: true,
+            validate: {
+              required: false,
+              minLength: "",
+              maxLength: "",
+              pattern: "",
+              custom: "",
+              customPrivate: false
+            },
+            conditional: {
+              show: "",
+              when: null,
+              eq: ""
+            },
+            type: "textfield",
+            labelPosition: "top",
+            tags: [],
+            properties: {},
+            $$hashKey: "object:7546"
+          }],
+          $$hashKey: "object:7533"
+        }]],
         header: [],
         caption: "",
         striped: false,
@@ -505,6 +496,9 @@ export const visitForm =
           show: "",
           when: null,
           eq: ""
+        },
+        properties: {
+          itemTitle: "RSP"
         },
         label: "page2CurrentRspListTable",
         lockKey: true
@@ -788,6 +782,116 @@ export const visitForm =
       },
       properties: {},
       addAnother: "ADD COURSE"
+    }, {
+      clearOnHide: false,
+      key: "page3Well",
+      input: false,
+      components: [{
+        autofocus: false,
+        input: true,
+        inputType: "checkbox",
+        tableView: true,
+        label: "IPOX/RXT Installation Images",
+        dataGridLabel: false,
+        key: "page3WellIpoxrxtInstallationImages",
+        defaultValue: false,
+        protected: false,
+        persistent: true,
+        hidden: false,
+        name: "",
+        value: "",
+        clearOnHide: true,
+        validate: {
+          required: false
+        },
+        type: "checkbox",
+        labelPosition: "right",
+        $$hashKey: "object:9370",
+        hideLabel: false,
+        tags: [],
+        conditional: {
+          show: "",
+          when: null,
+          eq: ""
+        },
+        properties: {}
+      }, {
+        autofocus: false,
+        input: true,
+        tableView: true,
+        label: "page3WellFile",
+        key: "page3WellFile",
+        image: false,
+        imageSize: "200",
+        placeholder: "",
+        multiple: false,
+        defaultValue: "",
+        protected: false,
+        persistent: true,
+        hidden: false,
+        clearOnHide: true,
+        filePattern: "*",
+        fileMinSize: "0KB",
+        fileMaxSize: "1GB",
+        type: "file",
+        $$hashKey: "object:9760",
+        labelPosition: "top",
+        tags: [],
+        conditional: {
+          show: "",
+          when: null,
+          eq: ""
+        },
+        properties: {},
+        hideLabel: true
+      }, {
+        autofocus: false,
+        input: true,
+        tableView: true,
+        label: "Description",
+        key: "page3WellDescription",
+        placeholder: "",
+        prefix: "",
+        suffix: "",
+        rows: 3,
+        multiple: false,
+        defaultValue: "",
+        protected: false,
+        persistent: true,
+        hidden: false,
+        wysiwyg: false,
+        clearOnHide: true,
+        spellcheck: true,
+        validate: {
+          required: false,
+          minLength: "",
+          maxLength: "",
+          pattern: "",
+          custom: ""
+        },
+        type: "textarea",
+        $$hashKey: "object:9562",
+        labelPosition: "top",
+        tags: [],
+        conditional: {
+          show: "",
+          when: null,
+          eq: ""
+        },
+        properties: {}
+      }],
+      tableView: false,
+      type: "well",
+      $$hashKey: "object:9230",
+      hideLabel: true,
+      tags: [],
+      conditional: {
+        show: "",
+        when: null,
+        eq: ""
+      },
+      properties: {},
+      label: "page3Well"
     }],
     input: false,
     key: "page3",

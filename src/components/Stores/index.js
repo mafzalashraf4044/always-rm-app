@@ -72,18 +72,22 @@ class Stores extends React.Component<Props, State> {
 					<Tab heading="Outstanding">
 						<Container>
 							<Content>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
+								{
+									this.props.stores.map((store, index) => (
+										<StoreCard navigation={this.props.navigation} store={store} key={index} />
+									))
+								}
 							</Content>
 						</Container>
 					</Tab>
 					<Tab heading="Today">
 						<Container>
 							<Content>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
+								{
+									this.props.stores.map((store, index) => (
+										<StoreCard navigation={this.props.navigation} store={store} key={index} />
+									))
+								}
 							</Content>
 						</Container>
 					</Tab>
@@ -91,9 +95,11 @@ class Stores extends React.Component<Props, State> {
 						<Container>
 							<StoreFilter />
 							<Content style={styles.tabContentWithFilter}>
-								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
-								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
-								<StoreCard navigation={this.props.navigation} reassignAvailable toggleReassignModal={this.toggleReassignModal}/>
+								{
+									this.props.stores.map((store, index) => (
+										<StoreCard navigation={this.props.navigation} store={store} key={index} reassignAvailable toggleReassignModal={this.toggleReassignModal} />
+									))
+								}
 							</Content>
 						</Container>
 					</Tab>
@@ -101,9 +107,11 @@ class Stores extends React.Component<Props, State> {
 						<Container>
 							<StoreFilter />
 							<Content style={styles.tabContentWithFilter}>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
-								<StoreCard navigation={this.props.navigation}/>
+								{
+									this.props.stores.map((store, index) => (
+										<StoreCard navigation={this.props.navigation} store={store} key={index} />
+									))
+								}
 							</Content>
 						</Container>
 					</Tab>

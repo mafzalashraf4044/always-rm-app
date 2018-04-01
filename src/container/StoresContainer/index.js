@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import Stores from "../../components/Stores";
 
-// import { fetchList } from "./actions";
+import { getStores } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -12,8 +12,26 @@ export interface Props {
 export interface State {}
 
 class StoresContainer extends React.Component<Props, State> {
+
+	state = {stores: []};
+
+	componentDidMount() {
+		this.props.getStores().then((res) => {
+			if (res.status === 200) {
+				this.setState({
+					stores: res.data,
+				});
+			}
+		});
+	}
+
 	render() {
-		return <Stores navigation={this.props.navigation} />;
+		return (
+			<Stores
+				stores={this.state.stores}	
+				navigation={this.props.navigation}
+			/>
+		);
 	}
 }
 
@@ -23,7 +41,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchList: url => dispatch(fetchList(url)),
+		getStores: () => dispatch(getStores()),
 	};
 };
 

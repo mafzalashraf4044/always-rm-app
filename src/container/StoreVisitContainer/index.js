@@ -38,7 +38,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 					this.props.setIsLoading(false);	
         } else {
 					AsyncStorage.getItem('visitForm').then((visitForm) => {
-						if (visitForm !== null){
+						if (visitForm !== null) {
 							this.setState({
 								visitForm: JSON.parse(visitForm),
 							});

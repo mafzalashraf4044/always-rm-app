@@ -45,6 +45,8 @@ class StoreCard extends Component {
   }
 
   render() {
+    const {store} = this.props;
+    
     return (
       <View style={styles.card}>
         <View style={styles.imgContainer}>
@@ -54,10 +56,10 @@ class StoreCard extends Component {
           />
           <View style={styles.storeInfo}>
             <View style={styles.infoText}>
-              <Text style={styles.storeID}>Store ID: 124124</Text>
-              <Text style={styles.storeName}>Hervy Norman</Text>
-              <Text style={styles.storeManager}>Store Manager: Alwyn Lao</Text>
-              <Text style={styles.lastSaved}>Last saved on 14/02/2018 / 1:24:11pm</Text>
+              <Text style={styles.storeID}>Store ID: {store.storeId}</Text>
+              <Text style={styles.storeName}>{store.name}</Text>
+              <Text style={styles.storeManager}>Store Manager: {store.primaryManagerName}</Text>
+              <Text style={styles.lastSaved}>Last saved on {store.modifiedAt}</Text>
             </View>
             <View style={styles.editIconContainer}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true})}>
@@ -71,9 +73,9 @@ class StoreCard extends Component {
         </View>
         <View style={styles.cardBody}>
           <View style={styles.extraInfo}>
-            <Text style={styles.address}>960 Yishun Central # B2-101/102 S(760960)</Text>
-            <Text style={styles.address}>Northpoint Shopping Center</Text>
-            <Text style={styles.address}>Singapore</Text>
+            <Text style={styles.address}>{store.addressLine1}</Text>
+            <Text style={styles.address}>{store.addressLine2}</Text>
+            <Text style={styles.address}>{store.country}</Text>
             <Text style={styles.stepsCompleted}>Step 2 of 5 completed</Text>
           </View>
 

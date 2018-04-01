@@ -7,6 +7,7 @@ export default (state: any = initialState, action: any) => {
   switch (action.type) {
     case "IS_LOADING":
     case "SET_USER":
+    case "SET_JWT_TOKEN":
       return {
         ...state,
         ...action.payload,

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { ImagePicker, FileSystem, Permissions } from 'expo';
+import { ImagePicker, FileSystem } from 'expo';
 
 import styles from "./styles";
 
@@ -20,14 +20,7 @@ export interface State {}
 
 class ImageGrid extends React.Component<Props, State> {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: [],
-    };
-  }
-
-  _pickImage = async () => {
+  captureImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: false,
     });
@@ -36,9 +29,9 @@ class ImageGrid extends React.Component<Props, State> {
       try {
         FileSystem.copyAsync({
           from: result.uri,
-          to: `${FileSystem.documentDirectory}image.jpg`,
+          to: `${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`,
         }).then(() => {
-          this.setState({ images: [...this.state.images, `${FileSystem.documentDirectory}image.jpg`] });
+          this.props.saveCapturedImg(`${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`);
         });
       } catch (e) {
         alert(JSON.stringify(e));
@@ -50,7 +43,7 @@ class ImageGrid extends React.Component<Props, State> {
     return (
       <View style={styles.imageGrid}>
         {
-          this.state.images.map((image, index) => (
+          this.props.images.map((image, index) => (
             <View style={[styles.imgContainer]} key={index}>
               <Image
                 style={styles.img}
@@ -62,7 +55,7 @@ class ImageGrid extends React.Component<Props, State> {
         {
           this.props.isAddEnabled &&
           <View style={styles.addBtnContainer}>
-            <TouchableOpacity onPress={this._pickImage} style={styles.addBtn}>
+            <TouchableOpacity onPress={this.captureImage} style={styles.addBtn}>
               <Image
                 style={styles.addBtnIcon}
                 source={require("../../../assets/Icons/Light/Add.png")}

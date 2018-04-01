@@ -34,7 +34,6 @@ class StoreVisit extends React.Component<Props, State> {
   
   componentDidMount() {
     this.setState(prevState => ({
-      visitForm: this.props.visitForm,
       stepIndex: prevState.stepIndex + 1,
     }));
   }
@@ -42,6 +41,8 @@ class StoreVisit extends React.Component<Props, State> {
   setStepIndex = (stepIndex) => {
     this.setState({
       stepIndex,
+    }, () => {
+      this.scrollView.scrollTo({y: 0, animated: false});
     });
   }
 
@@ -53,19 +54,21 @@ class StoreVisit extends React.Component<Props, State> {
 
   getTitle = () => {
     if (this.state.stepIndex !== -1) {
-      return this.state.visitForm[this.state.stepIndex].title;
+      return this.props.visitForm[this.state.stepIndex].title;
     }
 
     return "";
   }
 
   goBack = () => {
-    if (this.state.stepIndex === -1) {
+    if (this.state.stepIndex === 0) {
       this.props.navigation.goBack();
     } else {
       this.setState(prevState => ({
         stepIndex: prevState.stepIndex - 1,
-      }));
+      }), () => {
+        this.scrollView.scrollTo({y: 0, animated: false});
+      });
     }
   }
 
@@ -106,14 +109,20 @@ class StoreVisit extends React.Component<Props, State> {
         {
           this.state.stepIndex !== -1 ?
           <View style={styles.visitForm}>
-            <ScrollView endFillColor="#fff" style={styles.scrollView}>
+            <ScrollView
+              endFillColor="#fff"
+              style={styles.scrollView}
+              ref={(scrollView) => this.scrollView = scrollView}
+            >
               <FormRenderer
                 stepIndex={this.state.stepIndex}
                 setStepIndex={this.setStepIndex}
                 onChange={this.props.onChange}
+                stepsLength={this.props.visitForm.length}
                 navigation={this.props.navigation}
+                saveCapturedImg={this.props.saveCapturedImg}
                 addOneDataGridItem={this.props.addOneDataGridItem}
-                form={this.state.visitForm[this.state.stepIndex]}
+                form={this.props.visitForm[this.state.stepIndex]}
                 saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               />
             </ScrollView>

@@ -51,7 +51,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	}
 
 	addOneDataGridItem = (stepIndex, formLayoutIndex) => {
-		const dataGridTemplate = visitForm[stepIndex].components[formLayoutIndex].components[FIRST_INDEX]
+		const dataGridTemplate = visitFormTemplate[stepIndex].components[formLayoutIndex].components[FIRST_INDEX];
 		const dataGridItems = this.state.visitForm[stepIndex].components[formLayoutIndex].components;
 		const _visitForm = this.state.visitForm;
 		_visitForm[stepIndex].components[formLayoutIndex].components = [...dataGridItems, dataGridTemplate];
@@ -67,7 +67,18 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		const _visitForm = this.state.visitForm;
 
 		if (formLayoutType === "fieldset" || formLayoutType === "well") {
-			_visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].defaultValue = value;
+			const fieldType = _visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].type;
+
+			if (fieldType === "file") {
+				if (_visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].images) {
+					_visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].images =
+						[..._visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].images, value];
+				} else {
+					_visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].images = [value];
+				}
+			} else {
+				_visitForm[stepIndex].components[formLayoutIndex].components[formFieldIndex].defaultValue = value;
+			}
 		} else if (formLayoutType === "panel") {
 			const {isTable, rowIndex, columnIndex} = handleChangeData;
 
@@ -84,6 +95,13 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
+	saveCapturedImg = (image, stepIndex, formFieldIndex, handleChangeData) => {
+		const {formLayoutIndex, formLayoutType} = handleChangeData;
+
+		const _visitForm = this.state.visitForm;
+
+	}
+
 	saveFormToAsyncStorage = () => {
 		AsyncStorage.setItem('visitForm', JSON.stringify(this.state.visitForm));
 	}
@@ -95,6 +113,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 					onChange={this.onChange}
 					visitForm={this.state.visitForm}
 					navigation={this.props.navigation}
+					saveCapturedImg={this.saveCapturedImg}
 					addOneDataGridItem={this.addOneDataGridItem}
 					saveFormToAsyncStorage={this.saveFormToAsyncStorage}
 				/>

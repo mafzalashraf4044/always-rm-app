@@ -85,17 +85,10 @@ class FormRenderer extends React.Component<Props, State> {
       return (
         <ImageGrid
           isAddEnabled
+          images={formField.images || []}
           key={formField.$$hashKey || formField.key}
-          // images={[
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          //   require("../../../assets/Images/grid-img.jpg"),
-          // ]}
+          uniqueKey={formField.$$hashKey || formField.key}
+          saveCapturedImg={(image) => this.props.onChange(image, this.props.stepIndex, formFieldIndex, handleChangeData)}
         />
       );
     }
@@ -217,6 +210,16 @@ class FormRenderer extends React.Component<Props, State> {
     return null;
   }
 
+  continue = () => {
+    this.props.saveFormToAsyncStorage();
+    this.props.setStepIndex(this.props.stepIndex + 1);
+  }
+
+  saveAndExit = () => {
+    this.props.saveFormToAsyncStorage();
+    this.props.navigation.navigate("Stores");
+  }
+
   render() {
     const formLayouts = this.props.form.components;
     
@@ -229,24 +232,22 @@ class FormRenderer extends React.Component<Props, State> {
         {
           this.props.stepIndex === FIRST_INDEX ?
           <View style={styles.formActions}>
-            <Button block onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.startBtn}>
+            <Button block onPress={this.continue} style={styles.startBtn}>
               <Text style={styles.startBtnTxt}>START</Text>
             </Button>
           </View> :
           <View style={styles.formActions}>
-            <Button onPress={() => {
-              this.props.saveFormToAsyncStorage();
-              this.props.navigation.navigate("Stores")
-            }} style={styles.lightBtn}>
+            <Button onPress={this.saveAndExit} style={styles.lightBtn}>
               <Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
             </Button>
-            <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
-              <Text style={styles.darkBtnTxt}>CONTINUE</Text>
-            </Button>
+            {
+              (this.props.stepIndex !== this.props.stepsLength - 1) ?
+              <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
+                <Text style={styles.darkBtnTxt}>CONTINUE</Text>
+              </Button> : null
+            }
           </View>
         }
-
-
       </View>
 		);
 	}

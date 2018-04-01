@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import StoreVisit from "../../components/StoreVisit";
 
-// import { fetchList } from "./actions";
+import { setIsLoading } from "../../actions";
 
 import { visitFormTemplate } from "./data";
 
@@ -23,6 +23,8 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		this.state = {
 			visitForm: null,
 		};
+
+		this.props.setIsLoading(true);
 	}
 
 	componentDidMount() {
@@ -32,13 +34,15 @@ class StoreVisitContainer extends React.Component<Props, State> {
 					AsyncStorage.setItem('visitForm', JSON.stringify(visitFormTemplate));
 					this.setState({
 						visitForm: visitFormTemplate,
-					});			
+					});
+					this.props.setIsLoading(false);	
         } else {
 					AsyncStorage.getItem('visitForm').then((visitForm) => {
 						if (visitForm !== null){
 							this.setState({
 								visitForm: JSON.parse(visitForm),
 							});
+							this.props.setIsLoading(false);
 						}
 					});
 				}
@@ -130,7 +134,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchList: url => dispatch(fetchList(url)),
+    setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
 	};
 };
 

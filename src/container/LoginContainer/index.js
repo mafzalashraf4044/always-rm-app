@@ -72,7 +72,7 @@ class LoginContainer extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-	isLoading: state.reducer.isLoading,
+	// isLoading: state.reducer.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -4,7 +4,7 @@ import { Image } from "react-native";
 import { StyleProvider } from "native-base";
 import { Provider } from "react-redux";
 
-import configureStore from "./configureStore";
+import store from "./configureStore";
 import App from "../App";
 import getTheme from "../theme/components";
 import variables from "../theme/variables/material";
@@ -34,7 +34,7 @@ export default class Setup extends React.Component<Props, State> {
 		super();
 		this.state = {
 			isLoading: false,
-			store: configureStore(() => this.setState({ isLoading: false })),
+			// store: configureStore(() => this.setState({ isLoading: false })),
 			isReady: false,
 		};
 	}
@@ -73,7 +73,7 @@ export default class Setup extends React.Component<Props, State> {
   }
 
 	render() {
-		if (!this.state.isReady || this.state.isLoading) {
+		if (!this.state.isReady) {
       return (
         <Expo.AppLoading
           startAsync={this._loadAssetsAsync}
@@ -84,7 +84,7 @@ export default class Setup extends React.Component<Props, State> {
 		
 		return (
 			<StyleProvider style={getTheme(variables)}>
-				<Provider store={this.state.store}>
+				<Provider store={store}>
 					<App />
 				</Provider>
 			</StyleProvider>

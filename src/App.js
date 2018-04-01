@@ -3,6 +3,9 @@ import React from "react";
 import { Dimensions } from "react-native";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { Root } from "native-base";
+
+import Loader from "./container/LoaderContainer";
+
 import Login from "./container/LoginContainer";
 import ForgotPwd from "./container/ForgotPwdContainer";
 
@@ -15,6 +18,12 @@ import SearchStores from "./container/SearchStoresContainer";
 import StoreVisit from "./container/StoreVisitContainer";
 
 const deviceWidth = Dimensions.get("window").width;
+
+// const _XHR = GLOBAL.originalXMLHttpRequest ?  
+//     GLOBAL.originalXMLHttpRequest :           
+//     GLOBAL.XMLHttpRequest                     
+
+// XMLHttpRequest = _XHR
 
 const AuthNavigator = StackNavigator(
 	{
@@ -66,5 +75,6 @@ const App = StackNavigator(
 export default () => (
 	<Root>
 		<App />
+		<Loader />
 	</Root>
 );

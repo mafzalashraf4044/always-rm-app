@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import Login from "../../components/Login";
 
-import { login } from "../../actions";
+import { login, setIsLoading } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -18,10 +18,12 @@ class LoginContainer extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			errMessage: "",
-		};
+    };
+
+    this.props.setIsLoading(true);
 	}
 
-  componentWillMount() {
+  componentDidMount() {
     this.checkIfLoggedIn();
   }
 
@@ -31,9 +33,12 @@ class LoginContainer extends React.Component<Props, State> {
         if (user !== null){
           this.props.navigation.navigate("Drawer");
         }
+
+        this.props.setIsLoading(false);
       });
     } catch (error) {
       // Error retrieving data
+      this.props.setIsLoading(false);
     }
   }
 
@@ -73,6 +78,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
 	return {
     login: (email, pwd) => dispatch(login(email, pwd)),
+    setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
 	};
 };
 

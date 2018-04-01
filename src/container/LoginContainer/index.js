@@ -45,8 +45,14 @@ class LoginContainer extends React.Component<Props, State> {
   onLogin = (email, pwd) => {
 		this.props.login(email, pwd).then((res) => {
 			if (res.status === 200) {
-				AsyncStorage.setItem('user', JSON.stringify(res.data.user));
-				this.props.navigation.navigate("Drawer");
+        AsyncStorage.multiSet([
+            ['user', JSON.stringify(res.data.user)],
+            ['jwtToken', JSON.stringify(res.data.jwt)]
+          ],
+          () => {
+            this.props.navigation.navigate("Drawer");
+          }
+        );
       }
     }).catch((err) => {
       this.setErrMessage("You have keyed in a wrong email/password");

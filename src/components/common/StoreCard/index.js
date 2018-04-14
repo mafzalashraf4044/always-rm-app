@@ -46,7 +46,7 @@ class StoreCard extends Component {
 
   render() {
     const {store} = this.props;
-    
+
     return (
       <View style={styles.card}>
         <View style={styles.imgContainer}>
@@ -62,7 +62,7 @@ class StoreCard extends Component {
               <Text style={styles.lastSaved}>Last saved on {store.modifiedAt}</Text>
             </View>
             <View style={styles.editIconContainer}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true})}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true, store})}>
                 <Image
                   style={styles.editIcon}
                   source={require("../../../assets/Icons/Light/Edit.png")}

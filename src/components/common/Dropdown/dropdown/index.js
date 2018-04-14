@@ -523,7 +523,8 @@ export default class Dropdown extends PureComponent {
         renderAccessory={renderAccessory}
         fontSize={getSizeWRTDeviceWidth(14)}
         labelFontSize={getSizeWRTDeviceWidth(14) - 2}
-        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)}}
+        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10),}}
+        labelTextStyle={{top: getSizeWRTDeviceWidth(-3)}}
       />
     );
   }

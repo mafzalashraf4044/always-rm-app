@@ -19,11 +19,11 @@ import StoreVisit from "./container/StoreVisitContainer";
 
 const deviceWidth = Dimensions.get("window").width;
 
-// const _XHR = GLOBAL.originalXMLHttpRequest ?  
-//     GLOBAL.originalXMLHttpRequest :           
-//     GLOBAL.XMLHttpRequest                     
+const _XHR = GLOBAL.originalXMLHttpRequest ?  
+    GLOBAL.originalXMLHttpRequest :           
+    GLOBAL.XMLHttpRequest                     
 
-// XMLHttpRequest = _XHR
+XMLHttpRequest = _XHR
 
 const AuthNavigator = StackNavigator(
 	{

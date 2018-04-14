@@ -27,6 +27,13 @@ export const setJWTToken = (jwtToken: any) => {
 	};
 }
 
+export const saveCountries = (countries: any) => {
+	return {
+		type: "SAVE_COUNTRIES",
+		payload: { countries },
+	};
+}
+
 export const login = (email, pwd) => {
 	return dispatch => {
 		return axios.post(`${API_URL}/auth/local`, {identifier: email, password: pwd});
@@ -45,9 +52,15 @@ export const resetPwd = (email , password, passwordConfirmation) => {
 	};
 }
 
+export const getCountries = () => {
+	return dispatch => {
+		return axios.get(`${API_URL}/countries`, getAuthHeader());
+	};
+}
+
 export const getStores = () => {
 	return dispatch => {
-		return axios.get(`${API_URL}/content-manager/api/explorer/stores`, getAuthHeader());
+		return axios.get(`${API_URL}/content-manager/api/explorer/planners`, getAuthHeader());
 	};
 }
 

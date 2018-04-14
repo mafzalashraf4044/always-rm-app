@@ -1,6 +1,7 @@
 const initialState = {
   isLoading: false,
   user: null,
+  countries: [],
 };
 
 export default (state: any = initialState, action: any) => {
@@ -8,6 +9,7 @@ export default (state: any = initialState, action: any) => {
     case "IS_LOADING":
     case "SET_USER":
     case "SET_JWT_TOKEN":
+    case "SAVE_COUNTRIES":
       return {
         ...state,
         ...action.payload,

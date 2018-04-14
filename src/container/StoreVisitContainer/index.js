@@ -21,7 +21,39 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visitForm: null,
+			formTemplate: null,
+			formData: {
+				storeStatus: "",
+				visitNumber: "",
+				noOfRspsOnDutyDuringVisit: "",
+				noOfRspsWhoAttendedFaceToFaceTraining: "",
+				noOfIrepCoursesCompletedDuringVisit: "",
+				faceToFaceTraining: [
+					{
+						trainingCourse: "",
+						trainingDone: false,
+					}
+				],
+				trainingActivityImages: [],
+				canStoreDeployPosm: false,
+				posm: false,
+				twoInOnePcs: "",
+				laptops: "",
+				allIn1Pcs: "",
+				merchandisingImages: [],
+				iposRxtInstallation: false,
+				currentInStore: "",
+				newInstallation: "",
+				totIposRxtInstallation: "",
+				iposRxtInstallationImages: [],
+				rxtSubmission: "",
+				totalPcsInStore: "",
+				pcsPowerdByIntelTurnedOn: "",
+				pcsPowerdByIntelTurnedOff: "",
+				pcsPowerdByCompetitorTurnedOn: "",
+				pcsPowerdByCompetitorTurnedOff: "",
+
+			},
 		};
 
 		this.props.setIsLoading(true);
@@ -29,39 +61,41 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		try {
-      AsyncStorage.getItem('visitForm').then((visitForm) => {
-				if (visitForm === null){
-					AsyncStorage.setItem('visitForm', JSON.stringify(visitFormTemplate));
-					this.setState({
-						visitForm: visitFormTemplate,
-					});
-					this.props.setIsLoading(false);	
-        } else {
-					AsyncStorage.getItem('visitForm').then((visitForm) => {
-						if (visitForm !== null) {
-							this.setState({
-								visitForm: JSON.parse(visitForm),
-							});
-							this.props.setIsLoading(false);
-						}
-					});
-				}
-      });
+			// AsyncStorage.clear(() => {});
+      // AsyncStorage.getItem('visitFormTemplate').then((_visitFormTemplate) => {
+			// 	if (_visitFormTemplate === null){
+			// 		AsyncStorage.setItem('visitFormTemplate', JSON.stringify(visitFormTemplate));
+			// 		this.setState({
+			// 			formTemplate: visitFormTemplate,
+			// 		});
+			// 		this.props.setIsLoading(false);	
+      //   } else {
+			// 		AsyncStorage.getItem('visitFormTemplate').then((_visitFormTemplate) => {
+			// 			if (_visitFormTemplate !== null) {
+			// 				this.setState({
+			// 					formTemplate: JSON.parse(_visitFormTemplate),
+			// 				});
+			// 				this.props.setIsLoading(false);
+			// 			}
+			// 		});
+			// 	}
+      // });
+			this.setState({
+				formTemplate: visitFormTemplate,
+			} , () => {
+				this.props.setIsLoading(false);
+			});
     } catch (error) {
-			// alert(JSON.stringify(error))
-			// Error retrieving data
 			throw new Error (error);
     }
 	}
 
-	addOneDataGridItem = (stepIndex, formLayoutIndex) => {
-		const dataGridTemplate = visitFormTemplate[stepIndex].components[formLayoutIndex].components[FIRST_INDEX];
-		const dataGridItems = this.state.visitForm[stepIndex].components[formLayoutIndex].components;
-		const _visitForm = this.state.visitForm;
-		_visitForm[stepIndex].components[formLayoutIndex].components = [...dataGridItems, dataGridTemplate];
-	
+	addOneDataGridItem = (key, gridItem) => {
+		const formData = this.state.formData;
+		formData[key] = [...formData[key], gridItem];
+
 		this.setState({
-			visitForm: _visitForm,
+			formData,
 		});
 	}
 
@@ -99,26 +133,43 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
-	saveCapturedImg = (image, stepIndex, formFieldIndex, handleChangeData) => {
-		const {formLayoutIndex, formLayoutType} = handleChangeData;
+	saveCapturedImg = (key, image) => {
+		const formData = this.state.formData;
+		formData[key] = [...formData[key], image];
 
-		const _visitForm = this.state.visitForm;
-
+		this.setState({
+			formData,
+		});
 	}
 
 	saveFormToAsyncStorage = () => {
 		AsyncStorage.setItem('visitForm', JSON.stringify(this.state.visitForm));
 	}
 
+	handleFormDataChange = (key, value, formLayout) => {
+		const formData = this.state.formData;
+
+		if (!formLayout) {
+			formData[key] = value;
+    } else if (formLayout.gridItemKey) {
+			formData[formLayout.gridItemKey][formLayout.gridItemIndex][key] = value;
+    }
+		
+		this.setState({
+			formData,
+		});
+	}
+
 	render() {
-		if (this.state.visitForm) {
+		if (this.state.formTemplate) {
 			return (
 				<StoreVisit
-					onChange={this.onChange}
-					visitForm={this.state.visitForm}
+					formData={this.state.formData}
+					formTemplate={this.state.formTemplate}
 					navigation={this.props.navigation}
 					saveCapturedImg={this.saveCapturedImg}
 					addOneDataGridItem={this.addOneDataGridItem}
+					handleFormDataChange={this.handleFormDataChange}
 					saveFormToAsyncStorage={this.saveFormToAsyncStorage}
 				/>
 			);

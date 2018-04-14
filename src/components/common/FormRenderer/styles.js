@@ -8,22 +8,14 @@ const styles: any = StyleSheet.create({
   textbox: {
     marginTop: getSizeWRTDeviceWidth(20),
   },
-  table: {
+  dataGridRow: {
     width: "100%",
-  },
-  row: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  column: {
+  dataGridColumn: {
 
-  },
-  oneColumn: {
-    width: "100%",
-  },
-  twoColumns: {
-    width: "48%",
   },
   formView: {
     flex: 1,
@@ -115,12 +107,51 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(16),
     lineHeight: getSizeWRTDeviceWidth(20),
   },
+  checkboxContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  checkbox: {
+    borderWidth: 1,
+    backgroundColor: "#fff",
+		borderColor: "rgba(233,30,99,1)",
+		width: getSizeWRTDeviceWidth(25),
+		height: getSizeWRTDeviceWidth(25),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  checked: {
+    backgroundColor: "rgba(233,30,99,1)",
+		width: "80%",
+		height: "80%",
+  },
+  checkboxTxt: {
+    color: "rgba(147,147,147,1)",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(14) - 2,
+    lineHeight: getSizeWRTDeviceWidth(14),
+    marginBottom: getSizeWRTDeviceWidth(8),
+  },
   htmlElementTxt: {
     color: "rgba(155,155,155,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
+  },
+  divider: {
+    width: deviceWidth,
+    marginHorizontal: getSizeWRTDeviceWidth(-15),
+    height: 1,
+    backgroundColor: "rgba(233,30,99,0.28)",
+  },
+  addOneMoreBtnContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginVertical: getSizeWRTDeviceWidth(10),
   },
   addOneMoreBtn: {
     width: getSizeWRTDeviceWidth(146),
@@ -140,6 +171,7 @@ const styles: any = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     paddingVertical: getSizeWRTDeviceWidth(10),
+    marginBottom: getSizeWRTDeviceWidth(20),
   },
   startBtn: {
     width: "100%",

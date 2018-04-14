@@ -1,10 +1,11 @@
 // @flow
 import * as React from "react";
+import _ from "lodash";
 import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import Login from "../../components/Login";
 
-import { login, setIsLoading } from "../../actions";
+import { login, setIsLoading, saveCountries, getCountries } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -25,6 +26,11 @@ class LoginContainer extends React.Component<Props, State> {
 
   componentDidMount() {
     this.checkIfLoggedIn();
+    this.props.getCountries().then((res) =>  {
+      if (res.status === 200) {
+        this.props.saveCountries(res.data.map((country) => ({value: country._id, label: country.name})));
+      }
+    });
   }
 
   checkIfLoggedIn = () => {
@@ -84,6 +90,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
 	return {
     login: (email, pwd) => dispatch(login(email, pwd)),
+    saveCountries: countries => dispatch(saveCountries(countries)),
+    getCountries: () => dispatch(getCountries()),
     setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
 	};
 };

@@ -13,7 +13,9 @@ export interface State {}
 
 class StoresContainer extends React.Component<Props, State> {
 
-	state = {stores: []};
+	state = {
+		stores: []
+	};
 
 	componentDidMount() {
 		this.props.getStores().then((res) => {

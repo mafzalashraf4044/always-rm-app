@@ -54,7 +54,7 @@ class StoreVisit extends React.Component<Props, State> {
 
   getTitle = () => {
     if (this.state.stepIndex !== -1) {
-      return this.props.visitForm[this.state.stepIndex].title;
+      return this.props.formTemplate[this.state.stepIndex].title;
     }
 
     return "";
@@ -117,12 +117,13 @@ class StoreVisit extends React.Component<Props, State> {
               <FormRenderer
                 stepIndex={this.state.stepIndex}
                 setStepIndex={this.setStepIndex}
-                onChange={this.props.onChange}
-                stepsLength={this.props.visitForm.length}
                 navigation={this.props.navigation}
                 saveCapturedImg={this.props.saveCapturedImg}
                 addOneDataGridItem={this.props.addOneDataGridItem}
-                form={this.props.visitForm[this.state.stepIndex]}
+                handleFormDataChange={this.props.handleFormDataChange}
+                stepsLength={this.props.formTemplate.length}
+                formData={this.props.formData}
+                formTemplate={this.props.formTemplate[this.state.stepIndex]}
                 saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               />
             </ScrollView>

@@ -45,7 +45,7 @@ class AddEditStore extends React.Component<Props, State> {
 			baseColor:"rgba(147,147,147,1)",
 			tintColor:"rgba(147,147,147,1)",
 			fontSize:getSizeWRTDeviceWidth(14),
-			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			labelFontSize:getSizeWRTDeviceWidth(12),
 			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
 		};
 		return (

@@ -129,7 +129,7 @@ const styles: any = StyleSheet.create({
     color: "rgba(147,147,147,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(14) - 2,
+    fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(14),
     marginBottom: getSizeWRTDeviceWidth(8),
   },

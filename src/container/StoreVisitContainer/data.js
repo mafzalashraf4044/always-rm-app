@@ -69,7 +69,6 @@ export const visitFormTemplate =
           }
         ],
       }
-    
     ],
   },
 
@@ -167,7 +166,7 @@ export const visitFormTemplate =
         }
       },
       {
-        key: "formFieldSet-22",
+        key: "formFieldSet-21",
         type: "formFieldSet",
         legend: "Training Activities",
         components: [

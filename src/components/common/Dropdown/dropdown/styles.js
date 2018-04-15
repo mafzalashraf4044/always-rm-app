@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { getSizeWRTDeviceWidth } from '../../../../utils';
 
 export default StyleSheet.create({
   accessory: {
@@ -9,8 +10,8 @@ export default StyleSheet.create({
   },
 
   triangle: {
-    width: 7,
-    height: 7,
+    width: getSizeWRTDeviceWidth(9),
+    height: getSizeWRTDeviceWidth(9),
     transform: [{
       translateY: -4,
     }, {
@@ -19,8 +20,8 @@ export default StyleSheet.create({
   },
 
   triangleContainer: {
-    width: 12,
-    height: 6,
+    width: getSizeWRTDeviceWidth(15),
+    height: getSizeWRTDeviceWidth(8),
     overflow: "hidden",
     alignItems: "center",
 

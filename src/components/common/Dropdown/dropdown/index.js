@@ -522,9 +522,9 @@ export default class Dropdown extends PureComponent {
         baseColor="rgba(147,147,147,1)"
         renderAccessory={renderAccessory}
         fontSize={getSizeWRTDeviceWidth(14)}
-        labelFontSize={getSizeWRTDeviceWidth(14) - 2}
-        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10),}}
-        labelTextStyle={{top: getSizeWRTDeviceWidth(-3)}}
+        labelFontSize={getSizeWRTDeviceWidth(12)}
+        inputContainerStyle={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10)}}
+        labelTextStyle={{top: getSizeWRTDeviceWidth(-4)}}
       />
     );
   }
@@ -544,7 +544,7 @@ export default class Dropdown extends PureComponent {
 
       height: this.itemSize() - bottom,
       position: "absolute",
-      marginTop: getSizeWRTDeviceWidth(-15)
+      marginTop: getSizeWRTDeviceWidth(-10)
     };
 
     return (

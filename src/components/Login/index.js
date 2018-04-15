@@ -55,7 +55,7 @@ class Login extends React.Component<Props, State> {
 			baseColor:"rgba(183,183,183,1)",
 			tintColor:"rgba(183,183,183,1)",
 			fontSize:getSizeWRTDeviceWidth(14),
-			labelFontSize:getSizeWRTDeviceWidth(14) - 2,
+			labelFontSize:getSizeWRTDeviceWidth(12),
 			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#FFF", marginTop: getSizeWRTDeviceWidth(-15)},
 		};
 

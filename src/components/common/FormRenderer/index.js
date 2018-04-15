@@ -43,8 +43,9 @@ class FormRenderer extends React.Component<Props, State> {
     baseColor:"rgba(147,147,147,1)",
     tintColor:"rgba(147,147,147,1)",
     fontSize:getSizeWRTDeviceWidth(14),
-    labelFontSize:getSizeWRTDeviceWidth(14) - 2,
-    inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
+    labelFontSize:getSizeWRTDeviceWidth(12),
+    inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10)},
+    labelTextStyle:{top: getSizeWRTDeviceWidth(-4)},
   };
 
   renderFormFields = (formField, formLayout = null) => {

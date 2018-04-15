@@ -9,7 +9,7 @@ const styles: any = StyleSheet.create({
 		height: deviceHeight,
   },
   storeImgContainer: {
-    height: 0.4 * deviceHeight,
+    height: 0.3 * deviceHeight,
     justifyContent: "space-between",
     backgroundColor: "rgba(183,183,183,1)",
   },

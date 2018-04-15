@@ -28,6 +28,7 @@ import { TextField } from "react-native-material-textfield";
 
 const FIRST_INDEX = 0;
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 export interface Props {
   form: obj;
@@ -306,13 +307,16 @@ class FormRenderer extends React.Component<Props, State> {
   }
 
   render() {
-    const formLayouts = this.props.formTemplate.components;
-    
+    const formLayouts = this.props.stepTemplate.components;
+    const formViewStyles = {height: 0.7 * deviceHeight, justifyContent: "space-between"};
+
     return (
-      <View style={styles.formView}>
-        {
-          formLayouts.map(this.renderFormLayout)
-        }
+      <View style={[styles.formView, this.props.stepTemplate.fullHeight && formViewStyles]}>
+        <View style={styles.formLayouts}>
+          {
+            formLayouts.map(this.renderFormLayout)
+          }
+        </View>
 
         {
           this.props.stepIndex === FIRST_INDEX ?

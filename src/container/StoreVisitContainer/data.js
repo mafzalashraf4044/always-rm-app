@@ -6,6 +6,7 @@ export const visitFormTemplate =
     type: "step",
     title: "",
     key: "stepIndex-0",
+    fullHeight: true,
     components: [
       {
         key: "formFieldSet-00",
@@ -196,6 +197,13 @@ export const visitFormTemplate =
             label: "Can store deploy POSM",
             key: "canStoreDeployPosm",
           },
+        ],
+      },
+      {
+        key: "formFieldSet-31",
+        type: "formFieldSet",
+        legend: "",
+        components: [
           {
             type: "divider",
             key: "divider0"
@@ -203,7 +211,7 @@ export const visitFormTemplate =
         ],
       },
       {
-        key: "formFieldSet-31",
+        key: "formFieldSet-32",
         type: "formFieldSet",
         legend: "",
         components: [

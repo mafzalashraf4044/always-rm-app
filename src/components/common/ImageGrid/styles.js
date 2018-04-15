@@ -9,6 +9,7 @@ const styles: any = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     flexWrap: "wrap",
+    marginTop: getSizeWRTDeviceWidth(5),
   },
   imgContainer: {
     marginBottom: getSizeWRTDeviceWidth(4),

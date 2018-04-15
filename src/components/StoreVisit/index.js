@@ -123,7 +123,7 @@ class StoreVisit extends React.Component<Props, State> {
                 handleFormDataChange={this.props.handleFormDataChange}
                 stepsLength={this.props.formTemplate.length}
                 formData={this.props.formData}
-                formTemplate={this.props.formTemplate[this.state.stepIndex]}
+                stepTemplate={this.props.formTemplate[this.state.stepIndex]}
                 saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               />
             </ScrollView>

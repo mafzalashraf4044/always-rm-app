@@ -62,9 +62,7 @@ const styles: any = StyleSheet.create({
     marginTop: getSizeWRTDeviceWidth(5)
   },
   visitForm: {
-    flex: 1,
-    // minHeight: 0.6 * deviceHeight,
-    justifyContent: "space-between",
+    height: 0.7 * deviceHeight,
     backgroundColor: "#FFF",
   },
   scrollView: {

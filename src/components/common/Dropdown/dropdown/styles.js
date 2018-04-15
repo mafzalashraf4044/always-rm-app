@@ -10,8 +10,8 @@ export default StyleSheet.create({
   },
 
   triangle: {
-    width: getSizeWRTDeviceWidth(9),
-    height: getSizeWRTDeviceWidth(9),
+    width: 7,
+    height: 7,
     transform: [{
       translateY: -4,
     }, {
@@ -20,8 +20,8 @@ export default StyleSheet.create({
   },
 
   triangleContainer: {
-    width: getSizeWRTDeviceWidth(15),
-    height: getSizeWRTDeviceWidth(8),
+    width: 12,
+    height: 6,
     overflow: "hidden",
     alignItems: "center",
 

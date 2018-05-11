@@ -1,4 +1,4 @@
-export const visitFormTemplate =
+export const rcrFormTemplate =
 
   [
     
@@ -67,6 +67,9 @@ export const visitFormTemplate =
             type: "textfield",
             keyboardType: "numeric",
             properties: {}
+          },
+          {
+            type: 'topi',
           }
         ],
       }
@@ -261,27 +264,18 @@ export const visitFormTemplate =
   {
     type: "step",
     title: "Step 3.2: Merchandising",
-    key: "stepIndex-3",
+    key: "stepIndex-4",
     components: [
       {
         key: "formFieldSet-40",
         type: "formFieldSet",
         legend: "",
-        styles: {marginBottom: 0},
         components: [
           {
             type: "switch",
             label: "IPOS/RXT Installation",
             key: "iposRxtInstallation",
           },
-        ],
-      },
-      {
-        key: "formFieldSet-41",
-        type: "formFieldSet",
-        legend: "",
-        styles: {marginTop: 0},
-        components: [
           {
             inputType: "number",
             label: "Current in Store",
@@ -312,7 +306,7 @@ export const visitFormTemplate =
         ],
       },
       {
-        key: "formFieldSet-42",
+        key: "formFieldSet-41",
         type: "formFieldSet",
         legend: "IPOS/RXT Installation Images",
         components: [
@@ -329,8 +323,8 @@ export const visitFormTemplate =
 
   {
     type: "step",
-    title: "Step 3.2: Merchandising",
-    key: "stepIndex-3",
+    title: "Step 3.3: Merchandising",
+    key: "stepIndex-5",
     components: [
       {
         key: "formFieldSet-50",
@@ -381,7 +375,7 @@ export const visitFormTemplate =
         ],
       },
       {
-        key: "formFieldSet-52",
+        key: "formFieldSet-53",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Intel turned off",
         components: [
@@ -397,7 +391,7 @@ export const visitFormTemplate =
         ],
       },
       {
-        key: "formFieldSet-53",
+        key: "formFieldSet-54",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Competitor turned on",
         components: [
@@ -413,7 +407,7 @@ export const visitFormTemplate =
         ],
       },
       {
-        key: "formFieldSet-54",
+        key: "formFieldSet-55",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Competitor turned off",
         components: [
@@ -431,11 +425,643 @@ export const visitFormTemplate =
     ],
   },
 
+  {
+    type: "step",
+    title: "Step 4: Competitor Anaylsis",
+    key: "stepIndex-6",
+    components: [
+      {
+        label: "Competitor Anaylsis",
+        key: "competitorAnaylsis",
+        type: "dataGridWithFieldSets",
+        gridItem: {
+          competitorName: "",
+          noOfCompetitorPcs: "",
+          posmInstalled: "",
+          description: "",
+          pcBrand: "",
+          pcDescription: "",
+          competitorImages: [],
+        },
+        addOneMoreItemTxt: "ADD COMPETITOR",
+        components: [
+          {
+            key: "formFieldSet-60",
+            type: "formFieldSet",
+            legend: "Competitor Information",
+            components: [
+              {
+                label: "Competitor Name",
+                key: "competitorName",
+                placeholder: "",
+                data: {
+                  values: [{
+                    value: "amd",
+                    label: "AMD",
+                  }, {
+                    value: "intel",
+                    label: "Intel",
+                  }],
+                },
+                type: "select",
+              },
+              {
+                inputType: "number",
+                label: "Number of Competitor PCs",
+                key: "noOfCompetitorPcs",
+                placeholder: "",
+                type: "textfield",
+                keyboardType: "numeric",
+              },
+              {
+                label: "POSM Installed",
+                key: "posmInstalled",
+                placeholder: "",
+                data: {
+                  values: [{
+                    value: "yes",
+                    label: "Yes",
+                  }, {
+                    value: "no",
+                    label: "No",
+                  }],
+                },
+                type: "select",
+              },
+              {
+                inputType: "text",
+                label: "Description",
+                key: "description",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+              {
+                label: "PC Brand",
+                key: "pcBrand",
+                placeholder: "",
+                data: {
+                  values: [{
+                    value: "dell",
+                    label: "Dell",
+                  }, {
+                    value: "hp",
+                    label: "HP",
+                  }],
+                },
+                type: "select",
+              },
+              {
+                inputType: "text",
+                label: "PC Description",
+                key: "pcDescription",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+            ],
+          },
+          {
+            key: "formFieldSet-61",
+            type: "formFieldSet",
+            legend: "Competitor Images",
+            components: [
+              {
+                key: "competitorImages",
+                type: "image",
+                isAddEnabled: true,
+                properties: {}
+              },
+            ],
+          },
+        ]
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5: Store Anaylsis",
+    key: "stepIndex-7",
+    components: [
+      {
+        key: "formFieldSet-70",
+        type: "formFieldSet",
+        legend: "2-in-1 Zone",
+        components: [
+          {
+            inputType: "number",
+            label: "Current",
+            key: "current5",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Outdated",
+            key: "outdated5",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Refresh/Deployment Opportunity",
+            key: "refrestDeploymentOpportunity5",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "text",
+            label: "Description",
+            key: "storeAnalysisDescription5",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-71",
+        type: "formFieldSet",
+        legend: "PC Images (minumum 5 images)",
+        components: [
+          {
+            key: "storeAnalysisPCImages5",
+            type: "image",
+            isAddEnabled: true,
+            properties: {}
+          },
+        ],
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.1: Store Anaylsis",
+    key: "stepIndex-8",
+    components: [
+      {
+        key: "formFieldSet-80",
+        type: "formFieldSet",
+        legend: "Gaming Zone",
+        components: [
+          {
+            inputType: "number",
+            label: "Current",
+            key: "current51",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Outdated",
+            key: "outdated51",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Refresh/Deployment Opportunity",
+            key: "refrestDeploymentOpportunity51",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "text",
+            label: "Description",
+            key: "storeAnalysisDescription51",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-81",
+        type: "formFieldSet",
+        legend: "PC Images (minumum 5 images)",
+        components: [
+          {
+            key: "storeAnalysisPCImages51",
+            type: "image",
+            isAddEnabled: true,
+            properties: {}
+          },
+        ],
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.2: Store Anaylsis",
+    key: "stepIndex-9",
+    components: [
+      {
+        key: "formFieldSet-90",
+        type: "formFieldSet",
+        legend: "End Cap Display",
+        components: [
+          {
+            inputType: "number",
+            label: "Current",
+            key: "current52",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-91",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            type: "switch",
+            label: "Intel Riser Deployed in Store",
+            key: "intelRiserDeployedInStore52",
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-92",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            type: "switch",
+            label: "Promotion Updates",
+            key: "promotionUpdates52",
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-93",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            inputType: "text",
+            label: "Description",
+            key: "storeAnalysisDescription52",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
+      },
+      {
+        key: "formFieldSet-94",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            key: "storeAnalysisPCImages52",
+            type: "image",
+            isAddEnabled: true,
+            properties: {}
+          },
+        ],
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.3: Store Anaylsis",
+    key: "stepIndex-10",
+    components: [
+      {
+        key: "formFieldSet-101",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            type: "switch",
+            label: "New Launch Product Updates",
+            key: "newLaunchProductUpdates",
+          },
+        ],
+      },
+      {
+        label: "",
+        key: "newLaunchProduct",
+        type: "dataGridWithFieldSets",
+        gridItem: {
+          brand: "",
+          model: "",
+          specifications: "",
+          price: "",
+          description: "",
+          images: [],
+        },
+        addOneMoreItemTxt: "ADD PRODUCTS",
+        components: [
+          {
+            key: "formFieldSet-102",
+            type: "formFieldSet",
+            legend: "New Launch Product",
+            components: [
+              {
+                label: "Brand",
+                key: "brand",
+                placeholder: "",
+                data: {
+                  values: [{
+                    value: "dell",
+                    label: "DELL",
+                  }, {
+                    value: "hp",
+                    label: "HP",
+                  }],
+                },
+                type: "select",
+              },
+              {
+                inputType: "text",
+                label: "Model",
+                key: "model",
+                placeholder: "",
+                type: "textfield",
+              },
+              {
+                inputType: "text",
+                label: "Specifications",
+                key: "specifications",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+              {
+                inputType: "number",
+                label: "Price",
+                key: "price",
+                placeholder: "",
+                type: "textfield",
+                keyboardType: "numeric",
+              },
+              {
+                inputType: "text",
+                label: "Description",
+                key: "description",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+            ],
+          },
+          {
+            key: "formFieldSet-103",
+            type: "formFieldSet",
+            legend: "",
+            components: [
+              {
+                key: "images",
+                type: "image",
+                isAddEnabled: true,
+                properties: {}
+              },
+            ],
+          },
+        ]
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.4: Store Anaylsis",
+    key: "stepIndex-11",
+    components: [
+      {
+        key: "formFieldSet-111",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            type: "switch",
+            label: "OEM Updates",
+            key: "oemUpdates",
+          },
+        ],
+      },
+      {
+        label: "",
+        key: "oem",
+        type: "dataGridWithFieldSets",
+        gridItem: {
+          name: "",
+          description: "",
+          images: [],
+        },
+        addOneMoreItemTxt: "ADD OEM",
+        components: [
+          {
+            key: "formFieldSet-112",
+            type: "formFieldSet",
+            legend: "New Launch Product",
+            components: [
+              {
+                inputType: "text",
+                label: "Name",
+                key: "name",
+                placeholder: "",
+                type: "textfield",
+              },
+              {
+                inputType: "text",
+                label: "Description",
+                key: "description",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+            ],
+          },
+          {
+            key: "formFieldSet-113",
+            type: "formFieldSet",
+            legend: "",
+            components: [
+              {
+                key: "images",
+                type: "image",
+                isAddEnabled: true,
+                properties: {}
+              },
+            ],
+          },
+        ]
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.5: Store Anaylsis",
+    key: "stepIndex-12",
+    components: [
+      {
+        key: "formFieldSet-121",
+        type: "formFieldSet",
+        legend: "",
+        components: [
+          {
+            type: "switch",
+            label: "Event Updates",
+            key: "eventUpdates",
+          },
+        ],
+      },
+      {
+        label: "",
+        key: "event",
+        type: "dataGridWithFieldSets",
+        gridItem: {
+          name: "",
+          date: "",
+          description: "",
+          images: [],
+        },
+        addOneMoreItemTxt: "ADD EVENTS",
+        components: [
+          {
+            key: "formFieldSet-122",
+            type: "formFieldSet",
+            legend: "New Launch Product",
+            components: [
+              {
+                inputType: "text",
+                label: "Name",
+                key: "name",
+                placeholder: "",
+                type: "textfield",
+              },
+              {
+                inputType: "text",
+                label: "Date",
+                key: "date",
+                placeholder: "",
+                type: "textfield",
+              },
+              {
+                inputType: "text",
+                label: "Description",
+                key: "description",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+            ],
+          },
+          {
+            key: "formFieldSet-123",
+            type: "formFieldSet",
+            legend: "",
+            components: [
+              {
+                key: "images",
+                type: "image",
+                isAddEnabled: true,
+                properties: {}
+              },
+            ],
+          },
+        ]
+      },
+    ],
+  },
 
+  {
+    type: "step",
+    title: "Step 5.5: Store Anaylsis",
+    key: "stepIndex-13",
+    fullHeight: true,
+    components: [
+      {
+        key: "formFieldSet-131",
+        type: "formFieldSet",
+        legend: "Remarks",
+        components: [
+          {
+            label: "Remarks/Feedback",
+            key: "remark",
+            placeholder: "",
+            data: {
+              values: [{
+                value: "good",
+                label: "Good",
+              }, {
+                value: "average",
+                label: "Average",
+              }, {
+                value: "bad",
+                label: "Bad",
+              }, {
+                value: "others",
+                label: "Others",
+              }],
+            },
+            type: "select",
+          },
+          {
+            inputType: "text",
+            label: "Enter Remarks Below",
+            key: "otherRemarks",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    type: "step",
+    title: "Step 6: Submit",
+    key: "stepIndex-14",
+    components: [
+      {
+        key: "formFieldSet-141",
+        type: "formFieldSet",
+        legend: "Remarks",
+        components: [
+          {
+            inputType: "text",
+            label: "Name",
+            key: "submitName",
+            placeholder: "",
+            type: "textfield",
+          },
+          {
+            inputType: "text",
+            label: "Job Title",
+            key: "submitJobTitle",
+            placeholder: "",
+            type: "textfield",
+          },
+          {
+            key: "signature",
+            type: "signature",
+          },
+        ],
+      },
+    ],
+  },
 ]

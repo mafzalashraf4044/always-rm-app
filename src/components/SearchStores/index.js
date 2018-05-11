@@ -12,6 +12,19 @@ import StoreCard from "../common/StoreCard";
 import styles from "./styles";
 
 class SearchStores extends Component {
+
+	state = {
+		store: {
+			storeId: 3445,
+			storeName: "Harvey Norman",
+			primaryManagerName: "Alwyn Lao",
+			modifiedAt: "14/02/2018 01:24:33pm",
+			addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
+			addressLine2: "Northpoint Shopping Centre",
+			country: "Singapore",
+		},
+	}
+
 	render() {
 		return (
 			<View style={styles.searchStores}>
@@ -37,8 +50,7 @@ class SearchStores extends Component {
 
         <ScrollView endFillColor="#fff" style={styles.scrollView}>
           <View style={styles.container}>
-            <StoreCard navigation={this.props.navigation}/>
-            <StoreCard navigation={this.props.navigation}/>
+            <StoreCard navigation={this.props.navigation} store={this.state.store} />
           </View>
         </ScrollView>
 			</View>

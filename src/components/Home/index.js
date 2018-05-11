@@ -67,7 +67,7 @@ class Home extends React.Component<Props, State> {
           </View>
           <View style={styles.homeInfo}>
             <View style={styles.lastLogin}>
-              <Text style={styles.lastLoginTxt}>{Dimensions.get("window").height} Last Login 23/10/2018 3:44pm</Text>
+              <Text style={styles.lastLoginTxt}> Last Login 23/10/2018 3:44pm</Text>
             </View>
             <View style={styles.logosContainer}>
               <Image

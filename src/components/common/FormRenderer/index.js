@@ -17,6 +17,7 @@ import {
 } from "native-base";
 
 import styles from "./styles";
+import Modal from "react-native-modal";
 import { getSizeWRTDeviceWidth } from "../../../utils";
 
 
@@ -37,6 +38,7 @@ export interface Props {
 export interface State {}
 
 class FormRenderer extends React.Component<Props, State> {
+  state = {submissionConfirmationModal: false, submissionSuccessModal: false};
 
   textFieldProps = {
     lineWidth:0,
@@ -112,11 +114,90 @@ class FormRenderer extends React.Component<Props, State> {
           images={value}
           key={formField.key}
           uniqueKey={formField.key}
-          saveCapturedImg={(image) => this.props.saveCapturedImg(formField.key, image)}
+          saveCapturedImg={(image) => this.props.saveCapturedImg(formField.key, image, formLayout)}
         />
       );
     } else if (formField.type === "divider") {
       return <View style={styles.divider} key={formField.key} />
+    } else if (formField.type === "signature") {
+      return (
+        <View style={styles.signature} key={formField.key}>
+          <Text style={styles.signatureText}>Signature Here</Text>
+        </View>
+      );
+    } else if (formField.type === "topi") {
+      return (
+        <View style={{marginTop: getSizeWRTDeviceWidth(15)}} key="XYZ">
+          <View style={styles.headingContainer}>
+            <Text style={styles.headingTxt}>Current RSP List</Text>
+
+            <Button onPress={() => {}} style={styles.addOneMoreBtn}>
+              <Image
+                style={styles.addIcon}
+                source={require("../../../assets/Icons/Light/Add.png")}
+              />
+              <Text style={styles.addOneMoreBtnTxt}>ADD NEW RSP (4)</Text>
+            </Button>
+          </View>
+
+          {
+            [1,2,3,4].map((rsp, index) => (
+              <View key={index} style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: getSizeWRTDeviceWidth(8),
+              }}>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Text style={{
+                    color: "rgba(74,74,74,1)",
+                    backgroundColor: "transparent",
+                    fontFamily: "Always_Font",
+                    fontSize: getSizeWRTDeviceWidth(12),
+                    lineHeight: getSizeWRTDeviceWidth(14),
+                  }}>John Doe</Text>
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+                  <Text style={{
+                    color: "rgba(74,74,74,1)",
+                    backgroundColor: "transparent",
+                    fontFamily: "Always_Font",
+                    fontSize: getSizeWRTDeviceWidth(12),
+                    lineHeight: getSizeWRTDeviceWidth(14),
+                    fontWeight: "normal",
+                  }}>johndoe.always@gmail.com</Text>
+                  <Text style={{
+                    color: "rgba(74,74,74,1)",
+                    backgroundColor: "transparent",
+                    fontFamily: "Always_Font",
+                    fontSize: getSizeWRTDeviceWidth(12),
+                    lineHeight: getSizeWRTDeviceWidth(14),
+                    fontWeight: "normal",
+                  }}>+65 9876 4532</Text>
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Button onPress={() => {}} style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: getSizeWRTDeviceWidth(36),
+                    paddingVertical: getSizeWRTDeviceWidth(10),
+                    paddingHorizontal: getSizeWRTDeviceWidth(20),
+                    backgroundColor: "rgba(233,30,99,1)",
+                  }}>
+                    <Text style={{
+                      color: "#FFF",
+                      backgroundColor: "transparent",
+                      fontFamily: "Always_Font",
+                      fontSize: getSizeWRTDeviceWidth(14),
+                      lineHeight: getSizeWRTDeviceWidth(16),
+                    }}>EDIT</Text>
+                  </Button>
+                </View>
+              </View>
+            ))
+          }
+        </View>
+      );
     }
 
     return null;
@@ -130,7 +211,7 @@ class FormRenderer extends React.Component<Props, State> {
 
     if (formLayout.type === "formFieldSet") {
       return (
-        <View style={[styles.formLayout, formLayout.styles ? formLayout.styles : null]} key={formLayout.key}>
+        <View style={[styles.formLayout]} key={formLayout.key}>
           {
             formLayout.legend ? 
             <View style={styles.headingContainer}>
@@ -162,7 +243,7 @@ class FormRenderer extends React.Component<Props, State> {
                               _formField.label = _formField.incrementLabelIndex ? `${_formField.label} ${gridItemIndex + 1}` : _formField.label;
                               
                               return(
-                                this.renderFormFields(_formField, {gridItemKey: formLayout.key, gridItemIndex})
+                                this.renderFormFields(_formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
                               )
                             })
                           }
@@ -180,12 +261,63 @@ class FormRenderer extends React.Component<Props, State> {
                 style={styles.addIcon}
                 source={require("../../../assets/Icons/Light/Add.png")}
               />
-              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt}</Text>
+              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
             </Button>
           </View>
         </View>
       );
+    } else if (formLayout.type === "dataGridWithFieldSets") {
+      return (
+        <View key={formLayout.key}>
+          {
+            formLayout.label ? 
+            <View style={styles.headingContainer}>
+              <Text style={styles.headingTxt}>{formLayout.label}</Text>
+            </View> : null
+          }
+          <View style={[styles.addOneMoreBtnContainer, styles.addOneMoreBtnContainerWithFieldsetDG]}>
+            <Button onPress={() => this.props.addOneDataGridItem(formLayout.key, formLayout.gridItem)} style={styles.addOneMoreBtn}>
+              <Image
+                style={styles.addIcon}
+                source={require("../../../assets/Icons/Light/Add.png")}
+              />
+              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+            </Button>
+          </View>
+          {
+            this.props.formData[formLayout.key].map((gridItem, gridItemIndex) => {
+              return (
+                formLayout.components.map((fieldSet, fieldSetIndex) => {
+                  return (
+                    <View style={[styles.formLayout]} key={fieldSet.key}>
+                      {
+                        fieldSet.legend ? 
+                        <View style={styles.headingContainer}>
+                          <Text style={styles.headingTxt}>{fieldSet.legend}</Text>
+                        </View> : null
+                      }
+                      {
+                        fieldSet.components.map((formField) => {
+                          return (
+                            this.renderFormFields(formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
+                          )
+                        })
+                      }
+                    </View>
+                  )
+                })
+              )
+            })
+          }
+        </View>
+      );
     }
+
+
+
+
+
+
 
     if (formLayout.type === "fieldset") {
       return (
@@ -306,6 +438,28 @@ class FormRenderer extends React.Component<Props, State> {
     this.props.navigation.navigate("Stores");
   }
 
+  submit = () => {
+    this.props.saveFormToAsyncStorage();
+    this.toggleSubmissionConfirmationModal();
+    this.toggleSubmissionSuccessModal();
+  }
+
+  toggleSubmissionConfirmationModal = () => {
+    this.setState(prevState => ({
+      submissionConfirmationModal: !prevState.submissionConfirmationModal,
+    }));
+  }
+
+  toggleSubmissionSuccessModal = () => {
+    if (this.state.submissionSuccessModal) {
+      this.props.navigation.navigate("Stores");
+    }
+
+    this.setState(prevState => ({
+      submissionSuccessModal: !prevState.submissionSuccessModal,
+    }));
+  }
+
   render() {
     const formLayouts = this.props.stepTemplate.components;
     const formViewStyles = {height: 0.7 * deviceHeight, justifyContent: "space-between"};
@@ -333,10 +487,62 @@ class FormRenderer extends React.Component<Props, State> {
               (this.props.stepIndex !== this.props.stepsLength - 1) ?
               <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
                 <Text style={styles.darkBtnTxt}>CONTINUE</Text>
-              </Button> : null
+              </Button> : 
+              <Button block onPress={this.toggleSubmissionConfirmationModal} style={styles.darkBtn}>
+                <Text style={styles.darkBtnTxt}>SUBMIT</Text>
+              </Button>
             }
           </View>
         }
+
+        <Modal
+					isVisible={this.state.submissionConfirmationModal}
+					style={styles.modalContainer}
+				>
+          <View style={styles.modal}>
+						<View style={styles.header}>
+							<Text style={styles.headerTxt}>Confirm Submission</Text>
+						</View>
+            <View style={styles.body}>
+              <Text style={styles.bodyTxt}>You are submitting data reports for Harvey Norman on 05/04/2018</Text>
+
+							<View style={styles.modalActions}>
+								<TouchableOpacity
+                  style={[styles.modalActionBtn, {backgroundColor: "transparent"}]}
+									onPress={this.toggleSubmissionConfirmationModal}>
+									<Text style={[styles.modalActionBtnTxt, {color: "rgba(233,30,99,1)"}]}>CANCEL</Text>
+								</TouchableOpacity>
+								<Button
+                  style={styles.modalActionBtn}
+									onPress={this.submit}>
+									<Text style={styles.modalActionBtnTxt}>CONFIRM</Text>
+								</Button>
+							</View>
+            </View>
+          </View>
+        </Modal>
+
+        <Modal
+					isVisible={this.state.submissionSuccessModal}
+					style={styles.modalContainer}
+				>
+          <View style={styles.modal}>
+						<View style={styles.header}>
+							<Text style={styles.headerTxt}>Confirm Successful!</Text>
+						</View>
+            <View style={styles.body}>
+              <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
+
+							<View style={[styles.modalActions, {justifyContent: 'center'}]}>
+								<Button
+                  style={styles.modalActionBtn}
+									onPress={this.toggleSubmissionSuccessModal}>
+									<Text style={styles.modalActionBtnTxt}>BACK TO HOMEPAGE</Text>
+								</Button>
+							</View>
+            </View>
+          </View>
+        </Modal>
       </View>
 		);
 	}

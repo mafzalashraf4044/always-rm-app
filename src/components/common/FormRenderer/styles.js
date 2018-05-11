@@ -149,6 +149,20 @@ const styles: any = StyleSheet.create({
     marginVertical: getSizeWRTDeviceWidth(5),
     backgroundColor: "rgba(233,30,99,0.15)",
   },
+  signature: {
+    width: '100%',
+    height: getSizeWRTDeviceHeight(136),
+    borderWidth: 1,
+    borderColor: "rgba(235,235,235,1)",
+    padding: getSizeWRTDeviceWidth(15),
+  },
+  signatureText: {
+    color: "rgba(147,147,147,1)",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
   addOneMoreBtnContainer: {
     width: "100%",
     flexDirection: "row",
@@ -156,10 +170,14 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
     marginTop: getSizeWRTDeviceWidth(10),
   },
+  addOneMoreBtnContainerWithFieldsetDG: {
+    justifyContent: "flex-start",
+    marginTop: getSizeWRTDeviceWidth(5),
+    marginBottom: getSizeWRTDeviceWidth(20),
+  },
   addOneMoreBtn: {
     justifyContent: "center",
     alignItems: "center",
-    width: getSizeWRTDeviceWidth(146),
     height: getSizeWRTDeviceWidth(36),
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
@@ -225,6 +243,65 @@ const styles: any = StyleSheet.create({
   },
   darkBtnTxt: {
     color: "#FFF",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(14),
+    lineHeight: getSizeWRTDeviceWidth(16),
+  },
+
+
+
+
+	modalContainer: {
+		margin: getSizeWRTDeviceWidth(20),
+	},
+	modal: {
+		backgroundColor: "#FFF",
+    borderRadius: 5,
+		shadowColor: "#000",
+		shadowOffset: { width: 2, height: 3 },
+		shadowOpacity: 0.1,
+		shadowRadius: 1.5,
+		elevation: 1,
+		padding: getSizeWRTDeviceWidth(15),
+	},
+	header: {
+		marginBottom: getSizeWRTDeviceWidth(15),
+	},
+	headerTxt: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+		fontFamily: "Always_Font",
+		fontWeight: "500",
+    fontSize: getSizeWRTDeviceWidth(20),
+    lineHeight: getSizeWRTDeviceWidth(24),
+	},
+	body: {
+
+	},
+	bodyTxt: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+		fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(16),
+	},
+	modalActions: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		paddingTop: getSizeWRTDeviceWidth(10),
+	},
+  modalActionBtn: {
+    paddingVertical: getSizeWRTDeviceWidth(10),
+    paddingHorizontal: getSizeWRTDeviceWidth(20),
+    backgroundColor: "rgba(233,30,99,1)",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalActionBtnTxt: {
+    color: "rgba(255,255,255,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),

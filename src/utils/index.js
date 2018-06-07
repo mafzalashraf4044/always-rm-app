@@ -1,7 +1,8 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
-const deviceWidth = Dimensions.get("window").width;
-const deviceHeight = Dimensions.get("window").height;
+export const deviceWidth = Dimensions.get("window").width;
+export const deviceHeight =
+  Platform.OS === "android" ? Dimensions.get("window").height - 24 : Dimensions.get("window").height;
 
 export const getSizeWRTDeviceWidth = (size) => {
   return (size / 375) * deviceWidth;

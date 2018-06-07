@@ -1,12 +1,9 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
   storeVisit: {
-    flex: 1,
-		height: deviceHeight,
+    backgroundColor: "#FFF",
   },
   storeImgContainer: {
     height: 0.3 * deviceHeight,
@@ -62,11 +59,7 @@ const styles: any = StyleSheet.create({
     marginTop: getSizeWRTDeviceWidth(5)
   },
   visitForm: {
-    height: 0.7 * deviceHeight,
-    backgroundColor: "#FFF",
-  },
-  scrollView: {
-    height: "100%",
+    // mineight: 0.7 * deviceHeight,
     backgroundColor: "#FFF",
   },
 });

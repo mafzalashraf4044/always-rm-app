@@ -1,16 +1,12 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
   addEditStore: {
-		flex: 1,
     backgroundColor: "#FFF",
-		height: deviceHeight,
   },
   storeImgContainer: {
-		flex: 0.5,
+    height: 0.3 * deviceHeight,
     justifyContent: "space-between",
     backgroundColor: "rgba(183,183,183,1)",
   },
@@ -40,11 +36,8 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
     marginLeft: getSizeWRTDeviceWidth(10),
   },
-  scrollView: {
-    backgroundColor: "#FFF",
-  },
   formView: {
-    flex: 1,
+    height: 0.7 * deviceHeight,
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },

@@ -1,15 +1,12 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	forgotPwdScreen: {
-		flex: 1,
-		height: deviceHeight,
+		backgroundColor: "#FFF",
 	},
 	forgotView: {
-		flex: 1,
+		height: deviceHeight,
 		justifyContent: "flex-end",
 		alignItems: "center",
 	},

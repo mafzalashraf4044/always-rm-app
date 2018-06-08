@@ -1,15 +1,12 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	loginScreen: {
-		flex: 1,
-		height: deviceHeight,
+		backgroundColor: "#FFF",
 	},
 	loginView: {
-		flex: 1,
+		height: deviceHeight,
 		justifyContent: "flex-end",
 		alignItems: "center",
 	},
@@ -67,4 +64,5 @@ const styles: any = StyleSheet.create({
 	},
 
 });
+
 export default styles;

@@ -4,13 +4,10 @@ import {
   View,
   Image,
   Text,
-  Dimensions,
   TouchableOpacity
 } from "react-native";
 
-import {
-  Container,
-} from "native-base";
+import { Container } from "native-base";
 
 import Header from "../common/Header";
 
@@ -21,15 +18,18 @@ export interface Props {
   user: obj,
 }
 
-export interface State {}
+class Home extends React.Component<Props> {
 
-class Home extends React.Component<Props, State> {
-  homeTabs = [
-    {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},
-    {icon: require("../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports"},
-    {icon: require("../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-    {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
-  ];
+	constructor(props) {
+		super(props);
+
+    this.homeTabs = [
+      {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "Stores"},
+      {icon: require("../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports"},
+      {icon: require("../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
+      {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
+    ];
+	}
 
   render() {
     return (

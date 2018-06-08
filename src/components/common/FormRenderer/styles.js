@@ -1,8 +1,5 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../../utils";
-
-const deviceWidth = Dimensions.get("window").width;
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceWidth, deviceHeight } from "../../../utils";
 
 const styles: any = StyleSheet.create({
   textbox: {
@@ -20,7 +17,7 @@ const styles: any = StyleSheet.create({
   formView: {
     height: "100%",
     paddingHorizontal: getSizeWRTDeviceWidth(15),
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
   },
   formLayouts: {
     marginTop: getSizeWRTDeviceWidth(15),
@@ -194,9 +191,8 @@ const styles: any = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    height: getSizeWRTDeviceWidth(66),
-    paddingTop: getSizeWRTDeviceWidth(10),
-    marginBottom: getSizeWRTDeviceWidth(30),
+    height: getSizeWRTDeviceWidth(46),
+    paddingBottom: getSizeWRTDeviceWidth(10),
   },
   startBtn: {
     width: "100%",
@@ -248,10 +244,6 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
   },
-
-
-
-
 	modalContainer: {
 		margin: getSizeWRTDeviceWidth(20),
 	},

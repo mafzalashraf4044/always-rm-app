@@ -1,9 +1,7 @@
 import color from "color";
-import { getSizeWRTDeviceWidth } from '../../utils';
-import { Platform, Dimensions } from "react-native";
+import { getSizeWRTDeviceWidth, deviceWidth, deviceHeight } from "../../utils";
+import { Platform } from "react-native";
 
-const deviceHeight = Dimensions.get("window").height;
-const deviceWidth = Dimensions.get("window").width;
 const platform = Platform.OS;
 const platformStyle = "material";
 

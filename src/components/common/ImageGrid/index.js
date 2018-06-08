@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { ImagePicker, FileSystem } from 'expo';
+import { ImagePicker, FileSystem, Permissions } from 'expo';
 
 import styles from "./styles";
 
@@ -20,23 +20,32 @@ export interface State {}
 
 class ImageGrid extends React.Component<Props, State> {
 
-  captureImage = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      allowsEditing: false,
-    });
-
-    if (!result.cancelled) {
-      try {
-        FileSystem.copyAsync({
-          from: result.uri,
-          to: `${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`,
-        }).then(() => {
-          this.props.saveCapturedImg(`${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`);
+  openCamera = () => {
+    Permissions.askAsync(Permissions.CAMERA).then((camera) => {
+      if (camera.status === "granted") {
+        Permissions.askAsync(Permissions.CAMERA_ROLL).then((cameraRoll) => {
+          if (cameraRoll.status === 'granted') {
+            ImagePicker.launchCameraAsync({
+              allowsEditing: false,
+            }).then((result) => {
+              if (!result.cancelled) {
+                try {
+                  FileSystem.copyAsync({
+                    from: result.uri,
+                    to: `${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`,
+                  }).then(() => {
+                    this.props.saveCapturedImg(`${FileSystem.documentDirectory}image-${this.props.uniqueKey}-${this.props.images.length + 1}.jpg`);
+                  });
+                } catch (e) {
+                  alert(JSON.stringify(e));
+                }
+              }
+            });
+        
+          }
         });
-      } catch (e) {
-        alert(JSON.stringify(e));
       }
-    }
+    });
   };
 
   render() {
@@ -55,7 +64,7 @@ class ImageGrid extends React.Component<Props, State> {
         {
           this.props.isAddEnabled &&
           <View style={styles.addBtnContainer}>
-            <TouchableOpacity onPress={this.captureImage} style={styles.addBtn}>
+            <TouchableOpacity onPress={this.openCamera} style={styles.addBtn}>
               <Image
                 style={styles.addBtnIcon}
                 source={require("../../../assets/Icons/Light/Add.png")}

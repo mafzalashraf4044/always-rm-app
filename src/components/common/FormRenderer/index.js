@@ -4,21 +4,16 @@ import {
   View,
   Text,
   Image,
-  FlatList,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 
 import {
-	Container,
   Button,
-  CheckBox,
 } from "native-base";
 
 import styles from "./styles";
 import Modal from "react-native-modal";
-import { getSizeWRTDeviceWidth } from "../../../utils";
+import { getSizeWRTDeviceWidth, deviceHeight } from "../../../utils";
 
 
 import Switch from "../Switch";
@@ -28,8 +23,6 @@ import { Dropdown } from "../Dropdown";
 import { TextField } from "react-native-material-textfield";
 
 const FIRST_INDEX = 0;
-const deviceWidth = Dimensions.get("window").width;
-const deviceHeight = Dimensions.get("window").height;
 
 export interface Props {
   form: obj;
@@ -53,7 +46,7 @@ class FormRenderer extends React.Component<Props, State> {
 
   renderFormFields = (formField, formLayout = null) => {
     let value = "";
-    
+
     if (!formLayout) {
       value = this.props.formData[formField.key];
     } else if (formLayout.gridItemKey) {
@@ -312,119 +305,7 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
       );
     }
-
-
-
-
-
-
-
-    if (formLayout.type === "fieldset") {
-      return (
-        <View style={styles.formLayout} key={formLayout.key}>
-          <View style={styles.headingContainer}>
-            <Text style={styles.headingTxt}>{formLayout.legend}</Text>
-          </View>
-          {
-            formLayout.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, handleChangeData))
-          }
-        </View>
-      );
-    } else if (formLayout.type === "well") {
-      return (
-        <View style={styles.formLayout} key={formLayout.key}>
-          {
-            formLayout.components.map((formField, formFieldIndex) => this.renderFormFields(formField, formFieldIndex, handleChangeData))
-          }
-        </View>
-      );
-    } else if (formLayout.type === "datagrid") {
-      return (
-        <View style={styles.formLayout} key={formLayout.key}>
-          <View style={styles.headingContainer}>
-            <Text style={styles.headingTxt}>{formLayout.label}</Text>
-            <Button onPress={() => this.props.addOneDataGridItem(this.props.stepIndex, formLayoutIndex)} style={styles.addOneMoreBtn}>
-              <Image
-                style={styles.addIcon}
-                source={require("../../../assets/Icons/Light/Add.png")}
-              />
-              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addAnother}</Text>
-            </Button>
-          </View>
-          {
-            formLayout.components.map((table, tableIndex) => {
-              if (table.type === "table") {
-                return (
-                  <View style={styles.table} key={tableIndex}>
-                    {
-                      formLayout.properties.itemTitle ?
-                      <View style={[styles.headingContainer, styles.headingMarginTop]}>
-                        <Text style={styles.headingTxt}>{`${formLayout.properties.itemTitle} ${tableIndex + 1}`}</Text>
-                      </View> : null
-                    }
-                    {
-                      table.rows.map((row, rowIndex) => (
-                        <View style={styles.row} key={rowIndex}>
-                          {
-                            row.map((column, columnIndex, columns) => (
-                              <View style={[styles.column, columns.length === 1 ? styles.oneColumn : styles.twoColumns]} key={columnIndex}>
-                                {
-                                  column.components.map(
-                                    (formField, formFieldIndex) =>
-                                    this.renderFormFields(formField, formFieldIndex, {...handleChangeData, tableIndex, rowIndex, columnIndex})
-                                  )
-                                }
-                              </View>                    
-                            )) 
-                          }
-                        </View>
-                      ))
-                    }
-                  </View>
-                )
-              }
-
-              return null;
-            })
-          }
-        </View>
-      );
-    } else if (formLayout.type === "panel") {key
-      const table = formLayout.components[FIRST_INDEX];
-
-      if (table.type === "table"){ 
-        return (
-          <View style={styles.formLayout} key={formLayout.$$hashKey}>
-            <View style={styles.headingContainer}>
-              <Text style={styles.headingTxt}>{formLayout.title}</Text>
-            </View>
-            <View style={styles.table} key={table.$$hashKey}>
-              {
-                table.rows.map((row, rowIndex) => (
-                  <View style={styles.row} key={rowIndex}>
-                    {
-                      row.map((column, columnIndex, columns) => (
-                        <View style={[styles.column, columns.length === 1 ? styles.oneColumn : styles.twoColumns]} key={columnIndex}>
-                          {
-                            column.components.map(
-                              (formField, formFieldIndex) =>
-                              this.renderFormFields(formField, formFieldIndex, {...handleChangeData, isTable: true, rowIndex, columnIndex})
-                            )
-                          }
-                        </View>                    
-                      )) 
-                    }
-                  </View>
-                ))
-              }
-            </View>
-          </View>
-        );
-      }
-
-      return null;
-    }
-
+    
     return null;
   }
 
@@ -440,8 +321,11 @@ class FormRenderer extends React.Component<Props, State> {
 
   submit = () => {
     this.props.saveFormToAsyncStorage();
-    this.toggleSubmissionConfirmationModal();
-    this.toggleSubmissionSuccessModal();
+
+    this.setState({
+      submissionConfirmationModal: false,
+      submissionSuccessModal: true,
+    });
   }
 
   toggleSubmissionConfirmationModal = () => {
@@ -450,14 +334,12 @@ class FormRenderer extends React.Component<Props, State> {
     }));
   }
 
-  toggleSubmissionSuccessModal = () => {
-    if (this.state.submissionSuccessModal) {
+  goToHomePage = () => {
+    this.setState({
+      submissionSuccessModal: false,
+    }, () => {
       this.props.navigation.navigate("Stores");
-    }
-
-    this.setState(prevState => ({
-      submissionSuccessModal: !prevState.submissionSuccessModal,
-    }));
+    });
   }
 
   render() {
@@ -465,7 +347,8 @@ class FormRenderer extends React.Component<Props, State> {
     const formViewStyles = {height: 0.7 * deviceHeight, justifyContent: "space-between"};
 
     return (
-      <View style={[styles.formView, this.props.stepTemplate.fullHeight && formViewStyles]}>
+      <View
+        style={[styles.formView, this.props.stepTemplate.fullHeight && formViewStyles]}>
         <View style={styles.formLayouts}>
           {
             formLayouts.map(this.renderFormLayout)
@@ -495,54 +378,60 @@ class FormRenderer extends React.Component<Props, State> {
           </View>
         }
 
-        <Modal
-					isVisible={this.state.submissionConfirmationModal}
-					style={styles.modalContainer}
-				>
-          <View style={styles.modal}>
-						<View style={styles.header}>
-							<Text style={styles.headerTxt}>Confirm Submission</Text>
-						</View>
-            <View style={styles.body}>
-              <Text style={styles.bodyTxt}>You are submitting data reports for Harvey Norman on 05/04/2018</Text>
+        {
+          this.state.submissionConfirmationModal ?
+          <Modal
+            isVisible={this.state.submissionConfirmationModal}
+            style={styles.modalContainer}
+          >
+            <View style={styles.modal}>
+              <View style={styles.header}>
+                <Text style={styles.headerTxt}>Confirm Submission</Text>
+              </View>
+              <View style={styles.body}>
+                <Text style={styles.bodyTxt}>You are submitting data reports for Harvey Norman on 05/04/2018</Text>
 
-							<View style={styles.modalActions}>
-								<TouchableOpacity
-                  style={[styles.modalActionBtn, {backgroundColor: "transparent"}]}
-									onPress={this.toggleSubmissionConfirmationModal}>
-									<Text style={[styles.modalActionBtnTxt, {color: "rgba(233,30,99,1)"}]}>CANCEL</Text>
-								</TouchableOpacity>
-								<Button
-                  style={styles.modalActionBtn}
-									onPress={this.submit}>
-									<Text style={styles.modalActionBtnTxt}>CONFIRM</Text>
-								</Button>
-							</View>
+                <View style={styles.modalActions}>
+                  <TouchableOpacity
+                    style={[styles.modalActionBtn, {backgroundColor: "transparent"}]}
+                    onPress={this.toggleSubmissionConfirmationModal}>
+                    <Text style={[styles.modalActionBtnTxt, {color: "rgba(233,30,99,1)"}]}>CANCEL</Text>
+                  </TouchableOpacity>
+                  <Button
+                    style={styles.modalActionBtn}
+                    onPress={this.submit}>
+                    <Text style={styles.modalActionBtnTxt}>CONFIRM</Text>
+                  </Button>
+                </View>
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal> : null
+        }
 
-        <Modal
-					isVisible={this.state.submissionSuccessModal}
-					style={styles.modalContainer}
-				>
-          <View style={styles.modal}>
-						<View style={styles.header}>
-							<Text style={styles.headerTxt}>Confirm Successful!</Text>
-						</View>
-            <View style={styles.body}>
-              <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
+        {
+          this.state.submissionSuccessModal ?
+          <Modal
+            isVisible={this.state.submissionSuccessModal}
+            style={styles.modalContainer}
+          >
+            <View style={styles.modal}>
+              <View style={styles.header}>
+                <Text style={styles.headerTxt}>Confirm Successful!</Text>
+              </View>
+              <View style={styles.body}>
+                <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
 
-							<View style={[styles.modalActions, {justifyContent: 'center'}]}>
-								<Button
-                  style={styles.modalActionBtn}
-									onPress={this.toggleSubmissionSuccessModal}>
-									<Text style={styles.modalActionBtnTxt}>BACK TO HOMEPAGE</Text>
-								</Button>
-							</View>
+                <View style={[styles.modalActions, {justifyContent: 'center'}]}>
+                  <Button
+                    style={styles.modalActionBtn}
+                    onPress={this.goToHomePage}>
+                    <Text style={styles.modalActionBtnTxt}>BACK TO HOMEPAGE</Text>
+                  </Button>
+                </View>
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal> : null
+        }
       </View>
 		);
 	}

@@ -4,22 +4,20 @@ import {
 	Image,
 	View,
 	Text,
+	ScrollView,
 	TouchableOpacity,
 } from "react-native";
 
 import {
 	Tab,
 	Tabs,
-	Content,
-	Container,
 } from "native-base";
+import Modal from "react-native-modal";
 
 import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
 import StoreFilter from "../common/StoreFilter";
-
 import { Dropdown } from "../common/Dropdown";
-import Modal from "react-native-modal";
 
 import styles from "./styles";
 
@@ -27,13 +25,16 @@ export interface Props {
 	navigation: any;
 }
 
-export interface State {}
+class Stores extends React.Component<Props> {
 
-class Stores extends React.Component<Props, State> {
+	constructor(props) {
+		super(props);
 
-	state = {
-		isReassignModalOpen: false,
-	};
+		this.state = {
+			isReassignModalOpen: false,
+			isScrollEnabled: true,
+		};
+	}
 
 	toggleReassignModal = () => {
 		this.setState(prevState => ({
@@ -41,9 +42,15 @@ class Stores extends React.Component<Props, State> {
 		}));
 	}
 
+	toggleScrollEnabled = () => {
+		this.setState(prevState => ({
+			isScrollEnabled: !prevState.isScrollEnabled,
+		}));
+	}
+
 	render() {
 		return (
-			<Container style={styles.container}>
+			<View style={styles.container}>
 				<Image
 					blurRadius={5}
 					style={styles.backgroundImg}
@@ -70,50 +77,60 @@ class Stores extends React.Component<Props, State> {
 
 				<Tabs initialPage={0} transparent>
 					<Tab heading="Outstanding">
-						<Container>
-							<Content>
+						<ScrollView style={styles.tabContent}>
+							<View style={styles.withoutFilter}>
 								{
 									this.props.stores.map((store, index) => (
 										<StoreCard navigation={this.props.navigation} store={store} key={index} />
 									))
 								}
-							</Content>
-						</Container>
+							</View>
+						</ScrollView>
 					</Tab>
 					<Tab heading="Today">
-						<Container>
-							<Content>
+						<ScrollView style={styles.tabContent}>
+							<View style={styles.withoutFilter}>
 								{
 									this.props.stores.map((store, index) => (
 										<StoreCard navigation={this.props.navigation} store={store} key={index} />
 									))
 								}
-							</Content>
-						</Container>
+							</View>
+						</ScrollView>
 					</Tab>
 					<Tab heading="Upcoming">
-						<Container>
-							<StoreFilter />
-							<Content style={styles.tabContentWithFilter}>
+						<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
+							<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled}/>
+							<View style={styles.withFilter}>
 								{
 									this.props.stores.map((store, index) => (
-										<StoreCard navigation={this.props.navigation} store={store} key={index} reassignAvailable toggleReassignModal={this.toggleReassignModal} />
+										<StoreCard
+											key={index}
+											store={store}
+											reassignAvailable
+											navigation={this.props.navigation}
+											toggleReassignModal={this.toggleReassignModal}
+										/>
 									))
 								}
-							</Content>
-						</Container>
+							</View>
+						</ScrollView>
 					</Tab>
 					<Tab heading="Completed">
-						<Container>
-							<StoreFilter />
-							<Content style={styles.tabContentWithFilter}>
+						<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
+							<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled} />
+							<View style={styles.withFilter}>
 								{
 									this.props.stores.map((store, index) => (
-										<StoreCard navigation={this.props.navigation} store={store} key={index} />
+										<StoreCard
+											key={index}
+											store={store}
+											navigation={this.props.navigation}
+										/>
 									))
 								}
-							</Content>
-						</Container>
+							</View>
+						</ScrollView>
 					</Tab>
 				</Tabs>
 
@@ -155,7 +172,7 @@ class Stores extends React.Component<Props, State> {
             </View>
           </View>
         </Modal>
-			</Container>
+			</View>
 		);
 	}
 }

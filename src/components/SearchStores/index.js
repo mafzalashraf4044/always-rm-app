@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
 	View,
@@ -11,7 +11,11 @@ import StoreCard from "../common/StoreCard";
 
 import styles from "./styles";
 
-class SearchStores extends Component {
+export interface Props {
+  navigation: any,
+}
+
+class SearchStores extends React.Component<Props> {
 
 	state = {
 		store: {

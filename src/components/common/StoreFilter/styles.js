@@ -10,13 +10,13 @@ const styles: any = StyleSheet.create({
     zIndex: 100,
   },
   storeFilterSelected: {
-    width: '100%',
+    width: "100%",
     height: getSizeWRTDeviceHeight(36),
     borderBottomWidth: 1,
     borderBottomColor: "rgba(0,0,0,0.1)",
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   storeFilterSelectedTxt: {
     color: "rgba(74,74,74,1)",
@@ -27,13 +27,11 @@ const styles: any = StyleSheet.create({
   },
   dropdownIcon: {
     width: getSizeWRTDeviceWidth(22),
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   collapsable: {
     width: "100%",
     backgroundColor: "#FFF",
-    paddingHorizontal: getSizeWRTDeviceWidth(15),
-    paddingBottom: getSizeWRTDeviceWidth(15),
     shadowColor: "rgba(0,0,0,0.3)",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
@@ -46,8 +44,8 @@ const styles: any = StyleSheet.create({
     height: getSizeWRTDeviceHeight(56),
     borderBottomWidth: 1,
     borderBottomColor: "rgba(74,74,74,1)",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   listItemTxt: {
     color: "rgba(74,74,74,1)",

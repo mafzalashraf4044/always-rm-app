@@ -1,14 +1,16 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	container: {
 		flex: 1,
 		height: deviceHeight,
 		backgroundColor: "#fff",
-		position: 'relative',
+		position: "relative",
+	},
+	tabContent: {
+		flex: 1,
+		height: deviceHeight,
 	},
 	backgroundImg: {
 		flex: 1,
@@ -18,7 +20,11 @@ const styles: any = StyleSheet.create({
 		height: "100%",
 		justifyContent: "center",
 	},
-	tabContentWithFilter: {
+	withoutFilter: {
+		backgroundColor: "transparent",
+	},
+	withFilter: {
+		backgroundColor: "transparent",
 		marginTop: getSizeWRTDeviceHeight(36),
 	},
 	modalContainer: {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
   Animated,
@@ -11,10 +11,15 @@ import {
 
 import styles from "./styles";
 
-class StoreFilter extends Component {
+export interface Props {
+  toggleScrollEnabled: func,
+}
+
+class StoreFilter extends React.Component<Props> {
 
   constructor(props) {
     super(props);
+
     this.listItems = [
       {label: "Last 14 days", value: 14},
       {label: "Last 21 days", value: 21},
@@ -34,7 +39,9 @@ class StoreFilter extends Component {
 
     this.setState(prevState => ({
       isCollapsableOpen: !prevState.isCollapsableOpen,
-    }));
+    }), () => {
+      this.props.toggleScrollEnabled();
+    });
 
     Animated.timing(
       this.state.collapsableAnimation,
@@ -74,7 +81,7 @@ class StoreFilter extends Component {
               style={styles.dropdownIcon}
               source={require("../../../assets/Icons/Dark/SortDown.png")}
             />
-          </View>        
+          </View>
         </TouchableOpacity>
         <Animated.View style={{height: this.state.collapsableAnimation, overflow: "hidden"}}>
           <View onLayout={this.setMaxHeight} style={styles.collapsable}>

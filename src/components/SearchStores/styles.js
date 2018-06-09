@@ -1,7 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
-import { getSizeWRTDeviceHeight } from "../../utils";
-
-const deviceHeight = Dimensions.get("window").height;
+import { StyleSheet } from "react-native";
+import { getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
   container: {

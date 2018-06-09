@@ -1,18 +1,17 @@
 // @flow
 import * as React from "react";
+
 import { AsyncStorage } from "react-native";
-import { connect } from "react-redux";
+
 import Sidebar from "../../components/Sidebar";
 
-// import { fetchList } from "./actions";
+import { connect } from "react-redux";
 
 export interface Props {
 	navigation: any,
 }
 
-export interface State {}
-
-class SidebarContainer extends React.Component<Props, State> {
+class SidebarContainer extends React.Component<Props> {
 
 	constructor(props) {
 		super(props);
@@ -24,7 +23,7 @@ class SidebarContainer extends React.Component<Props, State> {
 
 	componentWillMount() {
     try {
-			AsyncStorage.getItem('user').then((user) => {
+			AsyncStorage.getItem("user").then((user) => {
 				if (user !== null){
 					this.setState({
 						user: JSON.parse(user),
@@ -38,7 +37,7 @@ class SidebarContainer extends React.Component<Props, State> {
 
 	removeUserIfLogingOut = async (route) => {
 		if (route === "Login") {
-			await AsyncStorage.removeItem('user');
+			await AsyncStorage.removeItem("user");
 		}
 	}
 

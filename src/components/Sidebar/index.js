@@ -5,13 +5,10 @@ import {
 	Text,
 	Image,
 	FlatList,
-	AsyncStorage,
 	TouchableOpacity,
 } from "react-native";
 
-import {
-	Container,
-} from "native-base";
+import { Container } from "native-base";
 
 import styles from "./styles";
 
@@ -21,16 +18,18 @@ export interface Props {
 	removeUserIfLogingOut: func,
 }
 
-export interface State {}
+class Sidebar extends React.Component<Props> {
 
-export default class Sidebar extends React.Component<Props, State> {
+	constructor(props) {
+		super(props);
 
-  listItems = [
-    {icon: require("../../assets/Icons/Dark/Stores.png"), name: "My Stores", route: "Stores"},
-    {icon: require("../../assets/Icons/Dark/Report.png"), name: "Reports", route: "Reports"},
-    {icon: require("../../assets/Icons/Dark/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-    {icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
-  ];
+		this.listItems = [
+			{icon: require("../../assets/Icons/Dark/Stores.png"), name: "My Stores", route: "Stores"},
+			{icon: require("../../assets/Icons/Dark/Report.png"), name: "Reports", route: "Reports"},
+			{icon: require("../../assets/Icons/Dark/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
+			{icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "SKU Analysis", route: "SKU Analysis"},
+		];
+	}
 
 	handleListItemPress = (route) => {
 		this.props.removeUserIfLogingOut(route).then(() => {
@@ -93,3 +92,5 @@ export default class Sidebar extends React.Component<Props, State> {
 		);
 	}
 }
+
+export default Sidebar;

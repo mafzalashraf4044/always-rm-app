@@ -1,23 +1,24 @@
 // @flow
 import * as React from "react";
+
 import _ from "lodash";
-import { AsyncStorage } from 'react-native';
-import { connect } from "react-redux";
+import { AsyncStorage } from "react-native";
+
 import Login from "../../components/Login";
 
+import { connect } from "react-redux";
 import { login, setIsLoading, saveCountries, getCountries } from "../../actions";
 
 export interface Props {
 	navigation: any,
 }
 
-export interface State {}
-
-class LoginContainer extends React.Component<Props, State> {
+class LoginContainer extends React.Component<Props> {
 
 	constructor(props) {
 		super(props);
-		this.state = {
+
+    this.state = {
 			errMessage: "",
     };
 
@@ -35,7 +36,7 @@ class LoginContainer extends React.Component<Props, State> {
 
   checkIfLoggedIn = () => {
     try {
-      AsyncStorage.getItem('user').then((user) => {
+      AsyncStorage.getItem("user").then((user) => {
         if (user !== null){
           this.props.navigation.navigate("Drawer");
         }
@@ -50,7 +51,7 @@ class LoginContainer extends React.Component<Props, State> {
 
   onLogin = (email, pwd) => {
     AsyncStorage.multiSet([
-      ['user', JSON.stringify({name: "Afzal Ashraf", email: "afzalashraf.dev@gmail.com", username: "aa4044"})],
+      ["user", JSON.stringify({name: "John Doe", email: "johndoe.always@gmail.com", username: "jd4044"})],
     ],
     () => {
       this.props.navigation.navigate("Drawer");
@@ -60,8 +61,8 @@ class LoginContainer extends React.Component<Props, State> {
     // this.props.login(email, pwd).then((res) => {
 		// 	if (res.status === 200) {
     //     AsyncStorage.multiSet([
-    //         ['user', JSON.stringify(res.data.user)],
-    //         ['jwtToken', JSON.stringify(res.data.jwt)]
+    //         ["user", JSON.stringify(res.data.user)],
+    //         ["jwtToken", JSON.stringify(res.data.jwt)]
     //       ],
     //       () => {
     //         this.props.navigation.navigate("Drawer");

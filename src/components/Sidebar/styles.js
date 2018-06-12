@@ -39,7 +39,7 @@ const styles: any = StyleSheet.create({
   },
   listItem: {
     paddingHorizontal: getSizeWRTDeviceWidth(20),
-    paddingTop: getSizeWRTDeviceWidth(20),
+    paddingTop: getSizeWRTDeviceWidth(10),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",

@@ -141,7 +141,7 @@ class FormRenderer extends React.Component<Props, State> {
                 alignItems: "center",
                 marginTop: getSizeWRTDeviceWidth(8),
               }}>
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{justifyContent: "center", alignItems: "center"}}>
                   <Text style={{
                     color: "rgba(74,74,74,1)",
                     backgroundColor: "transparent",
@@ -150,7 +150,7 @@ class FormRenderer extends React.Component<Props, State> {
                     lineHeight: getSizeWRTDeviceWidth(14),
                   }}>John Doe</Text>
                 </View>
-                <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+                <View style={{justifyContent: "center", alignItems: "flex-end"}}>
                   <Text style={{
                     color: "rgba(74,74,74,1)",
                     backgroundColor: "transparent",
@@ -168,7 +168,7 @@ class FormRenderer extends React.Component<Props, State> {
                     fontWeight: "normal",
                   }}>+65 9876 4532</Text>
                 </View>
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{justifyContent: "center", alignItems: "center"}}>
                   <Button onPress={() => {}} style={{
                     justifyContent: "center",
                     alignItems: "center",
@@ -421,7 +421,7 @@ class FormRenderer extends React.Component<Props, State> {
               <View style={styles.body}>
                 <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
 
-                <View style={[styles.modalActions, {justifyContent: 'center'}]}>
+                <View style={[styles.modalActions, {justifyContent: "center"}]}>
                   <Button
                     style={styles.modalActionBtn}
                     onPress={this.goToHomePage}>

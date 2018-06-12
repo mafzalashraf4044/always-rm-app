@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight, deviceWidth } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	container: {
@@ -19,38 +19,86 @@ const styles: any = StyleSheet.create({
 		flex: 1,
 	},
 	homeTabs: {
-		flex: 0.64,
 		padding: getSizeWRTDeviceWidth(14),
 		flexDirection: "row",
-		justifyContent: "space-between",
+		justifyContent: "flex-start",
 		alignItems: "flex-start",
-		flexWrap: "wrap"
+		flexWrap: "wrap",
 	},
 	homeTab: {
-		width: getSizeWRTDeviceWidth(165),
-		height: getSizeWRTDeviceHeight(145),
+		width: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 30.5) / 100,
+		height: getSizeWRTDeviceHeight(90),
 		backgroundColor: "rgba(254,254,254,0.2)",
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
-		marginBottom: getSizeWRTDeviceHeight(14),
+		marginBottom: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 4.25) / 100,
+	},
+	centerTab: {
+		marginHorizontal: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 4.25) / 100,
 	},
 	homeTabBright: {
 		backgroundColor: "rgba(254,254,254,0.5)",
 	},
 	tabIcon: {
-		width: getSizeWRTDeviceWidth(60),
-		height: getSizeWRTDeviceWidth(60),
+		width: getSizeWRTDeviceWidth(22),
+		height: getSizeWRTDeviceWidth(20),
 		resizeMode: "cover",
 	},
 	homeTabTxt: {
 		color: "#fff",
 		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(12),
+		marginTop: getSizeWRTDeviceWidth(5),
+		lineHeight: getSizeWRTDeviceWidth(14),
+	},
+	noRecentNotifications: {
+		borderBottomWidth: 1,
+		borderBottomColor: "#FFF",
+		margin: getSizeWRTDeviceWidth(14),
+		paddingBottom: getSizeWRTDeviceWidth(8),
+	},
+	noRecentNotificationsTxt: {
+		color: "#fff",
+		fontWeight: "500",
+		textAlign: "center",
+		fontFamily: "Always_Font",
 		fontSize: getSizeWRTDeviceWidth(14),
 		lineHeight: getSizeWRTDeviceWidth(16),
 	},
+	recentNotifications: {
+		margin: getSizeWRTDeviceWidth(14),
+		marginBottom: getSizeWRTDeviceWidth(60),
+	},
+	recentNotificationsTxt: {
+		color: "#fff",
+		fontWeight: "500",
+		textAlign: "center",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(16),
+		lineHeight: getSizeWRTDeviceWidth(20),
+		marginBottom: getSizeWRTDeviceWidth(14),
+	},
+	notification: {
+		borderBottomWidth: 1,
+		borderBottomColor: "#FFF",
+		marginBottom: getSizeWRTDeviceWidth(8),
+		paddingBottom: getSizeWRTDeviceWidth(8),
+	},
+	notificationTitle: {
+		color: "#fff",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(16),
+		lineHeight: getSizeWRTDeviceWidth(20),
+		marginBottom: getSizeWRTDeviceWidth(14),
+	},
+	notificationBody: {
+		color: "#B7B7B7",
+		fontFamily: "Always_Font",
+		fontSize: getSizeWRTDeviceWidth(12),
+		lineHeight: getSizeWRTDeviceWidth(16),
+	},
 	homeInfo: {
-		flex: 0.36,
 		paddingBottom: getSizeWRTDeviceWidth(14),
 		justifyContent: "space-between",
 	},
@@ -58,6 +106,7 @@ const styles: any = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",
+		marginBottom: getSizeWRTDeviceWidth(20),
 	},
 	lastLoginTxt: {
 		color: "#fff",

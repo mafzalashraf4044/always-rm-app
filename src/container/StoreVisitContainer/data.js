@@ -5,7 +5,7 @@ export const rcrFormTemplate = [
     key: "stepIndex-0",
     fullHeight: true,
     components: [{
-      key: "formFieldSet-00",
+      key: "formFieldSet-0-0",
       type: "formFieldSet",
       legend: "",
       components: [{
@@ -30,7 +30,6 @@ export const rcrFormTemplate = [
           type: "select",
           properties: {}
         },
-
         {
           inputType: "number",
           label: "Visit Number",
@@ -49,7 +48,7 @@ export const rcrFormTemplate = [
     title: "Step 1: RSPs",
     key: "stepIndex-1",
     components: [{
-      key: "formFieldSet-10",
+      key: "formFieldSet-1-0",
       type: "formFieldSet",
       legend: "",
       components: [{
@@ -62,7 +61,7 @@ export const rcrFormTemplate = [
           properties: {}
         },
         {
-          type: "topi",
+          type: "topi"
         }
       ],
     }],
@@ -73,7 +72,7 @@ export const rcrFormTemplate = [
     title: "Step 2: Training",
     key: "stepIndex-2",
     components: [{
-        key: "formFieldSet-20",
+        key: "formFieldSet-2-0",
         type: "formFieldSet",
         legend: "Training Attendance",
         components: [{
@@ -106,12 +105,12 @@ export const rcrFormTemplate = [
         },
         addOneMoreItemTxt: "ADD COURSE",
         row: {
-          key: "dataGridRow-21",
+          key: "dataGridRow-2-1",
           columns: [{
               styles: {
                 width: "75%",
               },
-              key: "column-210",
+              key: "column-2-1-0",
               components: [{
                 label: "Training Course",
                 key: "trainingCourse",
@@ -144,7 +143,7 @@ export const rcrFormTemplate = [
                 width: "25%",
                 alignItems: "flex-end",
               },
-              key: "column-211",
+              key: "column-2-1-1",
               components: [{
                 type: "checkbox",
                 label: "Training Done",
@@ -155,7 +154,7 @@ export const rcrFormTemplate = [
         }
       },
       {
-        key: "formFieldSet-21",
+        key: "formFieldSet-2-2",
         type: "formFieldSet",
         legend: "Training Activities",
         components: [{
@@ -173,7 +172,7 @@ export const rcrFormTemplate = [
     title: "Step 3.1: Merchandising",
     key: "stepIndex-3",
     components: [{
-        key: "formFieldSet-30",
+        key: "formFieldSet-3-0",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -183,16 +182,16 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-31",
+        key: "formFieldSet-3-1",
         type: "formFieldSet",
         legend: "",
         components: [{
           type: "divider",
-          key: "divider0"
+          key: "canStoreDeployPosmDivider"
         }, ],
       },
       {
-        key: "formFieldSet-32",
+        key: "formFieldSet-3-2",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -243,7 +242,7 @@ export const rcrFormTemplate = [
     title: "Step 3.2: Merchandising",
     key: "stepIndex-4",
     components: [{
-        key: "formFieldSet-40",
+        key: "formFieldSet-4-0",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -281,7 +280,7 @@ export const rcrFormTemplate = [
         ],
       },
       {
-        key: "formFieldSet-41",
+        key: "formFieldSet-4-1",
         type: "formFieldSet",
         legend: "IPOS/RXT Installation Images",
         components: [{
@@ -299,7 +298,7 @@ export const rcrFormTemplate = [
     title: "Step 3.3: Merchandising",
     key: "stepIndex-5",
     components: [{
-        key: "formFieldSet-50",
+        key: "formFieldSet-5-0",
         type: "formFieldSet",
         legend: "RXT Submission",
         components: [{
@@ -313,7 +312,7 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-51",
+        key: "formFieldSet-5-1",
         type: "formFieldSet",
         legend: "Total Number of PCs in Store",
         components: [{
@@ -327,7 +326,7 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-52",
+        key: "formFieldSet-5-2",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Intel turned on",
         components: [{
@@ -341,7 +340,7 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-53",
+        key: "formFieldSet-5-3",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Intel turned off",
         components: [{
@@ -355,7 +354,7 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-54",
+        key: "formFieldSet-5-4",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Competitor turned on",
         components: [{
@@ -369,7 +368,7 @@ export const rcrFormTemplate = [
         }, ],
       },
       {
-        key: "formFieldSet-55",
+        key: "formFieldSet-5-5",
         type: "formFieldSet",
         legend: "No. of PCs powerd by Competitor turned off",
         components: [{
@@ -404,7 +403,7 @@ export const rcrFormTemplate = [
       },
       addOneMoreItemTxt: "ADD COMPETITOR",
       components: [{
-          key: "formFieldSet-60",
+          key: "formFieldSet-6-0",
           type: "formFieldSet",
           legend: "Competitor Information",
           components: [{
@@ -479,7 +478,7 @@ export const rcrFormTemplate = [
           ],
         },
         {
-          key: "formFieldSet-61",
+          key: "formFieldSet-6-1",
           type: "formFieldSet",
           legend: "Competitor Images",
           components: [{
@@ -495,16 +494,16 @@ export const rcrFormTemplate = [
 
   {
     type: "step",
-    title: "Step 5: Store Anaylsis",
+    title: "Step 5.1: Store Anaylsis",
     key: "stepIndex-7",
     components: [{
-        key: "formFieldSet-70",
+        key: "formFieldSet-7-0",
         type: "formFieldSet",
         legend: "2-in-1 Zone",
         components: [{
             inputType: "number",
             label: "Current",
-            key: "current5",
+            key: "current2in1Zone",
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
@@ -513,7 +512,7 @@ export const rcrFormTemplate = [
           {
             inputType: "number",
             label: "Outdated",
-            key: "outdated5",
+            key: "outdated2in1Zone",
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
@@ -522,7 +521,7 @@ export const rcrFormTemplate = [
           {
             inputType: "number",
             label: "Refresh/Deployment Opportunity",
-            key: "refrestDeploymentOpportunity5",
+            key: "refrestDeploymentOpportunity2in1Zone",
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
@@ -531,7 +530,7 @@ export const rcrFormTemplate = [
           {
             inputType: "text",
             label: "Description",
-            key: "storeAnalysisDescription5",
+            key: "storeAnalysisDescription2in1Zone",
             placeholder: "",
             multiline: true,
             type: "textfield",
@@ -539,74 +538,15 @@ export const rcrFormTemplate = [
         ],
       },
       {
-        key: "formFieldSet-71",
+        key: "formFieldSet-7-1",
         type: "formFieldSet",
         legend: "PC Images (minumum 5 images)",
         components: [{
-          key: "storeAnalysisPCImages5",
+          key: "storeAnalysisPCImages2in1Zone",
           type: "image",
           isAddEnabled: true,
           properties: {}
-        }, ],
-      },
-    ],
-  },
-
-  {
-    type: "step",
-    title: "Step 5.1: Store Anaylsis",
-    key: "stepIndex-8",
-    components: [{
-        key: "formFieldSet-80",
-        type: "formFieldSet",
-        legend: "Gaming Zone",
-        components: [{
-            inputType: "number",
-            label: "Current",
-            key: "current51",
-            placeholder: "",
-            type: "textfield",
-            keyboardType: "numeric",
-            properties: {}
-          },
-          {
-            inputType: "number",
-            label: "Outdated",
-            key: "outdated51",
-            placeholder: "",
-            type: "textfield",
-            keyboardType: "numeric",
-            properties: {}
-          },
-          {
-            inputType: "number",
-            label: "Refresh/Deployment Opportunity",
-            key: "refrestDeploymentOpportunity51",
-            placeholder: "",
-            type: "textfield",
-            keyboardType: "numeric",
-            properties: {}
-          },
-          {
-            inputType: "text",
-            label: "Description",
-            key: "storeAnalysisDescription51",
-            placeholder: "",
-            multiline: true,
-            type: "textfield",
-          },
-        ],
-      },
-      {
-        key: "formFieldSet-81",
-        type: "formFieldSet",
-        legend: "PC Images (minumum 5 images)",
-        components: [{
-          key: "storeAnalysisPCImages51",
-          type: "image",
-          isAddEnabled: true,
-          properties: {}
-        }, ],
+        }]
       },
     ],
   },
@@ -614,60 +554,54 @@ export const rcrFormTemplate = [
   {
     type: "step",
     title: "Step 5.2: Store Anaylsis",
-    key: "stepIndex-9",
+    key: "stepIndex-8",
     components: [{
-        key: "formFieldSet-90",
+        key: "formFieldSet-8-0",
         type: "formFieldSet",
-        legend: "End Cap Display",
+        legend: "Gaming Zone",
         components: [{
-          inputType: "number",
-          label: "Current",
-          key: "current52",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
-          properties: {}
-        }, ],
+            inputType: "number",
+            label: "Current",
+            key: "currentGamingZone",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Outdated",
+            key: "outdatedGamingZone",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Refresh/Deployment Opportunity",
+            key: "refrestDeploymentOpportunityGamingZone",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            properties: {}
+          },
+          {
+            inputType: "text",
+            label: "Description",
+            key: "storeAnalysisDescriptionGamingZone",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
       },
       {
-        key: "formFieldSet-91",
+        key: "formFieldSet-8-1",
         type: "formFieldSet",
-        legend: "",
+        legend: "PC Images (minumum 5 images)",
         components: [{
-          type: "switch",
-          label: "Intel Riser Deployed in Store",
-          key: "intelRiserDeployedInStore52",
-        }, ],
-      },
-      {
-        key: "formFieldSet-92",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          type: "switch",
-          label: "Promotion Updates",
-          key: "promotionUpdates52",
-        }, ],
-      },
-      {
-        key: "formFieldSet-93",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          inputType: "text",
-          label: "Description",
-          key: "storeAnalysisDescription52",
-          placeholder: "",
-          multiline: true,
-          type: "textfield",
-        }, ],
-      },
-      {
-        key: "formFieldSet-94",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          key: "storeAnalysisPCImages52",
+          key: "storeAnalysisPCImagesGamingZone",
           type: "image",
           isAddEnabled: true,
           properties: {}
@@ -679,9 +613,74 @@ export const rcrFormTemplate = [
   {
     type: "step",
     title: "Step 5.3: Store Anaylsis",
+    key: "stepIndex-9",
+    components: [{
+        key: "formFieldSet-9-0",
+        type: "formFieldSet",
+        legend: "End Cap Display",
+        components: [{
+          inputType: "number",
+          label: "Current",
+          key: "currentEndCapDisplay",
+          placeholder: "",
+          type: "textfield",
+          keyboardType: "numeric",
+          properties: {}
+        }, ],
+      },
+      {
+        key: "formFieldSet-9-1",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          type: "switch",
+          label: "Intel Riser Deployed in Store",
+          key: "intelRiserDeployedInStore",
+        }, ],
+      },
+      {
+        key: "formFieldSet-9-2",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          type: "switch",
+          label: "Promotion Updates",
+          key: "promotionUpdates",
+        }, ],
+      },
+      {
+        key: "formFieldSet-9-3",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          inputType: "text",
+          label: "Description",
+          key: "storeAnalysisDescriptionEndCapDisplay",
+          placeholder: "",
+          multiline: true,
+          type: "textfield",
+        }, ],
+      },
+      {
+        key: "formFieldSet-9-4",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          key: "storeAnalysisPCImagesEndCapDisplay",
+          type: "image",
+          isAddEnabled: true,
+          properties: {}
+        }, ],
+      },
+    ],
+  },
+
+  {
+    type: "step",
+    title: "Step 5.4: Store Anaylsis",
     key: "stepIndex-10",
     components: [{
-        key: "formFieldSet-101",
+        key: "formFieldSet-10-1",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -704,7 +703,7 @@ export const rcrFormTemplate = [
         },
         addOneMoreItemTxt: "ADD PRODUCTS",
         components: [{
-            key: "formFieldSet-102",
+            key: "formFieldSet-10-2",
             type: "formFieldSet",
             legend: "New Launch Product",
             components: [{
@@ -756,7 +755,7 @@ export const rcrFormTemplate = [
             ],
           },
           {
-            key: "formFieldSet-103",
+            key: "formFieldSet-10-3",
             type: "formFieldSet",
             legend: "",
             components: [{
@@ -773,10 +772,10 @@ export const rcrFormTemplate = [
 
   {
     type: "step",
-    title: "Step 5.4: Store Anaylsis",
+    title: "Step 5.5: Store Anaylsis",
     key: "stepIndex-11",
     components: [{
-        key: "formFieldSet-111",
+        key: "formFieldSet-11-1",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -796,7 +795,7 @@ export const rcrFormTemplate = [
         },
         addOneMoreItemTxt: "ADD OEM",
         components: [{
-            key: "formFieldSet-112",
+            key: "formFieldSet-11-2",
             type: "formFieldSet",
             legend: "New OEM",
             components: [{
@@ -817,7 +816,7 @@ export const rcrFormTemplate = [
             ],
           },
           {
-            key: "formFieldSet-113",
+            key: "formFieldSet-11-3",
             type: "formFieldSet",
             legend: "",
             components: [{
@@ -834,10 +833,10 @@ export const rcrFormTemplate = [
 
   {
     type: "step",
-    title: "Step 5.5: Store Anaylsis",
+    title: "Step 5.6: Store Anaylsis",
     key: "stepIndex-12",
     components: [{
-        key: "formFieldSet-121",
+        key: "formFieldSet-12-1",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -858,7 +857,7 @@ export const rcrFormTemplate = [
         },
         addOneMoreItemTxt: "ADD EVENTS",
         components: [{
-            key: "formFieldSet-122",
+            key: "formFieldSet-12-2",
             type: "formFieldSet",
             legend: "New Event",
             components: [{
@@ -886,7 +885,7 @@ export const rcrFormTemplate = [
             ],
           },
           {
-            key: "formFieldSet-123",
+            key: "formFieldSet-12-3",
             type: "formFieldSet",
             legend: "",
             components: [{
@@ -903,11 +902,11 @@ export const rcrFormTemplate = [
 
   {
     type: "step",
-    title: "Step 5.5: Store Anaylsis",
+    title: "Step 5.7: Store Anaylsis",
     key: "stepIndex-13",
     fullHeight: true,
     components: [{
-      key: "formFieldSet-131",
+      key: "formFieldSet-13-1",
       type: "formFieldSet",
       legend: "Remarks",
       components: [{
@@ -949,7 +948,7 @@ export const rcrFormTemplate = [
     key: "stepIndex-14",
     fullHeight: true,
     components: [{
-      key: "formFieldSet-141",
+      key: "formFieldSet-14-1",
       type: "formFieldSet",
       legend: "Remarks",
       components: [{

@@ -22,9 +22,14 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		super(props);
 		this.state = {
 			formData: {
+				// step 0
 				storeStatus: "",
 				visitNumber: "",
+
+				// step 1
 				noOfRspsOnDutyDuringVisit: "",
+
+				// step 2
 				noOfRspsWhoAttendedFaceToFaceTraining: "",
 				noOfIrepCoursesCompletedDuringVisit: "",
 				faceToFaceTraining: [
@@ -34,23 +39,31 @@ class StoreVisitContainer extends React.Component<Props, State> {
 					}
 				],
 				trainingActivityImages: [],
+
+				// step 3.1
 				canStoreDeployPosm: false,
 				posm: false,
 				twoInOnePcs: "",
 				laptops: "",
 				allIn1Pcs: "",
 				merchandisingImages: [],
+
+				// step 3.2
 				iposRxtInstallation: false,
 				currentInStore: "",
 				newInstallation: "",
 				totIposRxtInstallation: "",
 				iposRxtInstallationImages: [],
+
+				// step 3.3
 				rxtSubmission: "",
 				totalPcsInStore: "",
 				pcsPowerdByIntelTurnedOn: "",
 				pcsPowerdByIntelTurnedOff: "",
 				pcsPowerdByCompetitorTurnedOn: "",
 				pcsPowerdByCompetitorTurnedOff: "",
+
+				// step 4
 				competitorAnaylsis: [
 					{
 						competitorName: "",
@@ -62,21 +75,29 @@ class StoreVisitContainer extends React.Component<Props, State> {
 						competitorImages: [],
 					},
 				],
-				current5: "",
-				outdated5: "",
-				refrestDeploymentOpportunity5: "",
-				storeAnalysisDescription5: "",
-				storeAnalysisPCImages5: [],
-				current51: "",
-				outdated51: "",
-				refrestDeploymentOpportunity51: "",
-				storeAnalysisDescription51: "",
-				storeAnalysisPCImages51: [],
-				current52: "",
-				intelRiserDeployedInStore52: false,
-				promotionUpdates52: false,
-				storeAnalysisDescription52: "",
-				storeAnalysisPCImages52: [],
+
+				// step 5.1
+				current2in1Zone: "",
+				outdated2in1Zone: "",
+				refrestDeploymentOpportunity2in1Zone: "",
+				storeAnalysisDescription2in1Zone: "",
+				storeAnalysisPCImages2in1Zone: [],
+
+				// step 5.2
+				currentGamingZone: "",
+				outdatedGamingZone: "",
+				refrestDeploymentOpportunityGamingZone: "",
+				storeAnalysisDescriptionGamingZone: "",
+				storeAnalysisPCImagesGamingZone: [],
+
+				// step 5.3
+				currentEndCapDisplay: "",
+				intelRiserDeployedInStore: false,
+				promotionUpdates: false,
+				storeAnalysisDescriptionEndCapDisplay: "",
+				storeAnalysisPCImagesEndCapDisplay: [],
+
+				// step 5.4
 				newLaunchProductUpdates: false,
 				newLaunchProduct: [
 					{
@@ -88,6 +109,8 @@ class StoreVisitContainer extends React.Component<Props, State> {
 						images: [],
 					}
 				],
+
+				// step 5.5
 				oemUpdates: false,
 				oem: [
 					{
@@ -96,6 +119,8 @@ class StoreVisitContainer extends React.Component<Props, State> {
 						images: [],
 					}
 				],
+
+				// step 5.6
 				eventUpdates: false,
 				event: [
 					{
@@ -105,8 +130,12 @@ class StoreVisitContainer extends React.Component<Props, State> {
 						images: [],
 					}
 				],
+
+				// step 5.7
 				remark: "",
 				otherRemarks: "",
+
+				// step 6
 				submitName: "",
 				submitJobTitle: "",
 			},
@@ -118,7 +147,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	componentDidMount() {
 		try {
 			// AsyncStorage.clear(() => {});
-      AsyncStorage.getItem('formData').then((_formData) => {
+      AsyncStorage.getItem("formData").then((_formData) => {
 				if (_formData !== null){
 						this.setState({
 							formData: JSON.parse(_formData),
@@ -137,7 +166,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 	saveCapturedImg = (key, image, formLayout) => {
 		const formData = this.state.formData;
-		
+
 		if (!formLayout) {
 			formData[key] = [...formData[key], image];
     } else if (formLayout.isDataGrid) {
@@ -150,7 +179,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	}
 
 	saveFormToAsyncStorage = () => {
-		AsyncStorage.setItem('formData', JSON.stringify(this.state.formData));
+		AsyncStorage.setItem("formData", JSON.stringify(this.state.formData));
 	}
 
 	addOneDataGridItem = (key, gridItem) => {
@@ -170,7 +199,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
     } else if (formLayout.isDataGrid) {
 			formData[formLayout.gridItemKey][formLayout.gridItemIndex][key] = value;
     }
-		
+
 		this.setState({
 			formData,
 		});

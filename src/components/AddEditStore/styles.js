@@ -37,7 +37,6 @@ const styles: any = StyleSheet.create({
     marginLeft: getSizeWRTDeviceWidth(10),
   },
   formView: {
-    height: 0.7 * deviceHeight,
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },

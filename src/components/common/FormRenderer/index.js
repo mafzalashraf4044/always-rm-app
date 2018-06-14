@@ -7,20 +7,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import {
-  Button,
-} from "native-base";
 
-import styles from "./styles";
+import { Button, Spinner } from "native-base";
 import Modal from "react-native-modal";
-import { getSizeWRTDeviceWidth, deviceHeight } from "../../../utils";
-
+import { TextField } from "react-native-material-textfield";
 
 import Switch from "../Switch";
 import ImageGrid from "../ImageGrid";
 import { Dropdown } from "../Dropdown";
+import SignaturePad from "../ImageGrid";
 
-import { TextField } from "react-native-material-textfield";
+import styles from "./styles";
+import { getSizeWRTDeviceWidth, deviceWidth, deviceHeight } from "../../../utils";
 
 const FIRST_INDEX = 0;
 
@@ -31,7 +29,7 @@ export interface Props {
 export interface State {}
 
 class FormRenderer extends React.Component<Props, State> {
-  state = {submissionConfirmationModal: false, submissionSuccessModal: false};
+  state = {submissionConfirmationModal: false, submissionSuccessModal: false, isSignatureLoading: false};
 
   textFieldProps = {
     lineWidth:0,
@@ -43,6 +41,31 @@ class FormRenderer extends React.Component<Props, State> {
     inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10)},
     labelTextStyle:{top: getSizeWRTDeviceWidth(-4)},
   };
+
+  signaturePadError = (error) => {
+    alert(error);
+  };
+
+  clearSignature = (formField, formLayout) => {
+    this.setSignatureLoading();
+    this.props.handleFormDataChange(formField.key, "", formLayout);    
+  }
+
+  signaturePadChange = (base64DataUrl, formField, formLayout) => {
+    this.props.handleFormDataChange(formField.key, base64DataUrl, formLayout);
+  };
+
+  setSignatureLoading = () => {
+    this.setState({
+      isSignatureLoading: true,
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          isSignatureLoading: false,
+        });
+      }, 500);
+    });
+  }
 
   renderFormFields = (formField, formLayout = null) => {
     let value = "";
@@ -61,7 +84,7 @@ class FormRenderer extends React.Component<Props, State> {
           label={formField.label}
           {...this.textFieldProps}
           keyboardType={formField.keyboardType || "default"}
-          onChangeText={(value) => this.props.handleFormDataChange(formField.key, value, formLayout)}
+          onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
         />
       );
     } else if (formField.type === "select") {
@@ -71,7 +94,7 @@ class FormRenderer extends React.Component<Props, State> {
           value={value}
           label={formField.label}
           data={formField.data.values}
-          onChangeText={(value) => this.props.handleFormDataChange(formField.key, value, formLayout)}
+          onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
         />
       );
     } else if (formField.type === "switch") {
@@ -80,7 +103,7 @@ class FormRenderer extends React.Component<Props, State> {
           <Text style={styles.switchTxt}>{formField.label}</Text>
           <Switch
             value={value}
-            onToggle={(value) => this.props.handleFormDataChange(formField.key, value, formLayout)}
+            onToggle={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
           />
         </View>
       );
@@ -97,7 +120,7 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
       );
     } else if (formField.type === "htmlelement") {
-      return(
+      return (
         <Text style={styles.htmlElementTxt} key={formField.key}>{formField.label}</Text>
       )
     } else if (formField.type === "image") {
@@ -111,11 +134,45 @@ class FormRenderer extends React.Component<Props, State> {
         />
       );
     } else if (formField.type === "divider") {
-      return <View style={styles.divider} key={formField.key} />
+      return <View style={styles.divider} key={formField.key} />;
     } else if (formField.type === "signature") {
       return (
-        <View style={styles.signature} key={formField.key}>
-          <Text style={styles.signatureText}>Signature Here</Text>
+        <View style={styles.signatureContainer} key={formField.key}>
+          {
+            this.state.isSignatureLoading ?
+            <View style={styles.signatureLoader}>
+              <Spinner color="#000" />
+            </View> : null
+          }
+
+          <View style={styles.signature}>
+            {
+              value ?
+              <Image
+                style={{width: "100%", height: "100%"}}
+                source={{
+                  uri: value,
+                }}
+              /> :
+              <SignaturePad
+                onError={this.signaturePadError}
+                defaultHeight={deviceHeight}
+                defaultWidth={deviceWidth}
+                onChange={({base64DataUrl}) => this.signaturePadChange(base64DataUrl, formField, formLayout)}
+                style={{flex: 1, backgroundColor: "white"}}
+                key={new Date().getTime() + Math.floor(Math.random(100) * 100)}
+              />
+            }
+          </View>
+          {
+            value ?
+            <Button onPress={() => this.clearSignature(formField, formLayout)} style={styles.clearSignatureBtn}>
+              <Image
+                style={styles.clearSignatureIcon}
+                source={require("../../../assets/Icons/Light/Delete.png")}
+              />
+            </Button> : null
+          }
         </View>
       );
     } else if (formField.type === "topi") {
@@ -197,11 +254,6 @@ class FormRenderer extends React.Component<Props, State> {
   }
 
   renderFormLayout = (formLayout, formLayoutIndex) => {
-    let handleChangeData = {
-      formLayoutIndex,
-      formLayoutType: formLayout.type,
-    };
-
     if (formLayout.type === "formFieldSet") {
       return (
         <View style={[styles.formLayout]} key={formLayout.key}>
@@ -234,8 +286,8 @@ class FormRenderer extends React.Component<Props, State> {
                             column.components.map((formField) => {
                               const _formField = _.cloneDeep(formField);
                               _formField.label = _formField.incrementLabelIndex ? `${_formField.label} ${gridItemIndex + 1}` : _formField.label;
-                              
-                              return(
+
+                              return (
                                 this.renderFormFields(_formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
                               )
                             })
@@ -305,7 +357,7 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
       );
     }
-    
+
     return null;
   }
 
@@ -348,7 +400,8 @@ class FormRenderer extends React.Component<Props, State> {
 
     return (
       <View
-        style={[styles.formView, this.props.stepTemplate.fullHeight && formViewStyles]}>
+        style={[styles.formView, this.props.stepTemplate.fullHeight && formViewStyles]}
+      >
         <View style={styles.formLayouts}>
           {
             formLayouts.map(this.renderFormLayout)

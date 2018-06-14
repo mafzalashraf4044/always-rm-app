@@ -147,11 +147,10 @@ const styles: any = StyleSheet.create({
     backgroundColor: "rgba(233,30,99,0.15)",
   },
   signature: {
-    width: '100%',
+    width: "100%",
     height: getSizeWRTDeviceHeight(136),
     borderWidth: 1,
     borderColor: "rgba(235,235,235,1)",
-    padding: getSizeWRTDeviceWidth(15),
   },
   signatureText: {
     color: "rgba(147,147,147,1)",
@@ -159,6 +158,35 @@ const styles: any = StyleSheet.create({
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(14),
+  },
+  signatureLoader: {
+    width: "100%",
+    height: getSizeWRTDeviceHeight(136),
+    borderWidth: 1,
+    borderColor: "rgba(235,235,235,1)",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 100,
+    backgroundColor: "#FFF",
+  },
+  signatureContainer: {
+    alignItems: "flex-end",
+    position: "relative",
+  },
+  clearSignatureBtn: {
+    backgroundColor: "rgba(233,30,99,1)",
+    width: getSizeWRTDeviceWidth(20),
+    height: getSizeWRTDeviceWidth(20),
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: 0,
+    right: 0,
+  },
+  clearSignatureIcon: {
+    width: getSizeWRTDeviceWidth(14),
+    resizeMode: "contain",
   },
   addOneMoreBtnContainer: {
     width: "100%",

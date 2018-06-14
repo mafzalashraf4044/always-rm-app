@@ -138,6 +138,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 				// step 6
 				submitName: "",
 				submitJobTitle: "",
+				signature: "",
 			},
 		};
 

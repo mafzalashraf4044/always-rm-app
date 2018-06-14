@@ -946,7 +946,6 @@ export const rcrFormTemplate = [
     type: "step",
     title: "Step 6: Submit",
     key: "stepIndex-14",
-    fullHeight: true,
     components: [{
       key: "formFieldSet-14-1",
       type: "formFieldSet",

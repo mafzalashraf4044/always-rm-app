@@ -35,12 +35,6 @@ class StoreVisit extends React.Component<Props> {
     });
   }
 
-	handleChange = (key, value) => {
-		this.setState({
-			[key]: value
-		});
-	}
-
   getTitle = () => {
     if (this.state.stepIndex !== -1) {
       return this.props.formTemplate[this.state.stepIndex].title;

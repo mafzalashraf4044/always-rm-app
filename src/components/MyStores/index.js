@@ -21,11 +21,15 @@ import { Dropdown } from "../common/Dropdown";
 
 import styles from "./styles";
 
+import { MY_STORES } from "../../constants";
+
+
 export interface Props {
-	navigation: any;
+	navigation: any,
+	formType: string,
 }
 
-class Stores extends React.Component<Props> {
+class MyStores extends React.Component<Props> {
 
 	constructor(props) {
 		super(props);
@@ -75,64 +79,83 @@ class Stores extends React.Component<Props> {
 					]}
         />
 
-				<Tabs initialPage={0} transparent>
-					<Tab heading="Outstanding">
-						<ScrollView style={styles.tabContent}>
-							<View style={styles.withoutFilter}>
-								{
-									this.props.stores.map((store, index) => (
-										<StoreCard navigation={this.props.navigation} store={store} key={index} />
-									))
-								}
-							</View>
-						</ScrollView>
-					</Tab>
-					<Tab heading="Today">
-						<ScrollView style={styles.tabContent}>
-							<View style={styles.withoutFilter}>
-								{
-									this.props.stores.map((store, index) => (
-										<StoreCard navigation={this.props.navigation} store={store} key={index} />
-									))
-								}
-							</View>
-						</ScrollView>
-					</Tab>
-					<Tab heading="Upcoming">
-						<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
-							<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled}/>
-							<View style={styles.withFilter}>
-								{
-									this.props.stores.map((store, index) => (
-										<StoreCard
-											key={index}
-											store={store}
-											reassignAvailable
-											navigation={this.props.navigation}
-											toggleReassignModal={this.toggleReassignModal}
-										/>
-									))
-								}
-							</View>
-						</ScrollView>
-					</Tab>
-					<Tab heading="Completed">
-						<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
-							<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled} />
-							<View style={styles.withFilter}>
-								{
-									this.props.stores.map((store, index) => (
-										<StoreCard
-											key={index}
-											store={store}
-											navigation={this.props.navigation}
-										/>
-									))
-								}
-							</View>
-						</ScrollView>
-					</Tab>
-				</Tabs>
+				{
+					this.props.formType === MY_STORES.RCR ?
+					<Tabs initialPage={0} transparent>
+						<Tab heading="Outstanding">
+							<ScrollView style={styles.tabContent}>
+								<View style={styles.withoutFilter}>
+									{
+										this.props.stores.map((store, index) => (
+											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+										))
+									}
+								</View>
+							</ScrollView>
+						</Tab>
+						<Tab heading="Today">
+							<ScrollView style={styles.tabContent}>
+								<View style={styles.withoutFilter}>
+									{
+										this.props.stores.map((store, index) => (
+											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+										))
+									}
+								</View>
+							</ScrollView>
+						</Tab>
+						<Tab heading="Upcoming">
+							<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
+								<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled}/>
+								<View style={styles.withFilter}>
+									{
+										this.props.stores.map((store, index) => (
+											<StoreCard
+												key={index}
+												store={store}
+												reassignAvailable
+												formType={this.props.formType}
+												navigation={this.props.navigation}
+												toggleReassignModal={this.toggleReassignModal}
+											/>
+										))
+									}
+								</View>
+							</ScrollView>
+						</Tab>
+						<Tab heading="Completed">
+							<ScrollView style={styles.tabContent} scrollEnabled={this.state.isScrollEnabled}>
+								<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled} />
+								<View style={styles.withFilter}>
+									{
+										this.props.stores.map((store, index) => (
+											<StoreCard
+												key={index}
+												store={store}
+												formType={this.props.formType}
+												navigation={this.props.navigation}
+											/>
+										))
+									}
+								</View>
+							</ScrollView>
+						</Tab>
+					</Tabs> : null
+				}
+
+				{
+					this.props.formType === MY_STORES.MERCHANDISERS ?
+					<ScrollView endFillColor="#fff">
+						<View style={styles.storesContainer}>
+							{
+								this.props.stores.map((store, index) => (
+									<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+								))
+							}
+						</View>
+					</ScrollView> : null
+				}
+
 
         <Modal
 					isVisible={this.state.isReassignModalOpen}
@@ -177,4 +200,4 @@ class Stores extends React.Component<Props> {
 	}
 }
 
-export default Stores;
+export default MyStores;

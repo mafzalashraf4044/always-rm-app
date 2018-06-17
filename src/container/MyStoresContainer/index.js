@@ -1,9 +1,12 @@
 // @flow
 import * as React from "react";
-import { connect } from "react-redux";
-import Stores from "../../components/Stores";
 
+import MyStores from "../../components/MyStores";
+
+import { connect } from "react-redux";
 import { getStores } from "../../actions";
+
+import { MY_STORES } from "../../constants";
 
 export interface Props {
 	navigation: any,
@@ -11,7 +14,7 @@ export interface Props {
 
 export interface State {}
 
-class StoresContainer extends React.Component<Props, State> {
+class MyStoresContainer extends React.Component<Props, State> {
 
 	state = {
 		stores: [{
@@ -59,8 +62,9 @@ class StoresContainer extends React.Component<Props, State> {
 
 	render() {
 		return (
-			<Stores
-				stores={this.state.stores}	
+			<MyStores
+				formType={MY_STORES.RCR}
+				stores={this.state.stores}
 				navigation={this.props.navigation}
 			/>
 		);
@@ -77,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoresContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MyStoresContainer);

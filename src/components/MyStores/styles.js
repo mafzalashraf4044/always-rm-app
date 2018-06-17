@@ -8,6 +8,10 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#fff",
 		position: "relative",
 	},
+	storesContainer: {
+		flex: 1,
+		backgroundColor: "#FFF",
+	},
 	tabContent: {
 		flex: 1,
 		height: deviceHeight,

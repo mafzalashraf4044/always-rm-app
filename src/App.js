@@ -12,7 +12,7 @@ import ForgotPwd from "./container/ForgotPwdContainer";
 import Home from "./container/HomeContainer";
 import Sidebar from "./container/SidebarContainer";
 
-import Stores from "./container/StoresContainer";
+import MyStores from "./container/MyStoresContainer";
 import AddEditStore from "./container/AddEditStoreContainer";
 import SearchStores from "./container/SearchStoresContainer";
 import StoreVisit from "./container/StoreVisitContainer";
@@ -38,13 +38,13 @@ const AuthNavigator = StackNavigator(
 
 const StoreNavigator = StackNavigator(
 	{
-		Stores: { screen: Stores },
+		MyStores: { screen: MyStores },
 		AddEditStore: { screen: AddEditStore },
 		SearchStores: { screen: SearchStores },
 		StoreVisit: { screen: StoreVisit },
 	},
 	{
-		initialRouteName: "Stores",
+		initialRouteName: "MyStores",
 		headerMode: "none",
 	}
 );
@@ -52,7 +52,7 @@ const StoreNavigator = StackNavigator(
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
-		Stores: { screen: StoreNavigator },
+		MyStores: { screen: StoreNavigator },
 	},
 	{
 		drawerWidth: deviceWidth * 0.85,

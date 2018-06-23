@@ -14,6 +14,102 @@ const styles: any = StyleSheet.create({
   dataGridColumn: {
 
   },
+
+
+
+
+
+
+
+
+
+
+  rspListHeadingContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: getSizeWRTDeviceWidth(10),
+  },
+  rspList: {
+
+  },
+  rspListItem: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(74,74,74,1)",
+    paddingVertical: getSizeWRTDeviceWidth(8),
+  },
+  rspListItemName: {
+    width: "20%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rspListItemNameTxt: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
+  rspListItemContactInfo: {
+    width: "55%",
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  rspListItemEmailTxt: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
+  rspListItemContactNoTxt: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
+  rspListItemEditBtnContainer: {
+    width: "25%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  rspListItemEditBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: getSizeWRTDeviceWidth(62),
+    height: getSizeWRTDeviceWidth(36),
+    backgroundColor: "rgba(233,30,99,1)",
+  },
+  rspListItemEditBtnTxt: {
+    color: "#FFF",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
+  updateRspListBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: getSizeWRTDeviceWidth(36),
+    backgroundColor: "rgba(233,30,99,1)",
+  },
+  updateRspListBtnTxt: {
+    color: "#FFF",
+    backgroundColor: "transparent",
+    fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
+  },
   formView: {
     height: "100%",
     paddingHorizontal: getSizeWRTDeviceWidth(15),
@@ -195,9 +291,14 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
     marginTop: getSizeWRTDeviceWidth(10),
   },
-  addOneMoreBtnContainerWithFieldsetDG: {
+  addOneMoreBtnContainerWithFieldsetDGFS: {
     justifyContent: "flex-start",
     marginTop: getSizeWRTDeviceWidth(5),
+    marginBottom: getSizeWRTDeviceWidth(20),
+  },
+  addOneMoreBtnContainerWithFieldsetDGFE: {
+    justifyContent: "flex-end",
+    marginTop: getSizeWRTDeviceWidth(-10),
     marginBottom: getSizeWRTDeviceWidth(20),
   },
   addOneMoreBtn: {
@@ -228,7 +329,6 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
     height: getSizeWRTDeviceWidth(36),
     paddingVertical: getSizeWRTDeviceWidth(10),
-    paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
   },
   startBtnTxt: {
@@ -244,7 +344,6 @@ const styles: any = StyleSheet.create({
     width: getSizeWRTDeviceWidth(132),
     height: getSizeWRTDeviceWidth(36),
     paddingVertical: getSizeWRTDeviceWidth(10),
-    paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "transparent",
 		shadowColor: "#FFF",
 		elevation: 0,
@@ -262,7 +361,6 @@ const styles: any = StyleSheet.create({
     width: getSizeWRTDeviceWidth(132),
     height: getSizeWRTDeviceWidth(36),
     paddingVertical: getSizeWRTDeviceWidth(10),
-    paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
   },
   darkBtnTxt: {
@@ -306,13 +404,13 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(16),
 	},
-	modalActions: {
+	submissionModalActions: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingTop: getSizeWRTDeviceWidth(10),
 	},
-  modalActionBtn: {
+  submissionModalActionBtn: {
     paddingVertical: getSizeWRTDeviceWidth(10),
     paddingHorizontal: getSizeWRTDeviceWidth(20),
     backgroundColor: "rgba(233,30,99,1)",
@@ -320,7 +418,7 @@ const styles: any = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalActionBtnTxt: {
+  submissionModalActionBtnTxt: {
     color: "rgba(255,255,255,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",

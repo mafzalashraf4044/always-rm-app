@@ -7,20 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
-import { Button, Spinner } from "native-base";
 import Modal from "react-native-modal";
+import { Button, Spinner } from "native-base";
 import { TextField } from "react-native-material-textfield";
 
 import Switch from "../Switch";
 import ImageGrid from "../ImageGrid";
 import { Dropdown } from "../Dropdown";
-import SignaturePad from "../ImageGrid";
+import SignaturePad from "../SignaturePad";
 
 import styles from "./styles";
-import { getSizeWRTDeviceWidth, deviceWidth, deviceHeight } from "../../../utils";
-
-const FIRST_INDEX = 0;
+import { getSizeWRTDeviceWidth, deviceHeight } from "../../../utils";
 
 export interface Props {
   form: obj;
@@ -29,7 +26,7 @@ export interface Props {
 export interface State {}
 
 class FormRenderer extends React.Component<Props, State> {
-  state = {submissionConfirmationModal: false, submissionSuccessModal: false, isSignatureLoading: false};
+  state = {submissionConfirmationModal: false, submissionSuccessModal: false, isSignatureLoading: false, rspListItemEditIndex: -1, selectedRspListItem: null};
 
   textFieldProps = {
     lineWidth:0,
@@ -42,29 +39,10 @@ class FormRenderer extends React.Component<Props, State> {
     labelTextStyle:{top: getSizeWRTDeviceWidth(-4)},
   };
 
-  signaturePadError = (error) => {
-    alert(error);
-  };
-
-  clearSignature = (formField, formLayout) => {
-    this.setSignatureLoading();
-    this.props.handleFormDataChange(formField.key, "", formLayout);    
-  }
-
-  signaturePadChange = (base64DataUrl, formField, formLayout) => {
-    this.props.handleFormDataChange(formField.key, base64DataUrl, formLayout);
-  };
-
-  setSignatureLoading = () => {
-    this.setState({
-      isSignatureLoading: true,
-    }, () => {
-      setTimeout(() => {
-        this.setState({
-          isSignatureLoading: false,
-        });
-      }, 500);
-    });
+  componentWillReceiveProps(newProps) {
+    if (newProps.stepIndex === 14) {
+      this.setSignatureLoading();
+    }
   }
 
   renderFormFields = (formField, formLayout = null) => {
@@ -90,8 +68,9 @@ class FormRenderer extends React.Component<Props, State> {
     } else if (formField.type === "select") {
       return (
         <Dropdown
-          key={formField.key}
+          fullWidth
           value={value}
+          key={formField.key}
           label={formField.label}
           data={formField.data.values}
           onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
@@ -156,11 +135,8 @@ class FormRenderer extends React.Component<Props, State> {
               /> :
               <SignaturePad
                 onError={this.signaturePadError}
-                defaultHeight={deviceHeight}
-                defaultWidth={deviceWidth}
                 onChange={({base64DataUrl}) => this.signaturePadChange(base64DataUrl, formField, formLayout)}
                 style={{flex: 1, backgroundColor: "white"}}
-                key={new Date().getTime() + Math.floor(Math.random(100) * 100)}
               />
             }
           </View>
@@ -172,79 +148,6 @@ class FormRenderer extends React.Component<Props, State> {
                 source={require("../../../assets/Icons/Light/Delete.png")}
               />
             </Button> : null
-          }
-        </View>
-      );
-    } else if (formField.type === "topi") {
-      return (
-        <View style={{marginTop: getSizeWRTDeviceWidth(15)}} key="XYZ">
-          <View style={styles.headingContainer}>
-            <Text style={styles.headingTxt}>Current RSP List</Text>
-
-            <Button onPress={() => {}} style={styles.addOneMoreBtn}>
-              <Image
-                style={styles.addIcon}
-                source={require("../../../assets/Icons/Light/Add.png")}
-              />
-              <Text style={styles.addOneMoreBtnTxt}>ADD NEW RSP (4)</Text>
-            </Button>
-          </View>
-
-          {
-            [1,2,3,4].map((rsp, index) => (
-              <View key={index} style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: getSizeWRTDeviceWidth(8),
-              }}>
-                <View style={{justifyContent: "center", alignItems: "center"}}>
-                  <Text style={{
-                    color: "rgba(74,74,74,1)",
-                    backgroundColor: "transparent",
-                    fontFamily: "Always_Font",
-                    fontSize: getSizeWRTDeviceWidth(12),
-                    lineHeight: getSizeWRTDeviceWidth(14),
-                  }}>John Doe</Text>
-                </View>
-                <View style={{justifyContent: "center", alignItems: "flex-end"}}>
-                  <Text style={{
-                    color: "rgba(74,74,74,1)",
-                    backgroundColor: "transparent",
-                    fontFamily: "Always_Font",
-                    fontSize: getSizeWRTDeviceWidth(12),
-                    lineHeight: getSizeWRTDeviceWidth(14),
-                    fontWeight: "normal",
-                  }}>johndoe.always@gmail.com</Text>
-                  <Text style={{
-                    color: "rgba(74,74,74,1)",
-                    backgroundColor: "transparent",
-                    fontFamily: "Always_Font",
-                    fontSize: getSizeWRTDeviceWidth(12),
-                    lineHeight: getSizeWRTDeviceWidth(14),
-                    fontWeight: "normal",
-                  }}>+65 9876 4532</Text>
-                </View>
-                <View style={{justifyContent: "center", alignItems: "center"}}>
-                  <Button onPress={() => {}} style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: getSizeWRTDeviceWidth(36),
-                    paddingVertical: getSizeWRTDeviceWidth(10),
-                    paddingHorizontal: getSizeWRTDeviceWidth(20),
-                    backgroundColor: "rgba(233,30,99,1)",
-                  }}>
-                    <Text style={{
-                      color: "#FFF",
-                      backgroundColor: "transparent",
-                      fontFamily: "Always_Font",
-                      fontSize: getSizeWRTDeviceWidth(14),
-                      lineHeight: getSizeWRTDeviceWidth(16),
-                    }}>EDIT</Text>
-                  </Button>
-                </View>
-              </View>
-            ))
           }
         </View>
       );
@@ -269,6 +172,7 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
       );      
     } else if (formLayout.type === "dataGridRowView") {
+      //  only for RCR step # 2 Face-to-Face Training
       return (
         <View style={styles.formLayout} key={formLayout.key}>
           <View style={styles.headingContainer}>
@@ -312,23 +216,38 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
       );
     } else if (formLayout.type === "dataGridWithFieldSets") {
+
+      const addOneMoreBtn = () => (
+        <View
+          style={[
+            styles.addOneMoreBtnContainer,
+            formLayout.addOneMoreItemPosition === "top" && styles.addOneMoreBtnContainerWithFieldsetDGFS,
+            formLayout.addOneMoreItemPosition === "bottom" && styles.addOneMoreBtnContainerWithFieldsetDGFE,
+          ]}
+        >
+          <Button onPress={() => this.props.addOneDataGridItem(formLayout.key, formLayout.gridItem)} style={styles.addOneMoreBtn}>
+            <Image
+              style={styles.addIcon}
+              source={require("../../../assets/Icons/Light/Add.png")}
+            />
+            <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+          </Button>
+        </View>
+      );
+
       return (
         <View key={formLayout.key}>
           {
-            formLayout.label ? 
+            formLayout.label ?
             <View style={styles.headingContainer}>
               <Text style={styles.headingTxt}>{formLayout.label}</Text>
             </View> : null
           }
-          <View style={[styles.addOneMoreBtnContainer, styles.addOneMoreBtnContainerWithFieldsetDG]}>
-            <Button onPress={() => this.props.addOneDataGridItem(formLayout.key, formLayout.gridItem)} style={styles.addOneMoreBtn}>
-              <Image
-                style={styles.addIcon}
-                source={require("../../../assets/Icons/Light/Add.png")}
-              />
-              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
-            </Button>
-          </View>
+
+          {
+            formLayout.addOneMoreItemPosition === "top" ? addOneMoreBtn() : null
+          }
+
           {
             this.props.formData[formLayout.key].map((gridItem, gridItemIndex) => {
               return (
@@ -338,21 +257,148 @@ class FormRenderer extends React.Component<Props, State> {
                       {
                         fieldSet.legend ? 
                         <View style={styles.headingContainer}>
-                          <Text style={styles.headingTxt}>{fieldSet.legend}</Text>
+                          <Text style={[styles.headingTxt, fieldSet.legendDarkTxt && {color: "rgba(74,74,74,1)", fontWeight: "bold"}]}>{fieldSet.legend} ({gridItemIndex + 1})</Text>
                         </View> : null
                       }
                       {
                         fieldSet.components.map((formField) => {
                           return (
                             this.renderFormFields(formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
-                          )
+                          );
                         })
                       }
                     </View>
                   )
                 })
-              )
+              );
             })
+          }
+
+          {
+            formLayout.addOneMoreItemPosition === "bottom" ? addOneMoreBtn() : null
+          }
+        </View>
+      );
+    } else if (formLayout.type === "rspList") {
+      //  only for RCR step # 1 RSP List
+      return (
+        <View style={styles.formLayout} key={formLayout.key}>
+          <View style={styles.rspListHeadingContainer}>
+            <Text style={styles.headingTxt}>{formLayout.label}</Text>
+            <Button onPress={() => this.props.addOneDataGridItem("newRspItems", formLayout.gridItem)} style={styles.addOneMoreBtn}>
+              <Image
+                style={styles.addIcon}
+                source={require("../../../assets/Icons/Light/Add.png")}
+              />
+              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+            </Button>
+          </View>
+
+          <View style={styles.rspList}>
+            {
+              this.props.formData.rspList.map((gridItem, gridItemIndex) => {
+                return (
+                  <View style={styles.rspListItem} key={gridItemIndex}>
+                    <View style={styles.rspListItemName}>
+                      <Text style={styles.rspListItemNameTxt}>{gridItem.name}</Text>
+                    </View>
+                    <View style={styles.rspListItemContactInfo}>
+                      <Text style={styles.rspListItemEmailTxt}>{gridItem.email}</Text>
+                      <Text style={styles.rspListItemContactNoTxt}>{gridItem.contactNumber}</Text>
+                    </View>
+                    <View style={styles.rspListItemEditBtnContainer}>
+                      <Button onPress={() => this.setRspListItemEditIndex(gridItemIndex)} style={styles.rspListItemEditBtn}>
+                        <Text style={styles.rspListItemEditBtnTxt}>EDIT</Text>
+                      </Button>
+                    </View>
+                  </View>
+                );
+              })
+            }
+          </View>
+
+
+          {
+            this.props.formData.newRspItems.length ?
+            <View>
+              <View style={[styles.divider, {marginVertical: getSizeWRTDeviceWidth(25)}]} />
+
+              {
+                this.props.formData.newRspItems.map((gridItem, gridItemIndex) => {
+                  return (
+                    formLayout.components.map((fieldSet, fieldSetIndex) => {
+                      return (
+                        <View style={[styles.formLayout]} key={fieldSet.key}>
+                          {
+                            fieldSet.legend ? 
+                            <View style={styles.headingContainer}>
+                              <Text style={[styles.headingTxt]}>{fieldSet.legend} {gridItemIndex + 1}</Text>
+                            </View> : null
+                          }
+                          {
+                            fieldSet.components.map((formField) => {
+                              return (
+                                this.renderFormFields(formField, {isDataGrid: true, gridItemKey: "newRspItems", gridItemIndex})
+                              );
+                            })
+                          }
+                        </View>
+                      )
+                    })
+                  );
+                })
+              }
+
+              <Button onPress={this.props.appendNewRspToList} style={styles.updateRspListBtn}>
+                <Text style={styles.updateRspListBtnTxt}>Update Current RSP List</Text>
+              </Button>              
+            </View> : null
+          }
+
+          {
+            this.state.rspListItemEditIndex !== -1 ?
+            <Modal
+              style={styles.modalContainer}
+              isVisible={this.state.rspListItemEditIndex !== -1}
+            >
+              <View style={styles.modal}>
+                <View style={styles.header}>
+                  <Text style={styles.headerTxt}>EDIT RSP</Text>
+                </View>
+                <View style={styles.body}>
+                  {
+                    formLayout.components.map((fieldSet, fieldSetIndex) => {
+                      return (
+                        <View style={[styles.formLayout]} key={fieldSet.key}>
+                          {
+                            fieldSet.components.map((formField) => {
+                              return (
+                                this.renderFormFields(formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex: this.state.rspListItemEditIndex})
+                              );
+                            })
+                          }
+                        </View>
+                      );
+                    })
+                  }
+
+                  <View style={styles.formActions}>
+                    <Button
+                      onPress={() => this.setRspListItemEditIndex(-1, true)}
+                      style={[styles.lightBtn, {width: getSizeWRTDeviceWidth(80)}]}
+                    >
+                      <Text style={styles.lightBtnTxt}>CANCEL</Text>
+                    </Button>
+                    <Button
+                      onPress={() => this.setRspListItemEditIndex(-1)}
+                      style={[styles.darkBtn, {width: getSizeWRTDeviceWidth(80)}]}
+                    >
+                      <Text style={styles.darkBtnTxt}>SAVE</Text>
+                    </Button>
+                  </View>
+                </View>
+              </View>
+            </Modal> : null
           }
         </View>
       );
@@ -361,6 +407,48 @@ class FormRenderer extends React.Component<Props, State> {
     return null;
   }
 
+  setRspListItemEditIndex = (rspListItemEditIndex, isCancel = false) => {
+    const _rspListItemEditIndex = this.state.rspListItemEditIndex;
+    this.setState({
+      rspListItemEditIndex,
+    }, () => {
+      //  on cancel
+      if (isCancel) {
+        for (const key in this.state.selectedRspListItem) {
+          this.props.handleFormDataChange(key, this.state.selectedRspListItem[key], {isDataGrid: true, gridItemKey: "rspList", gridItemIndex: _rspListItemEditIndex});
+        }
+
+        this.setState({selectedRspListItem: null});
+      } else if (this.state.rspListItemEditIndex !== -1){
+        this.setState({selectedRspListItem: {...this.props.formData.rspList[rspListItemEditIndex]}});
+      }
+    });
+  }
+
+  signaturePadError = (error) => {};
+
+  clearSignature = (formField, formLayout) => {
+    this.setSignatureLoading();
+    this.props.handleFormDataChange(formField.key, "", formLayout);    
+  }
+
+  signaturePadChange = (base64DataUrl, formField, formLayout) => {
+    this.props.handleFormDataChange(formField.key, base64DataUrl, formLayout);
+  };
+
+  setSignatureLoading = () => {
+    this.setState({
+      isSignatureLoading: true,
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          isSignatureLoading: false,
+        });
+      }, 500);
+    });
+  }
+
+
   continue = () => {
     this.props.saveFormToAsyncStorage();
     this.props.setStepIndex(this.props.stepIndex + 1);
@@ -368,7 +456,7 @@ class FormRenderer extends React.Component<Props, State> {
 
   saveAndExit = () => {
     this.props.saveFormToAsyncStorage();
-    this.props.navigation.navigate("Stores");
+    this.props.navigation.navigate("MyStores");
   }
 
   submit = () => {
@@ -390,7 +478,7 @@ class FormRenderer extends React.Component<Props, State> {
     this.setState({
       submissionSuccessModal: false,
     }, () => {
-      this.props.navigation.navigate("Stores");
+      this.props.navigation.navigate("MyStores");
     });
   }
 
@@ -409,7 +497,7 @@ class FormRenderer extends React.Component<Props, State> {
         </View>
 
         {
-          this.props.stepIndex === FIRST_INDEX ?
+          this.props.stepTemplate.startBtn ?
           <View style={styles.formActions}>
             <Button block onPress={this.continue} style={styles.startBtn}>
               <Text style={styles.startBtnTxt}>START</Text>
@@ -423,7 +511,7 @@ class FormRenderer extends React.Component<Props, State> {
               (this.props.stepIndex !== this.props.stepsLength - 1) ?
               <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
                 <Text style={styles.darkBtnTxt}>CONTINUE</Text>
-              </Button> : 
+              </Button> :
               <Button block onPress={this.toggleSubmissionConfirmationModal} style={styles.darkBtn}>
                 <Text style={styles.darkBtnTxt}>SUBMIT</Text>
               </Button>
@@ -444,16 +532,16 @@ class FormRenderer extends React.Component<Props, State> {
               <View style={styles.body}>
                 <Text style={styles.bodyTxt}>You are submitting data reports for Harvey Norman on 05/04/2018</Text>
 
-                <View style={styles.modalActions}>
+                <View style={styles.submissionModalActions}>
                   <TouchableOpacity
-                    style={[styles.modalActionBtn, {backgroundColor: "transparent"}]}
+                    style={[styles.submissionModalActionBtn, {backgroundColor: "transparent"}]}
                     onPress={this.toggleSubmissionConfirmationModal}>
-                    <Text style={[styles.modalActionBtnTxt, {color: "rgba(233,30,99,1)"}]}>CANCEL</Text>
+                    <Text style={[styles.submissionModalActionBtnTxt, {color: "rgba(233,30,99,1)"}]}>CANCEL</Text>
                   </TouchableOpacity>
                   <Button
-                    style={styles.modalActionBtn}
+                    style={styles.submissionModalActionBtn}
                     onPress={this.submit}>
-                    <Text style={styles.modalActionBtnTxt}>CONFIRM</Text>
+                    <Text style={styles.submissionModalActionBtnTxt}>CONFIRM</Text>
                   </Button>
                 </View>
               </View>
@@ -474,11 +562,11 @@ class FormRenderer extends React.Component<Props, State> {
               <View style={styles.body}>
                 <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
 
-                <View style={[styles.modalActions, {justifyContent: "center"}]}>
+                <View style={[styles.submissionModalActions, {justifyContent: "center"}]}>
                   <Button
-                    style={styles.modalActionBtn}
+                    style={styles.submissionModalActionBtn}
                     onPress={this.goToHomePage}>
-                    <Text style={styles.modalActionBtnTxt}>BACK TO HOMEPAGE</Text>
+                    <Text style={styles.submissionModalActionBtnTxt}>BACK TO HOMEPAGE</Text>
                   </Button>
                 </View>
               </View>

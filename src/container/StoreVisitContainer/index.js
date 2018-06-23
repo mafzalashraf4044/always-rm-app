@@ -1,14 +1,17 @@
 // @flow
 import * as React from "react";
 import { AsyncStorage } from "react-native";
-import { connect } from "react-redux";
 import StoreVisit from "../../components/StoreVisit";
 
+import { connect } from "react-redux";
 import { setIsLoading } from "../../actions";
 
-import { rcrFormTemplate } from "./data";
+import myStoresRCRTemplate from "./forms/mystoresrcr";
+import myStoresMerchandisersTemplate from "./forms/mystoresmerchandisers";
+import SKUAnalysisTemplate from "./forms/skuanalysis";
 
-const FIRST_INDEX = 0;
+import * as _formData from "./formData";
+import { MY_STORES, SKU_ANALYSIS } from "../../constants";
 
 export interface Props {
 	navigation: any,
@@ -20,126 +23,24 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 	constructor(props) {
 		super(props);
+
+		let formData = null;
+		this.formTemplate = null;
+		const { params } = this.props.navigation.state; //params.formType
+
+		if (params.formType === MY_STORES.RCR) {
+			formData = _formData.myStoresRCR;
+			this.formTemplate = myStoresRCRTemplate;
+		} else if (params.formType === MY_STORES.MERCHANDISERS) {
+			formData = _formData.myStoresMerchandisers;
+			this.formTemplate = myStoresMerchandisersTemplate;
+		} else if (params.formType === SKU_ANALYSIS) {
+			formData = _formData.SKUAnalysis;
+			this.formTemplate = SKUAnalysisTemplate;
+		}
+
 		this.state = {
-			formData: {
-				// step 0
-				storeStatus: "",
-				visitNumber: "",
-
-				// step 1
-				noOfRspsOnDutyDuringVisit: "",
-
-				// step 2
-				noOfRspsWhoAttendedFaceToFaceTraining: "",
-				noOfIrepCoursesCompletedDuringVisit: "",
-				faceToFaceTraining: [
-					{
-						trainingCourse: "",
-						trainingDone: false,
-					}
-				],
-				trainingActivityImages: [],
-
-				// step 3.1
-				canStoreDeployPosm: false,
-				posm: false,
-				twoInOnePcs: "",
-				laptops: "",
-				allIn1Pcs: "",
-				merchandisingImages: [],
-
-				// step 3.2
-				iposRxtInstallation: false,
-				currentInStore: "",
-				newInstallation: "",
-				totIposRxtInstallation: "",
-				iposRxtInstallationImages: [],
-
-				// step 3.3
-				rxtSubmission: "",
-				totalPcsInStore: "",
-				pcsPowerdByIntelTurnedOn: "",
-				pcsPowerdByIntelTurnedOff: "",
-				pcsPowerdByCompetitorTurnedOn: "",
-				pcsPowerdByCompetitorTurnedOff: "",
-
-				// step 4
-				competitorAnaylsis: [
-					{
-						competitorName: "",
-						noOfCompetitorPcs: "",
-						posmInstalled: "",
-						description: "",
-						pcBrand: "",
-						pcDescription: "",
-						competitorImages: [],
-					},
-				],
-
-				// step 5.1
-				current2in1Zone: "",
-				outdated2in1Zone: "",
-				refrestDeploymentOpportunity2in1Zone: "",
-				storeAnalysisDescription2in1Zone: "",
-				storeAnalysisPCImages2in1Zone: [],
-
-				// step 5.2
-				currentGamingZone: "",
-				outdatedGamingZone: "",
-				refrestDeploymentOpportunityGamingZone: "",
-				storeAnalysisDescriptionGamingZone: "",
-				storeAnalysisPCImagesGamingZone: [],
-
-				// step 5.3
-				currentEndCapDisplay: "",
-				intelRiserDeployedInStore: false,
-				promotionUpdates: false,
-				storeAnalysisDescriptionEndCapDisplay: "",
-				storeAnalysisPCImagesEndCapDisplay: [],
-
-				// step 5.4
-				newLaunchProductUpdates: false,
-				newLaunchProduct: [
-					{
-						brand: "",
-						model: "",
-						specifications: "",
-						price: "",
-						description: "",
-						images: [],
-					}
-				],
-
-				// step 5.5
-				oemUpdates: false,
-				oem: [
-					{
-						name: "",
-						description: "",
-						images: [],
-					}
-				],
-
-				// step 5.6
-				eventUpdates: false,
-				event: [
-					{
-						name: "",
-						date: "",
-						description: "",
-						images: [],
-					}
-				],
-
-				// step 5.7
-				remark: "",
-				otherRemarks: "",
-
-				// step 6
-				submitName: "",
-				submitJobTitle: "",
-				signature: "",
-			},
+			formData,
 		};
 
 		this.props.setIsLoading(true);
@@ -147,11 +48,11 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		try {
-			// AsyncStorage.clear(() => {});
-      AsyncStorage.getItem("formData").then((_formData) => {
-				if (_formData !== null){
+			AsyncStorage.clear(() => {});
+      AsyncStorage.getItem("formData").then((formData) => {
+				if (formData !== null){
 						this.setState({
-							formData: JSON.parse(_formData),
+							formData: JSON.parse(formData),
 						}, () => {
 							this.props.setIsLoading(false);
 						});
@@ -160,8 +61,8 @@ class StoreVisitContainer extends React.Component<Props, State> {
 				}
 			});
 
-    } catch (error) {
-			throw new Error (error);
+    } catch (err) {
+			throw new Error(err);
     }
 	}
 
@@ -192,6 +93,16 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
+	appendNewRspToList = () => {
+		const formData = this.state.formData;
+		formData.rspList = [...formData.rspList, ...formData.newRspItems];
+		formData.newRspItems = [];
+
+		this.setState({
+			formData,
+		});
+	}
+
 	handleFormDataChange = (key, value, formLayout) => {
 		const formData = this.state.formData;
 
@@ -210,9 +121,10 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		return (
 			<StoreVisit
 				formData={this.state.formData}
-				formTemplate={rcrFormTemplate}
+				formTemplate={this.formTemplate}
 				navigation={this.props.navigation}
 				saveCapturedImg={this.saveCapturedImg}
+				appendNewRspToList={this.appendNewRspToList}
 				addOneDataGridItem={this.addOneDataGridItem}
 				handleFormDataChange={this.handleFormDataChange}
 				saveFormToAsyncStorage={this.saveFormToAsyncStorage}

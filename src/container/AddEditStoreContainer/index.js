@@ -15,7 +15,7 @@ class AddEditStoreContainer extends React.Component<Props, State> {
 
 	constructor(props) {
 		super(props);
-	
+
 		const { params } = this.props.navigation.state;
 		this.state = {
 			store: !params.isEdit ? {

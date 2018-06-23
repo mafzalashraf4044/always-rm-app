@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
   Animated,
@@ -10,7 +10,12 @@ import {
 
 import styles from "./styles";
 
-class StoreCard extends Component {
+export interface Props {
+	navigation: any,
+	formType: string,
+}
+
+class StoreCard extends React.Component<Props> {
 
   constructor(props) {
     super(props);
@@ -86,7 +91,7 @@ class StoreCard extends Component {
                 <TouchableOpacity onPress={this.props.toggleReassignModal}>
                   <Text style={styles.txtBtn}>TRANSFER</Text>
                 </TouchableOpacity> :
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit")}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("StoreVisit", {formType: this.props.formType})}>
                   <Text style={styles.txtBtn}>RE-VISIT</Text>
                 </TouchableOpacity>
               }

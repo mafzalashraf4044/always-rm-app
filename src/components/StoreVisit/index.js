@@ -104,6 +104,7 @@ class StoreVisit extends React.Component<Props> {
               stepsLength={this.props.formTemplate.length}
               saveCapturedImg={this.props.saveCapturedImg}
               addOneDataGridItem={this.props.addOneDataGridItem}
+              appendNewRspToList={this.props.appendNewRspToList}
               handleFormDataChange={this.props.handleFormDataChange}
               saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               stepTemplate={this.props.formTemplate[this.state.stepIndex]}

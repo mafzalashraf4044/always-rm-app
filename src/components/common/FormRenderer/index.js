@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Image,
+  ScrollView,
   TouchableOpacity,
 } from "react-native";
 
@@ -361,43 +362,47 @@ class FormRenderer extends React.Component<Props, State> {
               style={styles.modalContainer}
               isVisible={this.state.rspListItemEditIndex !== -1}
             >
-              <View style={styles.modal}>
-                <View style={styles.header}>
-                  <Text style={styles.headerTxt}>EDIT RSP</Text>
-                </View>
-                <View style={styles.body}>
-                  {
-                    formLayout.components.map((fieldSet, fieldSetIndex) => {
-                      return (
-                        <View style={[styles.formLayout]} key={fieldSet.key}>
-                          {
-                            fieldSet.components.map((formField) => {
-                              return (
-                                this.renderFormFields(formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex: this.state.rspListItemEditIndex})
-                              );
-                            })
-                          }
-                        </View>
-                      );
-                    })
-                  }
+              <ScrollView
+                endFillColor="#fff"
+              >
+                <View style={styles.modal}>
+                  <View style={styles.header}>
+                    <Text style={styles.headerTxt}>EDIT RSP</Text>
+                  </View>
+                  <View style={styles.body}>
+                    {
+                      formLayout.components.map((fieldSet, fieldSetIndex) => {
+                        return (
+                          <View style={[styles.formLayout]} key={fieldSet.key}>
+                            {
+                              fieldSet.components.map((formField) => {
+                                return (
+                                  this.renderFormFields(formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex: this.state.rspListItemEditIndex})
+                                );
+                              })
+                            }
+                          </View>
+                        );
+                      })
+                    }
 
-                  <View style={styles.formActions}>
-                    <Button
-                      onPress={() => this.setRspListItemEditIndex(-1, true)}
-                      style={[styles.lightBtn, {width: getSizeWRTDeviceWidth(80)}]}
-                    >
-                      <Text style={styles.lightBtnTxt}>CANCEL</Text>
-                    </Button>
-                    <Button
-                      onPress={() => this.setRspListItemEditIndex(-1)}
-                      style={[styles.darkBtn, {width: getSizeWRTDeviceWidth(80)}]}
-                    >
-                      <Text style={styles.darkBtnTxt}>SAVE</Text>
-                    </Button>
+                    <View style={styles.formActions}>
+                      <Button
+                        onPress={() => this.setRspListItemEditIndex(-1, true)}
+                        style={[styles.lightBtn, {width: getSizeWRTDeviceWidth(80)}]}
+                      >
+                        <Text style={styles.lightBtnTxt}>CANCEL</Text>
+                      </Button>
+                      <Button
+                        onPress={() => this.setRspListItemEditIndex(-1)}
+                        style={[styles.darkBtn, {width: getSizeWRTDeviceWidth(80)}]}
+                      >
+                        <Text style={styles.darkBtnTxt}>SAVE</Text>
+                      </Button>
+                    </View>
                   </View>
                 </View>
-              </View>
+              </ScrollView>
             </Modal> : null
           }
         </View>

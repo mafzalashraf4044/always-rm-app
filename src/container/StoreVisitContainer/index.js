@@ -8,10 +8,9 @@ import { setIsLoading } from "../../actions";
 
 import myStoresRCRTemplate from "./forms/mystoresrcr";
 import myStoresMerchandisersTemplate from "./forms/mystoresmerchandisers";
-import SKUAnalysisTemplate from "./forms/skuanalysis";
 
 import * as _formData from "./formData";
-import { MY_STORES, SKU_ANALYSIS } from "../../constants";
+import { MY_STORES } from "../../constants";
 
 export interface Props {
 	navigation: any,
@@ -25,18 +24,18 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		super(props);
 
 		let formData = null;
+		this.asyncStorageKey = null;
 		this.formTemplate = null;
 		const { params } = this.props.navigation.state; //params.formType
 
 		if (params.formType === MY_STORES.RCR) {
 			formData = _formData.myStoresRCR;
+			this.asyncStorageKey = "RCR";
 			this.formTemplate = myStoresRCRTemplate;
 		} else if (params.formType === MY_STORES.MERCHANDISERS) {
 			formData = _formData.myStoresMerchandisers;
+			this.asyncStorageKey = "MERCHANDISERS";
 			this.formTemplate = myStoresMerchandisersTemplate;
-		} else if (params.formType === SKU_ANALYSIS) {
-			formData = _formData.SKUAnalysis;
-			this.formTemplate = SKUAnalysisTemplate;
 		}
 
 		this.state = {
@@ -48,8 +47,8 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		try {
-			AsyncStorage.clear(() => {});
-      AsyncStorage.getItem("formData").then((formData) => {
+			// AsyncStorage.clear(() => {});
+      AsyncStorage.getItem(this.asyncStorageKey).then((formData) => {
 				if (formData !== null){
 						this.setState({
 							formData: JSON.parse(formData),
@@ -81,7 +80,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	}
 
 	saveFormToAsyncStorage = () => {
-		AsyncStorage.setItem("formData", JSON.stringify(this.state.formData));
+		AsyncStorage.setItem(this.asyncStorageKey, JSON.stringify(this.state.formData));
 	}
 
 	addOneDataGridItem = (key, gridItem) => {

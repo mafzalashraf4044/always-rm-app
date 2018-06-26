@@ -36,7 +36,7 @@ class AddEditStore extends React.Component<Props> {
 			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
 		};
 		return (
-			<KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-100}>
+			<KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
 				<ScrollView
 					endFillColor="#fff"
 					style={styles.addEditStore}

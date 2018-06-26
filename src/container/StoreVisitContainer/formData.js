@@ -183,7 +183,3 @@ export const myStoresMerchandisers = {
   submitJobTitle: "",
   signature: "",
 };
-
-export const SKUAnalysis = {
-
-};

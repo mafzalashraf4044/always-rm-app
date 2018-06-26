@@ -28,7 +28,7 @@ class Sidebar extends React.Component<Props> {
 			{icon: require("../../assets/Icons/Dark/Stores.png"), name: "My Stores", route: "MyStores"},
 			{icon: require("../../assets/Icons/Dark/Report.png"), name: "Reports", route: "Reports"},
 			{icon: require("../../assets/Icons/Dark/Calendar.png"), name: "My Calendar", route: "MyCalendar"},
-			{icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "SKU Analysis", route: "MyStores"},
+			{icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "SKU Analysis", route: "SKUAnalysis"},
 			{icon: require("../../assets/Icons/Dark/Merchandise.png"), name: "Notifications", route: "MyStores" },
 		];
 	}

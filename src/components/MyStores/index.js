@@ -23,7 +23,6 @@ import styles from "./styles";
 
 import { MY_STORES } from "../../constants";
 
-
 export interface Props {
 	navigation: any,
 	formType: string,
@@ -87,7 +86,7 @@ class MyStores extends React.Component<Props> {
 								<View style={styles.withoutFilter}>
 									{
 										this.props.stores.map((store, index) => (
-											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} formRoute="StoreVisit" />
 										))
 									}
 								</View>
@@ -98,7 +97,7 @@ class MyStores extends React.Component<Props> {
 								<View style={styles.withoutFilter}>
 									{
 										this.props.stores.map((store, index) => (
-											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+											<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} formRoute="StoreVisit" />
 										))
 									}
 								</View>
@@ -117,6 +116,7 @@ class MyStores extends React.Component<Props> {
 												formType={this.props.formType}
 												navigation={this.props.navigation}
 												toggleReassignModal={this.toggleReassignModal}
+												formRoute="StoreVisit"
 											/>
 										))
 									}
@@ -134,6 +134,7 @@ class MyStores extends React.Component<Props> {
 												store={store}
 												formType={this.props.formType}
 												navigation={this.props.navigation}
+												formRoute="StoreVisit"
 											/>
 										))
 									}
@@ -149,7 +150,7 @@ class MyStores extends React.Component<Props> {
 						<View style={styles.storesContainer}>
 							{
 								this.props.stores.map((store, index) => (
-									<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} />
+									<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} formRoute="StoreVisit" />
 								))
 							}
 						</View>

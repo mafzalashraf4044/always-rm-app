@@ -26,7 +26,7 @@ class Home extends React.Component<Props> {
       {icon: require("../../assets/Icons/Light/Stores.png"), name: "My Stores", route: "MyStores", isCenterTab: false },
       {icon: require("../../assets/Icons/Light/Report.png"), name: "Reports", route: "Reports", isCenterTab: true },
       {icon: require("../../assets/Icons/Light/Calendar.png"), name: "My Calendar", route: "MyCalendar", isCenterTab: false },
-      {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "SKU Analysis", route: "MyStores", isCenterTab: false },
+      {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "SKU Analysis", route: "SKUAnalysis", isCenterTab: false },
       {icon: require("../../assets/Icons/Light/Merchandise.png"), name: "Notifications", route: "MyStores", isCenterTab: true },
     ];
 	}

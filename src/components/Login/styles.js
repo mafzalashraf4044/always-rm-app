@@ -2,8 +2,12 @@ import { StyleSheet, Dimensions } from "react-native";
 import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
+  keyboardAvoidingView: {
+    backgroundColor: "#FFF",
+  },
 	loginScreen: {
 		backgroundColor: "#FFF",
+		height: deviceHeight,
 	},
 	loginView: {
 		height: deviceHeight,

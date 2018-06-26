@@ -2,8 +2,12 @@ import { StyleSheet } from "react-native";
 import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
+  keyboardAvoidingView: {
+    backgroundColor: "#FFF",
+  },
 	forgotPwdScreen: {
 		backgroundColor: "#FFF",
+		height: deviceHeight,
 	},
 	forgotView: {
 		height: deviceHeight,

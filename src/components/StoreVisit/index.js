@@ -56,14 +56,13 @@ class StoreVisit extends React.Component<Props> {
   }
 
 	render() {
-
     return (
-      <ScrollView
-        endFillColor="#fff"
-        style={styles.storeVisit}
-        ref={(scrollView) => this.scrollView = scrollView}
-      >
-        <KeyboardAvoidingView behavior="padding" enabled>
+      <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled={false} keyboardVerticalOffset={-80}>
+        <ScrollView
+          endFillColor="#fff"
+          style={styles.storeVisit}
+          ref={(scrollView) => this.scrollView = scrollView}
+        >
           {
             this.state.isStoreImgContainerVisible &&
             <View style={styles.storeImgContainer}>
@@ -110,8 +109,8 @@ class StoreVisit extends React.Component<Props> {
               stepTemplate={this.props.formTemplate[this.state.stepIndex]}
             /> : null
           }
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
 		);
 	}
 }

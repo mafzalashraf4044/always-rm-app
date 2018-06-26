@@ -51,11 +51,11 @@ class Login extends React.Component<Props> {
 		};
 
 		return (
-			<ScrollView
-				endFillColor="#fff"
-				style={styles.loginScreen}
-			>
-				<KeyboardAvoidingView behavior="padding" enabled>
+			<KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
+				<ScrollView
+					endFillColor="#fff"
+					style={styles.loginScreen}
+				>
 					<View style={styles.loginView}>
 						<Image
 							blurRadius={5}
@@ -105,8 +105,8 @@ class Login extends React.Component<Props> {
 							</View>
 						</View>
 					</View>
-				</KeyboardAvoidingView>
-			</ScrollView>
+				</ScrollView>
+			</KeyboardAvoidingView>
 		);
 	}
 }

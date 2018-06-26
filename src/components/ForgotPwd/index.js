@@ -73,11 +73,11 @@ class ForgotPwd extends React.Component<Props> {
       {url: require("../../assets/Icons/Light/Back.png"), onPress: this.props.toggleEnterEmailVisible};
 
     return (
-			<ScrollView
-				endFillColor="#fff"
-				style={styles.forgotPwdScreen}
-			>
-				<KeyboardAvoidingView behavior="padding" enabled>
+			<KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
+				<ScrollView
+					endFillColor="#fff"
+					style={styles.forgotPwdScreen}
+				>
 					<View style={styles.forgotView}>
 						<Image
 							blurRadius={5}
@@ -134,8 +134,8 @@ class ForgotPwd extends React.Component<Props> {
 							</View>
 						</View>
 					</View>
-				</KeyboardAvoidingView>
-			</ScrollView>
+				</ScrollView>
+			</KeyboardAvoidingView>
 		);
 	}
 }

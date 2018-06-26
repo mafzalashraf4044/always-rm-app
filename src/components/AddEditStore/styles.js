@@ -2,8 +2,12 @@ import { StyleSheet } from "react-native";
 import { getSizeWRTDeviceWidth, deviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
+  keyboardAvoidingView: {
+    backgroundColor: "#FFF",
+  },
   addEditStore: {
     backgroundColor: "#FFF",
+    height: deviceHeight,
   },
   storeImgContainer: {
     height: 0.3 * deviceHeight,

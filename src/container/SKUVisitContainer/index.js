@@ -22,7 +22,43 @@ class SKUVisitContainer extends React.Component<Props, State> {
 		this.asyncStorageKey = "SKUANALYSIS";
 
 		this.state = {
-			formData: {},
+			formData: {
+				//	step 1
+				hello: [1,2,3],
+				skuList: [
+					{
+						oem: "Hewlett Packard",
+						series: "HP 14",
+						modelNumber: "BS581TU",
+						oemSeriesModelNumber: "",
+						formFactor: "",
+						processorBrand: "",
+						processorGeneration: "",
+						processorRange: "",
+						processorNumber: "",
+						operatingSystem: "",
+						processorInfo: "",
+						gaming: "",
+						storage1: "",
+						gb1: "",
+						storage2: "",
+						gb2: "",
+						memory: "",
+						graphics: "",
+						graphicsType: "",
+						screenSize: "",
+						screen: "",
+						touchEnabled: "",
+						promotionsOrBundle: "",
+						localCurrency: "",
+					}
+				],
+
+				//	step 2
+				submitName: "",
+				submitJobTitle: "",
+				signature: "",
+			},
 		};
 
 		this.props.setIsLoading(true);
@@ -30,7 +66,7 @@ class SKUVisitContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		try {
-			// AsyncStorage.clear(() => {});
+			AsyncStorage.clear(() => {});
       AsyncStorage.getItem(this.asyncStorageKey).then((formData) => {
 				if (formData !== null){
 						this.setState({

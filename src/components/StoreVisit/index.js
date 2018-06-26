@@ -22,7 +22,6 @@ class StoreVisit extends React.Component<Props> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isStoreImgContainerVisible: true,
       stepIndex: 0,
     };
   }
@@ -63,35 +62,32 @@ class StoreVisit extends React.Component<Props> {
           style={styles.storeVisit}
           ref={(scrollView) => this.scrollView = scrollView}
         >
-          {
-            this.state.isStoreImgContainerVisible &&
-            <View style={styles.storeImgContainer}>
-              <Image
-                style={styles.backgroundImg}
-                source={require("../../assets/Images/card-image.jpg")}
-              />
-              <Header
-                title={this.getTitle()}
-                navigation={this.props.navigation}
-                iconLeft={{
-                  url: require("../../assets/Icons/Light/Back.png"),
-                  onPress: this.goBack,
-                }}
-                iconsRight={[{
-                  url: require("../../assets/Icons/Light/Edit.png"),
-                  onPress: () => this.props.navigation.navigate("AddEditStore", {isEdit: true}),
-                }]}
-              />
-              <View style={styles.storeInfo}>
-                <View style={styles.infoText}>
-                  <Text style={styles.storeID}>Store ID: 124124</Text>
-                  <Text style={styles.storeName}>Hervy Norman</Text>
-                  <Text style={styles.storeManager}>Store Manager: Alwyn Lao</Text>
-                  <Text style={styles.lastSaved}>Last saved on 14/02/2018 / 1:24:11pm</Text>
-                </View>
+          <View style={styles.storeImgContainer}>
+            <Image
+              style={styles.backgroundImg}
+              source={require("../../assets/Images/card-image.jpg")}
+            />
+            <Header
+              title={this.getTitle()}
+              navigation={this.props.navigation}
+              iconLeft={{
+                url: require("../../assets/Icons/Light/Back.png"),
+                onPress: this.goBack,
+              }}
+              iconsRight={[{
+                url: require("../../assets/Icons/Light/Edit.png"),
+                onPress: () => this.props.navigation.navigate("AddEditStore", {isEdit: true}),
+              }]}
+            />
+            <View style={styles.storeInfo}>
+              <View style={styles.infoText}>
+                <Text style={styles.storeID}>Store ID: 124124</Text>
+                <Text style={styles.storeName}>Hervy Norman</Text>
+                <Text style={styles.storeManager}>Store Manager: Alwyn Lao</Text>
+                <Text style={styles.lastSaved}>Last saved on 14/02/2018 / 1:24:11pm</Text>
               </View>
             </View>
-          }
+          </View>
 
           {
             this.state.stepIndex !== -1 ?

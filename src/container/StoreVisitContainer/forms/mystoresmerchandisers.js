@@ -259,7 +259,7 @@ export default [
     components: [{
       key: "formFieldSet-5-0",
       type: "formFieldSet",
-      legend: "Remarks",
+      legend: "",
       components: [{
           inputType: "text",
           label: "Name",

@@ -56,6 +56,7 @@ class FormRenderer extends React.Component<Props, State> {
           value={value}
           label={formField.label}
           {...this.textFieldProps}
+          multiline={formField.multiline}
           keyboardType={formField.keyboardType || "default"}
           onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
         />
@@ -181,7 +182,7 @@ class FormRenderer extends React.Component<Props, State> {
 
                               return (
                                 this.renderFormFields(_formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
-                              )
+                              );
                             })
                           }
                         </View>

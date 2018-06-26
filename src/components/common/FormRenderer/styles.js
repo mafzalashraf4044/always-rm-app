@@ -127,58 +127,9 @@ const styles: any = StyleSheet.create({
     fontSize: getSizeWRTDeviceWidth(16),
     lineHeight: getSizeWRTDeviceWidth(20),
   },
-  currentRSPList: {
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(233,30,99,0.28)",
-  },
-  RSPListHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginVertical: getSizeWRTDeviceWidth(15),
-  },
-  RSPListTitle: {
-    color: "rgba(233,30,99,1)",
-    backgroundColor: "transparent",
-    fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(16),
-    lineHeight: getSizeWRTDeviceWidth(20),
-  },
-  addRSPBtn: {
-    width: getSizeWRTDeviceWidth(172),
-    paddingVertical: getSizeWRTDeviceWidth(10),
-    paddingHorizontal: getSizeWRTDeviceWidth(20),
-    backgroundColor: "rgba(233,30,99,1)",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   addIcon: {
     width: getSizeWRTDeviceWidth(22),
     resizeMode: "contain",
-  },
-  addRSPBtnTxt: {
-    color: "#FFF",
-    backgroundColor: "transparent",
-    fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(14),
-    lineHeight: getSizeWRTDeviceWidth(16),
-  },
-  RSTListItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(74,74,74,1)",
-    paddingBottom: getSizeWRTDeviceWidth(15),
-    marginBottom: getSizeWRTDeviceWidth(15),
-  },
-  RSTListItemTxt: {
-    color: "rgba(74,74,74,1)",
-    backgroundColor: "transparent",
-    fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(12),
-    lineHeight: getSizeWRTDeviceWidth(14),
   },
   switchContainer: {
     flexDirection: "row",
@@ -405,4 +356,5 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(16),
   },
 });
+
 export default styles;

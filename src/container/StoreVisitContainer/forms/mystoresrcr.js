@@ -1029,7 +1029,7 @@ export default [
     components: [{
       key: "formFieldSet-14-1",
       type: "formFieldSet",
-      legend: "Remarks",
+      legend: "",
       components: [{
           inputType: "text",
           label: "Name",

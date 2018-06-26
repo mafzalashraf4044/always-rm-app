@@ -57,7 +57,7 @@ class StoreVisit extends React.Component<Props> {
 
 	render() {
     return (
-      <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled={false} keyboardVerticalOffset={-80}>
+      <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
         <ScrollView
           endFillColor="#fff"
           style={styles.storeVisit}

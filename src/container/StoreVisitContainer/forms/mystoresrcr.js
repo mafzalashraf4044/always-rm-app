@@ -48,6 +48,7 @@ export default [
     type: "step",
     title: "Step 1: RSPs",
     key: "stepIndex-1",
+    fullHeight: true,
     components: [{
       key: "formFieldSet-1-0",
       type: "formFieldSet",
@@ -1025,6 +1026,7 @@ export default [
     type: "step",
     title: "Step 6: Submit",
     key: "stepIndex-14",
+    fullHeight: true,
     components: [{
       key: "formFieldSet-14-1",
       type: "formFieldSet",

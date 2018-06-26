@@ -362,10 +362,10 @@ class FormRenderer extends React.Component<Props, State> {
               style={styles.modalContainer}
               isVisible={this.state.rspListItemEditIndex !== -1}
             >
-              <ScrollView
-                endFillColor="#fff"
-              >
-                <View style={styles.modal}>
+              <View style={styles.modal}>
+                <ScrollView
+                  endFillColor="#fff"
+                >
                   <View style={styles.header}>
                     <Text style={styles.headerTxt}>EDIT RSP</Text>
                   </View>
@@ -401,8 +401,8 @@ class FormRenderer extends React.Component<Props, State> {
                       </Button>
                     </View>
                   </View>
-                </View>
-              </ScrollView>
+                </ScrollView>
+              </View>
             </Modal> : null
           }
         </View>

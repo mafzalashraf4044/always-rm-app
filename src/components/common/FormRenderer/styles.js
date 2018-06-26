@@ -14,16 +14,6 @@ const styles: any = StyleSheet.create({
   dataGridColumn: {
 
   },
-
-
-
-
-
-
-
-
-
-
   rspListHeadingContainer: {
     width: "100%",
     flexDirection: "row",
@@ -254,17 +244,6 @@ const styles: any = StyleSheet.create({
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(12),
     lineHeight: getSizeWRTDeviceWidth(14),
-  },
-  signatureLoader: {
-    width: "100%",
-    height: getSizeWRTDeviceHeight(136),
-    borderWidth: 1,
-    borderColor: "rgba(235,235,235,1)",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    zIndex: 100,
-    backgroundColor: "#FFF",
   },
   signatureContainer: {
     alignItems: "flex-end",

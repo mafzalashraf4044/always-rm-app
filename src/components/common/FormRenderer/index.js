@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import Modal from "react-native-modal";
-import { Button, Spinner } from "native-base";
+import { Button } from "native-base";
 import { TextField } from "react-native-material-textfield";
 
 import Switch from "../Switch";
@@ -27,7 +27,7 @@ export interface Props {
 export interface State {}
 
 class FormRenderer extends React.Component<Props, State> {
-  state = {submissionConfirmationModal: false, submissionSuccessModal: false, isSignatureLoading: false, rspListItemEditIndex: -1, selectedRspListItem: null};
+  state = {submissionConfirmationModal: false, submissionSuccessModal: false, rspListItemEditIndex: -1, selectedRspListItem: null};
 
   textFieldProps = {
     lineWidth:0,
@@ -39,12 +39,6 @@ class FormRenderer extends React.Component<Props, State> {
     inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-10)},
     labelTextStyle:{top: getSizeWRTDeviceWidth(-4)},
   };
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.stepIndex === 14) {
-      this.setSignatureLoading();
-    }
-  }
 
   renderFormFields = (formField, formLayout = null) => {
     let value = "";
@@ -118,13 +112,6 @@ class FormRenderer extends React.Component<Props, State> {
     } else if (formField.type === "signature") {
       return (
         <View style={styles.signatureContainer} key={formField.key}>
-          {
-            this.state.isSignatureLoading ?
-            <View style={styles.signatureLoader}>
-              <Spinner color="#000" />
-            </View> : null
-          }
-
           <View style={styles.signature}>
             {
               value ?
@@ -269,7 +256,7 @@ class FormRenderer extends React.Component<Props, State> {
                         })
                       }
                     </View>
-                  )
+                  );
                 })
               );
             })
@@ -344,7 +331,7 @@ class FormRenderer extends React.Component<Props, State> {
                             })
                           }
                         </View>
-                      )
+                      );
                     })
                   );
                 })
@@ -433,26 +420,12 @@ class FormRenderer extends React.Component<Props, State> {
   signaturePadError = (error) => {};
 
   clearSignature = (formField, formLayout) => {
-    this.setSignatureLoading();
     this.props.handleFormDataChange(formField.key, "", formLayout);    
   }
 
   signaturePadChange = (base64DataUrl, formField, formLayout) => {
     this.props.handleFormDataChange(formField.key, base64DataUrl, formLayout);
   };
-
-  setSignatureLoading = () => {
-    this.setState({
-      isSignatureLoading: true,
-    }, () => {
-      setTimeout(() => {
-        this.setState({
-          isSignatureLoading: false,
-        });
-      }, 500);
-    });
-  }
-
 
   continue = () => {
     this.props.saveFormToAsyncStorage();

@@ -13,9 +13,11 @@ import Home from "./container/HomeContainer";
 import Sidebar from "./container/SidebarContainer";
 
 import MyStores from "./container/MyStoresContainer";
+import SKUAnalysis from "./container/SKUAnalysisContainer";
 import AddEditStore from "./container/AddEditStoreContainer";
 import SearchStores from "./container/SearchStoresContainer";
 import StoreVisit from "./container/StoreVisitContainer";
+import SKUVisit from "./container/SKUVisitContainer";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -49,10 +51,24 @@ const StoreNavigator = StackNavigator(
 	}
 );
 
+const SKUNavigator = StackNavigator(
+	{
+		SKUAnalysis: { screen: SKUAnalysis },
+		AddEditStore: { screen: AddEditStore },
+		SearchStores: { screen: SearchStores },
+		SKUVisit: { screen: SKUVisit },
+	},
+	{
+		initialRouteName: "SKUAnalysis",
+		headerMode: "none",
+	}
+);
+
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
 		MyStores: { screen: StoreNavigator },
+		SKUAnalysis: { screen: SKUNavigator },
 	},
 	{
 		drawerWidth: deviceWidth * 0.85,

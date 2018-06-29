@@ -5,7 +5,8 @@ import {
   Image,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 
 import styles from "./styles";
@@ -96,7 +97,7 @@ class StoreCard extends React.Component<Props> {
                 </TouchableOpacity>
               }
 
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => AsyncStorage.clear(() => {})}>
                 <Text style={styles.txtBtn}>CALL</Text>
               </TouchableOpacity>
               <TouchableOpacity>

@@ -27,11 +27,11 @@ class LoginContainer extends React.Component<Props> {
 
   componentDidMount() {
     this.checkIfLoggedIn();
-    // this.props.getCountries().then((res) =>  {
-    //   if (res.status === 200) {
-    //     this.props.saveCountries(res.data.map((country) => ({value: country._id, label: country.name})));
-    //   }
-    // });
+    this.props.getCountries().then((res) =>  {
+      if (res.status === 200) {
+        this.props.saveCountries(res.data.map((country) => ({value: country._id, label: country.name})));
+      }
+    });
   }
 
   checkIfLoggedIn = () => {
@@ -50,29 +50,21 @@ class LoginContainer extends React.Component<Props> {
   }
 
   onLogin = (email, pwd) => {
-    AsyncStorage.multiSet([
-      ["user", JSON.stringify({name: "John Doe", email: "johndoe.always@gmail.com", username: "jd4044"})],
-    ],
-    () => {
-      this.props.navigation.navigate("Drawer");
-    }
-  );
-
-    // this.props.login(email, pwd).then((res) => {
-		// 	if (res.status === 200) {
-    //     AsyncStorage.multiSet([
-    //         ["user", JSON.stringify(res.data.user)],
-    //         ["jwtToken", JSON.stringify(res.data.jwt)]
-    //       ],
-    //       () => {
-    //         this.props.navigation.navigate("Drawer");
-    //       }
-    //     );
-    //   }
-    // }).catch((err) => {
-    //   this.setErrMessage("You have keyed in a wrong email/password");
-    //   // throw new Error(err);
-    // });
+    this.props.login(email, pwd).then((res) => {
+			if (res.status === 200) {        
+        AsyncStorage.multiSet([
+            ["user", JSON.stringify(res.data.user)],
+            ["jwtToken", JSON.stringify(res.data.jwt)]
+          ],
+          () => {
+            this.props.navigation.navigate("Drawer");
+          }
+        );
+      }
+    }).catch((err) => {
+      this.setErrMessage("You have keyed in a wrong email/password");
+      throw new Error(err);
+    });
   }
 
   setErrMessage = (errMessage) => {

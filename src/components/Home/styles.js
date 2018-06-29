@@ -19,23 +19,24 @@ const styles: any = StyleSheet.create({
 		flex: 1,
 	},
 	homeTabs: {
-		padding: getSizeWRTDeviceWidth(14),
+		width: "100%",
+		margin: getSizeWRTDeviceWidth(14),
 		flexDirection: "row",
 		justifyContent: "flex-start",
 		alignItems: "flex-start",
 		flexWrap: "wrap",
 	},
 	homeTab: {
-		width: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 30.5) / 100,
+		width: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 32) / 100,
 		height: getSizeWRTDeviceHeight(90),
 		backgroundColor: "rgba(254,254,254,0.2)",
 		borderRadius: 5,
 		justifyContent: "center",
 		alignItems: "center",
-		marginBottom: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 4.25) / 100,
+		marginBottom: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 2) / 100,
 	},
 	centerTab: {
-		marginHorizontal: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 4.25) / 100,
+		marginHorizontal: ((deviceWidth - getSizeWRTDeviceWidth(28)) * 2) / 100,
 	},
 	homeTabBright: {
 		backgroundColor: "rgba(254,254,254,0.5)",

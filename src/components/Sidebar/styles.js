@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth } from "../../utils";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../utils";
 
 const styles: any = StyleSheet.create({
 	header: {
@@ -39,7 +39,7 @@ const styles: any = StyleSheet.create({
   },
   listItem: {
     paddingHorizontal: getSizeWRTDeviceWidth(20),
-    paddingTop: getSizeWRTDeviceWidth(10),
+    paddingTop: getSizeWRTDeviceHeight(15),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",

@@ -19,6 +19,7 @@ import SearchStores from "./container/SearchStoresContainer";
 import StoreVisit from "./container/StoreVisitContainer";
 import SKUVisit from "./container/SKUVisitContainer";
 import MyCalendar from "./container/MyCalendarContainer";
+import Notifications from "./container/NotificationsContainer";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -65,12 +66,38 @@ const SKUNavigator = StackNavigator(
 	}
 );
 
+const CalendarNavigator = StackNavigator(
+	{
+		MyCalendar: { screen: MyCalendar },
+		AddEditStore: { screen: AddEditStore },
+		SearchStores: { screen: SearchStores },
+	},
+	{
+		initialRouteName: "MyCalendar",
+		headerMode: "none",
+	}
+);
+
+const NotificationsNavigator = StackNavigator(
+	{
+		Notifications: { screen: Notifications },
+		AddEditStore: { screen: AddEditStore },
+		SearchStores: { screen: SearchStores },
+	},
+	{
+		initialRouteName: "Notifications",
+		headerMode: "none",
+	}
+);
+
+
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
 		MyStores: { screen: StoreNavigator },
 		SKUAnalysis: { screen: SKUNavigator },
-		MyCalendar: { screen: MyCalendar },
+		MyCalendar: { screen: CalendarNavigator },
+		Notifications: { screen: NotificationsNavigator },
 	},
 	{
 		drawerWidth: deviceWidth * 0.85,

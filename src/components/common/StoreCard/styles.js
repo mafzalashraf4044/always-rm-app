@@ -49,7 +49,6 @@ const styles: any = StyleSheet.create({
     fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(20),
     lineHeight: getSizeWRTDeviceWidth(24),
-
   },
   storeManager: {
     color: "rgba(255,255,255,1)",

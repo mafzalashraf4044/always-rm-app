@@ -66,7 +66,8 @@ export default class Setup extends React.Component<Props, State> {
     ]);
 
     const fontAssets = cacheFonts([{
-			Always_Font: require("../assets/Fonts/SF-Pro-Display-Regular.otf")
+			Always_Font: require("../assets/Fonts/SF-Pro-Display-Regular.otf"),
+			Roboto: require("../assets/Fonts/Roboto-Regular.ttf"),
 		}]);
 
     await Promise.all([...imageAssets, ...fontAssets]);

@@ -106,6 +106,7 @@ class ForgotPwd extends React.Component<Props> {
 									value={this.state.pwd}
 									type="password"
 									label="New Password"
+									secureTextEntry
 									{...textFieldProps}
 									onChangeText={(value) => this.handleInputChange("pwd", value)}
 								/>
@@ -113,6 +114,7 @@ class ForgotPwd extends React.Component<Props> {
 									value={this.state.confirmPwd}
 									type="password"
 									label="Confirm New Password"
+									secureTextEntry
 									{...textFieldProps}
 									onChangeText={(value) => this.handleInputChange("confirmPwd", value)}
 								/>

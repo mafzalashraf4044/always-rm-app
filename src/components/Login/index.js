@@ -83,6 +83,7 @@ class Login extends React.Component<Props> {
 									value={this.state.pwd}
 									type="password"
 									label="Password"
+									secureTextEntry
 									{...textFieldProps}
 									onChangeText={(value) => this.handleInputChange("pwd", value)}
 								/>

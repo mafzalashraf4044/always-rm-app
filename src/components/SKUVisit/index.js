@@ -152,7 +152,7 @@ class SKUVisit extends React.Component<Props> {
               }}
               iconsRight={[{
                 url: require("../../assets/Icons/Light/Edit.png"),
-                onPress: () => this.props.navigation.navigate("AddEditStore", {isEdit: true}),
+                onPress: () => this.props.navigation.navigate("AddEditStore", {isEdit: true, store: this.props.store}),
               }]}
             />
             <View style={styles.storeInfo}>

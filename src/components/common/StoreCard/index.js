@@ -92,8 +92,8 @@ class StoreCard extends React.Component<Props> {
                 <TouchableOpacity onPress={this.props.toggleReassignModal}>
                   <Text style={styles.txtBtn}>TRANSFER</Text>
                 </TouchableOpacity> :
-                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType})}>
-                  <Text style={styles.txtBtn}>RE-VISIT</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, store})}>
+                  <Text style={styles.txtBtn}>VISIT</Text>
                 </TouchableOpacity>
               }
 

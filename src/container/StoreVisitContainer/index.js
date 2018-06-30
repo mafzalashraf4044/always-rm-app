@@ -40,6 +40,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 		this.state = {
 			formData,
+			store: params.store,
 		};
 
 		this.props.setIsLoading(true);
@@ -119,6 +120,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 	render() {
 		return (
 			<StoreVisit
+				store={this.state.store}
 				formData={this.state.formData}
 				formTemplate={this.formTemplate}
 				navigation={this.props.navigation}

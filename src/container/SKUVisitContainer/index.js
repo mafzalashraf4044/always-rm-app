@@ -20,11 +20,12 @@ class SKUVisitContainer extends React.Component<Props, State> {
 		super(props);
 
 		this.asyncStorageKey = "SKUANALYSIS";
+		const { params } = this.props.navigation.state;
 
 		this.state = {
+			store: params.store,
 			formData: {
 				//	step 1
-				hello: [1,2,3],
 				skuList: [
 					{
 						oem: "Hewlett Packard",
@@ -66,7 +67,7 @@ class SKUVisitContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 		try {
-			AsyncStorage.clear(() => {});
+			// AsyncStorage.clear(() => {});
       AsyncStorage.getItem(this.asyncStorageKey).then((formData) => {
 				if (formData !== null){
 						this.setState({
@@ -128,6 +129,7 @@ class SKUVisitContainer extends React.Component<Props, State> {
 	render() {
 		return (
 			<SKUVisit
+				store={this.state.store}
 				formData={this.state.formData}
 				navigation={this.props.navigation}
 				saveCapturedImg={this.saveCapturedImg}

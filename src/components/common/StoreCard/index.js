@@ -5,8 +5,8 @@ import {
   Image,
   View,
   Text,
+  AsyncStorage,
   TouchableOpacity,
-  AsyncStorage
 } from "react-native";
 
 import styles from "./styles";

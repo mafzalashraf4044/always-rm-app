@@ -18,6 +18,7 @@ import AddEditStore from "./container/AddEditStoreContainer";
 import SearchStores from "./container/SearchStoresContainer";
 import StoreVisit from "./container/StoreVisitContainer";
 import SKUVisit from "./container/SKUVisitContainer";
+import MyCalendar from "./container/MyCalendarContainer";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -69,6 +70,7 @@ const Drawer = DrawerNavigator(
 		Home: { screen: Home },
 		MyStores: { screen: StoreNavigator },
 		SKUAnalysis: { screen: SKUNavigator },
+		MyCalendar: { screen: MyCalendar },
 	},
 	{
 		drawerWidth: deviceWidth * 0.85,

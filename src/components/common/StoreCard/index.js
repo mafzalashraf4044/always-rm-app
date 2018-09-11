@@ -103,7 +103,7 @@ class StoreCard extends React.Component<Props> {
             {
               this.props.completed ?
               <View style={styles.txtBtnsContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner, disableEditing: true})}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner})}>
                   <Text style={styles.txtBtn}>VIEW</Text>
                 </TouchableOpacity>
               </View> :
@@ -113,7 +113,7 @@ class StoreCard extends React.Component<Props> {
                   <TouchableOpacity onPress={this.props.toggleReassignModal}>
                     <Text style={styles.txtBtn}>TRANSFER</Text>
                   </TouchableOpacity> :
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner, disableEditing: false})}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner})}>
                     <Text style={styles.txtBtn}>VISIT</Text>
                   </TouchableOpacity>
                 }

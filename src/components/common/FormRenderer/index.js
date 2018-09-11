@@ -64,11 +64,13 @@ class FormRenderer extends React.Component<Props, State> {
       value = this.props.formData[formLayout.gridItemKey][formLayout.gridItemIndex][formField.key];
     }
 
+    if (value === undefined) return null;
+          
     if (formField.type === "textfield" || formField.type === "number") {
       return (
         <TextField
           key={formField.key}
-          value={value}
+          value={value.toString()}
           label={formField.label}
           {...this.textFieldProps}
           editable={!this.props.disableEditing && formField.editable}
@@ -359,7 +361,7 @@ class FormRenderer extends React.Component<Props, State> {
           }
         </View>
       );
-    } else if (formLayout.type === "rspList" && !(this.props.disableEditing && this.props.formData.rspList.length === 0)) {
+    } else if (formLayout.type === "rspList" && this.props.formData.rspList && !(this.props.disableEditing && this.props.formData.rspList.length === 0)) {
       //  only for RCR step # 1 RSP List
       return (
         <View style={styles.formLayout} key={formLayout.key}>

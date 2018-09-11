@@ -65,9 +65,6 @@ export const getStores = (filter = null) => {
 };
 
 export const addStore = (store) => {
-	console.log('store', store);
-	
-
 	return dispatch => {
 		return axios.post(`${API_URL}/store`, store, getAuthHeader());
 	};
@@ -79,9 +76,9 @@ export const editStore = (storeId, store) => {
 	};
 };
 
-export const getRcrFormData = (id) => {
+export const getRcrFormData = (plannerId) => {	
 	return dispatch => {
-		return axios.get(`${API_URL}/datacollection/planner/${id}`, getAuthHeader());
+		return axios.get(`${API_URL}/datacollection/planner/${plannerId}`, getAuthHeader());
 	};
 };
 

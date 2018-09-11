@@ -44,8 +44,7 @@ const styles: any = StyleSheet.create({
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
-  coulmns1: {
-  },
+  coulmns1: {},
   coulmns2: {
     flexDirection: "row",
     justifyContent: "space-between",

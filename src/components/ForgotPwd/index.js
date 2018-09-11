@@ -1,5 +1,11 @@
+/**
+ * @author Afzal Ashraf <afzalashraf.dev@gmail.com>
+ */
+
+// @flow
 import * as React from "react";
 
+//	third party components
 import {
   Text,
 	View,
@@ -7,19 +13,25 @@ import {
 	ScrollView,
 	KeyboardAvoidingView,
 } from "react-native";
-
-import Header from "../common/Header";
-
 import { Button } from "native-base";
 import { TextField } from "react-native-material-textfield";
 
+//	custom components
+import Header from "../common/Header";
+
+//	styles
 import styles from "./styles";
+
+//	utils
 import { getSizeWRTDeviceWidth } from "../../utils";
 
 export interface Props {
-	loginForm: any,
-	onLogin: func,
-	navigation: object,
+	forgotPwd: func,
+	resetPwd: func,
+	errMessage: string,
+	navigation: obj,
+	isEnterEmailVisible: bool,
+	toggleEnterEmailVisible: func,
 }
 
 class ForgotPwd extends React.Component<Props> {
@@ -69,7 +81,7 @@ class ForgotPwd extends React.Component<Props> {
 
     const iconLeft =
       this.props.isEnterEmailVisible ?
-      {url: require("../../assets/Icons/Light/Delete.png"), onPress: () => this.props.navigation.goBack()} : 
+      {url: require("../../assets/Icons/Light/Delete.png"), onPress: () => this.props.navigation.goBack()} :
       {url: require("../../assets/Icons/Light/Back.png"), onPress: this.props.toggleEnterEmailVisible};
 
     return (

@@ -33,9 +33,7 @@ const styles: any = StyleSheet.create({
 		alignItems: "center",
 		marginVertical: getSizeWRTDeviceHeight(10),
   },
-	errMessageContainer: {
-
-	},
+	errMessageContainer: {},
 	errMessageTxt: {
 		color: "rgba(233,30,99,1)",
 		backgroundColor: "transparent",

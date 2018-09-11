@@ -1,20 +1,28 @@
+/**
+ * @author Afzal Ashraf <afzalashraf.dev@gmail.com>
+ */
+
 // @flow
 import * as React from "react";
-import { connect } from "react-redux";
+
+//	custom components
 import ForgotPwd from "../../components/ForgotPwd";
 
+//	redux
+import { connect } from "react-redux";
 import { forgotPwd, resetPwd } from "../../actions";
 
 export interface Props {
 	navigation: any,
+	forgotPwd: func,
+	resetPwd: func,
 }
 
-export interface State {}
-
-class ForgotPwdContainer extends React.Component<Props, State> {
+class ForgotPwdContainer extends React.Component<Props> {
 
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			errMessage: "",
 			isEnterEmailVisible: true,
@@ -35,7 +43,7 @@ class ForgotPwdContainer extends React.Component<Props, State> {
       }
     }).catch((err) => {
       this.setErrMessage("You have keyed in a wrong email");
-      // throw new Error(err);
+      throw new Error(err);
     });
   }
 
@@ -46,10 +54,10 @@ class ForgotPwdContainer extends React.Component<Props, State> {
       }
     }).catch((err) => {
       this.setErrMessage("You have keyed in a wrong email/password");
-      // throw new Error(err);
+      throw new Error(err);
     });
 	}
-	
+
   setErrMessage = (errMessage) => {
 		this.setState({
       errMessage,
@@ -70,9 +78,7 @@ class ForgotPwdContainer extends React.Component<Props, State> {
 	}
 }
 
-const mapStateToProps = state => ({
-	// isLoading: state.homeReducer.isLoading,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch) => {
 	return {

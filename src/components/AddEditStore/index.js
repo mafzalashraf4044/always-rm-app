@@ -1,3 +1,8 @@
+/**
+ * @author Afzal Ashraf <afzalashraf.dev@gmail.com>
+ */
+
+// @flow
 import * as React from "react";
 
 import {
@@ -9,20 +14,45 @@ import {
 	KeyboardAvoidingView,
 } from "react-native";
 
+//	third party componenets
 import { Button, ActionSheet } from "native-base";
 import { TextField } from "react-native-material-textfield";
 
+//	custom components
 import Header from "../common/Header";
 import { Dropdown } from "../common/Dropdown";
 
+//	styles
 import styles from "./styles";
+
+//	utils
 import { getSizeWRTDeviceWidth } from "../../utils";
 
-const FIRST_INDEX = 0;
+//	constants
+const STORE_STATUS_LIST = [
+	{
+		value: "New",
+		label: "New",
+	},
+	{
+		value: "Updated",
+		label: "Updated",
+	},
+	{
+		value: "Active",
+		label: "Active",
+	},
+	{
+		value: "Inactive",
+		label: "Inactive",
+	},
+	{
+		value: "Closed",
+		label: "Closed",
+	},
+];
 
-export interface Props {
-	navigation: any;
-}
+const FIRST_INDEX = 0;
 
 const BUTTONS = [
   { text: "Camera", icon: "camera", iconColor: "#000" },
@@ -33,6 +63,16 @@ const BUTTONS = [
 const CAMERA_INDEX = 0;
 const GALLERY_INDEX = 1;
 const CANCEL_INDEX = 2;
+
+export interface Props {
+	store: obj,
+	saveStore: func,
+	pickImage: func,
+	openCamera: func,
+	countries: array,
+	handleChange: func,
+	navigation: obj,
+}
 
 class AddEditStore extends React.Component<Props> {
 
@@ -136,13 +176,7 @@ class AddEditStore extends React.Component<Props> {
 											fullWidth={false}
 											label="Store Status"
 											value={this.props.store.status}
-											data={[{
-												value: "Active",
-												label: "Active",
-											}, {
-												value: "Inactive",
-												label: "Inactive",
-											}]}
+											data={STORE_STATUS_LIST}
 											onChangeText={(value) => this.props.handleChange("status", value)}
 										/>
 									</View>
@@ -152,13 +186,7 @@ class AddEditStore extends React.Component<Props> {
 										fullWidth={false}
 										label="Store Status"
 										value={this.props.store.status}
-										data={[{
-											value: "Active",
-											label: "Active",
-										}, {
-											value: "Inactive",
-											label: "Inactive",
-										}]}
+										data={STORE_STATUS_LIST}
 										onChangeText={(value) => this.props.handleChange("status", value)}
 									/>
 								</View>

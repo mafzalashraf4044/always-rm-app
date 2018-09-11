@@ -1,17 +1,22 @@
+/**
+ * @author Afzal Ashraf <afzalashraf.dev@gmail.com>
+ */
+
 // @flow
 import React from "react";
+
 import { Dimensions } from "react-native";
-import { StackNavigator, DrawerNavigator } from "react-navigation";
+
+//	third party components
 import { Root } from "native-base";
+import { StackNavigator, DrawerNavigator } from "react-navigation";
 
+//	container components
 import Loader from "./container/LoaderContainer";
-
 import Login from "./container/LoginContainer";
 import ForgotPwd from "./container/ForgotPwdContainer";
-
 import Home from "./container/HomeContainer";
 import Sidebar from "./container/SidebarContainer";
-
 import MyStores from "./container/MyStoresContainer";
 import SKUAnalysis from "./container/SKUAnalysisContainer";
 import AddEditStore from "./container/AddEditStoreContainer";
@@ -21,13 +26,12 @@ import SKUVisit from "./container/SKUVisitContainer";
 import MyCalendar from "./container/MyCalendarContainer";
 import Notifications from "./container/NotificationsContainer";
 
+//	constants
 const deviceWidth = Dimensions.get("window").width;
 
-const _XHR = GLOBAL.originalXMLHttpRequest ?  
-    GLOBAL.originalXMLHttpRequest :           
-    GLOBAL.XMLHttpRequest                     
-
-XMLHttpRequest = _XHR
+//	proxy for debugging
+const _XHR = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
+XMLHttpRequest = _XHR;
 
 const AuthNavigator = StackNavigator(
 	{
@@ -89,7 +93,6 @@ const NotificationsNavigator = StackNavigator(
 		headerMode: "none",
 	}
 );
-
 
 const Drawer = DrawerNavigator(
 	{

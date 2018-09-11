@@ -33,16 +33,18 @@ class ImageGrid extends React.Component<Props, State> {
               allowsEditing: false,
               quality: 0.1,
             }).then((result) => {
-              this.props.setIsLoading(true);
-              this.props.uploadImage(result.uri).then((res) => {
-                if (res.status === 200) {
-                  this.props.saveCapturedImg(res.data[0]);
-                }
-                this.props.setIsLoading(false);
-              }).catch((err) => {
-                this.props.setIsLoading(false);
-                throw new Error(err);
-              });
+              if (!result.cancelled) {
+                this.props.setIsLoading(true);
+                this.props.uploadImage(result.uri).then((res) => {
+                  if (res.status === 200) {
+                    this.props.saveCapturedImg(res.data[0]);
+                  }
+                  this.props.setIsLoading(false);
+                }).catch((err) => {
+                  this.props.setIsLoading(false);
+                  throw new Error(err);
+                });
+              }
             });
           }
         });

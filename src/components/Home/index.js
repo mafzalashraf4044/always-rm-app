@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+//  custom components
 import Header from "../common/Header";
 
+//  styles
 import styles from "./styles";
 
 export interface Props {
-  navigation: any,
+  navigation: obj,
   user: obj,
 }
 

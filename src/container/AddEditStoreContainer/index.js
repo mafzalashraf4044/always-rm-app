@@ -1,8 +1,14 @@
+/**
+ * @author Afzal Ashraf <afzalashraf.dev@gmail.com>
+ */
+
 // @flow
 import * as React from "react";
 
+//	third party components
 import { ImagePicker, Permissions } from "expo";
 
+//	custom components
 import AddEditStore from "../../components/AddEditStore";
 
 //	redux
@@ -10,12 +16,17 @@ import { connect } from "react-redux";
 import { addStore, editStore, setIsLoading, uploadImage, saveCountries, getCountries } from "../../actions";
 
 export interface Props {
-	navigation: any,
+	navigation: obj,
+	countries: array,
+	addStore: func,
+	editStore: func,
+	setIsLoading: func,
+	uploadImage: func,
+	saveCountries: func,
+	getCountries: func,
 }
 
-export interface State {}
-
-class AddEditStoreContainer extends React.Component<Props, State> {
+class AddEditStoreContainer extends React.Component<Props> {
 
 	constructor(props) {
 		super(props);
@@ -35,9 +46,7 @@ class AddEditStoreContainer extends React.Component<Props, State> {
 				postalCode: "",
 				computerMall: "",
 				country: "",
-				retails: [
-					{name: ""},
-				],
+				retails: [{name: ""}],
 			} : params.store,
 			countries: [],
 		};
@@ -62,8 +71,11 @@ class AddEditStoreContainer extends React.Component<Props, State> {
 
 	saveStore = () => {
 		const { params } = this.props.navigation.state;
-		if (!params.isEdit) this.addStore();
-		else if (params.isEdit) this.editStore();
+		if (!params.isEdit) {
+			this.addStore();
+		} else {
+			this.editStore();
+		}
 	}
 
 	addStore = () => {
@@ -109,9 +121,8 @@ class AddEditStoreContainer extends React.Component<Props, State> {
       allowsEditing: false,
     });
 
-		this.props.setIsLoading(true);
-
     if (!result.cancelled) {
+			this.props.setIsLoading(true);
 			this.props.uploadImage(result.uri).then((res) => {
 				if (res.status === 200) {
 					this.handleChange("image", res.data[0]);
@@ -133,16 +144,18 @@ class AddEditStoreContainer extends React.Component<Props, State> {
               allowsEditing: false,
               quality: 0.1,
             }).then((result) => {
-							this.props.setIsLoading(true);
-							this.props.uploadImage(result.uri).then((res) => {
-								if (res.status === 200) {
-									this.handleChange("image", res.data[0]);
-								}
-								this.props.setIsLoading(false);
-							}).catch((err) => {
-								this.props.setIsLoading(false);
-								throw new Error(err);
-							});
+							if (!result.cancelled) {
+								this.props.setIsLoading(true);
+								this.props.uploadImage(result.uri).then((res) => {
+									if (res.status === 200) {
+										this.handleChange("image", res.data[0]);
+									}
+									this.props.setIsLoading(false);
+								}).catch((err) => {
+									this.props.setIsLoading(false);
+									throw new Error(err);
+								});
+							}
             });
           }
         });

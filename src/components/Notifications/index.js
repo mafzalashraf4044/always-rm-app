@@ -74,9 +74,7 @@ class Notifications extends React.Component<Props> {
 						}
 					]}
         />
-
-				<ScrollView endFillColor="#fff">
-					<View style={styles.divider} />
+				<ScrollView style={{flex: 1, backgroundColor: "#FFF"}} endFillColor="#fff">
 					<View style={styles.eventsContainer}>
 						<View style={styles.event}>
 							<View style={styles.store}>

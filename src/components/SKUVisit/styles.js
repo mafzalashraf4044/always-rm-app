@@ -62,9 +62,6 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(12),
     marginTop: getSizeWRTDeviceWidth(5)
   },
-  visitForm: {
-    backgroundColor: "#FFF",
-  },
 
 
 
@@ -186,7 +183,9 @@ const styles: any = StyleSheet.create({
 
   },
   formView: {
-    height: "100%",
+    height: "auto",
+    justifyContent: "space-between",
+    minHeight: 0.7 * (deviceHeight - 54),
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },

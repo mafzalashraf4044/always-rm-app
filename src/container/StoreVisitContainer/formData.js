@@ -1,33 +1,11 @@
 export const myStoresRCR = {
   // step 0
   storeStatus: "",
-  visitNumber: "",
+  visitNumber: "0",
 
   // step 1
   noOfRspsOnDutyDuringVisit: "",
-  rspList: [
-    {
-      name: "John Doe",
-      email: "johndoe.always@gmail.com",
-      contactNumber: "+65 9875 5432",
-      IREPRegistered: "Yes",
-      status: "Active",
-    },
-    {
-      name: "John Doe",
-      email: "johndoe.always@gmail.com",
-      contactNumber: "+65 9875 5432",
-      IREPRegistered: "Yes",
-      status: "Active",
-    },
-    {
-      name: "John Doe",
-      email: "johndoe.always@gmail.com",
-      contactNumber: "+65 9875 5432",
-      IREPRegistered: "Yes",
-      status: "Active",
-    },
-  ],
+  rspList: [],
   newRspItems: [],
 
   // step 2
@@ -48,31 +26,39 @@ export const myStoresRCR = {
   laptops: "",
   allIn1Pcs: "",
   merchandisingImages: [],
+  posmReplacement: false,
 
   // step 3.2
   iposRxtInstallation: false,
-  currentInStore: "",
-  newInstallation: "",
-  totIposRxtInstallation: "",
+  currentInStore: "0",
+  newInstallation: "0",
+  totIposRxtInstallation: "0",
   iposRxtInstallationImages: [],
 
   // step 3.3
   rxtSubmission: "",
-  totalPcsInStore: "",
-  pcsPowerdByIntelTurnedOn: "",
-  pcsPowerdByIntelTurnedOff: "",
-  pcsPowerdByCompetitorTurnedOn: "",
-  pcsPowerdByCompetitorTurnedOff: "",
+  totalPcsInStore: "0",
+  pcsPowerdByIntelSwitchedOn: "0",
+  pcsPowerdByIntelSwitchedOff: "0",
+  pcsPowerdByCompetitorSwitchedOn: "0",
+  pcsPowerdByCompetitorSwitchedOff: "0",
 
   // step 4
-  competitorAnaylsis: [
+  competitorAnalysis: [
     {
       competitorName: "",
       noOfCompetitorPcs: "",
       posmInstalled: "",
       description: "",
       pcBrand: "",
-      pcDescription: "",
+      formFactor: "",
+      twoInOneConvertible: "0",
+      twoInOneDetachable: "0",
+      allInOne: "0",
+      desktop: "0",
+      laptop: "0",
+      gamingDesktop: "0",
+      gamingLaptop: "0",
       competitorImages: [],
     },
   ],
@@ -93,12 +79,18 @@ export const myStoresRCR = {
 
   // step 5.3
   currentEndCapDisplay: "",
-  intelRiserDeployedInStore: false,
-  promotionUpdates: false,
+  outdatedEndCapDisplay: "",
+  refrestDeploymentOpportunityEndCapDisplay: "",
   storeAnalysisDescriptionEndCapDisplay: "",
   storeAnalysisPCImagesEndCapDisplay: [],
 
   // step 5.4
+  intelRiserDeployedInStore: false,
+  promotionUpdates: false,
+  storeAnalysisDescription: "",
+  storeAnalysisPCImages: [],
+
+  // step 5.5
   newLaunchProductUpdates: false,
   newLaunchProduct: [
     {
@@ -111,30 +103,31 @@ export const myStoresRCR = {
     }
   ],
 
-  // step 5.5
-  oemUpdates: false,
-  oem: [
-    {
-      name: "",
-      description: "",
-      images: [],
-    }
-  ],
-
   // step 5.6
-  eventUpdates: false,
-  event: [
+  oemUpdates: false,
+  oems: [
     {
       name: "",
-      date: "",
       description: "",
       images: [],
     }
   ],
 
   // step 5.7
-  remark: "",
-  otherRemarks: "",
+  eventUpdates: false,
+  events: [
+    {
+      name: "",
+      dateTo: "",
+      dateFrom: "",
+      description: "",
+      images: [],
+    }
+  ],
+
+  // step 5.8
+  remarks: "",
+  actionItemsForFollowUp: "",
 
   // step 6
   submitName: "",

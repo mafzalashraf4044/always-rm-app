@@ -78,11 +78,10 @@ class MyCalendar extends React.Component<Props> {
 					]}
         />
 
-				<ScrollView endFillColor="#fff">
+				<ScrollView style={{flex: 1, backgroundColor: "#FFF"}} endFillColor="#fff">
 					<View style={styles.calendarContainer}>
 						<Calendar
 							onDayPress={(day) => this.setState({date: day.dateString})}
-
 							markedDates={{
 								[this.state.date]: {selected: true, marked: false, selectedColor: "rgba(233,30,99,0.55)"},
 							}}

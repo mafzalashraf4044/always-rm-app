@@ -5,7 +5,7 @@ import {
   Image,
   View,
   Text,
-  AsyncStorage,
+  Linking,
   TouchableOpacity,
 } from "react-native";
 
@@ -50,8 +50,22 @@ class StoreCard extends React.Component<Props> {
     }
   }
 
+  callToStoreContactNumber = (number) => {
+    Linking.openURL(`tel:${number}`);
+  }
+
+  smsToStoreContactNumber = (number) => {
+    Linking.openURL(`sms:${number}`);
+  }
+
   render() {
-    const {store} = this.props;
+    let store = null;
+
+    if (this.props.assignedRoutePlanner) {
+      store = this.props.assignedRoutePlanner.store;
+    } else {
+      store = this.props.store;
+    }
 
     return (
       <View style={styles.card}>
@@ -62,10 +76,10 @@ class StoreCard extends React.Component<Props> {
           />
           <View style={styles.storeInfo}>
             <View style={styles.infoText}>
-              <Text style={styles.storeID}>Store ID: {store.storeId}</Text>
-              <Text style={styles.storeName}>{store.name}</Text>
+              <Text style={styles.storeID}>Store ID: {store.id}</Text>
+              <Text style={styles.storeName} numberOfLines={1}>{store.name}</Text>
               <Text style={styles.storeManager}>Store Manager: {store.primaryManagerName}</Text>
-              <Text style={styles.lastSaved}>Last saved on {store.modifiedAt}</Text>
+              <Text style={styles.lastSaved}>Last saved on {store.updatedAt}</Text>
             </View>
             <View style={styles.editIconContainer}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true, store})}>
@@ -81,29 +95,37 @@ class StoreCard extends React.Component<Props> {
           <View style={styles.extraInfo}>
             <Text style={styles.address}>{store.addressLine1}</Text>
             <Text style={styles.address}>{store.addressLine2}</Text>
-            <Text style={styles.address}>{store.country}</Text>
+            <Text style={styles.address}>{store.country.name}</Text>
             <Text style={styles.stepsCompleted}>Step 2 of 5 completed</Text>
           </View>
 
           <View style={styles.actions}>
-            <View style={styles.txtBtnsContainer}>
-              {
-                this.props.reassignAvailable ?
-                <TouchableOpacity onPress={this.props.toggleReassignModal}>
-                  <Text style={styles.txtBtn}>TRANSFER</Text>
-                </TouchableOpacity> :
-                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, store})}>
-                  <Text style={styles.txtBtn}>VISIT</Text>
+            {
+              this.props.completed ?
+              <View style={styles.txtBtnsContainer}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner, disableEditing: true})}>
+                  <Text style={styles.txtBtn}>VIEW</Text>
                 </TouchableOpacity>
-              }
+              </View> :
+              <View style={styles.txtBtnsContainer}>
+                {
+                  this.props.reassignAvailable ?
+                  <TouchableOpacity onPress={this.props.toggleReassignModal}>
+                    <Text style={styles.txtBtn}>TRANSFER</Text>
+                  </TouchableOpacity> :
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate(this.props.formRoute, {formType: this.props.formType, assignedRoutePlanner: this.props.assignedRoutePlanner, disableEditing: false})}>
+                    <Text style={styles.txtBtn}>VISIT</Text>
+                  </TouchableOpacity>
+                }
 
-              <TouchableOpacity onPress={() => AsyncStorage.clear(() => {})}>
-                <Text style={styles.txtBtn}>CALL</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.txtBtn}>MESSAGE</Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity onPress={() => this.callToStoreContactNumber(store.contactPhone)}>
+                  <Text style={styles.txtBtn}>CALL</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.smsToStoreContactNumber(store.contactPhone)}>
+                  <Text style={styles.txtBtn}>MESSAGE</Text>
+                </TouchableOpacity>
+              </View>
+            }
             <TouchableOpacity onPress={this.toggleCollapsable}>
               <Image
                 style={styles.expandIcon}

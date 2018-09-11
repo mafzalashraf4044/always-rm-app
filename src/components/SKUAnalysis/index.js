@@ -8,15 +8,10 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import {
-	Tab,
-	Tabs,
-} from "native-base";
 import Modal from "react-native-modal";
 
 import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
-import StoreFilter from "../common/StoreFilter";
 import { Dropdown } from "../common/Dropdown";
 
 import styles from "./styles";
@@ -79,8 +74,8 @@ class SKUAnalysis extends React.Component<Props> {
 				<ScrollView endFillColor="#fff">
 					<View style={styles.storesContainer}>
 						{
-							this.props.stores.map((store, index) => (
-								<StoreCard navigation={this.props.navigation} formType={this.props.formType} store={store} key={index} formRoute="SKUVisit" />
+							this.props.assignedRoutePlanners.map((assignedRoutePlanner, index) => (
+								<StoreCard navigation={this.props.navigation} formType={this.props.formType} assignedRoutePlanner={assignedRoutePlanner} key={index} formRoute="SKUVisit" />
 							))
 						}
 					</View>

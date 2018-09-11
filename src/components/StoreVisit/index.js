@@ -55,6 +55,8 @@ class StoreVisit extends React.Component<Props> {
   }
 
 	render() {
+    const {store} = this.props;
+
     return (
       <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
         <ScrollView
@@ -81,10 +83,10 @@ class StoreVisit extends React.Component<Props> {
             />
             <View style={styles.storeInfo}>
               <View style={styles.infoText}>
-                <Text style={styles.storeID}>Store ID: 124124</Text>
-                <Text style={styles.storeName}>Hervy Norman</Text>
-                <Text style={styles.storeManager}>Store Manager: Alwyn Lao</Text>
-                <Text style={styles.lastSaved}>Last saved on 14/02/2018 / 1:24:11pm</Text>
+                <Text style={styles.storeID}>Store ID: {store.id}</Text>
+                <Text style={styles.storeName}>{store.name}</Text>
+                <Text style={styles.storeManager}>Store Manager: {store.resellerName}</Text>
+                <Text style={styles.lastSaved}>Last saved on {store.updatedAt}</Text>
               </View>
             </View>
           </View>
@@ -92,14 +94,17 @@ class StoreVisit extends React.Component<Props> {
           {
             this.state.stepIndex !== -1 ?
             <FormRenderer
+              store={store}
               formData={this.props.formData}
               stepIndex={this.state.stepIndex}
               setStepIndex={this.setStepIndex}
               navigation={this.props.navigation}
+              disableEditing={this.props.disableEditing}
               stepsLength={this.props.formTemplate.length}
               saveCapturedImg={this.props.saveCapturedImg}
               addOneDataGridItem={this.props.addOneDataGridItem}
               appendNewRspToList={this.props.appendNewRspToList}
+              signaturePadChange={this.props.signaturePadChange}
               handleFormDataChange={this.props.handleFormDataChange}
               saveFormToAsyncStorage={this.props.saveFormToAsyncStorage}
               stepTemplate={this.props.formTemplate[this.state.stepIndex]}

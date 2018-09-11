@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 
+import moment from "moment";
 import { AsyncStorage } from "react-native";
 
 import MyStores from "../../components/MyStores";
@@ -16,6 +17,8 @@ export interface Props {
 
 export interface State {}
 
+const INITIAL_PAGE_INDEX = 1;
+
 class MyStoresContainer extends React.Component<Props, State> {
 
 	constructor(props) {
@@ -23,45 +26,36 @@ class MyStoresContainer extends React.Component<Props, State> {
 
 		this.state = {
 			user: null,
-			stores: [{
-				storeId: 3445,
-				storeName: "Harvey Norman",
-				primaryManagerName: "Alwyn Lao",
-				modifiedAt: "14/02/2018 01:24:33pm",
-				addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
-				addressLine2: "Northpoint Shopping Centre",
-				country: "Singapore",
-			},
-			{
-				storeId: 3445,
-				storeName: "Harvey Norman",
-				primaryManagerName: "Alwyn Lao",
-				modifiedAt: "14/02/2018 01:24:33pm",
-				addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
-				addressLine2: "Northpoint Shopping Centre",
-				country: "Singapore",
-			},
-			{
-				storeId: 3445,
-				storeName: "Harvey Norman",
-				primaryManagerName: "Alwyn Lao",
-				modifiedAt: "14/02/2018 01:24:33pm",
-				addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
-				addressLine2: "Northpoint Shopping Centre",
-				country: "Singapore",
-			}],
+			assignedRoutePlanners: [],
+			rcrTabs: [
+				{
+					heading: "Outstanding",
+					routePlanners: [],
+				},
+				{
+					heading: "Today",
+					routePlanners: [],
+				},
+				{
+					heading: "Upcoming",
+					routePlanners: [],
+				},
+				{
+					heading: "Completed",
+					routePlanners: [],
+				},
+			],
 		};
 	}
 
 	componentWillMount() {
-		this.props.setIsLoading(true);
     try {
 			AsyncStorage.getItem("user").then((user) => {
 				if (user !== null){
 					this.setState({
 						user: JSON.parse(user),
 					}, () => {
-						this.props.setIsLoading(false);
+						this.getRoutePlanners({i: INITIAL_PAGE_INDEX});
 					});
         }
       });
@@ -71,27 +65,54 @@ class MyStoresContainer extends React.Component<Props, State> {
     }
 	}
 
+	getRoutePlanners = (tab, i = null, filterDays) => {
+		const index = tab ? tab.i : i;
 
-	// componentDidMount() {
-	// 	this.props.getStores().then((res) => {
-	// 		if (res.status === 200) {
-	// 			alert(JSON.stringify(res));
-	// 			this.setState({
-	// 				stores: [{} ,...res.data],
-	// 			});
-	// 		}
-	// 	}).catch((err) => {
-	// 		alert('eer');
-	// 		throw new Error();
-	// 	});
-	// }
+		if (this.state.rcrTabs[index].routePlanners.length === 0 || filterDays) {
+			this.props.setIsLoading(true);
+
+			let filter = "";
+			const dateNow = moment().format("YYYY-MM-DD");
+
+			if (this.state.rcrTabs[index].heading === "Outstanding") {
+				filter = `?visitDate_lt=${dateNow}&completed=false`;
+			} else if (this.state.rcrTabs[index].heading === "Today") {
+				filter = `?visitDate=${dateNow}&completed=false`;
+			} else if (this.state.rcrTabs[index].heading === "Upcoming") {
+				filter = `?visitDate_gt=${dateNow}&completed=false`;
+			} else if (this.state.rcrTabs[index].heading === "Completed") {
+
+				if (filterDays) {
+					const filterDate = moment().subtract(filterDays, "days").format("YYYY-MM-DD");
+					filter = `?completed=true&visitDate_lt=${dateNow}&visitDate_gt=${filterDate}`;
+				} else {
+					filter = "?completed=true";
+				}
+			}
+
+			this.props.getStores(filter).then((res) => {
+				if (res.status === 200) {
+					const rcrTabs = this.state.rcrTabs;
+					rcrTabs[index].routePlanners = [...res.data];
+
+					this.setState({
+						rcrTabs,
+					}, () => {
+						this.props.setIsLoading(false);
+					});
+				}
+			});
+		}
+	}
 
 	render() {
-		if (this.state.user && this.state.user.userGroup) {
+		if (this.state.user && this.state.user.role) {
 			return (
 				<MyStores
-					formType={this.state.user.userGroup === "RCRs" ? MY_STORES.RCR : MY_STORES.MERCHANDISERS}
-					stores={this.state.stores}
+					rcrTabs={this.state.rcrTabs}
+					getRoutePlanners={this.getRoutePlanners}
+					formType={this.state.user.role.type === "rcr" ? MY_STORES.RCR : MY_STORES.MERCHANDISERS}
+					assignedRoutePlanners={this.state.assignedRoutePlanners}
 					navigation={this.props.navigation}
 				/>
 			);
@@ -107,7 +128,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getStores: () => dispatch(getStores()),
+		getStores: (filter) => dispatch(getStores(filter)),
 		setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
 	};
 };

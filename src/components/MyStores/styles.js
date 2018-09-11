@@ -14,7 +14,6 @@ const styles: any = StyleSheet.create({
 	},
 	tabContent: {
 		flex: 1,
-		height: deviceHeight,
 	},
 	backgroundImg: {
 		flex: 1,
@@ -28,6 +27,7 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "transparent",
 	},
 	withFilter: {
+		minHeight: deviceHeight / 2,
 		backgroundColor: "transparent",
 		marginTop: getSizeWRTDeviceHeight(36),
 	},
@@ -80,6 +80,16 @@ const styles: any = StyleSheet.create({
 		fontFamily: "Always_Font",
     fontSize: getSizeWRTDeviceWidth(14),
     lineHeight: getSizeWRTDeviceWidth(16),
+	},
+	noStoresTextContainer: {
+    margin: getSizeWRTDeviceWidth(15),
+	},
+	noStoresText: {
+    color: "rgba(74,74,74,1)",
+    backgroundColor: "transparent",
+		fontFamily: "Always_Font",
+    fontSize: getSizeWRTDeviceWidth(12),
+    lineHeight: getSizeWRTDeviceWidth(14),
 	}
 });
 export default styles;

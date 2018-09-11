@@ -1,10 +1,13 @@
 // @flow
 import * as React from "react";
 import { AsyncStorage } from "react-native";
+
+import _ from "lodash";
+
 import StoreVisit from "../../components/StoreVisit";
 
 import { connect } from "react-redux";
-import { setIsLoading } from "../../actions";
+import { setIsLoading, saveRcrFormData, uploadImage } from "../../actions";
 
 import myStoresRCRTemplate from "./forms/mystoresrcr";
 import myStoresMerchandisersTemplate from "./forms/mystoresmerchandisers";
@@ -24,23 +27,23 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		super(props);
 
 		let formData = null;
-		this.asyncStorageKey = null;
 		this.formTemplate = null;
 		const { params } = this.props.navigation.state; //params.formType
+		this.asyncStorageKey = params.assignedRoutePlanner.id;
+		this.disableEditing = params.disableEditing;
 
 		if (params.formType === MY_STORES.RCR) {
 			formData = _formData.myStoresRCR;
-			this.asyncStorageKey = "RCR";
 			this.formTemplate = myStoresRCRTemplate;
 		} else if (params.formType === MY_STORES.MERCHANDISERS) {
 			formData = _formData.myStoresMerchandisers;
-			this.asyncStorageKey = "MERCHANDISERS";
 			this.formTemplate = myStoresMerchandisersTemplate;
 		}
 
 		this.state = {
-			formData,
-			store: params.store,
+			formData: _.cloneDeep(formData),
+			planner: params.assignedRoutePlanner,
+			store: params.assignedRoutePlanner.store,
 		};
 
 		this.props.setIsLoading(true);
@@ -80,8 +83,19 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
-	saveFormToAsyncStorage = () => {
-		AsyncStorage.setItem(this.asyncStorageKey, JSON.stringify(this.state.formData));
+	saveFormToAsyncStorage = (isSubmit = false) => {
+		if (isSubmit) {
+			const formData = _.omit(this.state.formData, ["isSubmitted", "newRspItems"]);
+			this.props.saveRcrFormData({...formData, planner: this.state.planner}).then((res) => {
+				if (res.status === 200) {
+					AsyncStorage.setItem(this.asyncStorageKey, JSON.stringify({isSubmitted: true, ...this.state.formData}));
+				}
+			}).catch((err) => {
+				throw new Error(err);
+			});
+		} else {
+			AsyncStorage.setItem(this.asyncStorageKey, JSON.stringify(this.state.formData));
+		}
 	}
 
 	addOneDataGridItem = (key, gridItem) => {
@@ -103,7 +117,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
-	handleFormDataChange = (key, value, formLayout) => {
+	handleFormDataChange = (key, value, formLayout, aggregate = null) => {
 		const formData = this.state.formData;
 
 		if (!formLayout) {
@@ -114,8 +128,17 @@ class StoreVisitContainer extends React.Component<Props, State> {
 
 		this.setState({
 			formData,
+		}, () => {
+			if (aggregate) {
+				this.handleFormDataChange(aggregate.key, aggregate.aggregateOf.reduce((_sum, _key) => _sum + (formData[_key] === "" ? 0 : parseInt(formData[_key], 10)), 0).toString(), formLayout);
+			}
+
 		});
 	}
+
+  signaturePadChange = (base64DataUrl, formField, formLayout) => {
+		this.handleFormDataChange(formField.key, base64DataUrl, formLayout);
+	};
 
 	render() {
 		return (
@@ -124,8 +147,10 @@ class StoreVisitContainer extends React.Component<Props, State> {
 				formData={this.state.formData}
 				formTemplate={this.formTemplate}
 				navigation={this.props.navigation}
+				disableEditing={this.disableEditing}
 				saveCapturedImg={this.saveCapturedImg}
 				appendNewRspToList={this.appendNewRspToList}
+				signaturePadChange={this.signaturePadChange}
 				addOneDataGridItem={this.addOneDataGridItem}
 				handleFormDataChange={this.handleFormDataChange}
 				saveFormToAsyncStorage={this.saveFormToAsyncStorage}
@@ -140,7 +165,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-    setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
+		uploadImage: image => dispatch(uploadImage(image)),
+		setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
+		saveRcrFormData: rcrFormData => dispatch(saveRcrFormData(rcrFormData)),
 	};
 };
 

@@ -59,9 +59,15 @@ class StoreFilter extends React.Component<Props> {
     }
   }
 
-	renderItem = ({item}) => {
+  onItemClick = (item, index) => {
+    this.toggleCollapsable();
+    this.setState({filterValueIndex: index});
+    this.props.getRoutePlanners(null, this.props.index, item.value);
+  }
+
+	renderItem = ({item, index}) => {
 		return (
-      <TouchableOpacity onPress={() => {}} style={styles.listItem}>
+      <TouchableOpacity onPress={() => this.onItemClick(item, index)} style={styles.listItem}>
 				<Text style={styles.listItemTxt}>
 					{item.label}
 				</Text>

@@ -45,7 +45,7 @@ class SKUVisit extends React.Component<Props> {
         },
         {
           "title": "Step 2: Submit",
-          fullHeight: false,
+          fullHeight: true,
         },
       ],
 			isStoreImgContainerVisible: true,

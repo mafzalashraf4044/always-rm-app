@@ -15,11 +15,11 @@ export default [
           placeholder: "",
           data: {
             values: [{
-              value: "active",
+              value: "Active",
               label: "Active",
               $$hashKey: "object:747"
             }, {
-              value: "inactive",
+              value: "Inactive",
               label: "Inactive",
               $$hashKey: "object:776"
             }],
@@ -38,6 +38,7 @@ export default [
           placeholder: "",
           type: "textfield",
           keyboardType: "numeric",
+          editable: true,
           properties: {}
         }
       ],
@@ -59,6 +60,7 @@ export default [
           placeholder: "",
           type: "textfield",
           keyboardType: "numeric",
+          editable: true,
           properties: {}
         }
       ],
@@ -71,7 +73,7 @@ export default [
         name: "",
         email: "",
         contactNumber: "",
-        IREPRegistered: "",
+        irepTrainedUser: "",
         status: "",
       },
       addOneMoreItemTxt: "ADD NEW RSP",
@@ -104,8 +106,8 @@ export default [
             properties: {}
           },
           {
-            label: "IREP Registered",
-            key: "IREPRegistered",
+            label: "IREP Trained User",
+            key: "irepTrainedUser",
             placeholder: "",
             data: {
               values: [{
@@ -126,11 +128,11 @@ export default [
             placeholder: "",
             data: {
               values: [{
-                value: "active",
+                value: "Active",
                 label: "Active",
                 $$hashKey: "object:5432"
               }, {
-                value: "inactive",
+                value: "Inactive",
                 label: "Inactive",
                 $$hashKey: "object:5473"
               }],
@@ -157,6 +159,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -166,6 +169,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
         ],
@@ -197,21 +201,17 @@ export default [
                     label: "Optane",
                     $$hashKey: "object:5432"
                   }, {
-                    value: "10thGen",
-                    label: "10th Gen",
+                    value: "irep",
+                    label: "IREP",
                     $$hashKey: "object:5473"
                   }, {
-                    value: "competitorAnalysis",
-                    label: "Competitor Analysis",
-                    $$hashKey: "object:5477"
-                  }, {
-                    value: "someOtherCourse",
-                    label: "Some other course",
+                    value: "Others",
+                    label: "Others",
                     $$hashKey: "object:5481"
                   }],
                 },
                 type: "select",
-              }, ],
+              }],
             },
             {
               styles: {
@@ -252,9 +252,9 @@ export default [
         legend: "",
         components: [{
           type: "switch",
-          label: "Can store deploy POSM",
+          label: "Can store deploy POSM?",
           key: "canStoreDeployPosm",
-        }, ],
+        }],
       },
       {
         key: "formFieldSet-3-1",
@@ -271,7 +271,7 @@ export default [
         legend: "",
         components: [{
             type: "switch",
-            label: "POSM",
+            label: "POSM installed?",
             key: "posm",
           },
           {
@@ -281,6 +281,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -290,6 +291,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -299,13 +301,20 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
             key: "merchandisingImages",
             type: "image",
-            isAddEnabled: true,
+            isAddEnabled: false,
+            addEnabledDependency: "posmReplacement",
             properties: {}
+          },
+          {
+            type: "switch",
+            label: "Any POSM replacement required?",
+            key: "posmReplacement",
           },
         ],
       }
@@ -332,6 +341,11 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
+            aggregate: {
+              key: "totIposRxtInstallation",
+              aggregateOf: ["currentInStore", "newInstallation"],
+            },
             properties: {}
           },
           {
@@ -341,6 +355,11 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
+            aggregate: {
+              key: "totIposRxtInstallation",
+              aggregateOf: ["currentInStore", "newInstallation"],
+            },
             properties: {}
           },
           {
@@ -350,6 +369,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: false,
             properties: {}
           },
         ],
@@ -383,11 +403,88 @@ export default [
           placeholder: "",
           type: "textfield",
           keyboardType: "numeric",
+          editable: true,
           properties: {}
         }, ],
       },
       {
         key: "formFieldSet-5-1",
+        type: "formFieldSet",
+        legend: "No. of PCs powered by Intel switched on",
+        components: [{
+          inputType: "number",
+          label: "Current",
+          key: "pcsPowerdByIntelSwitchedOn",
+          placeholder: "",
+          type: "textfield",
+          keyboardType: "numeric",
+          editable: true,
+          aggregate: {
+            key: "totalPcsInStore",
+            aggregateOf: ["pcsPowerdByIntelSwitchedOn", "pcsPowerdByIntelSwitchedOff", "pcsPowerdByCompetitorSwitchedOn", "pcsPowerdByCompetitorSwitchedOff"],
+          },
+          properties: {}
+        }, ],
+      },
+      {
+        key: "formFieldSet-5-2",
+        type: "formFieldSet",
+        legend: "No. of PCs powerd by Intel switched off",
+        components: [{
+          inputType: "number",
+          label: "Current",
+          key: "pcsPowerdByIntelSwitchedOff",
+          placeholder: "",
+          type: "textfield",
+          keyboardType: "numeric",
+          editable: true,
+          aggregate: {
+            key: "totalPcsInStore",
+            aggregateOf: ["pcsPowerdByIntelSwitchedOn", "pcsPowerdByIntelSwitchedOff", "pcsPowerdByCompetitorSwitchedOn", "pcsPowerdByCompetitorSwitchedOff"],
+          },
+          properties: {}
+        }, ],
+      },
+      {
+        key: "formFieldSet-5-3",
+        type: "formFieldSet",
+        legend: "No. of PCs powerd by Competitor switched on",
+        components: [{
+          inputType: "number",
+          label: "Current",
+          key: "pcsPowerdByCompetitorSwitchedOn",
+          placeholder: "",
+          type: "textfield",
+          keyboardType: "numeric",
+          editable: true,
+          aggregate: {
+            key: "totalPcsInStore",
+            aggregateOf: ["pcsPowerdByIntelSwitchedOn", "pcsPowerdByIntelSwitchedOff", "pcsPowerdByCompetitorSwitchedOn", "pcsPowerdByCompetitorSwitchedOff"],
+          },
+          properties: {}
+        }, ],
+      },
+      {
+        key: "formFieldSet-5-4",
+        type: "formFieldSet",
+        legend: "No. of PCs powerd by Competitor switched off",
+        components: [{
+          inputType: "number",
+          label: "Current",
+          key: "pcsPowerdByCompetitorSwitchedOff",
+          placeholder: "",
+          type: "textfield",
+          keyboardType: "numeric",
+          editable: true,
+          aggregate: {
+            key: "totalPcsInStore",
+            aggregateOf: ["pcsPowerdByIntelSwitchedOn", "pcsPowerdByIntelSwitchedOff", "pcsPowerdByCompetitorSwitchedOn", "pcsPowerdByCompetitorSwitchedOff"],
+          },
+          properties: {}
+        }, ],
+      },
+      {
+        key: "formFieldSet-5-5",
         type: "formFieldSet",
         legend: "Total Number of PCs in Store",
         components: [{
@@ -397,62 +494,7 @@ export default [
           placeholder: "",
           type: "textfield",
           keyboardType: "numeric",
-          properties: {}
-        }, ],
-      },
-      {
-        key: "formFieldSet-5-2",
-        type: "formFieldSet",
-        legend: "No. of PCs powerd by Intel turned on",
-        components: [{
-          inputType: "number",
-          label: "Current",
-          key: "pcsPowerdByIntelTurnedOn",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
-          properties: {}
-        }, ],
-      },
-      {
-        key: "formFieldSet-5-3",
-        type: "formFieldSet",
-        legend: "No. of PCs powerd by Intel turned off",
-        components: [{
-          inputType: "number",
-          label: "Current",
-          key: "pcsPowerdByIntelTurnedOff",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
-          properties: {}
-        }, ],
-      },
-      {
-        key: "formFieldSet-5-4",
-        type: "formFieldSet",
-        legend: "No. of PCs powerd by Competitor turned on",
-        components: [{
-          inputType: "number",
-          label: "Current",
-          key: "pcsPowerdByCompetitorTurnedOn",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
-          properties: {}
-        }, ],
-      },
-      {
-        key: "formFieldSet-5-5",
-        type: "formFieldSet",
-        legend: "No. of PCs powerd by Competitor turned off",
-        components: [{
-          inputType: "number",
-          label: "Current",
-          key: "pcsPowerdByCompetitorTurnedOff",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
+          editable: false,
           properties: {}
         }, ],
       },
@@ -461,11 +503,11 @@ export default [
 
   {
     type: "step",
-    title: "Step 4: Competitor Anaylsis",
+    title: "Step 4: Competitor Analysis",
     key: "stepIndex-6",
     components: [{
-      label: "Competitor Anaylsis",
-      key: "competitorAnaylsis",
+      label: "Competitor Analysis",
+      key: "competitorAnalysis",
       type: "dataGridWithFieldSets",
       gridItem: {
         competitorName: "",
@@ -488,12 +530,57 @@ export default [
               placeholder: "",
               data: {
                 values: [{
-                  value: "amd",
+                  value: "AMD",
                   label: "AMD",
                 }, {
-                  value: "intel",
-                  label: "Intel",
+                  value: "Qualcomm",
+                  label: "Qualcomm",
                 }],
+              },
+              type: "select",
+            },
+            {
+              label: "PC Brand",
+              key: "pcBrand",
+              placeholder: "",
+              data: {
+                values: [{
+                  value: "ACER",
+                  label: "ACER",
+                },{
+                  value: "AMD",
+                  label: "AMD",
+                },{
+                  value: "ASUS",
+                  label: "ASUS",
+                },{
+                  value: "AVITA",
+                  label: "AVITA",
+                },{
+                  value: "AXIOO",
+                  label: "AXIOO",
+                },{
+                  value: "DELL",
+                  label: "DELL",
+                },{
+                  value: "HP",
+                  label: "HP",
+                },{
+                  value: "LENOVO",
+                  label: "LENOVO",
+                },{
+                  value: "MSI",
+                  label: "MSI",
+                },{
+                  value: "RAZOR",
+                  label: "RAZOR",
+                },{
+                  value: "THUNDEROBOT",
+                  label: "THUNDEROBOT",
+                },{
+                  value: "OTHERS",
+                  label: "OTHERS",
+                },],
               },
               type: "select",
             },
@@ -504,7 +591,8 @@ export default [
               placeholder: "",
               type: "textfield",
               keyboardType: "numeric",
-            },
+            editable: true,},
+
             {
               label: "POSM Installed",
               key: "posmInstalled",
@@ -529,28 +617,76 @@ export default [
               type: "textfield",
             },
             {
-              label: "PC Brand",
-              key: "pcBrand",
-              placeholder: "",
-              data: {
-                values: [{
-                  value: "dell",
-                  label: "Dell",
-                }, {
-                  value: "hp",
-                  label: "HP",
-                }],
-              },
-              type: "select",
-            },
-            {
               inputType: "text",
-              label: "PC Description",
-              key: "pcDescription",
+              label: "Form Factor",
+              key: "formFactor",
               placeholder: "",
               multiline: true,
               type: "textfield",
             },
+            {
+              inputType: "number",
+              label: "2-in-1 Convertible",
+              key: "twoInOneConvertible",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "2-in-1 Detachable",
+              key: "twoInOneDetachable",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "All-in-1",
+              key: "allInOne",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "Desktop",
+              key: "desktop",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "Laptop",
+              key: "laptop",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "Gaming Desktop",
+              key: "gamingDesktop",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
+            {
+              inputType: "number",
+              label: "Gaming Laptop",
+              key: "gamingLaptop",
+              placeholder: "",
+              type: "textfield",
+              keyboardType: "numeric",
+            editable: true,},
+
           ],
         },
         {
@@ -570,7 +706,7 @@ export default [
 
   {
     type: "step",
-    title: "Step 5.1: Store Anaylsis",
+    title: "Step 5.1: Store Analysis",
     key: "stepIndex-7",
     components: [{
         key: "formFieldSet-7-0",
@@ -583,6 +719,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -592,6 +729,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -601,6 +739,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -616,7 +755,7 @@ export default [
       {
         key: "formFieldSet-7-1",
         type: "formFieldSet",
-        legend: "PC Images (minumum 5 images)",
+        legend: "Images",
         components: [{
           key: "storeAnalysisPCImages2in1Zone",
           type: "image",
@@ -629,7 +768,7 @@ export default [
 
   {
     type: "step",
-    title: "Step 5.2: Store Anaylsis",
+    title: "Step 5.2: Store Analysis",
     key: "stepIndex-8",
     components: [{
         key: "formFieldSet-8-0",
@@ -642,6 +781,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -651,6 +791,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -660,6 +801,7 @@ export default [
             placeholder: "",
             type: "textfield",
             keyboardType: "numeric",
+            editable: true,
             properties: {}
           },
           {
@@ -675,7 +817,7 @@ export default [
       {
         key: "formFieldSet-8-1",
         type: "formFieldSet",
-        legend: "PC Images (minumum 5 images)",
+        legend: "Images",
         components: [{
           key: "storeAnalysisPCImagesGamingZone",
           type: "image",
@@ -688,59 +830,56 @@ export default [
 
   {
     type: "step",
-    title: "Step 5.3: Store Anaylsis",
+    title: "Step 5.3: Store Analysis",
     key: "stepIndex-9",
     components: [{
         key: "formFieldSet-9-0",
         type: "formFieldSet",
-        legend: "End Cap Display",
+        legend: "Intel End Cap Display",
         components: [{
-          inputType: "number",
-          label: "Current",
-          key: "currentEndCapDisplay",
-          placeholder: "",
-          type: "textfield",
-          keyboardType: "numeric",
-          properties: {}
-        }, ],
+            inputType: "number",
+            label: "Current",
+            key: "currentEndCapDisplay",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            editable: true,
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Outdated",
+            key: "outdatedEndCapDisplay",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            editable: true,
+            properties: {}
+          },
+          {
+            inputType: "number",
+            label: "Refresh/Deployment Opportunity",
+            key: "refrestDeploymentOpportunityEndCapDisplay",
+            placeholder: "",
+            type: "textfield",
+            keyboardType: "numeric",
+            editable: true,
+            properties: {}
+          },
+          {
+            inputType: "text",
+            label: "Description",
+            key: "storeAnalysisDescriptionEndCapDisplay",
+            placeholder: "",
+            multiline: true,
+            type: "textfield",
+          },
+        ],
       },
       {
         key: "formFieldSet-9-1",
         type: "formFieldSet",
-        legend: "",
-        components: [{
-          type: "switch",
-          label: "Intel Riser Deployed in Store",
-          key: "intelRiserDeployedInStore",
-        }, ],
-      },
-      {
-        key: "formFieldSet-9-2",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          type: "switch",
-          label: "Promotion Updates",
-          key: "promotionUpdates",
-        }, ],
-      },
-      {
-        key: "formFieldSet-9-3",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          inputType: "text",
-          label: "Description",
-          key: "storeAnalysisDescriptionEndCapDisplay",
-          placeholder: "",
-          multiline: true,
-          type: "textfield",
-        }, ],
-      },
-      {
-        key: "formFieldSet-9-4",
-        type: "formFieldSet",
-        legend: "",
+        legend: "Images",
         components: [{
           key: "storeAnalysisPCImagesEndCapDisplay",
           type: "image",
@@ -751,12 +890,64 @@ export default [
     ],
   },
 
+
   {
     type: "step",
-    title: "Step 5.4: Store Anaylsis",
+    title: "Step 5.4: Store Analysis",
     key: "stepIndex-10",
     components: [{
         key: "formFieldSet-10-1",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          type: "switch",
+          label: "Intel Riser Deployed in Store",
+          key: "intelRiserDeployedInStore",
+        }, ],
+      },
+      {
+        key: "formFieldSet-10-2",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          type: "switch",
+          label: "Retailer Promotion Updates",
+          key: "promotionUpdates",
+        }, ],
+      },
+      {
+        key: "formFieldSet-10-3",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          inputType: "text",
+          label: "Description",
+          key: "storeAnalysisDescription",
+          placeholder: "",
+          multiline: true,
+          type: "textfield",
+        }, ],
+      },
+      {
+        key: "formFieldSet-10-4",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          key: "storeAnalysisPCImages",
+          type: "image",
+          isAddEnabled: true,
+          properties: {}
+        }, ],
+      },
+    ],
+  },
+
+  {
+    type: "step",
+    title: "Step 5.5: Store Analysis",
+    key: "stepIndex-11",
+    components: [{
+        key: "formFieldSet-11-1",
         type: "formFieldSet",
         legend: "",
         components: [{
@@ -780,7 +971,7 @@ export default [
         addOneMoreItemTxt: "ADD PRODUCTS",
         addOneMoreItemPosition: "top",
         components: [{
-            key: "formFieldSet-10-2",
+            key: "formFieldSet-11-2",
             type: "formFieldSet",
             legend: "New Launch Product",
             components: [{
@@ -820,69 +1011,8 @@ export default [
                 placeholder: "",
                 type: "textfield",
                 keyboardType: "numeric",
-              },
-              {
-                inputType: "text",
-                label: "Description",
-                key: "description",
-                placeholder: "",
-                multiline: true,
-                type: "textfield",
-              },
-            ],
-          },
-          {
-            key: "formFieldSet-10-3",
-            type: "formFieldSet",
-            legend: "",
-            components: [{
-              key: "images",
-              type: "image",
-              isAddEnabled: true,
-              properties: {}
-            }, ],
-          },
-        ]
-      },
-    ],
-  },
+              editable: true,},
 
-  {
-    type: "step",
-    title: "Step 5.5: Store Anaylsis",
-    key: "stepIndex-11",
-    components: [{
-        key: "formFieldSet-11-1",
-        type: "formFieldSet",
-        legend: "",
-        components: [{
-          type: "switch",
-          label: "OEM Updates",
-          key: "oemUpdates",
-        }, ],
-      },
-      {
-        label: "",
-        key: "oem",
-        type: "dataGridWithFieldSets",
-        gridItem: {
-          name: "",
-          description: "",
-          images: [],
-        },
-        addOneMoreItemTxt: "ADD OEM",
-        addOneMoreItemPosition: "top",
-        components: [{
-            key: "formFieldSet-11-2",
-            type: "formFieldSet",
-            legend: "New OEM",
-            components: [{
-                inputType: "text",
-                label: "Name",
-                key: "name",
-                placeholder: "",
-                type: "textfield",
-              },
               {
                 inputType: "text",
                 label: "Description",
@@ -911,45 +1041,37 @@ export default [
 
   {
     type: "step",
-    title: "Step 5.6: Store Anaylsis",
-    key: "stepIndex-12",
+    title: "Step 5.6: Store Analysis",
+    key: "stepIndex-11",
     components: [{
         key: "formFieldSet-12-1",
         type: "formFieldSet",
         legend: "",
         components: [{
           type: "switch",
-          label: "Event Updates",
-          key: "eventUpdates",
+          label: "OEM Updates",
+          key: "oemUpdates",
         }, ],
       },
       {
         label: "",
-        key: "event",
+        key: "oems",
         type: "dataGridWithFieldSets",
         gridItem: {
           name: "",
-          date: "",
           description: "",
           images: [],
         },
-        addOneMoreItemTxt: "ADD EVENTS",
+        addOneMoreItemTxt: "ADD OEM",
         addOneMoreItemPosition: "top",
         components: [{
             key: "formFieldSet-12-2",
             type: "formFieldSet",
-            legend: "New Event",
+            legend: "New OEM",
             components: [{
                 inputType: "text",
                 label: "Name",
                 key: "name",
-                placeholder: "",
-                type: "textfield",
-              },
-              {
-                inputType: "text",
-                label: "Date",
-                key: "date",
                 placeholder: "",
                 type: "textfield",
               },
@@ -981,38 +1103,100 @@ export default [
 
   {
     type: "step",
-    title: "Step 5.7: Store Anaylsis",
+    title: "Step 5.7: Store Analysis",
     key: "stepIndex-13",
+    components: [{
+        key: "formFieldSet-13-1",
+        type: "formFieldSet",
+        legend: "",
+        components: [{
+          type: "switch",
+          label: "Event Updates",
+          key: "eventUpdates",
+        }, ],
+      },
+      {
+        label: "",
+        key: "events",
+        type: "dataGridWithFieldSets",
+        gridItem: {
+          name: "",
+          date: "",
+          description: "",
+          images: [],
+        },
+        addOneMoreItemTxt: "ADD EVENTS",
+        addOneMoreItemPosition: "top",
+        components: [{
+            key: "formFieldSet-13-2",
+            type: "formFieldSet",
+            legend: "New Event",
+            components: [{
+                inputType: "text",
+                label: "Name",
+                key: "name",
+                placeholder: "",
+                type: "textfield",
+              },
+              {
+                label: "Date From",
+                key: "dateFrom",
+                placeholder: "",
+                type: "date",
+              },
+              {
+                label: "Date To",
+                key: "dateTo",
+                placeholder: "",
+                type: "date",
+              },
+              {
+                inputType: "text",
+                label: "Description",
+                key: "description",
+                placeholder: "",
+                multiline: true,
+                type: "textfield",
+              },
+            ],
+          },
+          {
+            key: "formFieldSet-13-3",
+            type: "formFieldSet",
+            legend: "",
+            components: [{
+              key: "images",
+              type: "image",
+              isAddEnabled: true,
+              properties: {}
+            }, ],
+          },
+        ]
+      },
+    ],
+  },
+
+  {
+    type: "step",
+    title: "Step 5.8: Store Analysis",
+    key: "stepIndex-14",
     fullHeight: true,
     components: [{
-      key: "formFieldSet-13-1",
+      key: "formFieldSet-14-1",
       type: "formFieldSet",
       legend: "Remarks",
       components: [{
+          inputType: "text",
           label: "Remarks/Feedback",
-          key: "remark",
+          key: "remarks",
           placeholder: "",
-          data: {
-            values: [{
-              value: "good",
-              label: "Good",
-            }, {
-              value: "average",
-              label: "Average",
-            }, {
-              value: "bad",
-              label: "Bad",
-            }, {
-              value: "others",
-              label: "Others",
-            }],
-          },
-          type: "select",
+          multiline: true,
+          type: "textfield",
         },
         {
           inputType: "text",
-          label: "Enter Remarks Below",
-          key: "otherRemarks",
+          label: "Action item/s for follow-up",
+          key: "actionItemsForFollowUp",
           placeholder: "",
           multiline: true,
           type: "textfield",
@@ -1024,12 +1208,11 @@ export default [
   {
     type: "step",
     title: "Step 6: Submit",
-    key: "stepIndex-14",
-    fullHeight: true,
+    key: "stepIndex-15",
     components: [{
-      key: "formFieldSet-14-1",
+      key: "formFieldSet-15-1",
       type: "formFieldSet",
-      legend: "",
+      legend: "Verified By",
       components: [{
           inputType: "text",
           label: "Name",

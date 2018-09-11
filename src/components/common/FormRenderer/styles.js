@@ -93,6 +93,12 @@ const styles: any = StyleSheet.create({
     height: getSizeWRTDeviceWidth(36),
     backgroundColor: "rgba(233,30,99,1)",
   },
+  btnDisabled :{
+		shadowOffset: { width: 0, height:0 },
+		shadowOpacity: 0,
+		elevation: 0,
+    backgroundColor: "rgba(233,30,99,0.5)",
+  },
   updateRspListBtnTxt: {
     color: "#FFF",
     backgroundColor: "transparent",
@@ -101,7 +107,7 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(14),
   },
   formView: {
-    height: "100%",
+    height: "auto",
     paddingHorizontal: getSizeWRTDeviceWidth(15),
     backgroundColor: "#FFF",
   },
@@ -129,7 +135,9 @@ const styles: any = StyleSheet.create({
   },
   addIcon: {
     width: getSizeWRTDeviceWidth(22),
-    resizeMode: "contain",
+    height: getSizeWRTDeviceWidth(22),
+    marginLeft: getSizeWRTDeviceWidth(-10),
+    marginRight: getSizeWRTDeviceWidth(2),
   },
   switchContainer: {
     flexDirection: "row",
@@ -185,20 +193,28 @@ const styles: any = StyleSheet.create({
   },
   signature: {
     width: "100%",
-    height: getSizeWRTDeviceHeight(136),
+    position: "relative",
+    zIndex: 10,
+    height: getSizeWRTDeviceHeight(180),
     borderWidth: 1,
     borderColor: "rgba(235,235,235,1)",
   },
-  signatureText: {
-    color: "rgba(147,147,147,1)",
+  signatureTxtContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: getSizeWRTDeviceWidth(10),
+    marginTop: getSizeWRTDeviceWidth(30),
+  },
+  signatureTxt: {
+    color: "rgba(233,30,99,1)",
     backgroundColor: "transparent",
     fontFamily: "Always_Font",
-    fontSize: getSizeWRTDeviceWidth(12),
-    lineHeight: getSizeWRTDeviceWidth(14),
+    fontSize: getSizeWRTDeviceWidth(16),
+    lineHeight: getSizeWRTDeviceWidth(20),
   },
   signatureContainer: {
-    alignItems: "flex-end",
-    position: "relative",
+    flex: 1,
   },
   clearSignatureBtn: {
     backgroundColor: "rgba(233,30,99,1)",
@@ -209,6 +225,7 @@ const styles: any = StyleSheet.create({
     position: "absolute",
     top: 0,
     right: 0,
+    zIndex: 15,
   },
   clearSignatureIcon: {
     width: getSizeWRTDeviceWidth(14),
@@ -224,7 +241,7 @@ const styles: any = StyleSheet.create({
   addOneMoreBtnContainerWithFieldsetDGFS: {
     justifyContent: "flex-start",
     marginTop: getSizeWRTDeviceWidth(5),
-    marginBottom: getSizeWRTDeviceWidth(20),
+    marginBottom: getSizeWRTDeviceWidth(25),
   },
   addOneMoreBtnContainerWithFieldsetDGFE: {
     justifyContent: "flex-end",

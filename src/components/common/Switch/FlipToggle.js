@@ -154,11 +154,7 @@ class FlipToggle extends React.Component {
   };
 
   setBackgroundColor = component => {
-    if (this.props.disabled) {
-      let key = `${component}Disabled`;
-      let { [key]: data } = styles;
-      return data.backgroundColor;
-    } else if (this.props.value) {
+    if (this.props.value) {
       let key = `${component}OnColor`;
       let { [key]: data } = this.props;
       return data;
@@ -196,11 +192,6 @@ class FlipToggle extends React.Component {
               backgroundColor: this.setBackgroundColor("button"),
             }}
           />
-          {this.props.onLabel || this.props.offLabel ? (
-            <Text style={[{ alignSelf: "center" }, this.props.labelStyle]}>
-              {this.props.value ? this.props.onLabel : this.props.offLabel}
-            </Text>
-          ) : null}
           <Animated.View
             style={{
               margin: this.dimensions.margin,
@@ -216,8 +207,16 @@ class FlipToggle extends React.Component {
               shadowOpacity: 0.1,
               shadowRadius: 1.5,
               elevation: 1,
+              justifyContent: "center",
+              alignItems: "center",
             }}
-          />
+          >
+            {this.props.onLabel || this.props.offLabel ? (
+              <Text style={[{ color: !this.props.value ? "rgba(255,127,170,1)" : "#FFF" }, this.props.labelStyle]}>
+                {this.props.value ? this.props.onLabel : this.props.offLabel}
+              </Text>
+            ) : null}
+          </Animated.View>
         </View>
       </TouchableOpacity>
     );

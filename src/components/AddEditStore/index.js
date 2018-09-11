@@ -9,7 +9,7 @@ import {
 	KeyboardAvoidingView,
 } from "react-native";
 
-import { Button } from "native-base";
+import { Button, ActionSheet } from "native-base";
 import { TextField } from "react-native-material-textfield";
 
 import Header from "../common/Header";
@@ -18,11 +18,40 @@ import { Dropdown } from "../common/Dropdown";
 import styles from "./styles";
 import { getSizeWRTDeviceWidth } from "../../utils";
 
+const FIRST_INDEX = 0;
+
 export interface Props {
 	navigation: any;
 }
 
+const BUTTONS = [
+  { text: "Camera", icon: "camera", iconColor: "#000" },
+  { text: "Gallery", icon: "film", iconColor: "#000" },
+  { text: "Cancel", icon: "close", iconColor: "#000" }
+];
+
+const CAMERA_INDEX = 0;
+const GALLERY_INDEX = 1;
+const CANCEL_INDEX = 2;
+
 class AddEditStore extends React.Component<Props> {
+
+  showActionSheet = () => {
+		ActionSheet.show(
+			{
+				options: BUTTONS,
+				cancelButtonIndex: CANCEL_INDEX,
+				title: "Store Image"
+			},
+			buttonIndex => {
+				if (buttonIndex === CAMERA_INDEX) {
+					this.props.openCamera();
+				} else if (buttonIndex === GALLERY_INDEX) {
+          this.props.pickImage();
+				}
+			}
+		);
+	}
 
 	render() {
 		const { params } = this.props.navigation.state;
@@ -35,6 +64,7 @@ class AddEditStore extends React.Component<Props> {
 			labelFontSize:getSizeWRTDeviceWidth(12),
 			inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(-15)},
 		};
+
 		return (
 			<KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="position" enabled keyboardVerticalOffset={-80}>
 				<ScrollView
@@ -43,11 +73,11 @@ class AddEditStore extends React.Component<Props> {
 				>
 					<View style={styles.storeImgContainer}>
 						{
-							params.isEdit &&
+							(params.isEdit || this.props.store.image) &&
 							<Image
-								blurRadius={5}
+								blurRadius={this.props.store.image ? 0 : 5}
 								style={styles.backgroundImg}
-								source={require("../../assets/Images/header-bg.jpeg")}
+								source={this.props.store.image ? {uri: this.props.store.image.url} : require("../../assets/Images/header-bg.jpeg")}
 							/>
 						}
 						<Header
@@ -58,7 +88,7 @@ class AddEditStore extends React.Component<Props> {
 								onPress: () => this.props.navigation.goBack(),
 							}}
 						/>
-						<TouchableOpacity onPress={() => {}}>
+						<TouchableOpacity onPress={this.showActionSheet}>
 							<View style={styles.addEditImg}>
 								<Image
 									style={styles.cameraIcon}
@@ -81,37 +111,69 @@ class AddEditStore extends React.Component<Props> {
 									onChangeText={(value) => this.props.handleChange("name", value)}
 								/>
 							</View>
-							<View style={styles.coulmns2}>
-								<View style={styles.widthHalf}>
-									<TextField
-										label="Store ID"
-										{...textFieldProps}
-										value={this.props.store.storeID}
-										onChangeText={(value) => this.props.handleChange("storeID", value)}
-									/>
-								</View>
-								<View style={styles.widthHalf}>
+							<View style={styles.coulmns1}>
+								<TextField
+									multiline
+									label="Store Description"
+									{...textFieldProps}
+									value={this.props.store.description}
+									onChangeText={(value) => this.props.handleChange("description", value)}
+								/>
+							</View>
+							{
+								params.isEdit ?
+								<View style={styles.coulmns2}>
+									<View style={styles.widthHalf}>
+										<TextField
+											label="Store ID"
+											{...textFieldProps}
+											value={this.props.store.id}
+											onChangeText={(value) => this.props.handleChange("id", value)}
+										/>
+									</View>
+									<View style={styles.widthHalf}>
+										<Dropdown
+											fullWidth={false}
+											label="Store Status"
+											value={this.props.store.status}
+											data={[{
+												value: "Active",
+												label: "Active",
+											}, {
+												value: "Inactive",
+												label: "Inactive",
+											}]}
+											onChangeText={(value) => this.props.handleChange("status", value)}
+										/>
+									</View>
+								</View> :
+								<View style={styles.coulmns1}>
 									<Dropdown
 										fullWidth={false}
 										label="Store Status"
+										value={this.props.store.status}
 										data={[{
-											value: "active",
+											value: "Active",
 											label: "Active",
 										}, {
 											value: "Inactive",
-											label: "inactive",
+											label: "Inactive",
 										}]}
+										onChangeText={(value) => this.props.handleChange("status", value)}
 									/>
 								</View>
-							</View>
-							<View style={styles.coulmns1}>
-								<TextField
-									label="Retailer Name"
-									{...textFieldProps}
-									value={this.props.store.retailerName}
-									onChangeText={(value) => this.props.handleChange("retailerName", value)}
-								/>
-							</View>
+							}
+							{
+								this.props.store.retails ?
+								<View style={styles.coulmns1}>
+									<TextField
+										label="Retailer Name"
+										{...textFieldProps}
+										value={this.props.store.retails[FIRST_INDEX].name}
+										onChangeText={(value) => this.props.handleChange("retailerName", value)}
+									/>
+								</View> : null
+							}
 							<View style={styles.coulmns1}>
 								<TextField
 									label="Store Manager"
@@ -124,8 +186,8 @@ class AddEditStore extends React.Component<Props> {
 								<TextField
 									label="Store Manager Contact Number"
 									{...textFieldProps}
-									value={this.props.store.managerContact}
-									onChangeText={(value) => this.props.handleChange("managerContact", value)}
+									value={this.props.store.contactPhone}
+									onChangeText={(value) => this.props.handleChange("contactPhone", value)}
 								/>
 							</View>
 						</View>
@@ -170,13 +232,12 @@ class AddEditStore extends React.Component<Props> {
 									fullWidth
 									label="Country"
 									{...textFieldProps}
-									value={this.props.store.country}
+									value={typeof this.props.store.country === "string" ? this.props.store.country : JSON.stringify(this.props.store.country)}
 									data={this.props.countries}
 									onChangeText={(value) => this.props.handleChange("country", value)}
 								/>
 							</View>
 						</View>
-
 						<View style={styles.formActions}>
 							<Button onPress={() => this.props.navigation.goBack()} style={styles.lightBtn}>
 								<Text style={styles.lightBtnTxt}>CANCEL</Text>

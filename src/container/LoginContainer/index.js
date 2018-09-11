@@ -7,7 +7,7 @@ import { AsyncStorage } from "react-native";
 import Login from "../../components/Login";
 
 import { connect } from "react-redux";
-import { login, setIsLoading, saveCountries, getCountries } from "../../actions";
+import { login, setIsLoading } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -27,11 +27,6 @@ class LoginContainer extends React.Component<Props> {
 
   componentDidMount() {
     this.checkIfLoggedIn();
-    this.props.getCountries().then((res) =>  {
-      if (res.status === 200) {
-        this.props.saveCountries(res.data.map((country) => ({value: country._id, label: country.name})));
-      }
-    });
   }
 
   checkIfLoggedIn = () => {

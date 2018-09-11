@@ -62,10 +62,6 @@ const styles: any = StyleSheet.create({
     lineHeight: getSizeWRTDeviceWidth(12),
     marginTop: getSizeWRTDeviceWidth(5)
   },
-  visitForm: {
-    // mineight: 0.7 * deviceHeight,
-    backgroundColor: "#FFF",
-  },
 });
 
 export default styles;

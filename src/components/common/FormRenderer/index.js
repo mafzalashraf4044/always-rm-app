@@ -8,8 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import moment from "moment";
+
 import Modal from "react-native-modal";
 import { Button } from "native-base";
+import DatePicker from "react-native-datepicker";
 import { TextField } from "react-native-material-textfield";
 
 import Switch from "../Switch";
@@ -40,6 +43,18 @@ class FormRenderer extends React.Component<Props, State> {
     labelTextStyle:{top: getSizeWRTDeviceWidth(-4)},
   };
 
+  isUpdateRspListEnabled = () => {
+    let _isUpdateRspListEnabled = true;
+
+    this.props.formData.newRspItems.forEach((rspItem) => {
+      if (!rspItem.name || !rspItem.email || !rspItem.contactNumber || !rspItem.irepTrainedUser || !rspItem.status) {
+        _isUpdateRspListEnabled = false;
+      }
+    });
+
+    return _isUpdateRspListEnabled;
+  }
+
   renderFormFields = (formField, formLayout = null) => {
     let value = "";
 
@@ -56,9 +71,10 @@ class FormRenderer extends React.Component<Props, State> {
           value={value}
           label={formField.label}
           {...this.textFieldProps}
+          editable={!this.props.disableEditing && formField.editable}
           multiline={formField.multiline}
           keyboardType={formField.keyboardType || "default"}
-          onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
+          onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout, formField.aggregate)}
         />
       );
     } else if (formField.type === "select") {
@@ -69,8 +85,51 @@ class FormRenderer extends React.Component<Props, State> {
           key={formField.key}
           label={formField.label}
           data={formField.data.values}
+          isDisabled={this.props.disableEditing}
           onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
         />
+      );
+    } else if (formField.type === "date") {
+      return (
+        <View key={formField.key} style={{borderBottomWidth: 0.8, borderBottomColor: "#000", marginTop: getSizeWRTDeviceWidth(10), marginBottom: getSizeWRTDeviceWidth(10)}}>
+          <DatePicker
+            style={{width: "100%"}}
+            date={value}
+            mode="date"
+            placeholder={formField.label}
+            format="YYYY-MM-DD"
+            minDate="1999-01-01"
+            maxDate="2050-01-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            androidMode="spinner"
+            showIcon={false}
+            disabled={this.props.disableEditing}
+            customStyles={{
+              dateInput: {
+                borderWidth: 0,
+              },
+              dateText: {
+                color: "#000",
+                width: "100%",
+                textAlign: "left",
+                fontSize: getSizeWRTDeviceWidth(14),
+                marginBottom: getSizeWRTDeviceWidth(-10)
+              },
+              placeholderText: {
+                width: "100%",
+                textAlign: "left",
+                color: "rgba(147,147,147,1)",
+                fontSize: getSizeWRTDeviceWidth(14),
+                marginBottom: getSizeWRTDeviceWidth(-10)
+              },
+              disabled: {
+                backgroundColor: "#FFF",
+              }
+            }}
+            onDateChange={(date) => this.props.handleFormDataChange(formField.key, date, formLayout)}
+          />
+        </View>
       );
     } else if (formField.type === "switch") {
       return (
@@ -78,41 +137,31 @@ class FormRenderer extends React.Component<Props, State> {
           <Text style={styles.switchTxt}>{formField.label}</Text>
           <Switch
             value={value}
+            disabled={this.props.disableEditing}
             onToggle={(_value) => this.props.handleFormDataChange(formField.key, _value, formLayout)}
           />
         </View>
       );
-    } else if (formField.type === "checkbox") {
-      return (
-        <View style={styles.checkboxContainer} key={formField.key}>
-          <Text style={styles.checkboxTxt}>{formField.label}</Text>
-          <TouchableOpacity style={styles.checkbox} onPress={() => this.props.handleFormDataChange(formField.key, !value, formLayout)}>
-            {
-              value ?
-              <View style={styles.checked}/> : null
-            }
-          </TouchableOpacity>
-        </View>
-      );
-    } else if (formField.type === "htmlelement") {
-      return (
-        <Text style={styles.htmlElementTxt} key={formField.key}>{formField.label}</Text>
-      )
     } else if (formField.type === "image") {
       return (
         <ImageGrid
-          isAddEnabled={formField.isAddEnabled}
+          isAddEnabled={formField.isAddEnabled && !this.props.disableEditing}
           images={value}
           key={formField.key}
           uniqueKey={formField.key}
+          navigation={this.props.navigation}
+          addEnabledDependency={this.props.formData[formField.addEnabledDependency]}
           saveCapturedImg={(image) => this.props.saveCapturedImg(formField.key, image, formLayout)}
         />
       );
     } else if (formField.type === "divider") {
       return <View style={styles.divider} key={formField.key} />;
-    } else if (formField.type === "signature") {
+    } else if (formField.type === "signature" && !this.props.disableEditing) {
       return (
         <View style={styles.signatureContainer} key={formField.key}>
+          <View style={styles.signatureTxtContainer}>
+            <Text style={styles.signatureTxt}>Signature</Text>
+          </View>
           <View style={styles.signature}>
             {
               value ?
@@ -123,21 +172,21 @@ class FormRenderer extends React.Component<Props, State> {
                 }}
               /> :
               <SignaturePad
-                onError={this.signaturePadError}
-                onChange={({base64DataUrl}) => this.signaturePadChange(base64DataUrl, formField, formLayout)}
+                onError={() => {}}
+                onChange={({base64DataUrl}) => this.props.signaturePadChange(base64DataUrl, formField, formLayout)}
                 style={{flex: 1, backgroundColor: "white"}}
               />
             }
+            {
+              value ?
+              <Button onPress={() => this.props.handleFormDataChange(formField.key, "", formLayout)} style={styles.clearSignatureBtn}>
+                <Image
+                  style={styles.clearSignatureIcon}
+                  source={require("../../../assets/Icons/Light/Delete.png")}
+                />
+              </Button> : null
+            }
           </View>
-          {
-            value ?
-            <Button onPress={() => this.clearSignature(formField, formLayout)} style={styles.clearSignatureBtn}>
-              <Image
-                style={styles.clearSignatureIcon}
-                source={require("../../../assets/Icons/Light/Delete.png")}
-              />
-            </Button> : null
-          }
         </View>
       );
     }
@@ -150,7 +199,7 @@ class FormRenderer extends React.Component<Props, State> {
       return (
         <View style={[styles.formLayout]} key={formLayout.key}>
           {
-            formLayout.legend ? 
+            formLayout.legend ?
             <View style={styles.headingContainer}>
               <Text style={styles.headingTxt}>{formLayout.legend}</Text>
             </View> : null
@@ -167,6 +216,7 @@ class FormRenderer extends React.Component<Props, State> {
           <View style={styles.headingContainer}>
             <Text style={styles.headingTxt}>{formLayout.label}</Text>
           </View>
+
           {
             this.props.formData[formLayout.key].map((gridItem, gridItemIndex) => {
               return (
@@ -180,9 +230,44 @@ class FormRenderer extends React.Component<Props, State> {
                               const _formField = _.cloneDeep(formField);
                               _formField.label = _formField.incrementLabelIndex ? `${_formField.label} ${gridItemIndex + 1}` : _formField.label;
 
-                              return (
-                                this.renderFormFields(_formField, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})
-                              );
+                              const value = this.props.formData[formLayout.key][gridItemIndex][formField.key];
+
+                              if (formField.key === "trainingCourse") {
+                                if (value === "" || value === "optane" || value === "irep") {
+                                  return (
+                                    <Dropdown
+                                      value={value}
+                                      key={formField.key}
+                                      label={formField.label}
+                                      data={formField.data.values}
+                                      isDisabled={this.props.disableEditing}
+                                      onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})}
+                                    />
+                                  );
+                                } else {
+                                  return (
+                                    <TextField
+                                      key={formField.key}
+                                      value={value === "Others" ? "" : value}
+                                      label={formField.label}
+                                      {...this.textFieldProps}
+                                      onChangeText={(_value) => this.props.handleFormDataChange(formField.key, _value, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})}
+                                    />
+                                  );
+                                }
+                              } else if (formField.key === "trainingDone") {
+                                return (
+                                  <View style={styles.checkboxContainer} key={formField.key}>
+                                    <Text style={styles.checkboxTxt}>{formField.label}</Text>
+                                    <TouchableOpacity disabled={this.props.disableEditing} style={styles.checkbox} onPress={() => this.props.handleFormDataChange(formField.key, !value, {isDataGrid: true, gridItemKey: formLayout.key, gridItemIndex})}>
+                                      {
+                                        value ?
+                                        <View style={styles.checked}/> : null
+                                      }
+                                    </TouchableOpacity>
+                                  </View>
+                                );
+                              }
                             })
                           }
                         </View>
@@ -193,20 +278,26 @@ class FormRenderer extends React.Component<Props, State> {
               )
             })
           }
-          <View style={styles.addOneMoreBtnContainer}>
-            <Button onPress={() => this.props.addOneDataGridItem(formLayout.key, formLayout.gridItem)} style={styles.addOneMoreBtn}>
-              <Image
-                style={styles.addIcon}
-                source={require("../../../assets/Icons/Light/Add.png")}
-              />
-              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
-            </Button>
-          </View>
+
+         {
+            !this.props.disableEditing ?
+            <View style={styles.addOneMoreBtnContainer}>
+              <Button onPress={() => this.props.addOneDataGridItem(formLayout.key, formLayout.gridItem)} style={styles.addOneMoreBtn}>
+                <Image
+                  style={styles.addIcon}
+                  source={require("../../../assets/Icons/Light/Add.png")}
+                />
+                <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+              </Button>
+            </View> : null
+          }
+
         </View>
       );
     } else if (formLayout.type === "dataGridWithFieldSets") {
 
       const addOneMoreBtn = () => (
+        !this.props.disableEditing ?
         <View
           style={[
             styles.addOneMoreBtnContainer,
@@ -219,9 +310,9 @@ class FormRenderer extends React.Component<Props, State> {
               style={styles.addIcon}
               source={require("../../../assets/Icons/Light/Add.png")}
             />
-            <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+            <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt}</Text>
           </Button>
-        </View>
+        </View> : null
       );
 
       return (
@@ -244,8 +335,8 @@ class FormRenderer extends React.Component<Props, State> {
                   return (
                     <View style={[styles.formLayout]} key={fieldSet.key}>
                       {
-                        fieldSet.legend ? 
-                        <View style={styles.headingContainer}>
+                        fieldSet.legend ?
+                        <View style={[styles.headingContainer, this.props.disableEditing && {marginTop: getSizeWRTDeviceWidth(25)}]}>
                           <Text style={[styles.headingTxt, fieldSet.legendDarkTxt && {color: "rgba(74,74,74,1)", fontWeight: "bold"}]}>{fieldSet.legend} ({gridItemIndex + 1})</Text>
                         </View> : null
                       }
@@ -268,44 +359,50 @@ class FormRenderer extends React.Component<Props, State> {
           }
         </View>
       );
-    } else if (formLayout.type === "rspList") {
+    } else if (formLayout.type === "rspList" && !(this.props.disableEditing && this.props.formData.rspList.length === 0)) {
       //  only for RCR step # 1 RSP List
       return (
         <View style={styles.formLayout} key={formLayout.key}>
           <View style={styles.rspListHeadingContainer}>
             <Text style={styles.headingTxt}>{formLayout.label}</Text>
-            <Button onPress={() => this.props.addOneDataGridItem("newRspItems", formLayout.gridItem)} style={styles.addOneMoreBtn}>
-              <Image
-                style={styles.addIcon}
-                source={require("../../../assets/Icons/Light/Add.png")}
-              />
-              <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
-            </Button>
+            {
+              !this.props.disableEditing ?
+              <Button onPress={() => this.props.addOneDataGridItem("newRspItems", formLayout.gridItem)} style={styles.addOneMoreBtn}>
+                <Image
+                  style={styles.addIcon}
+                  source={require("../../../assets/Icons/Light/Add.png")}
+                />
+                <Text style={styles.addOneMoreBtnTxt}>{formLayout.addOneMoreItemTxt} ({this.props.formData[formLayout.key].length})</Text>
+              </Button> : null
+            }
           </View>
 
           <View style={styles.rspList}>
             {
               this.props.formData.rspList.map((gridItem, gridItemIndex) => {
-                return (
-                  <View style={styles.rspListItem} key={gridItemIndex}>
-                    <View style={styles.rspListItemName}>
-                      <Text style={styles.rspListItemNameTxt}>{gridItem.name}</Text>
+                if (gridItem.status === "Active") {
+                  return (
+                    <View style={styles.rspListItem} key={gridItemIndex}>
+                      <View style={styles.rspListItemName}>
+                        <Text style={styles.rspListItemNameTxt}>{gridItem.name}</Text>
+                      </View>
+                      <View style={styles.rspListItemContactInfo}>
+                        <Text style={styles.rspListItemEmailTxt}>{gridItem.email}</Text>
+                        <Text style={styles.rspListItemContactNoTxt}>{gridItem.contactNumber}</Text>
+                      </View>
+                      <View style={styles.rspListItemEditBtnContainer}>
+                        <Button disabled={this.props.disableEditing} onPress={() => this.setRspListItemEditIndex(gridItemIndex)} style={[styles.rspListItemEditBtn, this.props.disableEditing && styles.btnDisabled]}>
+                          <Text style={styles.rspListItemEditBtnTxt}>EDIT</Text>
+                        </Button>
+                      </View>
                     </View>
-                    <View style={styles.rspListItemContactInfo}>
-                      <Text style={styles.rspListItemEmailTxt}>{gridItem.email}</Text>
-                      <Text style={styles.rspListItemContactNoTxt}>{gridItem.contactNumber}</Text>
-                    </View>
-                    <View style={styles.rspListItemEditBtnContainer}>
-                      <Button onPress={() => this.setRspListItemEditIndex(gridItemIndex)} style={styles.rspListItemEditBtn}>
-                        <Text style={styles.rspListItemEditBtnTxt}>EDIT</Text>
-                      </Button>
-                    </View>
-                  </View>
-                );
+                  );
+                }
+
+                return null;
               })
             }
           </View>
-
 
           {
             this.props.formData.newRspItems.length ?
@@ -338,7 +435,7 @@ class FormRenderer extends React.Component<Props, State> {
                 })
               }
 
-              <Button onPress={this.props.appendNewRspToList} style={styles.updateRspListBtn}>
+              <Button disabled={!this.isUpdateRspListEnabled()} onPress={this.props.appendNewRspToList} style={[styles.updateRspListBtn, !this.isUpdateRspListEnabled() && styles.btnDisabled]}>
                 <Text style={styles.updateRspListBtnTxt}>Update Current RSP List</Text>
               </Button>              
             </View> : null
@@ -418,18 +515,8 @@ class FormRenderer extends React.Component<Props, State> {
     });
   }
 
-  signaturePadError = (error) => {};
-
-  clearSignature = (formField, formLayout) => {
-    this.props.handleFormDataChange(formField.key, "", formLayout);    
-  }
-
-  signaturePadChange = (base64DataUrl, formField, formLayout) => {
-    this.props.handleFormDataChange(formField.key, base64DataUrl, formLayout);
-  };
-
   continue = () => {
-    this.props.saveFormToAsyncStorage();
+    // this.props.saveFormToAsyncStorage();
     this.props.setStepIndex(this.props.stepIndex + 1);
   }
 
@@ -439,7 +526,7 @@ class FormRenderer extends React.Component<Props, State> {
   }
 
   submit = () => {
-    this.props.saveFormToAsyncStorage();
+    this.props.saveFormToAsyncStorage(true);
 
     this.setState({
       submissionConfirmationModal: false,
@@ -461,6 +548,53 @@ class FormRenderer extends React.Component<Props, State> {
     });
   }
 
+  renderFormActions = () => {
+    if (this.props.disableEditing) {
+      return (
+        this.props.stepTemplate.startBtn ?
+        <View style={styles.formActions}>
+          <Button block onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.startBtn}>
+            <Text style={styles.startBtnTxt}>NEXT</Text>
+          </Button>
+        </View> :
+        <View style={styles.formActions}>
+          <Button onPress={() => this.props.navigation.navigate("MyStores")}  style={styles.lightBtn}>
+            <Text style={styles.lightBtnTxt}>EXIT</Text>
+          </Button>
+          {
+            (this.props.stepIndex !== this.props.stepsLength - 1) ?
+            <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
+              <Text style={styles.darkBtnTxt}>Next</Text>
+            </Button> : null
+          }
+        </View>
+      );
+    }
+
+    return (
+      this.props.stepTemplate.startBtn ?
+      <View style={styles.formActions}>
+        <Button block onPress={this.continue} style={styles.startBtn}>
+          <Text style={styles.startBtnTxt}>START</Text>
+        </Button>
+      </View> :
+      <View style={styles.formActions}>
+        <Button onPress={this.saveAndExit} style={styles.lightBtn}>
+          <Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
+        </Button>
+        {
+          (this.props.stepIndex !== this.props.stepsLength - 1) ?
+          <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
+            <Text style={styles.darkBtnTxt}>CONTINUE</Text>
+          </Button> :
+          <Button block onPress={this.toggleSubmissionConfirmationModal} style={styles.darkBtn}>
+            <Text style={styles.darkBtnTxt}>SUBMIT</Text>
+          </Button>
+        }
+      </View>
+    );
+  }
+
   render() {
     const formLayouts = this.props.stepTemplate.components;
     const formViewStyles = {height: 0.7 * deviceHeight, justifyContent: "space-between"};
@@ -475,28 +609,7 @@ class FormRenderer extends React.Component<Props, State> {
           }
         </View>
 
-        {
-          this.props.stepTemplate.startBtn ?
-          <View style={styles.formActions}>
-            <Button block onPress={this.continue} style={styles.startBtn}>
-              <Text style={styles.startBtnTxt}>START</Text>
-            </Button>
-          </View> :
-          <View style={styles.formActions}>
-            <Button onPress={this.saveAndExit} style={styles.lightBtn}>
-              <Text style={styles.lightBtnTxt}>SAVE & EXIT</Text>
-            </Button>
-            {
-              (this.props.stepIndex !== this.props.stepsLength - 1) ?
-              <Button onPress={() => this.props.setStepIndex(this.props.stepIndex + 1)} style={styles.darkBtn}>
-                <Text style={styles.darkBtnTxt}>CONTINUE</Text>
-              </Button> :
-              <Button block onPress={this.toggleSubmissionConfirmationModal} style={styles.darkBtn}>
-                <Text style={styles.darkBtnTxt}>SUBMIT</Text>
-              </Button>
-            }
-          </View>
-        }
+        {this.renderFormActions()}
 
         {
           this.state.submissionConfirmationModal ?
@@ -509,7 +622,7 @@ class FormRenderer extends React.Component<Props, State> {
                 <Text style={styles.headerTxt}>Confirm Submission</Text>
               </View>
               <View style={styles.body}>
-                <Text style={styles.bodyTxt}>You are submitting data reports for Harvey Norman on 05/04/2018</Text>
+                <Text style={styles.bodyTxt}>You are submitting data reports for {this.props.store.name} on {moment().format("YYYY-MM-DD")} at {moment().format("HH:mm A")}</Text>
 
                 <View style={styles.submissionModalActions}>
                   <TouchableOpacity
@@ -539,7 +652,7 @@ class FormRenderer extends React.Component<Props, State> {
                 <Text style={styles.headerTxt}>Confirm Successful!</Text>
               </View>
               <View style={styles.body}>
-                <Text style={styles.bodyTxt}>You have successfully submitted data reports for Harvey Norman on 05/04/2018</Text>
+              <Text style={styles.bodyTxt}>You have successfully submitted data reports for {this.props.store.name} on {moment().format("YYYY-MM-DD")} at {moment().format("HH:mm A")}</Text>
 
                 <View style={[styles.submissionModalActions, {justifyContent: "center"}]}>
                   <Button

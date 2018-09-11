@@ -19,13 +19,21 @@ class SearchStores extends React.Component<Props> {
 
 	state = {
 		store: {
-			storeId: 3445,
-			storeName: "Harvey Norman",
+			name: "Harvey Norman",
+			status: "Active",
+			id: "12345",
+			image: null,
 			primaryManagerName: "Alwyn Lao",
-			modifiedAt: "14/02/2018 01:24:33pm",
+			contactPhone: "",
 			addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
 			addressLine2: "Northpoint Shopping Centre",
-			country: "Singapore",
+			postalCode: "",
+			computerMall: "",
+			country: "",
+			updatedAt: "14/02/2018 01:24:33pm",
+			retails: [
+				{name: ""},
+			],
 		},
 	}
 
@@ -54,7 +62,10 @@ class SearchStores extends React.Component<Props> {
 
         <ScrollView endFillColor="#fff" style={styles.scrollView}>
           <View style={styles.container}>
-            <StoreCard navigation={this.props.navigation} store={this.state.store} />
+            <StoreCard
+							store={this.state.store}
+							navigation={this.props.navigation}
+						/>
           </View>
         </ScrollView>
 			</View>

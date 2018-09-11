@@ -34,7 +34,7 @@ const styles: any = StyleSheet.create({
     paddingVertical: getSizeWRTDeviceWidth(14),
   },
   infoText: {
-
+    width: "80%",
   },
   storeID: {
     color: "rgba(228,228,228,1)",
@@ -67,7 +67,10 @@ const styles: any = StyleSheet.create({
     marginTop: getSizeWRTDeviceWidth(5)
   },
   editIconContainer: {
-
+    width: "20%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   editIcon: {
     width: getSizeWRTDeviceWidth(30),

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight } from "../../../utils";
+import { getSizeWRTDeviceWidth, getSizeWRTDeviceHeight, deviceHeight } from "../../../utils";
 
 const styles: any = StyleSheet.create({
   storeFilter: {
@@ -8,6 +8,7 @@ const styles: any = StyleSheet.create({
     left: 0,
     width: "100%",
     zIndex: 100,
+    maxHeight: deviceHeight / 2,
   },
   storeFilterSelected: {
     width: "100%",

@@ -2,6 +2,7 @@ export default [
   {
     type: "step",
     title: "",
+    stepCompletedTxt: "",
     key: "stepIndex-0",
     fullHeight: true,
     startBtn: true,
@@ -48,6 +49,7 @@ export default [
   {
     type: "step",
     title: "Step 1: RSPs",
+    stepCompletedTxt: "Step 1 of 6 Completed",
     key: "stepIndex-1",
     components: [{
       key: "formFieldSet-1-0",
@@ -147,6 +149,7 @@ export default [
   {
     type: "step",
     title: "Step 2: Training",
+    stepCompletedTxt: "Step 2 of 6 Completed",
     key: "stepIndex-2",
     components: [{
         key: "formFieldSet-2-0",
@@ -245,6 +248,7 @@ export default [
   {
     type: "step",
     title: "Step 3.1: Merchandising",
+    stepCompletedTxt: "Step 3.1 of 6 Completed",
     key: "stepIndex-3",
     components: [{
         key: "formFieldSet-3-0",
@@ -324,6 +328,7 @@ export default [
   {
     type: "step",
     title: "Step 3.2: Merchandising",
+    stepCompletedTxt: "Step 3.2 of 6 Completed",
     key: "stepIndex-4",
     components: [{
         key: "formFieldSet-4-0",
@@ -391,6 +396,7 @@ export default [
   {
     type: "step",
     title: "Step 3.3: Merchandising",
+    stepCompletedTxt: "Step 3.3 of 6 Completed",
     key: "stepIndex-5",
     components: [{
         key: "formFieldSet-5-0",
@@ -504,6 +510,7 @@ export default [
   {
     type: "step",
     title: "Step 4: Competitor Analysis",
+    stepCompletedTxt: "Step 4 of 6 Completed",
     key: "stepIndex-6",
     components: [{
       label: "Competitor Analysis",
@@ -714,6 +721,7 @@ export default [
   {
     type: "step",
     title: "Step 5.1: Store Analysis",
+    stepCompletedTxt: "Step 5.1 of 6 Completed",
     key: "stepIndex-7",
     components: [{
         key: "formFieldSet-7-0",
@@ -776,6 +784,7 @@ export default [
   {
     type: "step",
     title: "Step 5.2: Store Analysis",
+    stepCompletedTxt: "Step 5.2 of 6 Completed",
     key: "stepIndex-8",
     components: [{
         key: "formFieldSet-8-0",
@@ -838,6 +847,7 @@ export default [
   {
     type: "step",
     title: "Step 5.3: Store Analysis",
+    stepCompletedTxt: "Step 5.3 of 6 Completed",
     key: "stepIndex-9",
     components: [{
         key: "formFieldSet-9-0",
@@ -901,6 +911,7 @@ export default [
   {
     type: "step",
     title: "Step 5.4: Store Analysis",
+    stepCompletedTxt: "Step 5.4 of 6 Completed",
     key: "stepIndex-10",
     components: [{
         key: "formFieldSet-10-1",
@@ -952,6 +963,7 @@ export default [
   {
     type: "step",
     title: "Step 5.5: Store Analysis",
+    stepCompletedTxt: "Step 5.5 of 6 Completed",
     key: "stepIndex-11",
     components: [{
         key: "formFieldSet-11-1",
@@ -1049,6 +1061,7 @@ export default [
   {
     type: "step",
     title: "Step 5.6: Store Analysis",
+    stepCompletedTxt: "Step 5.6 of 6 Completed",
     key: "stepIndex-11",
     components: [{
         key: "formFieldSet-12-1",
@@ -1111,6 +1124,7 @@ export default [
   {
     type: "step",
     title: "Step 5.7: Store Analysis",
+    stepCompletedTxt: "Step 5.7 of 6 Completed",
     key: "stepIndex-13",
     components: [{
         key: "formFieldSet-13-1",
@@ -1186,6 +1200,7 @@ export default [
   {
     type: "step",
     title: "Step 5.8: Store Analysis",
+    stepCompletedTxt: "Step 5.8 of 6 Completed",
     key: "stepIndex-14",
     fullHeight: true,
     components: [{
@@ -1215,6 +1230,7 @@ export default [
   {
     type: "step",
     title: "Step 6: Submit",
+    stepCompletedTxt: "Step 6 of 6 Completed",
     key: "stepIndex-15",
     components: [{
       key: "formFieldSet-15-1",

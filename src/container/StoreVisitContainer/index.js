@@ -3,6 +3,7 @@ import * as React from "react";
 import { AsyncStorage } from "react-native";
 
 import _ from "lodash";
+import moment from "moment";
 
 import StoreVisit from "../../components/StoreVisit";
 
@@ -58,6 +59,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 					});
 				}
 			}).catch((err) => {
+				this.props.setIsLoading(false);
 				throw new Error(err);
 			});
 		} else {
@@ -93,18 +95,24 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		});
 	}
 
-	saveFormToAsyncStorage = (isSubmit = false) => {
-		if (isSubmit) {
-			const formData = _.omit(this.state.formData, ["newRspItems"]);
-			this.props.saveRcrFormData({...formData, planner: {_id: this.state.planner._id}}).then((res) => {
-				if (res.status === 200) {
-					AsyncStorage.setItem(this.state.planner.id, JSON.stringify(this.state.formData));
-				}
-			}).catch((err) => {
-				throw new Error(err);
-			});
-		} else {
-			AsyncStorage.setItem(this.state.planner.id, JSON.stringify(this.state.formData));
+	submitForm = () => {
+		const formData = _.omit(this.state.formData, ["newRspItems"]);
+
+		this.props.saveRcrFormData({...formData, planner: {_id: this.state.planner._id}}).then((res) => {
+			if (res.status === 200) {
+				AsyncStorage.setItem(this.state.planner.id, JSON.stringify(this.state.formData));
+			}
+		}).catch((err) => {
+			throw new Error(err);
+		});
+	}
+
+	saveFormToAsyncStorage = (savedStepIndex) => {
+		const stepCompletedTxt = this.formTemplate[savedStepIndex].stepCompletedTxt;
+
+		AsyncStorage.setItem(this.state.planner.id, JSON.stringify(this.state.formData));
+		if (stepCompletedTxt) {
+			AsyncStorage.setItem(`planner-info-${this.state.planner.id}`, JSON.stringify({savedOn: moment().format("YYYY-MM-DD LTS"), stepCompletedTxt: this.formTemplate[savedStepIndex].stepCompletedTxt}));
 		}
 	}
 
@@ -154,6 +162,7 @@ class StoreVisitContainer extends React.Component<Props, State> {
 		return (
 			<StoreVisit
 				store={this.state.store}
+				submitForm={this.submitForm}
 				formData={this.state.formData}
 				formTemplate={this.formTemplate}
 				navigation={this.props.navigation}

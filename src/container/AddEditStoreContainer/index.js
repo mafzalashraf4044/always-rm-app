@@ -5,6 +5,9 @@
 // @flow
 import * as React from "react";
 
+//	helpers
+import _ from "lodash";
+
 //	third party components
 import { ImagePicker, Permissions } from "expo";
 
@@ -50,6 +53,7 @@ class AddEditStoreContainer extends React.Component<Props> {
 			} : params.store,
 			countries: [],
 		};
+
 	}
 
 	componentWillMount() {
@@ -79,8 +83,10 @@ class AddEditStoreContainer extends React.Component<Props> {
 	}
 
 	addStore = () => {
+		const country = typeof this.state.store.country === "string" ? JSON.parse(this.state.store.country) : this.state.store.country; 
+
 		this.props.setIsLoading(true);
-		this.props.addStore({...this.state.store, country: JSON.parse(this.state.store.country)}).then((res) => {
+		this.props.addStore({...this.state.store, country}).then((res) => {
 			if (res.status === 200) {
 				this.props.setIsLoading(false);
 			}
@@ -92,8 +98,10 @@ class AddEditStoreContainer extends React.Component<Props> {
 	}
 
 	editStore = () => {
+		const country = typeof this.state.store.country === "string" ? JSON.parse(this.state.store.country) : this.state.store.country; 
+
 		this.props.setIsLoading(true);
-		this.props.editStore(this.state.store._id, {...this.state.store, country: JSON.parse(this.state.store.country)}).then((res) => {
+		this.props.editStore(this.state.store._id, {...this.state.store, country}).then((res) => {
 			if (res.status === 200) {
 				this.props.setIsLoading(false);
 			}

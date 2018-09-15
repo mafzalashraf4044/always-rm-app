@@ -2,9 +2,11 @@ import React from "react";
 
 import {
 	View,
+	Text,
 	Image,
 	ScrollView,
 } from "react-native";
+
 
 import Header from "../common/Header";
 import StoreCard from "../common/StoreCard";
@@ -17,25 +19,19 @@ export interface Props {
 
 class SearchStores extends React.Component<Props> {
 
-	state = {
-		store: {
-			name: "Harvey Norman",
-			status: "Active",
-			id: "12345",
-			image: null,
-			primaryManagerName: "Alwyn Lao",
-			contactPhone: "",
-			addressLine1: "960 Yishun Central #B2-101/203 S(760960)",
-			addressLine2: "Northpoint Shopping Centre",
-			postalCode: "",
-			computerMall: "",
-			country: "",
-			updatedAt: "14/02/2018 01:24:33pm",
-			retails: [
-				{name: ""},
-			],
-		},
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			searchTerm: "",
+		};
 	}
+
+  handleSearchTermChange = (searchTerm) => {
+    this.setState({
+      searchTerm,
+    });
+  }
 
 	render() {
 		return (
@@ -46,8 +42,12 @@ class SearchStores extends React.Component<Props> {
 					source={require("../../assets/Images/app-bg.jpeg")}
 				/>
         <Header
-          title="searchBox"
-          navigation={this.props.navigation}
+					title="searchBox"
+					key="search"
+					onSearchTermChange={this.handleSearchTermChange}
+					navigation={this.props.navigation}
+					searchTerm={this.state.searchTerm}
+					handleSearchTermChange={this.handleSearchTermChange}
           iconLeft={{
 						url: require("../../assets/Icons/Light/Back.png"),
 						onPress: () => this.props.navigation.goBack(),
@@ -55,17 +55,29 @@ class SearchStores extends React.Component<Props> {
           iconsRight={[
 						{
 							url: require("../../assets/Icons/Light/Search.png"),
-							onPress: () => {},
+							onPress: () => this.props.searchStores(this.state.searchTerm),
 						},
 					]}
         />
 
         <ScrollView endFillColor="#fff" style={styles.scrollView}>
           <View style={styles.container}>
-            <StoreCard
-							store={this.state.store}
-							navigation={this.props.navigation}
-						/>
+						{
+							this.props.stores.map((store, index) => (
+								<StoreCard
+									key={index}
+									store={store}
+									navigation={this.props.navigation}
+								/>
+							))
+						}
+
+						{
+							this.props.stores.length === 0 ?
+							<View style={styles.noStoresTextContainer}>
+								<Text style={styles.noStoresText}>No stores found.</Text>
+							</View> : null
+						}
           </View>
         </ScrollView>
 			</View>

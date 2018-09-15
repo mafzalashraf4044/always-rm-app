@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import SearchStores from "../../components/SearchStores";
 
-// import { fetchList } from "./actions";
+import { getStores, setIsLoading } from "../../actions";
 
 export interface Props {
 	navigation: any,
@@ -12,18 +12,48 @@ export interface Props {
 export interface State {}
 
 class SearchStoresContainer extends React.Component<Props, State> {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			stores: [],
+		};
+	}
+
+	searchStores = (searchTerm) => {
+		this.props.setIsLoading(true);
+
+		this.props.getStores(searchTerm).then((res) => {
+			if (res.status === 200) {
+				this.setState({
+					stores: res.data,
+				});
+			}
+			this.props.setIsLoading(false);
+		}).catch((err) => {
+			this.props.setIsLoading(false);
+			throw new Error(err);
+		});
+	}
+
 	render() {
-		return <SearchStores navigation={this.props.navigation} />;
+		return (
+			<SearchStores
+				stores={this.state.stores}
+				searchStores={this.searchStores}
+				navigation={this.props.navigation}
+			/>
+		);
 	}
 }
 
-const mapStateToProps = state => ({
-	// isLoading: state.SearchStoresReducer.isLoading,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchList: url => dispatch(fetchList(url)),
+		getStores: searchTerm => dispatch(getStores(searchTerm)),
+		setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
 	};
 };
 

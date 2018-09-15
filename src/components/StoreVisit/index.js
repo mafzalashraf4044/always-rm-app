@@ -3,10 +3,11 @@ import * as React from "react";
 import {
   View,
   Text,
-  Image,
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
+
+import {Image as CacheableImage} from "react-native-expo-image-cache";
 
 import Header from "../common/Header";
 import FormRenderer from "../common/FormRenderer";
@@ -22,7 +23,7 @@ class StoreVisit extends React.Component<Props> {
 	constructor(props) {
 		super(props);
 		this.state = {
-      stepIndex: 0,
+      stepIndex: 14,
     };
   }
 
@@ -65,10 +66,13 @@ class StoreVisit extends React.Component<Props> {
           ref={(scrollView) => this.scrollView = scrollView}
         >
           <View style={styles.storeImgContainer}>
-            <Image
-              style={styles.backgroundImg}
-              source={require("../../assets/Images/card-image.jpg")}
-            />
+            {
+              store.image && store.image.url ?
+              <CacheableImage
+                style={styles.backgroundImg}
+                {...{uri: store.image.url}}
+              /> : null
+            }
             <Header
               title={this.getTitle()}
               navigation={this.props.navigation}
@@ -85,8 +89,7 @@ class StoreVisit extends React.Component<Props> {
               <View style={styles.infoText}>
                 <Text style={styles.storeID}>Store ID: {store.id}</Text>
                 <Text style={styles.storeName}>{store.name}</Text>
-                <Text style={styles.storeManager}>Store Manager: {store.resellerName}</Text>
-                <Text style={styles.lastSaved}>Last saved on {store.updatedAt}</Text>
+                <Text style={styles.storeManager}>Store Manager: {store.primaryManagerName}</Text>
               </View>
             </View>
           </View>
@@ -99,6 +102,7 @@ class StoreVisit extends React.Component<Props> {
               stepIndex={this.state.stepIndex}
               setStepIndex={this.setStepIndex}
               navigation={this.props.navigation}
+              submitForm={this.props.submitForm}
               disableEditing={this.props.disableEditing}
               stepsLength={this.props.formTemplate.length}
               saveCapturedImg={this.props.saveCapturedImg}

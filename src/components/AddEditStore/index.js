@@ -16,6 +16,7 @@ import {
 
 //	third party componenets
 import { Button, ActionSheet } from "native-base";
+import {Image as CacheableImage} from "react-native-expo-image-cache";
 import { TextField } from "react-native-material-textfield";
 
 //	custom components
@@ -113,11 +114,15 @@ class AddEditStore extends React.Component<Props> {
 				>
 					<View style={styles.storeImgContainer}>
 						{
-							(params.isEdit || this.props.store.image) &&
-							<Image
-								blurRadius={this.props.store.image ? 0 : 5}
+							(this.props.store.image && this.props.store.image.url) ?
+							<CacheableImage
 								style={styles.backgroundImg}
-								source={this.props.store.image ? {uri: this.props.store.image.url} : require("../../assets/Images/header-bg.jpeg")}
+								{...{uri: this.props.store.image.url}}
+							/> :
+							<Image
+								blurRadius={5}
+								style={styles.backgroundImg}
+								source={require("../../assets/Images/header-bg.jpeg")}
 							/>
 						}
 						<Header
@@ -134,7 +139,7 @@ class AddEditStore extends React.Component<Props> {
 									style={styles.cameraIcon}
 									source={require("../../assets/Icons/Light/Camera.png")}
 								/>
-								<Text style={styles.addEditImgTxt}>Add store image</Text>
+								<Text style={styles.addEditImgTxt}>{params.isEdit ? "Edit" : "Add"} store image</Text>
 							</View>
 						</TouchableOpacity>
 					</View>

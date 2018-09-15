@@ -2,14 +2,16 @@ import React from "react";
 
 import {
   Animated,
-  Image,
   View,
   Text,
+  Image,
   Linking,
+  AsyncStorage,
   TouchableOpacity,
 } from "react-native";
 
 import styles from "./styles";
+import {Image as CacheableImage} from "react-native-expo-image-cache";
 
 export interface Props {
 	navigation: any,
@@ -25,6 +27,21 @@ class StoreCard extends React.Component<Props> {
       collapsableAnimation: new Animated.Value(),
       maxHeight: null,
     };
+  }
+
+  componentDidMount = async () => {
+    try {
+      const plannerInfo = JSON.parse(await AsyncStorage.getItem(`planner-info-${this.props.assignedRoutePlanner.id}`));
+
+      if (plannerInfo !== null) {
+        this.setState({
+          savedOn: plannerInfo.savedOn,
+          stepCompletedTxt: plannerInfo.stepCompletedTxt,
+        });
+      }
+     } catch (error) {
+       // Error retrieving data
+     }
   }
 
   toggleCollapsable = () => {
@@ -70,16 +87,24 @@ class StoreCard extends React.Component<Props> {
     return (
       <View style={styles.card}>
         <View style={styles.imgContainer}>
-          <Image
+        {
+          store.image && store.image.url ?
+          <CacheableImage
             style={styles.storeImg}
-            source={require("../../../assets/Images/card-image.jpg")}
-          />
+            {...{uri: store.image.url}}
+          /> : null
+        }
+
           <View style={styles.storeInfo}>
             <View style={styles.infoText}>
               <Text style={styles.storeID}>Store ID: {store.id}</Text>
               <Text style={styles.storeName} numberOfLines={1}>{store.name}</Text>
               <Text style={styles.storeManager}>Store Manager: {store.primaryManagerName}</Text>
-              <Text style={styles.lastSaved}>Last saved on {store.updatedAt}</Text>
+
+              {
+                this.state.savedOn ?
+                <Text style={styles.lastSaved}>Last saved on {this.state.savedOn}</Text> : null
+              }
             </View>
             <View style={styles.editIconContainer}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate("AddEditStore", {isEdit: true, store})}>
@@ -96,7 +121,10 @@ class StoreCard extends React.Component<Props> {
             <Text style={styles.address}>{store.addressLine1}</Text>
             <Text style={styles.address}>{store.addressLine2}</Text>
             <Text style={styles.address}>{store.country.name}</Text>
-            <Text style={styles.stepsCompleted}>Step 2 of 5 completed</Text>
+            {
+              this.state.stepCompletedTxt ?
+              <Text style={styles.stepsCompleted}>{this.state.stepCompletedTxt}</Text> : null
+            }
           </View>
 
           <View style={styles.actions}>

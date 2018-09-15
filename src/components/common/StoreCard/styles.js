@@ -15,11 +15,11 @@ const styles: any = StyleSheet.create({
   imgContainer: {
     width: "100%",
     justifyContent: "flex-end",
+    backgroundColor: "rgba(183,183,183,1)",
     height: getSizeWRTDeviceHeight(192),
   },
   storeImg: {
 		flex: 1,
-		resizeMode: "cover",
 		position: "absolute",
     width: "100%",
     borderTopLeftRadius: 5,
@@ -73,8 +73,8 @@ const styles: any = StyleSheet.create({
     alignItems: "center",
   },
   editIcon: {
-    width: getSizeWRTDeviceWidth(30),
-		resizeMode: "cover",
+    width: getSizeWRTDeviceWidth(40),
+		resizeMode: "contain",
   },
   cardBody: {
     width: "100%",
@@ -117,8 +117,8 @@ const styles: any = StyleSheet.create({
     marginRight: getSizeWRTDeviceWidth(15),
   },
   expandIcon: {
-		width: getSizeWRTDeviceWidth(30),
-		resizeMode: "cover",
+    width: getSizeWRTDeviceWidth(40),
+		resizeMode: "contain",
   },
   collapsable: {
     paddingTop: getSizeWRTDeviceWidth(15),

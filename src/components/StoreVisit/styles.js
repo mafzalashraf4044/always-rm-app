@@ -16,7 +16,6 @@ const styles: any = StyleSheet.create({
   },
 	backgroundImg: {
 		flex: 1,
-		resizeMode: "cover",
 		position: "absolute",
 		width: "100%",
 		height: "100%",

@@ -23,12 +23,12 @@ import styles from "./styles";
 
 import { MY_STORES } from "../../constants";
 
+const INITIAL_TAB_INDEX = 1;
+
 export interface Props {
 	navigation: any,
 	formType: string,
 }
-
-const INITIAL_PAGE_INDEX = 1;
 
 class MyStores extends React.Component<Props> {
 
@@ -39,6 +39,10 @@ class MyStores extends React.Component<Props> {
 			isReassignModalOpen: false,
 			isScrollEnabled: true,
 		};
+	}
+
+	componentDidMount() {
+		this.tabs.goToPage(this.props.rcrMyStoresTabIndex);
 	}
 
 	toggleReassignModal = () => {
@@ -84,13 +88,14 @@ class MyStores extends React.Component<Props> {
 					this.props.formType === MY_STORES.RCR ?
 					<Tabs
 						transparent
-						initialPage={INITIAL_PAGE_INDEX}
+						initialPage={INITIAL_TAB_INDEX}
+						ref={tabs => this.tabs = tabs}
 						onChangeTab={this.props.getRoutePlanners}
 					>
 						{
 							this.props.rcrTabs.map((rcrTab, index) => (
 								<Tab heading={rcrTab.heading} key={index}>
-									<ScrollView style={styles.tabContent} {...(rcrTab.heading === "Completed" ? {scrollEnabled: this.state.isScrollEnabled} : {})}>
+									<ScrollView style={styles.tabContent} endFillColor="#fff" {...(rcrTab.heading === "Completed" ? {scrollEnabled: this.state.isScrollEnabled} : {})}>
 										{
 											rcrTab.heading === "Completed" ?
 											<StoreFilter toggleScrollEnabled={this.toggleScrollEnabled} index={index} getRoutePlanners={this.props.getRoutePlanners} /> : null

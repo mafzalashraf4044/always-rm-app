@@ -7,7 +7,7 @@ import { AsyncStorage } from "react-native";
 import MyStores from "../../components/MyStores";
 
 import { connect } from "react-redux";
-import { getStores, setIsLoading } from "../../actions";
+import { getAssignedRoutePlanners, setIsLoading, saveRcrMyStoresTabIndex } from "../../actions";
 
 import { MY_STORES } from "../../constants";
 
@@ -16,8 +16,6 @@ export interface Props {
 }
 
 export interface State {}
-
-const INITIAL_PAGE_INDEX = 1;
 
 class MyStoresContainer extends React.Component<Props, State> {
 
@@ -55,7 +53,7 @@ class MyStoresContainer extends React.Component<Props, State> {
 					this.setState({
 						user: JSON.parse(user),
 					}, () => {
-						this.getRoutePlanners({i: INITIAL_PAGE_INDEX});
+						this.getRoutePlanners({i: this.props.rcrMyStoresTabIndex});
 					});
         }
       });
@@ -68,6 +66,7 @@ class MyStoresContainer extends React.Component<Props, State> {
 	getRoutePlanners = (tab, i = null, filterDays) => {
 		const index = tab ? tab.i : i;
 
+		this.props.saveRcrMyStoresTabIndex(index);
 		if (this.state.rcrTabs[index].routePlanners.length === 0 || filterDays) {
 			this.props.setIsLoading(true);
 
@@ -90,7 +89,7 @@ class MyStoresContainer extends React.Component<Props, State> {
 				}
 			}
 
-			this.props.getStores(filter).then((res) => {
+			this.props.getAssignedRoutePlanners(filter).then((res) => {
 				if (res.status === 200) {
 					const rcrTabs = this.state.rcrTabs;
 					rcrTabs[index].routePlanners = [...res.data];
@@ -110,10 +109,11 @@ class MyStoresContainer extends React.Component<Props, State> {
 			return (
 				<MyStores
 					rcrTabs={this.state.rcrTabs}
-					getRoutePlanners={this.getRoutePlanners}
-					formType={this.state.user.role.type === "rcr" ? MY_STORES.RCR : MY_STORES.MERCHANDISERS}
-					assignedRoutePlanners={this.state.assignedRoutePlanners}
 					navigation={this.props.navigation}
+					getRoutePlanners={this.getRoutePlanners}
+					rcrMyStoresTabIndex={this.props.rcrMyStoresTabIndex}
+					assignedRoutePlanners={this.state.assignedRoutePlanners}
+					formType={this.state.user.role.type === "rcr" ? MY_STORES.RCR : MY_STORES.MERCHANDISERS}
 				/>
 			);
 		}
@@ -123,13 +123,14 @@ class MyStoresContainer extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-	// isLoading: state.StoresReducer.isLoading,
+	rcrMyStoresTabIndex: state.reducer.rcrMyStoresTabIndex,
 });
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getStores: (filter) => dispatch(getStores(filter)),
+		getAssignedRoutePlanners: (filter) => dispatch(getAssignedRoutePlanners(filter)),
 		setIsLoading: isLoading => dispatch(setIsLoading(isLoading)),
+		saveRcrMyStoresTabIndex: rcrMyStoresTabIndex => dispatch(saveRcrMyStoresTabIndex(rcrMyStoresTabIndex)),
 	};
 };
 

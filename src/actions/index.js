@@ -13,24 +13,31 @@ export const setIsLoading = (isLoading: boolean) => {
 	};
 };
 
-export const setUser = (user: any) => {
+export const setUser = (user) => {
 	return {
 		type: "SET_USER",
 		payload: { user },
 	};
 };
 
-export const setJWTToken = (jwtToken: any) => {
+export const setJWTToken = (jwtToken) => {
 	return {
 		type: "SET_JWT_TOKEN",
 		payload: { jwtToken },
 	};
 };
 
-export const saveCountries = (countries: any) => {
+export const saveCountries = (countries) => {
 	return {
 		type: "SAVE_COUNTRIES",
 		payload: { countries },
+	};
+};
+
+export const saveRcrMyStoresTabIndex = (rcrMyStoresTabIndex) => {
+	return {
+		type: "SAVE_RCR_MY_STORES_TAB_INDEX",
+		payload: { rcrMyStoresTabIndex },
 	};
 };
 
@@ -58,7 +65,13 @@ export const getCountries = () => {
 	};
 };
 
-export const getStores = (filter = null) => {
+export const getStores = (searchTerm) => {
+	return dispatch => {
+		return axios.get(`${API_URL}/store${searchTerm ? `?name_contains=${searchTerm}` : ""}`, getAuthHeader());
+	};
+};
+
+export const getAssignedRoutePlanners = (filter = null) => {
 	return dispatch => {
 		return axios.get(`${API_URL}/planner${filter ? filter : ""}`, getAuthHeader());
 	};

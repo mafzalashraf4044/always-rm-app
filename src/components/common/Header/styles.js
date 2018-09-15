@@ -17,8 +17,8 @@ const styles: any = StyleSheet.create({
 		paddingRight: getSizeWRTDeviceWidth(20),
 	},
 	headerIcon: {
-		width: getSizeWRTDeviceWidth(30),
-		resizeMode: "cover",
+		width: getSizeWRTDeviceWidth(40),
+		resizeMode: "contain",
 	},
 	body: {
 		width: deviceWidth - getSizeWRTDeviceWidth(60),
@@ -38,14 +38,11 @@ const styles: any = StyleSheet.create({
 		fontSize: getSizeWRTDeviceWidth(18),
 		lineHeight: getSizeWRTDeviceWidth(20),
 	},
+	left: {},
 	right: {
 		flexDirection: "row",
 		justifyContent: "flex-start",
 		alignItems: "center",
 	},
-	rightIcon: {
-		width: getSizeWRTDeviceWidth(30),
-		resizeMode: "cover",
-	}
 });
 export default styles;

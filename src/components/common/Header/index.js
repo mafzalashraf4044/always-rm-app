@@ -52,7 +52,7 @@ class Header extends React.Component<Props, State> {
       inputContainerStyle:{borderBottomWidth: 0.8, borderBottomColor: "#FFF", marginTop: getSizeWRTDeviceWidth(-25), width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)},
       containerStyle: { width: deviceWidth - this.state.rightIconsWidth - getSizeWRTDeviceWidth(90)}
     };
-    
+
     return (
       <View style={styles.header}>
         <View style={styles.left}>
@@ -70,13 +70,13 @@ class Header extends React.Component<Props, State> {
               <Text style={styles.title}>{title}</Text> :
               <View>
                 <TextField
-                  value=""
                   label=""
+                  placeholder="Search Stores..."
                   {...textFieldProps}
-                  onChangeText={undefined}
+                  value={this.props.searchTerm}
+                  onChangeText={this.props.handleSearchTermChange}
                 />
               </View>
-
             }
           </View>
           {
@@ -86,7 +86,7 @@ class Header extends React.Component<Props, State> {
                 iconsRight.map((icon, index) => (
                   <TouchableOpacity onPress={icon.onPress} key={index}>
                     <Image
-                      style={styles.rightIcon}
+                      style={styles.headerIcon}
                       source={icon.url}
                     />
                   </TouchableOpacity>

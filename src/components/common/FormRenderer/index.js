@@ -518,17 +518,16 @@ class FormRenderer extends React.Component<Props, State> {
   }
 
   continue = () => {
-    // this.props.saveFormToAsyncStorage();
     this.props.setStepIndex(this.props.stepIndex + 1);
   }
 
   saveAndExit = () => {
-    this.props.saveFormToAsyncStorage();
+    this.props.saveFormToAsyncStorage(this.props.stepIndex);
     this.props.navigation.navigate("MyStores");
   }
 
   submit = () => {
-    this.props.saveFormToAsyncStorage(true);
+    this.props.submitForm();
 
     this.setState({
       submissionConfirmationModal: false,
